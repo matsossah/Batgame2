@@ -1,0 +1,89 @@
+var React = require('react-native');
+
+var {
+  Text,
+  View,
+  TouchableHighlight,
+  StyleSheet
+} = React;
+
+var Parse = require('parse/react-native');
+
+class Home extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      user: null
+    }
+  }
+  componentWillMount() {
+    Parse.User.currentAsync()
+      .then((user) => { this.setState({user: user}); })
+  }
+  render() {
+    if (!this.state.user) {
+      return <Text>Loading...</Text>
+    }
+    var username = this.state.user.get('username');
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text> START A GAME! </Text>
+        </View>
+        <View style={styles.options}>
+          <TouchableHighlight
+              style={styles.random}
+              underlayColor='#99d9f4'
+              onPress={this.onNewGamePress}>
+            <Text>New Game</Text>
+          </TouchableHighlight>
+        </View>
+        <View style={styles.footer}>
+          <Text> Good luck! </Text>
+        </View>
+      </View>
+    );
+  }
+  onNewGamePress() {
+    console.log('toto');
+  }
+};
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  header: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footer: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  options: {
+    flex: 6,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  random: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    backgroundColor: 'green'
+  },
+  friend: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    backgroundColor: 'blue'
+  },
+});
+
+module.exports = Home;
