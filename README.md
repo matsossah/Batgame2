@@ -10,3 +10,7 @@ cd Batgame2
 npm install
 react-native run-ios
 ```
+
+## Scripts
+
+* `npm run lint` Lints the repo.
