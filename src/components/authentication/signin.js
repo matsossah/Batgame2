@@ -113,7 +113,7 @@ class Signin extends React.Component {
               value={this.state.password}
             />
             <Text style={styles.errorMessage} >{this.state.errorMessage}</Text>
-            <Button text="Sign In" onPress={this.onSigninPress.bind(this)} />
+            <Button text="GO!" onPress={this.onSigninPress.bind(this)} />
             <Button text="I need an account" onPress={this.onSignupPress.bind(this)} />
           </View>
         </View>
