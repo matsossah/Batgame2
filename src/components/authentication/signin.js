@@ -29,13 +29,13 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: '#34485E',
-    flex: 30,
+    flex: 25,
     flexDirection: 'row',
     alignSelf: 'stretch',
   },
   footer: {
     backgroundColor: '#2C3D50',
-    flex: 70,
+    flex: 75,
     alignSelf: 'stretch',
   },
   separator: {

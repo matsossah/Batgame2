@@ -1,46 +1,48 @@
-var React = require('react-native');
-
-var {
+import React, {
   Navigator,
   Component,
-  StyleSheet
-} = React;
+  StyleSheet,
+} from 'react-native';
 
-var Parse = require('parse/react-native');
-var Signin = require('./components/authentication/signin');
-var Signup = require('./components/authentication/signup');
-var Home = require('./components/gamestart/home');
+const Parse = require('parse/react-native');
+const Signin = require('./components/authentication/signin');
+const Signup = require('./components/authentication/signup');
+const Home = require('./components/gamestart/home');
+const PickOpponent = require('./components/gamestart/pick_opponent');
 
-var ROUTES = {
+const ROUTES = {
   signin: Signin,
   signup: Signup,
-  home: Home
+  home: Home,
+  pick_opponent: PickOpponent,
 };
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-  }
+  },
 });
 
-class Main extends React.Component{
-  componentWillMount(){
-    Parse.initialize("pL5FJAYsevKtKFs6Amq9S4lXgW5veeycsk2Ubmf1", "cLmkourYpYoUIG5R4PI52jZwfNOVJUWno5afqrZA");
+class Main extends React.Component {
+  componentWillMount() {
+    Parse.initialize(
+      'pL5FJAYsevKtKFs6Amq9S4lXgW5veeycsk2Ubmf1',
+      'cLmkourYpYoUIG5R4PI52jZwfNOVJUWno5afqrZA');
+  }
+  renderScene(route, navigator) {
+    let Component = ROUTES[route.name];
+    return <Component route={route} navigator={navigator} />;
   }
   render() {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{name: 'signin' }}
+        initialRoute={{ name: 'pick_opponent' }}
         renderScene={this.renderScene}
-        configureScene={ () => { return Navigator.SceneConfigs.FloatFromRight; }}
+        configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }}
       />
     );
   }
-  renderScene(route, navigator) {
-    var Component = ROUTES[route.name];
-    return <Component route={route} navigator={navigator} />
-  }
-};
+}
 
 module.exports = Main;
