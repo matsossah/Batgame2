@@ -87,7 +87,7 @@ class Signup extends React.Component {
           style={styles.input}
           value={this.state.password}
           onChangeText={(text) => this.setState({ password: text })}
-          secureTextEntry={true}
+          secureTextEntry
         />
 
         <Text style={styles.label}>Confirm Password:</Text>
@@ -95,7 +95,7 @@ class Signup extends React.Component {
           style={styles.input}
           value={this.state.passwordConfirmation}
           onChangeText={(text) => this.setState({ passwordConfirmation: text })}
-          secureTextEntry={true}
+          secureTextEntry
         />
         <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
         <Button text={'Signup'} onPress={this.onSignupPress.bind(this)} />

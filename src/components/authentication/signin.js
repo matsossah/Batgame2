@@ -97,7 +97,7 @@ class Signin extends React.Component {
 
           <Text style={styles.label}>Password:</Text>
           <TextInput
-            secureTextEntry={true}
+            secureTextEntry
             style={styles.input}
             onChangeText={(text) => this.setState({ password: text })}
             value={this.state.password}
