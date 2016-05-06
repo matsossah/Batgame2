@@ -2,6 +2,7 @@ import React, {
   View,
   Text,
   TextInput,
+  TouchableHighlight,
   StyleSheet,
 } from 'react-native';
 
@@ -41,9 +42,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFD664',
   },
-  form: {
+  formView: {
     backgroundColor: '#2C3D50',
     flex: 29,
+  },
+  form: {
+  },
+  formSubmit: {
+    marginTop: 20,
+    alignSelf: 'stretch',
+    alignItems: 'flex-end',
+  },
+  sections: {
+    marginBottom: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignSelf: 'stretch',
   },
   input: {
     padding: 4,
@@ -57,6 +71,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 18,
+    color: 'white',
     fontFamily: 'chalkduster',
   },
   errorMessage: {
@@ -90,31 +105,40 @@ class Signin extends React.Component {
   }
   render() {
     return (
-      <View style={[styles.centered, styles.container]}>
-        <View style={[styles.centered, styles.header]}>
+      <View style={[styles.container, styles.centered]}>
+        <View style={[styles.header, styles.centered]}>
           <Text style={styles.title}>BATGAME</Text>
         </View>
         <View style={styles.footer}>
           <View style={styles.separator} />
-          <View style={[styles.centered, styles.form]}>
-            <Text style={styles.label}>Sign In</Text>
-            <Text style={styles.label}>Username:</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => this.setState({ username: text })}
-              value={this.state.username}
-            />
-
-            <Text style={styles.label}>Password:</Text>
-            <TextInput
-              secureTextEntry
-              style={styles.input}
-              onChangeText={(text) => this.setState({ password: text })}
-              value={this.state.password}
-            />
-            <Text style={styles.errorMessage} >{this.state.errorMessage}</Text>
-            <Button text="GO!" onPress={this.onSigninPress.bind(this)} />
-            <Button text="I need an account" onPress={this.onSignupPress.bind(this)} />
+          <View style={[styles.formView, styles.centered]}>
+            <View style={styles.centered}>
+              <View style={[styles.sections]}>
+                <TouchableHighlight onPress={this.onSignupPress.bind(this)}>
+                  <Text style={styles.label}>Sign up</Text>
+                </TouchableHighlight>
+                <TouchableHighlight onPress={this.onSignupPress.bind(this)}>
+                  <Text style={styles.label}>Login</Text>
+                </TouchableHighlight>
+              </View>
+              <Text style={styles.label}>Username:</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => this.setState({ username: text })}
+                value={this.state.username}
+              />
+              <Text style={styles.label}>Password:</Text>
+              <TextInput
+                secureTextEntry
+                style={styles.input}
+                onChangeText={(text) => this.setState({ password: text })}
+                value={this.state.password}
+              />
+              <Text style={styles.errorMessage} >{this.state.errorMessage}</Text>
+              <View style={styles.formSubmit}>
+                <Button text="GO!" onPress={this.onSigninPress.bind(this)}/ >
+              </View>
+            </View>
           </View>
         </View>
       </View>
