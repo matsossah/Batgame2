@@ -98,8 +98,8 @@ class Signup extends React.Component {
           secureTextEntry
         />
         <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
-        <Button text={'Signup'} onPress={this.onSignupPress.bind(this)} />
-        <Button text={'I have an account'} onPress={this.onLoginPress.bind(this)} />
+        <Button text="Signup" onPress={this.onSignupPress.bind(this)} />
+        <Button text="I have an account" onPress={this.onLoginPress.bind(this)} />
       </View>
     );
   }

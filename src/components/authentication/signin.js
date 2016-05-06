@@ -11,6 +11,8 @@ let Button = require('../common/button');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  centered: {
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -29,8 +31,6 @@ const styles = StyleSheet.create({
     flex: 30,
     flexDirection: 'row',
     alignSelf: 'stretch',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   footer: {
     backgroundColor: '#2C3D50',
@@ -44,8 +44,6 @@ const styles = StyleSheet.create({
   form: {
     backgroundColor: '#2C3D50',
     flex: 29,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   input: {
     padding: 4,
@@ -92,13 +90,13 @@ class Signin extends React.Component {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.header}>
+      <View style={[styles.centered, styles.container]}>
+        <View style={[styles.centered, styles.header]}>
           <Text style={styles.title}>BATGAME</Text>
         </View>
         <View style={styles.footer}>
           <View style={styles.separator} />
-          <View style={styles.form}>
+          <View style={[styles.centered, styles.form]}>
             <Text style={styles.label}>Sign In</Text>
             <Text style={styles.label}>Username:</Text>
             <TextInput
@@ -115,8 +113,8 @@ class Signin extends React.Component {
               value={this.state.password}
             />
             <Text style={styles.errorMessage} >{this.state.errorMessage}</Text>
-            <Button text={'Sign In'} onPress={this.onSigninPress.bind(this)} />
-            <Button text={'I need an account'} onPress={this.onSignupPress.bind(this)} />
+            <Button text="Sign In" onPress={this.onSigninPress.bind(this)} />
+            <Button text="I need an account" onPress={this.onSignupPress.bind(this)} />
           </View>
         </View>
       </View>
