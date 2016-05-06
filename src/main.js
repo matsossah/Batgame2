@@ -17,11 +17,17 @@ var ROUTES = {
   home: Home
 };
 
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  }
+});
+
 class Main extends React.Component{
   componentWillMount(){
     Parse.initialize("pL5FJAYsevKtKFs6Amq9S4lXgW5veeycsk2Ubmf1", "cLmkourYpYoUIG5R4PI52jZwfNOVJUWno5afqrZA");
   }
-  render(){
+  render() {
     return (
       <Navigator
         style={styles.container}
@@ -36,11 +42,5 @@ class Main extends React.Component{
     return <Component route={route} navigator={navigator} />
   }
 };
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-});
 
 module.exports = Main;

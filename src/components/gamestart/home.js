@@ -1,13 +1,46 @@
-var React = require('react-native');
-
-var {
+import React, {
   Text,
   View,
   TouchableHighlight,
   StyleSheet
-} = React;
+} from 'react-native';
 
-var Parse = require('parse/react-native');
+const Parse = require('parse/react-native');
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  header: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  footer: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  options: {
+    flex: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  random: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    backgroundColor: 'green',
+  },
+  friend: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    backgroundColor: 'blue',
+  },
+});
 
 class Home extends React.Component{
   constructor(props){
@@ -19,6 +52,9 @@ class Home extends React.Component{
   componentWillMount() {
     Parse.User.currentAsync()
       .then((user) => { this.setState({user: user}); })
+  }
+  onNewGamePress() {
+    console.log('toto');
   }
   render() {
     if (!this.state.user) {
@@ -45,45 +81,6 @@ class Home extends React.Component{
       </View>
     );
   }
-  onNewGamePress() {
-    console.log('toto');
-  }
-};
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  header: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  footer: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  options: {
-    flex: 6,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  random: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    backgroundColor: 'green'
-  },
-  friend: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    backgroundColor: 'blue'
-  },
-});
+}
 
 module.exports = Home;
