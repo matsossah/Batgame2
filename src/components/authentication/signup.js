@@ -68,13 +68,10 @@ class Signup extends React.Component {
     });
   }
   onLoginPress() {
-    this.props.navigator.pop();
   }
   render() {
     return (
       <View style={styles.container}>
-        <Text>Sign up</Text>
-
         <Text style={styles.label}>Username:</Text>
         <TextInput
           style={styles.input}

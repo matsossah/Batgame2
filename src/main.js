@@ -9,12 +9,14 @@ const Signin = require('./components/authentication/signin');
 const Signup = require('./components/authentication/signup');
 const Home = require('./components/gamestart/home');
 const PickOpponent = require('./components/gamestart/pick_opponent');
+const Authentication = require('./components/authentication/authentication');
 
 const ROUTES = {
   signin: Signin,
   signup: Signup,
   home: Home,
   pick_opponent: PickOpponent,
+  authentication: Authentication,
 };
 
 const styles = StyleSheet.create({
@@ -37,7 +39,7 @@ class Main extends React.Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{ name: 'pick_opponent' }}
+        initialRoute={{ name: 'authentication' }}
         renderScene={this.renderScene}
         configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }}
       />

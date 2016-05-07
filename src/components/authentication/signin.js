@@ -8,6 +8,7 @@ import React, {
 
 const Parse = require('parse/react-native');
 let Button = require('../common/button');
+import Tabs from '../common/tabs';
 
 const styles = StyleSheet.create({
   container: {
@@ -88,6 +89,11 @@ class Signin extends React.Component {
       password: '',
       errorMessage: '',
     };
+    this.onSignupPress = this.onSignupPress.bind(this);
+    this.onSigninPress = this.onSigninPress.bind(this);
+    this.errorMessage = this.errorMessage.bind(this);
+    this.updatePassword = this.updatePassword.bind(this);
+    this.updateUsername = this.updateUsername.bind(this);
   }
   onSignupPress() {
     this.props.navigator.push({ name: 'signup' });
@@ -95,13 +101,19 @@ class Signin extends React.Component {
   onSigninPress() {
     Parse.User.logIn(this.state.username, this.state.password, {
       success: () => { this.props.navigator.immediatelyResetRouteStack([{ name: 'home' }]); },
-      error: this.errorMessage.bind(this),
+      error: this.errorMessage,
     });
   }
   errorMessage() {
     this.setState({
       errorMessage: 'Invalid login, please try again',
     });
+  }
+  updateUsername(text) {
+    this.setState({ username: text });
+  }
+  updatePassword(text) {
+    this.setState({ password: text });
   }
   render() {
     return (
@@ -113,30 +125,22 @@ class Signin extends React.Component {
           <View style={styles.separator} />
           <View style={[styles.formView, styles.centered]}>
             <View style={styles.centered}>
-              <View style={[styles.sections]}>
-                <TouchableHighlight onPress={this.onSignupPress.bind(this)}>
-                  <Text style={styles.label}>Sign up</Text>
-                </TouchableHighlight>
-                <TouchableHighlight onPress={this.onSignupPress.bind(this)}>
-                  <Text style={styles.label}>Login</Text>
-                </TouchableHighlight>
-              </View>
               <Text style={styles.label}>Username:</Text>
               <TextInput
                 style={styles.input}
-                onChangeText={(text) => this.setState({ username: text })}
+                onChangeText={this.updateUsername}
                 value={this.state.username}
               />
               <Text style={styles.label}>Password:</Text>
               <TextInput
                 secureTextEntry
                 style={styles.input}
-                onChangeText={(text) => this.setState({ password: text })}
+                onChangeText={this.updatePassword}
                 value={this.state.password}
               />
               <Text style={styles.errorMessage} >{this.state.errorMessage}</Text>
               <View style={styles.formSubmit}>
-                <Button text="GO!" onPress={this.onSigninPress.bind(this)}/ >
+                <Button text="GO!" onPress={this.onSigninPress} />
               </View>
             </View>
           </View>
@@ -145,6 +149,10 @@ class Signin extends React.Component {
     );
   }
 }
+
+Signin.propTypes = {
+  navigator: React.PropTypes.object.isRequired,
+};
 
 
 module.exports = Signin;
