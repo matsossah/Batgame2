@@ -1,6 +1,5 @@
 import React, {
 	View,
-	Text,
 	StyleSheet,
 } from 'react-native';
 
@@ -17,27 +16,14 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   separator: {
-    flex: 1,
+    flex: 2,
     backgroundColor: '#FFD664',
+    alignSelf: 'stretch',
   },
   footer: {
     backgroundColor: '#2C3D50',
-    flex: 75,
+    flex: 73,
     alignSelf: 'stretch',
-  },
-  footerContent: {
-    backgroundColor: '#2C3D50',
-    flex: 29,
-  },
-  title: {
-    fontSize: 28,
-    fontFamily: 'chalkduster',
-    color: '#FFD664',
-  },
-  label: {
-    fontSize: 18,
-    color: 'white',
-    fontFamily: 'chalkduster',
   },
   centered: {
     justifyContent: 'center',
@@ -45,25 +31,23 @@ const styles = StyleSheet.create({
   },
 });
 
-class PickOpponent extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-	return (
-      <View style={[styles.container, styles.centered]}>
-        <View style={[styles.header, styles.centered]}>
-          <Text style={styles.title}>PICK YOUR VICTIM!</Text>
-        </View>
-        <View style={styles.footer}>
-          <View style={styles.separator} />
-          <View style={[styles.footerContent, styles.centered]}>
-            <Text style={styles.title}>OPTIONS</Text>
-          </View>
-        </View>
+function Template(props) {
+  return (
+    <View style={[styles.container, styles.centered]}>
+      <View style={[styles.header, styles.centered]}>
+        {props.header}
       </View>
-	);
-  }
+      <View style={styles.separator} />
+      <View style={[styles.footer, styles.centered]}>
+        {props.footer}
+      </View>
+    </View>
+  );
 }
 
-module.exports = PickOpponent;
+Template.propTypes = {
+  header: React.PropTypes.node.isRequired,
+  footer: React.PropTypes.node.isRequired,
+};
+
+module.exports = Template;

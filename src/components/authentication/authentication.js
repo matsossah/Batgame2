@@ -1,16 +1,15 @@
 import React, {
-  View,
-  Text,
-  TextInput,
-  TouchableHighlight,
-  StyleSheet,
+  Component,
+  PropTypes,
 } from 'react-native';
 
 import Tabs from '../common/tabs';
+import Title from '../common/title';
+import Template from '../common/template';
 import Signup from './signup';
 import Signin from './signin';
 
-class Authentication extends React.Component {
+class Authentication extends Component {
   constructor(props) {
     super(props);
     this.renderSignupForm = this.renderSignupForm.bind(this);
@@ -28,24 +27,28 @@ class Authentication extends React.Component {
   }
   render() {
     return (
-      <Tabs
-        tabs={[
-          {
-            title: 'Signup',
-            tabRender: this.renderSignupForm,
-          },
-          {
-            title: 'Login',
-            tabRender: this.renderSigninForm,
-          },
-        ]}
+      <Template
+        // pass the title in uppercase
+        header={<Title>BRAINING</Title>}
+        footer={<Tabs
+          tabs={[
+            {
+              title: 'Signup',
+              tabRender: this.renderSignupForm,
+            },
+            {
+              title: 'Login',
+              tabRender: this.renderSigninForm,
+            },
+          ]}
+        />}
       />
     );
   }
 }
 
 Authentication.propTypes = {
-  navigator: React.PropTypes.object.isRequired,
+  navigator: PropTypes.object.isRequired,
 };
 
 module.exports = Authentication;

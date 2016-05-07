@@ -1,6 +1,5 @@
 import React, {
   Navigator,
-  Component,
   StyleSheet,
 } from 'react-native';
 
@@ -10,6 +9,7 @@ const Signup = require('./components/authentication/signup');
 const Home = require('./components/gamestart/home');
 const PickOpponent = require('./components/gamestart/pick_opponent');
 const Authentication = require('./components/authentication/authentication');
+
 
 const ROUTES = {
   signin: Signin,
@@ -32,7 +32,7 @@ class Main extends React.Component {
       'cLmkourYpYoUIG5R4PI52jZwfNOVJUWno5afqrZA');
   }
   renderScene(route, navigator) {
-    let Component = ROUTES[route.name];
+    const Component = ROUTES[route.name];
     return <Component route={route} navigator={navigator} />;
   }
   render() {

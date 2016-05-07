@@ -118,9 +118,6 @@ class Signin extends React.Component {
   render() {
     return (
       <View style={[styles.container, styles.centered]}>
-        <View style={[styles.header, styles.centered]}>
-          <Text style={styles.title}>BATGAME</Text>
-        </View>
         <View style={styles.footer}>
           <View style={styles.separator} />
           <View style={[styles.formView, styles.centered]}>
