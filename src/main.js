@@ -10,6 +10,11 @@ const Home = require('./components/gamestart/home');
 const PickOpponent = require('./components/gamestart/pick_opponent');
 const Authentication = require('./components/authentication/authentication');
 
+import {
+  APP_ID,
+  CLIENT_KEY,
+  SERVER_URL,
+} from './config.js';
 
 const ROUTES = {
   signin: Signin,
@@ -27,9 +32,8 @@ const styles = StyleSheet.create({
 
 class Main extends React.Component {
   componentWillMount() {
-    Parse.initialize(
-      'pL5FJAYsevKtKFs6Amq9S4lXgW5veeycsk2Ubmf1',
-      'cLmkourYpYoUIG5R4PI52jZwfNOVJUWno5afqrZA');
+    Parse.initialize(APP_ID, CLIENT_KEY);
+    Parse.serverURL = SERVER_URL;
   }
   renderScene(route, navigator) {
     const Component = ROUTES[route.name];
