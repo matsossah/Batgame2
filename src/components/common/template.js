@@ -32,20 +32,22 @@ const styles = StyleSheet.create({
 });
 
 function Template(props) {
+  const { header, footer, style, ...otherProps } = props;
   return (
-    <View style={[styles.container, styles.centered]}>
+    <View {...otherProps} style={[styles.container, styles.centered, style]}>
       <View style={[styles.header, styles.centered]}>
-        {props.header}
+        {header}
       </View>
       <View style={styles.separator} />
       <View style={[styles.footer, styles.centered]}>
-        {props.footer}
+        {footer}
       </View>
     </View>
   );
 }
 
 Template.propTypes = {
+  style: React.PropTypes.any,
   header: React.PropTypes.node.isRequired,
   footer: React.PropTypes.node.isRequired,
 };
