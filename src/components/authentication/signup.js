@@ -125,8 +125,8 @@ class Signup extends React.Component {
             <View style={[styles.centered]}>
               <TextInput
                 style={styles.input}
-                autoCapitalize={'none'}
-                placeholder={'Username'}
+                autoCapitalize="none"
+                placeholder="Username"
                 placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
                 value={this.state.username}
                 onChangeText={(text) => this.setState({ username: text })}
