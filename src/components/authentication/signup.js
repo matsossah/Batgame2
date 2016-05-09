@@ -95,6 +95,7 @@ class Signup extends React.Component {
       passwordConfirmation: '',
       errorMessage: '',
     };
+    this.onSignupPress = this.onSignupPress.bind(this);
   }
   onSignupPress() {
     const user = new Parse.User();
@@ -110,14 +111,16 @@ class Signup extends React.Component {
     if (this.state.password !== this.state.passwordConfirmation) {
       return this.setState({ errorMessage: 'Your passwords do not match, please retry' });
     }
-    user.signUp(null, {
-      success: () => {
-        this.props.navigator.immediatelyResetRouteStack([{ name: 'home' }]);
-      },
-      error: (error) => {
-        this.setState({ errorMessage: error.message });
-      },
-    });
+    return (
+      user.signUp(null, {
+        success: () => {
+          this.props.navigator.immediatelyResetRouteStack([{ name: 'home' }]);
+        },
+        error: (error) => {
+          this.setState({ errorMessage: error.message });
+        },
+      })
+    );
   }
   render() {
     return (
@@ -151,7 +154,7 @@ class Signup extends React.Component {
               <Text style={styles.errorMessage} >{this.state.errorMessage}</Text>
             </View>
             <View style={styles.formSubmit}>
-              <Button text="GO!" onPress={this.onSignupPress.bind(this)} />
+              <Button text="GO!" onPress={this.onSignupPress} />
             </View>
           </View>
         </View>
@@ -159,5 +162,9 @@ class Signup extends React.Component {
     );
   }
 }
+
+Signup.propTypes = {
+  navigator: React.PropTypes.object.isRequired,
+};
 
 module.exports = Signup;

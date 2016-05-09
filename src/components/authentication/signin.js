@@ -144,13 +144,13 @@ class Signin extends React.Component {
                 onChangeText={this.updatePassword}
                 value={this.state.password}
               />
-              <Text style={styles.errorMessage} >{this.state.errorMessage}</Text>
             </View>
             <View style={styles.formSubmit}>
               <Button text="GO!" onPress={this.onSigninPress} />
             </View>
           </View>
         </View>
+        <Text style={styles.errorMessage} >{this.state.errorMessage}</Text>
       </View>
     );
   }
