@@ -47,9 +47,11 @@ const styles = StyleSheet.create({
   formView: {
     backgroundColor: '#2C3D50',
     flex: 29,
+    paddingBottom: 50,
   },
   formSubmit: {
-    marginTop: 20,
+    marginTop: 40,
+    marginBottom: 40,
     alignSelf: 'stretch',
     alignItems: 'flex-end',
   },
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   form: {
-    marginBottom: 15,
+    marginBottom: 10,
   },
   input: {
     padding: 4,
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
     margin: 5,
     width: 200,
     alignSelf: 'flex-start',
-    fontSize: 18,
+    fontSize: 14,
     color: 'white',
     fontFamily: 'chalkduster',
   },
@@ -82,7 +84,8 @@ const styles = StyleSheet.create({
   },
   errorMessage: {
     fontSize: 14,
-    color: 'red',
+    color: '#FFD664',
+    fontFamily: 'chalkduster',
   },
 });
 
@@ -142,9 +145,9 @@ class Signin extends React.Component {
                 value={this.state.password}
               />
               <Text style={styles.errorMessage} >{this.state.errorMessage}</Text>
-              <View style={styles.formSubmit}>
-                <Button text="GO!" onPress={this.onSigninPress} />
-              </View>
+            </View>
+            <View style={styles.formSubmit}>
+              <Button text="GO!" onPress={this.onSigninPress} />
             </View>
           </View>
         </View>
