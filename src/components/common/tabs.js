@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 18,
-    color: 'black',
+    color: 'grey',
     fontFamily: 'chalkduster',
   },
   sections: {
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   activeTab: {
-    color: 'red',
+    color: 'white',
   },
 });
 
@@ -44,11 +44,16 @@ class Tabs extends React.Component {
       <View style={styles.container}>
         <View style={[styles.sections]}>
           {this.props.tabs.map((tab, idx) =>
-            <TouchableHighlight underlayColor={"none"} onPress={this.onTabToggle.bind(this, idx)} key={idx}>
-              <Text style={[
-                styles.label,
-                this.state.activeTabIndex === idx && styles.activeTab,
-              ]}>
+            <TouchableHighlight
+              underlayColor={"none"}
+              onPress={this.onTabToggle.bind(this, idx)} key={idx}
+            >
+              <Text
+                style={[
+                  styles.label,
+                  this.state.activeTabIndex === idx && styles.activeTab,
+                ]}
+              >
                 {tab.title}
               </Text>
             </TouchableHighlight>
