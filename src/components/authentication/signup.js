@@ -45,10 +45,8 @@ const styles = StyleSheet.create({
   formView: {
     backgroundColor: '#2C3D50',
     flex: 29,
-    paddingBottom: 50,
   },
   formSubmit: {
-    marginBottom: 50,
     alignSelf: 'stretch',
     alignItems: 'flex-end',
   },
@@ -57,9 +55,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignSelf: 'stretch',
-  },
-  form: {
-    marginTop: 10,
   },
   input: {
     padding: 4,
@@ -126,8 +121,8 @@ class Signup extends React.Component {
     return (
       <View style={[styles.container, styles.centered]}>
         <View style={styles.footer}>
-          <View style={[styles.formView, styles.centered]}>
-            <View style={[styles.centered, styles.form]}>
+          <View style={[styles.formView]}>
+            <View style={[styles.centered]}>
               <TextInput
                 style={styles.input}
                 placeholder={'Username'}

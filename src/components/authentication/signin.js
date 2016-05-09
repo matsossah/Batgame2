@@ -47,11 +47,8 @@ const styles = StyleSheet.create({
   formView: {
     backgroundColor: '#2C3D50',
     flex: 29,
-    paddingBottom: 50,
   },
   formSubmit: {
-    marginTop: 40,
-    marginBottom: 40,
     alignSelf: 'stretch',
     alignItems: 'flex-end',
   },
@@ -62,7 +59,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   form: {
-    marginBottom: 10,
+    marginBottom: 64,
   },
   input: {
     padding: 4,
@@ -127,7 +124,7 @@ class Signin extends React.Component {
     return (
       <View style={[styles.container, styles.centered]}>
         <View style={styles.footer}>
-          <View style={[styles.formView, styles.centered]}>
+          <View style={[styles.formView]}>
             <View style={[styles.centered, styles.form]}>
               <TextInput
                 style={[styles.input]}
