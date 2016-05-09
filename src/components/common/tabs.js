@@ -44,7 +44,7 @@ class Tabs extends React.Component {
       <View style={styles.container}>
         <View style={[styles.sections]}>
           {this.props.tabs.map((tab, idx) =>
-            <TouchableHighlight onPress={this.onTabToggle.bind(this, idx)} key={idx}>
+            <TouchableHighlight underlayColor={"none"} onPress={this.onTabToggle.bind(this, idx)} key={idx}>
               <Text style={[
                 styles.label,
                 this.state.activeTabIndex === idx && styles.activeTab,
