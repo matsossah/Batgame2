@@ -35,10 +35,12 @@ class Authentication extends Component {
             {
               title: 'Signup',
               tabRender: this.renderSignupForm,
+              underlayColor: 'none',
             },
             {
               title: 'Login',
               tabRender: this.renderSigninForm,
+              underlayColor: 'none',
             },
           ]}
         />}

@@ -45,7 +45,7 @@ class Tabs extends React.Component {
         <View style={[styles.sections]}>
           {this.props.tabs.map((tab, idx) =>
             <TouchableHighlight
-              underlayColor={"none"}
+              underlayColor={activeTab.underlayColor}
               onPress={this.onTabToggle.bind(this, idx)} key={idx}
             >
               <Text
@@ -71,6 +71,7 @@ Tabs.propTypes = {
   tabs: React.PropTypes.arrayOf(React.PropTypes.shape({
     title: React.PropTypes.string.isRequired,
     tabRender: React.PropTypes.func.isRequired,
+    underlayColor: React.PropTypes.string.isRequired,
   })).isRequired,
 };
 
