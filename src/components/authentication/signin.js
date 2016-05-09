@@ -128,6 +128,7 @@ class Signin extends React.Component {
             <View style={[styles.centered, styles.form]}>
               <TextInput
                 style={[styles.input]}
+                autoCapitalize={'none'}
                 placeholder={'Username'}
                 placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
                 onChangeText={this.updateUsername}
