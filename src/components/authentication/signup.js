@@ -11,12 +11,54 @@ let Button = require('../common/button');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: 300,
+  },
+  centered: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2C3D50',
   },
-  label: {
-    fontSize: 18,
+  title: {
+    fontSize: 28,
+    fontFamily: 'chalkduster',
+    color: '#FFD664',
+  },
+  tagline: {
+    fontSize: 16,
+    fontFamily: 'chalkduster',
+    color: '#FFD664',
+  },
+  header: {
+    backgroundColor: '#34485E',
+    flex: 25,
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+  },
+  footer: {
+    backgroundColor: '#2C3D50',
+    flex: 75,
+    alignSelf: 'stretch',
+  },
+  separator: {
+    flex: 1,
+    backgroundColor: '#FFD664',
+  },
+  formView: {
+    backgroundColor: '#2C3D50',
+    flex: 29,
+  },
+  formSubmit: {
+    marginTop: 20,
+    alignSelf: 'stretch',
+    alignItems: 'flex-end',
+  },
+  sections: {
+    marginBottom: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignSelf: 'stretch',
+  },
+  form: {
+    marginBottom: 15,
   },
   input: {
     padding: 4,
@@ -26,7 +68,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 5,
     width: 200,
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
+    fontSize: 18,
+    color: 'white',
+    fontFamily: 'chalkduster',
+  },
+  label: {
+    fontSize: 18,
+    color: 'white',
+    fontFamily: 'chalkduster',
   },
   errorMessage: {
     fontSize: 14,
@@ -67,36 +117,42 @@ class Signup extends React.Component {
       },
     });
   }
-  onLoginPress() {
-  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.label}>Username:</Text>
-        <TextInput
-          style={styles.input}
-          value={this.state.username}
-          onChangeText={(text) => this.setState({ username: text })}
-        />
-
-        <Text style={styles.label}>Password:</Text>
-        <TextInput
-          style={styles.input}
-          value={this.state.password}
-          onChangeText={(text) => this.setState({ password: text })}
-          secureTextEntry
-        />
-
-        <Text style={styles.label}>Confirm Password:</Text>
-        <TextInput
-          style={styles.input}
-          value={this.state.passwordConfirmation}
-          onChangeText={(text) => this.setState({ passwordConfirmation: text })}
-          secureTextEntry
-        />
-        <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
-        <Button text="Signup" onPress={this.onSignupPress.bind(this)} />
-        <Button text="I have an account" onPress={this.onLoginPress.bind(this)} />
+      <View style={[styles.container, styles.centered]}>
+        <View style={styles.footer}>
+          <View style={[styles.formView, styles.centered]}>
+            <View style={[styles.centered, styles.form]}>
+              <TextInput
+                style={styles.input}
+                placeholder={'Username'}
+                placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
+                value={this.state.username}
+                onChangeText={(text) => this.setState({ username: text })}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder={'Password'}
+                placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
+                value={this.state.password}
+                onChangeText={(text) => this.setState({ password: text })}
+                secureTextEntry
+              />
+              <TextInput
+                style={styles.input}
+                placeholder={'Confirm Password'}
+                placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
+                value={this.state.passwordConfirmation}
+                onChangeText={(text) => this.setState({ passwordConfirmation: text })}
+                secureTextEntry
+              />
+              <Text style={styles.errorMessage} >{this.state.errorMessage}</Text>
+              <View style={styles.formSubmit}>
+                <Button text="GO!" onPress={this.onSignupPress.bind(this)} />
+              </View>
+            </View>
+          </View>
+        </View>
       </View>
     );
   }

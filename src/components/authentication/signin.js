@@ -13,6 +13,7 @@ import Tabs from '../common/tabs';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: 300,
   },
   centered: {
     justifyContent: 'center',
@@ -47,8 +48,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#2C3D50',
     flex: 29,
   },
-  form: {
-  },
   formSubmit: {
     marginTop: 20,
     alignSelf: 'stretch',
@@ -60,6 +59,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignSelf: 'stretch',
   },
+  form: {
+    marginBottom: 15,
+  },
   input: {
     padding: 4,
     height: 40,
@@ -68,7 +70,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 5,
     width: 200,
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
+    fontSize: 18,
+    color: 'white',
+    fontFamily: 'chalkduster',
   },
   label: {
     fontSize: 18,
@@ -119,19 +124,20 @@ class Signin extends React.Component {
     return (
       <View style={[styles.container, styles.centered]}>
         <View style={styles.footer}>
-          <View style={styles.separator} />
           <View style={[styles.formView, styles.centered]}>
-            <View style={styles.centered}>
-              <Text style={styles.label}>Username:</Text>
+            <View style={[styles.centered, styles.form]}>
               <TextInput
-                style={styles.input}
+                style={[styles.input]}
+                placeholder={'Username'}
+                placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
                 onChangeText={this.updateUsername}
                 value={this.state.username}
               />
-              <Text style={styles.label}>Password:</Text>
               <TextInput
                 secureTextEntry
                 style={styles.input}
+                placeholder={'Password'}
+                placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
                 onChangeText={this.updatePassword}
                 value={this.state.password}
               />
