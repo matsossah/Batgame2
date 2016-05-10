@@ -1,18 +1,14 @@
 import React, {
   Text,
   View,
-  TouchableHighlight,
   StyleSheet,
 } from 'react-native';
+
+import TabButton from './tabButton';
 
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
-  },
-  label: {
-    fontSize: 18,
-    color: 'grey',
-    fontFamily: 'chalkduster',
   },
   sections: {
     marginBottom: 20,
@@ -44,19 +40,13 @@ class Tabs extends React.Component {
       <View style={styles.container}>
         <View style={[styles.sections]}>
           {this.props.tabs.map((tab, idx) =>
-            <TouchableHighlight
-              underlayColor={activeTab.underlayColor}
-              onPress={this.onTabToggle.bind(this, idx)} key={idx}
-            >
-              <Text
-                style={[
-                  styles.label,
-                  this.state.activeTabIndex === idx && styles.activeTab,
-                ]}
-              >
-                {tab.title}
-              </Text>
-            </TouchableHighlight>
+            <TabButton
+              key={idx}
+              tabId={idx}
+              tab={tab}
+              isActive={idx === this.state.activeTabIndex}
+              onPress={this.onTabToggle}
+            />
           )}
         </View>
         <View style={styles.tabContent}>

@@ -10,7 +10,11 @@ const Home = require('./components/gamestart/home');
 const PickOpponent = require('./components/gamestart/pick_opponent');
 const Authentication = require('./components/authentication/authentication');
 
-import { APP_ID, SERVER_URL, CLIENT_KEY } from './config';
+import {
+  APP_ID,
+  CLIENT_KEY,
+  SERVER_URL,
+} from './config.js';
 
 const ROUTES = {
   signin: Signin,
@@ -41,7 +45,7 @@ class Main extends React.Component {
         style={styles.container}
         initialRoute={{ name: 'authentication' }}
         renderScene={this.renderScene}
-        configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }}
+        configureScene={() => Navigator.SceneConfigs.FloatFromRight}
       />
     );
   }

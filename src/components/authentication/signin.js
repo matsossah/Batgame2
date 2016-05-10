@@ -94,14 +94,10 @@ class Signin extends React.Component {
       password: '',
       errorMessage: '',
     };
-    this.onSignupPress = this.onSignupPress.bind(this);
     this.onSigninPress = this.onSigninPress.bind(this);
     this.errorMessage = this.errorMessage.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
     this.updateUsername = this.updateUsername.bind(this);
-  }
-  onSignupPress() {
-    this.props.navigator.push({ name: 'signup' });
   }
   onSigninPress() {
     Parse.User.logIn(this.state.username, this.state.password, {
@@ -137,7 +133,7 @@ class Signin extends React.Component {
               <TextInput
                 secureTextEntry
                 style={styles.input}
-                placeholder={'Password'}
+                placeholder="Password"
                 placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
                 onChangeText={this.updatePassword}
                 value={this.state.password}

@@ -91,6 +91,10 @@ class Signup extends React.Component {
       errorMessage: '',
     };
     this.onSignupPress = this.onSignupPress.bind(this);
+    this.errorMessage = this.errorMessage.bind(this);
+    this.updateUsername = this.updateUsername.bind(this);
+    this.updatePassword = this.updatePassword.bind(this);
+    this.updatePasswordConfirmation = this.updatePassword.bind(this);
   }
   onSignupPress() {
     const user = new Parse.User();
@@ -98,24 +102,41 @@ class Signup extends React.Component {
     user.set('password', this.state.password);
 
     if (this.state.username.length < 5) {
-      return this.setState({ errorMessage: 'Your username must be at least 5 characters' });
+      this.setState({ errorMessage: 'Your username must be at least 5 characters' });
+      return;
     }
     if (this.state.password.length < 8) {
-      return this.setState({ errorMessage: 'Your password must be at least 8 characters' });
+      this.setState({ errorMessage: 'Your password must be at least 8 characters' });
+      return;
     }
     if (this.state.password !== this.state.passwordConfirmation) {
-      return this.setState({ errorMessage: 'Your passwords do not match, please retry' });
+      this.setState({ errorMessage: 'Your passwords do not match, please retry' });
+      return;
     }
-    return (
-      user.signUp(null, {
-        success: () => {
-          this.props.navigator.immediatelyResetRouteStack([{ name: 'home' }]);
-        },
-        error: (error) => {
-          this.setState({ errorMessage: error.message });
-        },
-      })
-    );
+    user.signUp(null, {
+      success: () => {
+        this.props.navigator.immediatelyResetRouteStack([{ name: 'home' }]);
+        return;
+      },
+      error: (error) => {
+        this.setState({ errorMessage: error.message });
+        return;
+      },
+    });
+  }
+  updateUsername(text) {
+    this.setState({ username: text });
+  }
+  updatePassword(text) {
+    this.setState({ password: text });
+  }
+  updatePasswordConfirmation(text) {
+    this.setState({ passwordConfirmation: text });
+  }
+  errorMessage() {
+    this.setState({
+      errorMessage: 'Invalid login, please try again',
+    });
   }
   render() {
     return (
@@ -128,22 +149,22 @@ class Signup extends React.Component {
                 autoCapitalize="none"
                 placeholder="Username"
                 placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
-                value={this.state.username}
+                value={this.state.updateUsername}
                 onChangeText={(text) => this.setState({ username: text })}
               />
               <TextInput
                 style={styles.input}
-                placeholder={'Password'}
+                placeholder="Password"
                 placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
-                value={this.state.password}
+                value={this.state.updatePassword}
                 onChangeText={(text) => this.setState({ password: text })}
                 secureTextEntry
               />
               <TextInput
                 style={styles.input}
-                placeholder={'Confirm Password'}
+                placeholder="Confirm Password"
                 placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
-                value={this.state.passwordConfirmation}
+                value={this.state.updatePasswordConfirmation}
                 onChangeText={(text) => this.setState({ passwordConfirmation: text })}
                 secureTextEntry
               />
