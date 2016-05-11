@@ -8,6 +8,8 @@ import React, {
 const Parse = require('parse/react-native');
 let Button = require('../common/button');
 
+import FacebookConnect from './facebookConnect';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -43,12 +45,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFD664',
   },
   formView: {
-    backgroundColor: '#2C3D50',
+    // backgroundColor: '#2C3D50',
     flex: 29,
+    backgroundColor: 'green',
+  },
+  form: {
+    backgroundColor: 'yellow',
   },
   formSubmit: {
     alignSelf: 'stretch',
     alignItems: 'flex-end',
+    backgroundColor: 'red',
+    marginBottom: 50,
   },
   sections: {
     marginBottom: 20,
@@ -143,7 +151,7 @@ class Signup extends React.Component {
       <View style={[styles.container, styles.centered]}>
         <View style={styles.footer}>
           <View style={[styles.formView]}>
-            <View style={[styles.centered]}>
+            <View style={[styles.centered, styles.form]}>
               <TextInput
                 style={styles.input}
                 autoCapitalize="none"
@@ -173,6 +181,7 @@ class Signup extends React.Component {
             <View style={styles.formSubmit}>
               <Button text="GO!" onPress={this.onSignupPress} />
             </View>
+            <FacebookConnect onPress={this.onSignupPress} />
           </View>
         </View>
       </View>

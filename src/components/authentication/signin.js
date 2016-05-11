@@ -8,7 +8,8 @@ import React, {
 
 const Parse = require('parse/react-native');
 let Button = require('../common/button');
-import Tabs from '../common/tabs';
+
+import FacebookConnect from './facebookConnect';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,12 +46,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFD664',
   },
   formView: {
-    backgroundColor: '#2C3D50',
+    // backgroundColor: '#2C3D50',
     flex: 29,
+    backgroundColor: 'green',
   },
   formSubmit: {
     alignSelf: 'stretch',
     alignItems: 'flex-end',
+    backgroundColor: 'red',
+    marginBottom: 50,
   },
   sections: {
     marginBottom: 20,
@@ -60,6 +64,7 @@ const styles = StyleSheet.create({
   },
   form: {
     marginBottom: 64,
+    backgroundColor: 'yellow',
   },
   input: {
     padding: 4,
@@ -142,6 +147,7 @@ class Signin extends React.Component {
             <View style={styles.formSubmit}>
               <Button text="GO!" onPress={this.onSigninPress} />
             </View>
+            <FacebookConnect onPress={this.onSigninPress} />
           </View>
         </View>
         <Text style={styles.errorMessage} >{this.state.errorMessage}</Text>
