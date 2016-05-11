@@ -46,14 +46,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFD664',
   },
   formView: {
-    // backgroundColor: '#2C3D50',
+    backgroundColor: '#2C3D50',
     flex: 29,
-    backgroundColor: 'green',
   },
   formSubmit: {
     alignSelf: 'stretch',
     alignItems: 'flex-end',
-    backgroundColor: 'red',
     marginBottom: 50,
   },
   sections: {
@@ -64,7 +62,6 @@ const styles = StyleSheet.create({
   },
   form: {
     marginBottom: 64,
-    backgroundColor: 'yellow',
   },
   input: {
     padding: 4,

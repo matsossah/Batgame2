@@ -45,17 +45,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFD664',
   },
   formView: {
-    // backgroundColor: '#2C3D50',
+    backgroundColor: '#2C3D50',
     flex: 29,
-    backgroundColor: 'green',
   },
   form: {
-    backgroundColor: 'yellow',
   },
   formSubmit: {
     alignSelf: 'stretch',
     alignItems: 'flex-end',
-    backgroundColor: 'red',
     marginBottom: 50,
   },
   sections: {

@@ -8,14 +8,16 @@ import React, {
 const styles = StyleSheet.create({
   facebookButton: {
     alignSelf: 'stretch',
-    height: 30,
-    backgroundColor: 'blue',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 40,
+    backgroundColor: '#3B47BB',
     borderRadius: 5,
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 16,
+    fontFamily: 'Helvetica Neue',
     color: 'white',
-    fontFamily: 'chalkduster',
   },
 });
 
@@ -34,7 +36,7 @@ class FacebookConnect extends Component {
         onPress={this.props.onPress}
       >
         <Text style={styles.buttonText}>
-          Facebook Connect
+          F | Connect with Facebook
         </Text>
       </TouchableHighlight>
     );
