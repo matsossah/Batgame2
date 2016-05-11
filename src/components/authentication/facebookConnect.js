@@ -37,7 +37,7 @@ class FacebookConnect extends Component {
         onPress={this.props.onPress}
       >
         <Text style={styles.buttonText}>
-          f  | Connect with Facebook
+          f   |  Connect with Facebook
         </Text>
       </TouchableHighlight>
     );
