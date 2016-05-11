@@ -15,8 +15,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'Helvetica Neue',
+    fontWeight: 'bold',
     color: 'white',
   },
 });
@@ -36,7 +37,7 @@ class FacebookConnect extends Component {
         onPress={this.props.onPress}
       >
         <Text style={styles.buttonText}>
-          F | Connect with Facebook
+          f  | Connect with Facebook
         </Text>
       </TouchableHighlight>
     );
