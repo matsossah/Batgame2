@@ -43,7 +43,7 @@ class Main extends React.Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{ name: 'authentication' }}
+        initialRoute={{ name: 'home' }}
         renderScene={this.renderScene}
         configureScene={() => Navigator.SceneConfigs.FloatFromRight}
       />

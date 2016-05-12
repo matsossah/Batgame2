@@ -6,6 +6,8 @@ import React, {
 } from 'react-native';
 
 const Parse = require('parse/react-native');
+import Template from '../common/template';
+import Title from '../common/title';
 
 const styles = StyleSheet.create({
   container: {
@@ -57,18 +59,17 @@ class Home extends React.Component {
     console.log('toto');
   }
   render() {
-    let username = this.state.user.get('username');
+    // let username = this.state.user.get('username');
 
     if (!this.state.user) {
       return <Text>Loading...</Text>;
     }
 
     return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text> START A GAME {username}! </Text>
-        </View>
-        <View style={styles.options}>
+      <Template
+        // pass the title in uppercase
+        header={<Title>START A GAME!</Title>}
+        footer={
           <TouchableHighlight
             style={styles.random}
             underlayColor="#99d9f4"
@@ -76,11 +77,8 @@ class Home extends React.Component {
           >
             <Text>New Game</Text>
           </TouchableHighlight>
-        </View>
-        <View style={styles.footer}>
-          <Text> Good luck! </Text>
-        </View>
-      </View>
+        }
+      />
     );
   }
 }
