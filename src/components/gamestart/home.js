@@ -1,46 +1,17 @@
 import React, {
-  Text,
-  View,
-  TouchableHighlight,
+  ScrollView,
   StyleSheet,
 } from 'react-native';
 
 const Parse = require('parse/react-native');
 import Template from '../common/template';
 import Title from '../common/title';
+import LargeButton from '../common/largeButton';
 
 const styles = StyleSheet.create({
-  container: {
+  scrollView: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  header: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  footer: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  options: {
-    flex: 6,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  random: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    backgroundColor: 'green',
-  },
-  friend: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    backgroundColor: 'blue',
+    paddingTop: 50,
   },
 });
 
@@ -50,37 +21,37 @@ class Home extends React.Component {
     this.state = {
       user: null,
     };
+    this.onNewGamePress = this.onNewGamePress.bind(this);
   }
   componentWillMount() {
     Parse.User.currentAsync()
       .then((user) => { this.setState({ user: user }); });
   }
   onNewGamePress() {
-    console.log('toto');
+    this.props.navigator.push({ name: 'pick_opponent' });
   }
   render() {
     // let username = this.state.user.get('username');
-
-    if (!this.state.user) {
-      return <Text>Loading...</Text>;
-    }
-
     return (
       <Template
         // pass the title in uppercase
         header={<Title>START A GAME!</Title>}
         footer={
-          <TouchableHighlight
-            style={styles.random}
-            underlayColor="#99d9f4"
-            onPress={this.onNewGamePress}
-          >
-            <Text>New Game</Text>
-          </TouchableHighlight>
+          <ScrollView style={styles.scrollView}>
+            <LargeButton
+              buttonText="NEW GAME"
+              onPress={this.onNewGamePress}
+              underlayColor="#4EB479"
+            />
+          </ScrollView>
         }
       />
     );
   }
 }
+
+Home.propTypes = {
+  navigator: React.PropTypes.object.isRequired,
+};
 
 module.exports = Home;
