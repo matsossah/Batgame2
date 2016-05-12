@@ -7,11 +7,12 @@ const Parse = require('parse/react-native');
 import Template from '../common/template';
 import Title from '../common/title';
 import LargeButton from '../common/largeButton';
+import GamesList from '../common/gamesList';
 
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 60,
   },
 });
 
@@ -42,6 +43,22 @@ class Home extends React.Component {
               buttonText="NEW GAME"
               onPress={this.onNewGamePress}
               underlayColor="#4EB479"
+            />
+            <GamesList
+              games={[
+                {
+                  userScore: 5,
+                  opponent: 'Mumu',
+                  opponentScore: 3,
+                  isFinished: false,
+                },
+                {
+                  userScore: 3,
+                  opponent: 'Jess',
+                  opponentScore: 4,
+                  isFinished: false,
+                },
+              ]}
             />
           </ScrollView>
         }

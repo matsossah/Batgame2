@@ -1,5 +1,4 @@
 import React, {
-  Text,
   View,
   StyleSheet,
 } from 'react-native';
