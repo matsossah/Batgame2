@@ -30,6 +30,7 @@ class NumberGame extends Component {
     super();
 
     this.state = {
+      livesLost: 0,
       currentNumber: 9,
       board: this.generateBoard(),
       cellSize: 0,
@@ -37,7 +38,8 @@ class NumberGame extends Component {
 
     this.startTime = Date.now();
     this.onLayout = this.onLayout.bind(this);
-    this.onCellPress = this.onCellPress.bind(this);
+    this.onCellSuccess = this.onCellSuccess.bind(this);
+    this.onCellFailure = this.onCellFailure.bind(this);
   }
 
   onLayout({ nativeEvent: { layout: { width } } }) {
@@ -46,42 +48,26 @@ class NumberGame extends Component {
     });
   }
 
-  onCellPress(cell) {
-    if (cell.valid) {
-      return;
-    }
-
-    if (cell.number === this.state.currentNumber) {
-      if (this.state.currentNumber === 1) {
-        this.props.onAction({ type: 'success' });
-      } else {
-        const { nextBoard } = this.updateCell(cell, { valid: true });
-        this.setState({
-          board: nextBoard,
-          currentNumber: this.state.currentNumber - 1,
-        });
-      }
-    } else {
-      const { nextBoard, nextCell } = this.updateCell(cell, { error: true });
-      this.props.onAction({ type: 'failure' });
-      // Notify the cell's component that it should render an error.
-      this.setState({ board: nextBoard }, () => {
-        const {
-          nextBoard: nextBoard2,
-        } = this.updateCell(nextCell, { error: true });
-        this.setState({ board: nextBoard2 });
-      });
+  onCellSuccess(cell) {
+    const nextNumber = cell.number + 1;
+    const nextBoard = this.state.board.slice();
+    const nextCell = { ...cell, success: true };
+    nextBoard.splice(nextBoard.indexOf(cell), 1, nextCell);
+    this.setState({
+      board: nextBoard,
+      nextNumber,
+    });
+    if (nextNumber === 10) {
+      this.props.onAction({ type: 'success' });
     }
   }
 
-  updateCell(cell, update) {
-    const nextBoard = this.state.board.slice();
-    const nextCell = {
-      ...cell,
-      ...update,
-    };
-    nextBoard.splice(nextBoard.indexOf(cell), 1, nextCell);
-    return { nextBoard, nextCell };
+  onCellFailure() {
+    const livesLost = this.state.livesLost + 1;
+    this.setState({ livesLost });
+    if (livesLost === this.props.lives) {
+      this.props.onAction({ type: 'failure' });
+    }
   }
 
   generateBoard() {
@@ -89,8 +75,7 @@ class NumberGame extends Component {
     for (let i = 1; i < 10; i++) {
       board.push({
         number: i,
-        valid: false,
-        error: false,
+        success: false,
       });
     }
     return shuffle(board);
@@ -119,7 +104,9 @@ class NumberGame extends Component {
               >
                 <NumberCell
                   cell={cell}
-                  onPress={this.onCellPress}
+                  current={this.state.currentNumber === cell.number}
+                  onSuccess={this.onCellSuccess}
+                  onFailure={this.onCellFailure}
                 />
               </View>
             )}
@@ -131,7 +118,12 @@ class NumberGame extends Component {
 }
 
 NumberGame.propTypes = {
+  lives: PropTypes.number,
   onAction: PropTypes.func.isRequired,
+};
+
+NumberGame.defaultProps = {
+  lives: 3,
 };
 
 export default NumberGame;

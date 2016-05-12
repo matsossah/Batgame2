@@ -29,7 +29,11 @@ class NumberCell extends Component {
   }
 
   onPress() {
-    this.props.onPress(this.props.cell);
+    if (this.props.current) {
+      this.props.onSuccess(this.props.cell);
+    } else {
+      this.props.onFailure(this.props.cell);
+    }
   }
 
   render() {
@@ -46,11 +50,12 @@ class NumberCell extends Component {
 }
 
 NumberCell.propTypes = {
-  onPress: PropTypes.func.isRequired,
+  current: PropTypes.bool.isRequired,
+  onSuccess: PropTypes.func.isRequired,
+  onFailure: PropTypes.func.isRequired,
   cell: PropTypes.shape({
     number: PropTypes.number.isRequired,
-    valid: PropTypes.bool.isRequired,
-    error: PropTypes.bool.isRequired,
+    success: PropTypes.bool.isRequired,
   }).isRequired,
   style: PropTypes.any,
 };
