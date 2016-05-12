@@ -121,7 +121,7 @@ class NumberGame extends Component {
         onLayout={this.onLayout}
         header={
           <View>
-            <Lives lives={3} livesLost={0} />
+            <Lives lives={3} livesLost={this.state.livesLost} />
             <Timer startTime={this.startTime} />
           </View>
         }

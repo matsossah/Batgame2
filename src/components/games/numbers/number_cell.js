@@ -69,7 +69,7 @@ class NumberCell extends Component {
   onPress() {
     if (this.props.current) {
       this.props.onSuccess(this.props.cell);
-    } else {
+    } else if (!this.props.cell.success) {
       this.props.onFailure(this.props.cell);
     }
   }
