@@ -5,11 +5,8 @@ import React, {
   TouchableHighlight,
   Text,
 } from 'react-native';
-import omit from 'lodash/omit';
 
 import Template from '../common/template';
-import createCountdownGame from './countdown_game';
-import createLifeGame from './life_game';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,15 +15,25 @@ const styles = StyleSheet.create({
 });
 
 function ExampleGame(props) {
+  const { onAction, ...otherProps } = props;
+
   return (
     <Template
-      {...omit(props, 'onSuccess', 'onFailure')}
+      {...otherProps}
       footer={
         <View style={styles.container}>
-          <TouchableHighlight onPress={props.onSuccess}>
+          <TouchableHighlight
+            onPress={() => {
+              onAction({ type: 'success' });
+            }}
+          >
             <Text>Success</Text>
           </TouchableHighlight>
-          <TouchableHighlight onPress={props.onFailure}>
+          <TouchableHighlight
+            onPress={() => {
+              onAction({ type: 'failure' });
+            }}
+          >
             <Text>Failure</Text>
           </TouchableHighlight>
         </View>
@@ -36,8 +43,7 @@ function ExampleGame(props) {
 }
 
 ExampleGame.propTypes = {
-  onSuccess: PropTypes.func.isRequired,
-  onFailure: PropTypes.func.isRequired,
+  onAction: PropTypes.func.isRequired,
 };
 
-export default createCountdownGame(createLifeGame(ExampleGame));
+export default ExampleGame;

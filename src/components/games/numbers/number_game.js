@@ -4,6 +4,8 @@ import without from 'lodash/without';
 
 import Template from '../../common/template';
 import NumberCell from './number_cell';
+import Timer from '../../common/timer';
+import Lives from '../../common/lives';
 
 // Spacing in pixels between cells
 const cellSpacing = 20;
@@ -11,9 +13,12 @@ const cellSpacing = 20;
 const styles = StyleSheet.create({
   board: {
     flex: 1,
-    flexDirection: 'row',
+    // Even though it should be the default, it looks like manually setting
+    // flexDirection breaks flexWrap. Will have to investigate
+    // flexDirection: 'row',
     flexWrap: 'wrap',
     padding: cellSpacing / 2,
+    justifyContent: 'center',
   },
   cell: {
     padding: cellSpacing / 2,
@@ -30,6 +35,7 @@ class NumberGame extends Component {
       cellSize: 0,
     };
 
+    this.startTime = Date.now();
     this.onLayout = this.onLayout.bind(this);
     this.onCellPress = this.onCellPress.bind(this);
   }
@@ -47,7 +53,7 @@ class NumberGame extends Component {
 
     if (cell.number === this.state.currentNumber) {
       if (this.state.currentNumber === 1) {
-        this.props.onSuccess();
+        this.props.onAction({ type: 'success' });
       } else {
         const { nextBoard } = this.updateCell(cell, { valid: true });
         this.setState({
@@ -57,7 +63,7 @@ class NumberGame extends Component {
       }
     } else {
       const { nextBoard, nextCell } = this.updateCell(cell, { error: true });
-      this.props.onFailure();
+      this.props.onAction({ type: 'failure' });
       // Notify the cell's component that it should render an error.
       this.setState({ board: nextBoard }, () => {
         const {
@@ -93,32 +99,39 @@ class NumberGame extends Component {
   render() {
     return (
       <Template
-        {...without(this.props, 'onSuccess', 'onFailure')}
-        style={styles.board}
+        {...without(this.props, 'onAction')}
         onLayout={this.onLayout}
-      >
-        {this.state.board.map(cell =>
-          <View
-            key={cell.number}
-            style={[styles.cell, {
-              width: this.state.cellSize,
-              height: this.state.cellSize,
-            }]}
-          >
-            <NumberCell
-              cell={cell}
-              onPress={this.onCellPress}
-            />
+        header={
+          <View>
+            <Timer startTime={this.startTime} />
+            <Lives lives={3} livesLost={0} />
           </View>
-        )}
-      </Template>
+        }
+        footer={
+          <View style={styles.board}>
+            {this.state.board.map(cell =>
+              <View
+                key={cell.number}
+                style={[styles.cell, {
+                  width: this.state.cellSize,
+                  height: this.state.cellSize,
+                }]}
+              >
+                <NumberCell
+                  cell={cell}
+                  onPress={this.onCellPress}
+                />
+              </View>
+            )}
+          </View>
+        }
+      />
     );
   }
 }
 
 NumberGame.propTypes = {
-  onSuccess: PropTypes.func.isRequired,
-  onFailure: PropTypes.func.isRequired,
+  onAction: PropTypes.func.isRequired,
 };
 
 export default NumberGame;
