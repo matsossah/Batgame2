@@ -1,7 +1,7 @@
-import React, { Component, PropTypes, Text } from 'react-native';
+import React, { Component, PropTypes } from 'react-native';
 import moment from 'moment';
 
-import formatDuration from '../../formatDuration';
+import Duration from './duration';
 
 class Countdown extends Component {
   constructor() {
@@ -36,9 +36,7 @@ class Countdown extends Component {
       .duration(duration, 's')
       .subtract(countdown, 'ms');
     return (
-      <Text {...otherProps}>
-        {formatDuration(timeLeft)}
-      </Text>
+      <Duration {...otherProps} duration={timeLeft} />
     );
   }
 }

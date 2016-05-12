@@ -8,7 +8,14 @@ import Timer from '../../common/timer';
 import Lives from '../../common/lives';
 
 // Spacing in pixels between cells
-const cellSpacing = 20;
+const CELL_SPACING = 20;
+const COLORS = [
+  '#5bb578', // green
+  '#df7f2f', // orange
+  '#de4c3d', // red
+  '#fcd866', // yellow
+  '#4596da', // blue
+];
 
 const styles = StyleSheet.create({
   board: {
@@ -17,11 +24,11 @@ const styles = StyleSheet.create({
     // flexDirection breaks flexWrap. Will have to investigate
     // flexDirection: 'row',
     flexWrap: 'wrap',
-    padding: cellSpacing / 2,
+    padding: CELL_SPACING / 2,
     justifyContent: 'center',
   },
   cell: {
-    padding: cellSpacing / 2,
+    padding: CELL_SPACING / 2,
   },
 });
 
@@ -44,20 +51,20 @@ class NumberGame extends Component {
 
   onLayout({ nativeEvent: { layout: { width } } }) {
     this.setState({
-      cellSize: (width - cellSpacing) / 3,
+      cellSize: (width - CELL_SPACING) / 3,
     });
   }
 
   onCellSuccess(cell) {
-    const nextNumber = cell.number + 1;
+    const nextNumber = cell.number - 1;
     const nextBoard = this.state.board.slice();
     const nextCell = { ...cell, success: true };
     nextBoard.splice(nextBoard.indexOf(cell), 1, nextCell);
     this.setState({
       board: nextBoard,
-      nextNumber,
+      currentNumber: nextNumber,
     });
-    if (nextNumber === 10) {
+    if (nextNumber === 0) {
       this.props.onAction({ type: 'success' });
     }
   }
@@ -71,14 +78,40 @@ class NumberGame extends Component {
   }
 
   generateBoard() {
-    const board = [];
-    for (let i = 1; i < 10; i++) {
+    let board = [];
+    for (let i = 0; i < 9; i++) {
       board.push({
-        number: i,
+        number: i + 1,
         success: false,
       });
     }
-    return shuffle(board);
+    board = shuffle(board);
+
+    // Never have the same color twice in a row
+    for (let i = 0; i < 9; i++) {
+      const cell = board[i];
+      const forbiddenColors = [];
+      if (i - 3 >= 0) { // Top
+        forbiddenColors.push(board[i - 3].color);
+      }
+      if (i % 3 !== 0) { // Left
+        forbiddenColors.push(board[i - 1].color);
+      }
+      if (i - 4 >= 0 && i % 3 !== 0) { // Top left
+        forbiddenColors.push(board[i - 4].color);
+      }
+      if (i - 2 >= 0 && i % 3 !== 2) { // Top right
+        forbiddenColors.push(board[i - 2].color);
+      }
+      const availableColors = COLORS.filter(color =>
+        forbiddenColors.indexOf(color) === -1
+      );
+      const color = availableColors[
+        Math.floor(availableColors.length * Math.random())
+      ];
+      cell.color = color;
+    }
+    return board;
   }
 
   render() {
@@ -88,8 +121,8 @@ class NumberGame extends Component {
         onLayout={this.onLayout}
         header={
           <View>
-            <Timer startTime={this.startTime} />
             <Lives lives={3} livesLost={0} />
+            <Timer startTime={this.startTime} />
           </View>
         }
         footer={

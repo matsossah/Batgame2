@@ -1,7 +1,7 @@
-import React, { Component, PropTypes, Text } from 'react-native';
+import React, { Component, PropTypes } from 'react-native';
 import moment from 'moment';
 
-import formatDuration from '../../formatDuration';
+import Duration from './duration';
 
 class Timer extends Component {
   constructor() {
@@ -28,11 +28,9 @@ class Timer extends Component {
   render() {
     const { ...otherProps } = this.props;
     const { timer } = this.state;
-    const timeLeft = moment.duration(timer, 'ms');
+    const time = moment.duration(timer, 'ms');
     return (
-      <Text {...otherProps}>
-        {formatDuration(timeLeft)}
-      </Text>
+      <Duration {...otherProps} duration={time} />
     );
   }
 }
