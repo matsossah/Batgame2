@@ -50,13 +50,13 @@ class MathBattle extends Component {
     this.newEquations();
   }
   onTopPress() {
-    if (eval(this.state.top) > eval(this.state.bottom)) {
+    if ((eval(this.state.topEquation)) > (eval(this.state.bottomEquation))) {
       this.setState({ score: this.state.score + 1 });
       this.newEquations();
     }
   }
   onBottomPress() {
-    if (eval(this.state.bottom) > eval(this.state.top)) {
+    if (eval(this.state.bottomEquation) > eval(this.state.topEquation)) {
       this.setState({ score: this.state.score + 1 });
       this.newEquations();
     }
