@@ -1,8 +1,5 @@
-import React, {
-  PropTypes,
-	View,
-	StyleSheet,
-} from 'react-native';
+import React, { PropTypes } from 'react';
+import { View, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {

@@ -1,8 +1,5 @@
-import React, {
-  Navigator,
-  StyleSheet,
-  Component,
-} from 'react-native';
+import React, { Component } from 'react';
+import { Navigator, StyleSheet } from 'react-native';
 import Parse from 'parse/react-native';
 
 import Home from './components/gamestart/Home';
