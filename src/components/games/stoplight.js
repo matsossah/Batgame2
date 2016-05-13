@@ -27,23 +27,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   redlight: {
-    height: 50,
-    width: 50,
-    borderRadius: 25,
+    height: 60,
+    width: 60,
+    borderRadius: 30,
     borderColor: '#E74C3C',
     borderWidth: 5,
   },
   orangelight: {
-    height: 50,
-    width: 50,
-    borderRadius: 25,
+    height: 60,
+    width: 60,
+    borderRadius: 30,
     borderColor: '#E67E2C',
     borderWidth: 5,
   },
   greenlight: {
-    height: 50,
-    width: 50,
-    borderRadius: 25,
+    height: 60,
+    width: 60,
+    borderRadius: 30,
     borderColor: '#4EB479',
     borderWidth: 5,
   },
@@ -61,6 +61,7 @@ class Stoplight extends React.Component {
       timeElapsed: 0,
       startTime: null,
       running: false,
+      score: 0,
       color: '',
     };
     this.onGoPress = this.onGoPress.bind(this);
@@ -73,20 +74,24 @@ class Stoplight extends React.Component {
 
       switch (this.state.color) {
         case '':
+        // set to red
           if (this.state.timeElapsed > 1000) {
             this.setState({ color: '#E74C3C' });
           }
           break;
         case '#E74C3C':
+        // set to orange
           if (this.state.timeElapsed > 2000) {
             this.setState({ color: '#E67E2C' });
           }
           break;
         case '#E67E2C':
+        // set to green
           if (this.state.timeElapsed > randomTime) {
             this.setState({
               color: '#4EB479',
               startTime: new Date(),
+              running: true,
             });
           }
           break;
@@ -94,20 +99,31 @@ class Stoplight extends React.Component {
       }
       this.setState({
         timeElapsed: new Date() - this.state.startTime,
-        running: true,
       });
     }, 10);
   }
   onGoPress() {
     clearInterval(this.interval);
+    if (this.state.running) {
+      return (
+        this.setState({
+          score: this.state.timeElapsed,
+        })
+      );
+    }
+    return (
+      this.setState({
+        score: 1000,
+      })
+    );
   }
   render() {
     return (
       <Template
         // pass the title in uppercase
-        header={<Title>{this.state.color === '#4EB479' ?
+        header={<Title>{this.state.running ?
           formatTime(this.state.timeElapsed) :
-          formatTime(0)}
+          formatTime(this.state.score)}
         </Title>}
         footer={
           <View style={styles.container}>
