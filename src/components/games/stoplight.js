@@ -3,7 +3,7 @@ import React, {
   StyleSheet,
 } from 'react-native';
 
-var formatTime = require('minutes-seconds-milliseconds');
+const formatTime = require('minutes-seconds-milliseconds');
 const Parse = require('parse/react-native');
 import Template from '../common/template';
 import Title from '../common/title';
