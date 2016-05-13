@@ -12,7 +12,7 @@ import LargeButton from '../common/largeButton';
 const styles = StyleSheet.create({
   stoplight: {
     height: 250,
-    width: 90,
+    width: 100,
     borderRadius: 8,
     flexDirection: 'column',
     borderColor: '#583B67',
