@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { LoginButton } from 'react-native-fbsdk';
 
 import Tabs from '../common/Tabs';
 import Title from '../common/Title';
@@ -27,6 +28,23 @@ class Authentication extends Component {
       <Template
         // pass the title in uppercase
         header={<Title>BRAINING</Title>}
+        separator={
+          <LoginButton
+            publishPermissions={['publish_actions']}
+            onLoginFinished={
+              (error, result) => {
+                if (error) {
+                  alert('login has error: ' + result.error);
+                } else if (result.isCancelled) {
+                  alert('login is cancelled.');
+                } else {
+                  alert('login has finished with permissions: ' + result.grantedPermissions);
+                }
+              }
+            }
+            onLogoutFinished={() => alert('logout.')}
+          />
+        }
         footer={<Tabs
           tabs={[
             {

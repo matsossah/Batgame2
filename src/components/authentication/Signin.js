@@ -3,7 +3,6 @@ import { View, Text, TextInput } from 'react-native';
 import Parse from 'parse/react-native';
 
 import Button from '../common/Button';
-import FacebookConnect from './FacebookConnect';
 
 import styles from './formStyles';
 
@@ -67,7 +66,6 @@ class Signin extends Component {
           <View style={styles.formSubmit}>
             <Button text="GO!" onPress={this.onSigninPress} />
           </View>
-          <FacebookConnect onPress={this.onSigninPress} />
         </View>
       </View>
     );
