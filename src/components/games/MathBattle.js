@@ -17,11 +17,21 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
   },
-  equation: {
+  topEquationButton: {
+    height: 60,
+    width: 150,
+    borderRadius: 10,
+    backgroundColor: '#3498DB',
+    borderWidth: 3,
+    borderColor: '#FFD664',
+  },
+  bottomEquationButton: {
     height: 60,
     width: 150,
     borderRadius: 10,
     backgroundColor: '#4EB479',
+    borderWidth: 3,
+    borderColor: '#FFD664',
   },
 });
 
@@ -37,29 +47,40 @@ class MathBattle extends Component {
     this.onBottomPress = this.onBottomPress.bind(this);
   }
   componentWillMount() {
+    this.newEquations();
+  }
+  onTopPress() {
+    if (eval(this.state.top) > eval(this.state.bottom)) {
+      this.setState({ score: this.state.score + 1 });
+      this.newEquations();
+    }
+  }
+  onBottomPress() {
+    if (eval(this.state.bottom) > eval(this.state.top)) {
+      this.setState({ score: this.state.score + 1 });
+      this.newEquations();
+    }
+  }
+  newEquations() {
     function randomNumber() {
-      const numbers = [0, 1, 3, 4, 5, 6, 7, 8, 9];
+      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       return (
         numbers[Math.floor(Math.random() * numbers.length)]
       );
     }
     function randomSign() {
-      const signs = ['+', '-', '/', '*'];
+      const signs = [' + ', ' - ', ' / ', ' * '];
       return (
         signs[Math.floor(Math.random() * signs.length)]
       );
     }
-    const top = randomNumber() + randomSign + randomNumber() + randomSign + randomNumber();
-    const bottom = randomNumber() + randomSign + randomNumber() + randomSign + randomNumber();
+    const top = randomNumber() + randomSign() + randomNumber() + randomSign() + randomNumber();
+    const bottom = randomNumber() + randomSign() + randomNumber() + randomSign() + randomNumber();
 
     this.setState({
       topEquation: top,
       bottomEquation: bottom,
     });
-  }
-  onTopPress() {
-  }
-  onBottomPress() {
   }
   render() {
     return (
@@ -70,13 +91,13 @@ class MathBattle extends Component {
           <View style={styles.container}>
             <View style={styles.equations}>
               <LargeButton
-                style={styles.equation}
+                style={styles.topEquationButton}
                 buttonText={this.state.topEquation}
                 onPress={this.onTopPress}
-                underlayColor="#4EB479"
+                underlayColor="#3498DB"
               />
               <LargeButton
-                style={styles.equation}
+                style={styles.bottomEquationButton}
                 buttonText={this.state.bottomEquation}
                 onPress={this.onBottomPress}
                 underlayColor="#4EB479"

@@ -41,11 +41,9 @@ class Signup extends Component {
     user.signUp(null, {
       success: () => {
         this.props.navigator.immediatelyResetRouteStack([{ name: 'home' }]);
-        return;
       },
       error: (error) => {
         this.setState({ errorMessage: error.message });
-        return;
       },
     });
   }
