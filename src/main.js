@@ -7,6 +7,7 @@ import PickOpponent from './components/gamestart/PickOpponent';
 import Authentication from './components/authentication/Authentication';
 import Stoplight from './components/games/Stoplight';
 import MathBattle from './components/games/MathBattle';
+import NumberGame from './components/games/numbers/NumberGame';
 
 import {
   APP_ID,
@@ -20,6 +21,7 @@ const ROUTES = {
   pickOpponent: PickOpponent,
   stoplight: Stoplight,
   mathBattle: MathBattle,
+  numbers: NumberGame,
 };
 
 const styles = StyleSheet.create({
