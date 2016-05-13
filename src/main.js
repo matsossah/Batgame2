@@ -9,6 +9,8 @@ const Signup = require('./components/authentication/signup');
 const Home = require('./components/gamestart/home');
 const PickOpponent = require('./components/gamestart/pick_opponent');
 const Authentication = require('./components/authentication/authentication');
+const Stoplight = require('./components/games/stoplight');
+const MathBattle = require('./components/games/mathBattle');
 
 import {
   APP_ID,
@@ -20,8 +22,10 @@ const ROUTES = {
   signin: Signin,
   signup: Signup,
   home: Home,
-  pick_opponent: PickOpponent,
+  pickOpponent: PickOpponent,
   authentication: Authentication,
+  stoplight: Stoplight,
+  mathBattle: MathBattle,
 };
 
 const styles = StyleSheet.create({
@@ -43,9 +47,9 @@ class Main extends React.Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{ name: 'authentication' }}
+        initialRoute={{ name: 'mathBattle' }}
         renderScene={this.renderScene}
-        configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }}
+        configureScene={() => Navigator.SceneConfigs.FloatFromRight}
       />
     );
   }
