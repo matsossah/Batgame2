@@ -1,12 +1,12 @@
-import React, {
+import React, { PropTypes } from 'react';
+import {
   StyleSheet,
-  PropTypes,
   View,
   TouchableHighlight,
   Text,
 } from 'react-native';
 
-import Template from '../common/template';
+import Template from '../common/Template';
 
 const styles = StyleSheet.create({
   container: {

@@ -1,4 +1,5 @@
 import React, {
+  PropTypes,
 	View,
 	StyleSheet,
 } from 'react-native';
@@ -47,9 +48,9 @@ function Template(props) {
 }
 
 Template.propTypes = {
-  style: React.PropTypes.any,
-  header: React.PropTypes.node.isRequired,
-  footer: React.PropTypes.node.isRequired,
+  style: PropTypes.any,
+  header: PropTypes.node.isRequired,
+  footer: PropTypes.node.isRequired,
 };
 
-module.exports = Template;
+export default Template;

@@ -1,7 +1,5 @@
-import React, {
-  Text,
-  StyleSheet,
-} from 'react-native';
+import React, { PropTypes } from 'react';
+import { Text, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   title: {
@@ -18,7 +16,7 @@ function Title(props) {
 }
 
 Title.propTypes = {
-  style: React.PropTypes.any,
+  style: PropTypes.any,
 };
 
-module.exports = Title;
+export default Title;

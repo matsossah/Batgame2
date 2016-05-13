@@ -1,12 +1,9 @@
-import React, {
-  View,
-  StyleSheet,
-} from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { View, StyleSheet } from 'react-native';
 
-const Parse = require('parse/react-native');
-import Template from '../common/template';
-import Title from '../common/title';
-import LargeButton from '../common/largeButton';
+import Template from '../common/Template';
+import Title from '../common/Title';
+import LargeButton from '../common/LargeButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,7 +25,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class MathBattle extends React.Component {
+class MathBattle extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -93,7 +90,7 @@ class MathBattle extends React.Component {
 }
 
 MathBattle.propTypes = {
-  navigator: React.PropTypes.object.isRequired,
+  navigator: PropTypes.object.isRequired,
 };
 
-module.exports = MathBattle;
+export default MathBattle;

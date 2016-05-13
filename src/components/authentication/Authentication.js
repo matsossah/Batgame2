@@ -1,13 +1,10 @@
-import React, {
-  Component,
-  PropTypes,
-} from 'react-native';
+import React, { Component, PropTypes } from 'react';
 
-import Tabs from '../common/tabs';
-import Title from '../common/title';
-import Template from '../common/template';
-import Signup from './signup';
-import Signin from './signin';
+import Tabs from '../common/Tabs';
+import Title from '../common/Title';
+import Template from '../common/Template';
+import Signup from './Signup';
+import Signin from './Signin';
 
 class Authentication extends Component {
   constructor(props) {
@@ -53,4 +50,4 @@ Authentication.propTypes = {
   navigator: PropTypes.object.isRequired,
 };
 
-module.exports = Authentication;
+export default Authentication;

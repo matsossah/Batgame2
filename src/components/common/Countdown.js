@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react-native';
-import moment from 'moment';
+import React, { Component, PropTypes } from 'react';
 
-import Duration from './duration';
+import Duration from './Duration';
 
 class Countdown extends Component {
   constructor() {
@@ -32,9 +31,7 @@ class Countdown extends Component {
   render() {
     const { duration, ...otherProps } = this.props;
     const { countdown } = this.state;
-    const timeLeft = moment
-      .duration(duration, 's')
-      .subtract(countdown, 'ms');
+    const timeLeft = duration * 1000 - countdown;
     return (
       <Duration {...otherProps} duration={timeLeft} />
     );

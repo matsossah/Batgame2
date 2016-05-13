@@ -1,4 +1,5 @@
-import React, { StyleSheet, Animated, Component, PropTypes, View } from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { View, StyleSheet, Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import omit from 'lodash/omit';
 

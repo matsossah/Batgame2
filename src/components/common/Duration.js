@@ -1,10 +1,11 @@
-import React, { StyleSheet, PropTypes, View, Text } from 'react-native';
+import React, { PropTypes } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import moment from 'moment';
 
 function formatDuration(d) {
   // This approach has issues
   // See https://github.com/moment/moment/issues/1048
-  return moment.utc(d.asMilliseconds()).format('mm:ss.SS');
+  return moment.utc(d).format('mm:ss.SS');
 }
 
 const styles = StyleSheet.create({
@@ -51,7 +52,7 @@ function Duration(props) {
 
 Duration.propTypes = {
   style: PropTypes.any,
-  duration: PropTypes.object.isRequired, // moment.duration(...)
+  duration: PropTypes.number.isRequired,
 };
 
 export default Duration;

@@ -1,9 +1,5 @@
-import React, {
-  Component,
-  Text,
-  TouchableHighlight,
-  StyleSheet,
-} from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { Text, StyleSheet, TouchableHighlight } from 'react-native';
 
 const styles = StyleSheet.create({
   activeTab: {
@@ -43,14 +39,14 @@ class TabButton extends Component {
 }
 
 TabButton.propTypes = {
-  isActive: React.PropTypes.bool.isRequired,
-  onPress: React.PropTypes.func.isRequired,
-  tabId: React.PropTypes.number.isRequired,
-  tab: React.PropTypes.shape({
-    title: React.PropTypes.string.isRequired,
-    tabRender: React.PropTypes.func.isRequired,
-    underlayColor: React.PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onPress: PropTypes.func.isRequired,
+  tabId: PropTypes.number.isRequired,
+  tab: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    tabRender: PropTypes.func.isRequired,
+    underlayColor: PropTypes.string.isRequired,
   }).isRequired,
 };
 
-module.exports = TabButton;
+export default TabButton;

@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react-native';
-import moment from 'moment';
+import React, { Component, PropTypes } from 'react';
 
-import Duration from './duration';
+import Duration from './Duration';
 
 class Timer extends Component {
   constructor() {
@@ -28,9 +27,8 @@ class Timer extends Component {
   render() {
     const { ...otherProps } = this.props;
     const { timer } = this.state;
-    const time = moment.duration(timer, 'ms');
     return (
-      <Duration {...otherProps} duration={time} />
+      <Duration {...otherProps} duration={timer} />
     );
   }
 }

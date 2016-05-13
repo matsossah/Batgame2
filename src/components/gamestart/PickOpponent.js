@@ -1,12 +1,9 @@
-import React, {
-  View,
-  StyleSheet,
-} from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { View, StyleSheet } from 'react-native';
 
-const Parse = require('parse/react-native');
-import Template from '../common/template';
-import Title from '../common/title';
-import LargeButton from '../common/largeButton';
+import Template from '../common/Template';
+import Title from '../common/Title';
+import LargeButton from '../common/LargeButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -30,19 +27,12 @@ const styles = StyleSheet.create({
   },
 });
 
-class PickOpponent extends React.Component {
+class PickOpponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: null,
-    };
     this.onFacebookPress = this.onFacebookPress.bind(this);
     this.onRandomPress = this.onRandomPress.bind(this);
     this.onSearchPress = this.onSearchPress.bind(this);
-  }
-  componentWillMount() {
-    Parse.User.currentAsync()
-      .then((user) => { this.setState({ user: user }); });
   }
   onFacebookPress() {
   }
@@ -51,12 +41,6 @@ class PickOpponent extends React.Component {
   onSearchPress() {
   }
   render() {
-    // let username = this.state.user.get('username');
-
-    // if (!this.state.user) {
-    //   return <Text>Loading...</Text>;
-    // }
-
     return (
       <Template
         // pass the title in uppercase
@@ -93,7 +77,7 @@ class PickOpponent extends React.Component {
 }
 
 PickOpponent.propTypes = {
-  navigator: React.PropTypes.object.isRequired,
+  navigator: PropTypes.object.isRequired,
 };
 
-module.exports = PickOpponent;
+export default PickOpponent;

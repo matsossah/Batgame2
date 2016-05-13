@@ -1,11 +1,12 @@
-import React, { StyleSheet, Component, PropTypes, View } from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { StyleSheet, View } from 'react-native';
 import shuffle from 'lodash/shuffle';
 import without from 'lodash/without';
 
-import Template from '../../common/template';
-import NumberCell from './number_cell';
-import Timer from '../../common/timer';
-import Lives from '../../common/lives';
+import Template from '../../common/Template';
+import NumberCell from './NumberCell';
+import Timer from '../../common/Timer';
+import Lives from '../../common/Lives';
 
 // Spacing in pixels between cells
 const CELL_SPACING = 20;

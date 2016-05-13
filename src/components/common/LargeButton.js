@@ -1,9 +1,5 @@
-import React, {
-  Component,
-  Text,
-  TouchableHighlight,
-  StyleSheet,
-} from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { Text, StyleSheet, TouchableHighlight } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,9 +30,8 @@ class LargeButton extends Component {
         style={[styles.container, { backgroundColor: this.props.underlayColor }]}
         onPress={this.props.onPress}
         underlayColor={this.props.underlayColor}
-        backgroundColor={this.props.underlayColor}
       >
-        <Text style={[styles.buttonText]}>
+        <Text style={styles.buttonText}>
           {this.props.buttonText}
         </Text>
       </TouchableHighlight>
@@ -45,9 +40,9 @@ class LargeButton extends Component {
 }
 
 LargeButton.propTypes = {
-  buttonText: React.PropTypes.string.isRequired,
-  onPress: React.PropTypes.func.isRequired,
-  underlayColor: React.PropTypes.string.isRequired,
+  buttonText: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
+  underlayColor: PropTypes.string.isRequired,
 };
 
-module.exports = LargeButton;
+export default LargeButton;

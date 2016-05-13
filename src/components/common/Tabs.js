@@ -1,9 +1,7 @@
-import React, {
-  View,
-  StyleSheet,
-} from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { View, StyleSheet } from 'react-native';
 
-import TabButton from './tabButton';
+import TabButton from './TabButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class Tabs extends React.Component {
+class Tabs extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,11 +55,11 @@ class Tabs extends React.Component {
 }
 
 Tabs.propTypes = {
-  tabs: React.PropTypes.arrayOf(React.PropTypes.shape({
-    title: React.PropTypes.string.isRequired,
-    tabRender: React.PropTypes.func.isRequired,
-    underlayColor: React.PropTypes.string.isRequired,
+  tabs: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    tabRender: PropTypes.func.isRequired,
+    underlayColor: PropTypes.string.isRequired,
   })).isRequired,
 };
 
-module.exports = Tabs;
+export default Tabs;

@@ -1,16 +1,15 @@
 import React, {
   Navigator,
   StyleSheet,
+  Component,
 } from 'react-native';
+import Parse from 'parse/react-native';
 
-const Parse = require('parse/react-native');
-const Signin = require('./components/authentication/signin');
-const Signup = require('./components/authentication/signup');
-const Home = require('./components/gamestart/home');
-const PickOpponent = require('./components/gamestart/pick_opponent');
-const Authentication = require('./components/authentication/authentication');
-const Stoplight = require('./components/games/stoplight');
-const MathBattle = require('./components/games/mathBattle');
+import Home from './components/gamestart/Home';
+import PickOpponent from './components/gamestart/PickOpponent';
+import Authentication from './components/authentication/Authentication';
+import Stoplight from './components/games/Stoplight';
+import MathBattle from './components/games/MathBattle';
 
 import {
   APP_ID,
@@ -19,11 +18,9 @@ import {
 } from './config.js';
 
 const ROUTES = {
-  signin: Signin,
-  signup: Signup,
+  authentication: Authentication,
   home: Home,
   pickOpponent: PickOpponent,
-  authentication: Authentication,
   stoplight: Stoplight,
   mathBattle: MathBattle,
 };
@@ -34,25 +31,28 @@ const styles = StyleSheet.create({
   },
 });
 
-class Main extends React.Component {
+class Main extends Component {
   componentWillMount() {
     Parse.initialize(APP_ID, CLIENT_KEY);
     Parse.serverURL = SERVER_URL;
   }
+  configureScene() {
+    return Navigator.SceneConfigs.FloatFromRight;
+  }
   renderScene(route, navigator) {
-    const Component = ROUTES[route.name];
-    return <Component route={route} navigator={navigator} />;
+    const RouteComponent = ROUTES[route.name];
+    return <RouteComponent route={route} navigator={navigator} />;
   }
   render() {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{ name: 'mathBattle' }}
+        initialRoute={{ name: 'authentication' }}
         renderScene={this.renderScene}
-        configureScene={() => Navigator.SceneConfigs.FloatFromRight}
+        configureScene={this.configureScene}
       />
     );
   }
 }
 
-module.exports = Main;
+export default Main;

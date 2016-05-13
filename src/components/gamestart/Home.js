@@ -1,13 +1,11 @@
-import React, {
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import Parse from 'parse/react-native';
 
-const Parse = require('parse/react-native');
-import Template from '../common/template';
-import Title from '../common/title';
-import LargeButton from '../common/largeButton';
-import GamesList from '../common/gamesList';
+import Template from '../common/Template';
+import Title from '../common/Title';
+import LargeButton from '../common/LargeButton';
+import GamesList from '../common/GamesList';
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -16,7 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class Home extends React.Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,13 +24,12 @@ class Home extends React.Component {
   }
   componentWillMount() {
     Parse.User.currentAsync()
-      .then((user) => { this.setState({ user: user }); });
+      .then((user) => { this.setState({ user }); });
   }
   onNewGamePress() {
     this.props.navigator.push({ name: 'pick_opponent' });
   }
   render() {
-    // let username = this.state.user.get('username');
     return (
       <Template
         // pass the title in uppercase
@@ -68,7 +65,7 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-  navigator: React.PropTypes.object.isRequired,
+  navigator: PropTypes.object.isRequired,
 };
 
-module.exports = Home;
+export default Home;

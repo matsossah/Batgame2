@@ -1,11 +1,8 @@
-import React, {
-  Text,
-  View,
-  TouchableHighlight,
-  StyleSheet,
-} from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
-const Parse = require('parse/react-native');
+import Parse from 'parse/react-native';
+
 // import GameItem from './gameItem';
 
 const styles = StyleSheet.create({
@@ -20,7 +17,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class GamesList extends React.Component {
+class GamesList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,10 +27,11 @@ class GamesList extends React.Component {
   }
   componentWillMount() {
     Parse.User.currentAsync()
-      .then((user) => { this.setState({ user: user }); });
+      .then((user) => { this.setState({ user }); });
   }
   render() {
-    let username = this.state.user.get('username');
+    // @TODO: Fix this
+    const username = this.state.user.get('username');
 
     return (
       <View style={styles.container}>
@@ -70,13 +68,12 @@ class GamesList extends React.Component {
 }
 
 GamesList.propTypes = {
-  games: React.PropTypes.arrayOf(React.PropTypes.shape({
-    userScore: React.PropTypes.number.isRequired,
-    opponent: React.PropTypes.string.isRequired,
-    opponentScore: React.PropTypes.number.isRequired,
-    isFinished: React.PropTypes.bool.isRequired,
-
+  games: PropTypes.arrayOf(PropTypes.shape({
+    userScore: PropTypes.number.isRequired,
+    opponent: PropTypes.string.isRequired,
+    opponentScore: PropTypes.number.isRequired,
+    isFinished: PropTypes.bool.isRequired,
   })).isRequired,
 };
 
-module.exports = GamesList;
+export default GamesList;

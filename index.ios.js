@@ -1,9 +1,5 @@
-var React = require('react-native');
+import { AppRegistry } from 'react-native';
 
-var {
-  AppRegistry
-} = React;
-
-var Main = require('./src/main');
+import Main from './src/main';
 
 AppRegistry.registerComponent('Batgame', () => Main);

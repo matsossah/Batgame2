@@ -1,9 +1,5 @@
-import React, {
-  Text,
-  TouchableHighlight,
-  StyleSheet,
-  Component,
-} from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { Text, StyleSheet, TouchableHighlight } from 'react-native';
 
 const styles = StyleSheet.create({
   facebookButton: {
@@ -45,7 +41,7 @@ class FacebookConnect extends Component {
 }
 
 FacebookConnect.propTypes = {
-  onPress: React.PropTypes.func.isRequired,
+  onPress: PropTypes.func.isRequired,
 };
 
-module.exports = FacebookConnect;
+export default FacebookConnect;

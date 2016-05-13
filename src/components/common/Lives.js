@@ -1,6 +1,7 @@
-import React, { StyleSheet, PropTypes, View } from 'react-native';
+import React, { PropTypes } from 'react';
+import { View, StyleSheet } from 'react-native';
 
-import Heart from './heart';
+import Heart from './Heart';
 
 const HEART_SPACING = 10;
 
