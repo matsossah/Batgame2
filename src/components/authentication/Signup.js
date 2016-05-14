@@ -21,15 +21,15 @@ class Signup extends Component {
   }
   onSignupPress() {
     if (this.state.username.length < 5) {
-      this.onError('Your username must be at least 5 characters.');
+      this.props.onError('Your username must be at least 5 characters.');
       return;
     }
     if (this.state.password.length < 8) {
-      this.onError('Your password must be at least 8 characters.');
+      this.props.onError('Your password must be at least 8 characters.');
       return;
     }
     if (this.state.password !== this.state.passwordConfirmation) {
-      this.onError('Your passwords do not match, please retry.');
+      this.props.onError('Your passwords do not match, please retry.');
       return;
     }
 
@@ -88,7 +88,7 @@ class Signup extends Component {
             secureTextEntry
             style={styles.input}
             placeholder="Confirm Password"
-            placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
+            placeholderTextColor="rgba(255, 255, 255, 0.5)"
             value={this.state.passwordConfirmation}
             onChangeText={this.updatePasswordConfirmation}
           />
