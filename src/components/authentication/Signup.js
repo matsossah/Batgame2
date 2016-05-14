@@ -17,7 +17,7 @@ class Signup extends Component {
     this.onSignupPress = this.onSignupPress.bind(this);
     this.updateUsername = this.updateUsername.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
-    this.updatePasswordConfirmation = this.updatePassword.bind(this);
+    this.updatePasswordConfirmation = this.updatePasswordConfirmation.bind(this);
   }
   onSignupPress() {
     if (this.state.username.length < 5) {
