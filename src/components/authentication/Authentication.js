@@ -18,8 +18,7 @@ class Authentication extends Component {
     this.renderSigninForm = this.renderSigninForm.bind(this);
   }
   onSignin(user) {
-    console.log(user);
-    this.props.navigator.immediatelyResetRouteStack([{ name: 'home' }]);
+    this.props.onAuthenticated(user);
   }
   onError(message) {
     Alert.alert(message);
@@ -76,7 +75,7 @@ class Authentication extends Component {
 }
 
 Authentication.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  onAuthenticated: PropTypes.func.isRequired,
 };
 
 export default Authentication;

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Navigator, StyleSheet } from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { Navigator, View, StyleSheet } from 'react-native';
 import Parse from 'parse/react-native';
 
 import Home from './components/gamestart/Home';
@@ -16,7 +16,6 @@ import {
 } from './config.js';
 
 const ROUTES = {
-  authentication: Authentication,
   home: Home,
   pickOpponent: PickOpponent,
   stoplight: Stoplight,
@@ -31,9 +30,36 @@ const styles = StyleSheet.create({
 });
 
 class Main extends Component {
-  componentWillMount() {
+  constructor() {
+    super();
+
+    this.state = {
+      user: null,
+      shouldAuthenticate: false,
+    };
+
+    this.onUserAuthenticated = this.onUserAuthenticated.bind(this);
+    this.configureScene = this.configureScene.bind(this);
+    this.renderScene = this.renderScene.bind(this);
+
     Parse.initialize(APP_ID, CLIENT_KEY);
     Parse.serverURL = SERVER_URL;
+
+    Parse.User.currentAsync().then(user => {
+      if (user === null) {
+        this.setState({ shouldAuthenticate: true });
+      } else {
+        this.setState({ user });
+      }
+    });
+  }
+  getChildContext() {
+    return {
+      user: this.state.user,
+    };
+  }
+  onUserAuthenticated(user) {
+    this.setState({ user, shouldAuthenticate: false });
   }
   configureScene() {
     return Navigator.SceneConfigs.FloatFromRight;
@@ -43,15 +69,26 @@ class Main extends Component {
     return <RouteComponent route={route} navigator={navigator} />;
   }
   render() {
+    if (this.state.shouldAuthenticate) {
+      return <Authentication onAuthenticated={this.onUserAuthenticated} />;
+    }
+    if (this.state.user === null) {
+      // @TODO: Figure out if it is necessary to display a loading indicator
+      return <View />;
+    }
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{ name: 'authentication' }}
+        initialRoute={{ name: 'home' }}
         renderScene={this.renderScene}
         configureScene={this.configureScene}
       />
     );
   }
 }
+
+Main.childContextTypes = {
+  user: PropTypes.object,
+};
 
 export default Main;
