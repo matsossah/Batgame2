@@ -13,7 +13,6 @@ class Signup extends Component {
       username: '',
       password: '',
       passwordConfirmation: '',
-      errorMessage: '',
     };
     this.onSignupPress = this.onSignupPress.bind(this);
     this.updateUsername = this.updateUsername.bind(this);
@@ -21,30 +20,38 @@ class Signup extends Component {
     this.updatePasswordConfirmation = this.updatePassword.bind(this);
   }
   onSignupPress() {
-    const user = new Parse.User();
-    user.set('username', this.state.username);
-    user.set('password', this.state.password);
-
     if (this.state.username.length < 5) {
-      this.setState({ errorMessage: 'Your username must be at least 5 characters' });
+      this.onError('Your username must be at least 5 characters.');
       return;
     }
     if (this.state.password.length < 8) {
-      this.setState({ errorMessage: 'Your password must be at least 8 characters' });
+      this.onError('Your password must be at least 8 characters.');
       return;
     }
     if (this.state.password !== this.state.passwordConfirmation) {
-      this.setState({ errorMessage: 'Your passwords do not match, please retry' });
+      this.onError('Your passwords do not match, please retry.');
       return;
     }
-    user.signUp(null, {
-      success: () => {
-        this.props.navigator.immediatelyResetRouteStack([{ name: 'home' }]);
-        return;
+
+    const newUser = new Parse.User();
+    newUser.set('username', this.state.username);
+    newUser.set('password', this.state.password);
+
+    newUser.signUp(null, {
+      success: user => {
+        this.props.onSignup(user);
       },
-      error: (error) => {
-        this.setState({ errorMessage: error.message });
-        return;
+      error: err => {
+        let message;
+        switch (err.code) {
+          case Parse.Error.USERNAME_TAKEN:
+            message = 'This username is already taken.';
+            break;
+          default:
+            // @TODO: Find out exactly what errors can be thrown by .signUp()
+            message = 'An unknown error occurred. Please try again.';
+        }
+        this.props.onError(message);
       },
     });
   }
@@ -100,7 +107,8 @@ class Signup extends Component {
 }
 
 Signup.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  onError: PropTypes.func.isRequired,
+  onSignup: PropTypes.func.isRequired,
 };
 
 export default Signup;

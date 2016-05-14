@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { LoginButton } from 'react-native-fbsdk';
+import { Alert } from 'react-native';
 
 import Tabs from '../common/Tabs';
 import Title from '../common/Title';
 import Template from '../common/Template';
 import Signup from './Signup';
 import Signin from './Signin';
+import FacebookLogin from './FacebookLogin';
 
 class Authentication extends Component {
   constructor(props) {
@@ -13,14 +14,35 @@ class Authentication extends Component {
     this.renderSignupForm = this.renderSignupForm.bind(this);
     this.renderSigninForm = this.renderSigninForm.bind(this);
   }
+  onSignin(user) {
+    console.log(user);
+    this.props.navigator.immediatelyResetRouteStack([{ name: 'home' }]);
+  }
+  onError(message) {
+    Alert.alert(message);
+  }
+  renderFacebookLogin() {
+    return (
+      <FacebookLogin
+        onLogin={this.onSignin}
+        onError={this.onError}
+      />
+    );
+  }
   renderSignupForm() {
     return (
-      <Signup navigator={this.props.navigator} />
+      <Signup
+        onSignup={this.onSignin}
+        onError={this.onError}
+      />
     );
   }
   renderSigninForm() {
     return (
-      <Signin navigator={this.props.navigator} />
+      <Signin
+        onSignin={this.onSignin}
+        onError={this.onError}
+      />
     );
   }
   render() {
@@ -28,37 +50,23 @@ class Authentication extends Component {
       <Template
         // pass the title in uppercase
         header={<Title>BRAINING</Title>}
-        separator={
-          <LoginButton
-            publishPermissions={['publish_actions']}
-            onLoginFinished={
-              (error, result) => {
-                if (error) {
-                  alert('login has error: ' + result.error);
-                } else if (result.isCancelled) {
-                  alert('login is cancelled.');
-                } else {
-                  alert('login has finished with permissions: ' + result.grantedPermissions);
-                }
-              }
-            }
-            onLogoutFinished={() => alert('logout.')}
+        separator={this.renderFacebookLogin()}
+        footer={
+          <Tabs
+            tabs={[
+              {
+                title: 'Signup',
+                tabRender: this.renderSignupForm,
+                underlayColor: 'transparent',
+              },
+              {
+                title: 'Login',
+                tabRender: this.renderSigninForm,
+                underlayColor: 'transparent',
+              },
+            ]}
           />
         }
-        footer={<Tabs
-          tabs={[
-            {
-              title: 'Signup',
-              tabRender: this.renderSignupForm,
-              underlayColor: 'transparent',
-            },
-            {
-              title: 'Login',
-              tabRender: this.renderSigninForm,
-              underlayColor: 'transparent',
-            },
-          ]}
-        />}
       />
     );
   }
