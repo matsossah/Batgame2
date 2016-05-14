@@ -10,6 +10,7 @@ class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       username: '',
       password: '',
       passwordConfirmation: '',
@@ -37,11 +38,20 @@ class Signup extends Component {
     newUser.set('username', this.state.username);
     newUser.set('password', this.state.password);
 
+    this.setState({
+      loading: true,
+    });
     newUser.signUp(null, {
       success: user => {
+        this.setState({
+          loading: false,
+        });
         this.props.onSignup(user);
       },
-      error: err => {
+      error: (user, err) => {
+        this.setState({
+          loading: false,
+        });
         let message;
         switch (err.code) {
           case Parse.Error.USERNAME_TAKEN:
@@ -99,7 +109,11 @@ class Signup extends Component {
         </View>
         <View style={styles.bottom}>
           <View style={styles.formSubmit}>
-            <Button text="GO!" onPress={this.onSignupPress} />
+            <Button
+              text="GO!"
+              onPress={this.onSignupPress}
+              disabled={this.state.loading}
+            />
           </View>
         </View>
       </View>

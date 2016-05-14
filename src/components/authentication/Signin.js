@@ -10,6 +10,7 @@ class Signin extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       username: '',
       password: '',
     };
@@ -18,11 +19,20 @@ class Signin extends Component {
     this.updateUsername = this.updateUsername.bind(this);
   }
   onSigninPress() {
+    this.setState({
+      loading: true,
+    });
     Parse.User.logIn(this.state.username, this.state.password, {
       success: user => {
+        this.setState({
+          loading: false,
+        });
         this.props.onSignin(user);
       },
       error: (user, err) => {
+        this.setState({
+          loading: false,
+        });
         let message;
         switch (err.code) {
           case Parse.Error.OBJECT_NOT_FOUND:
@@ -76,7 +86,11 @@ class Signin extends Component {
         </View>
         <View style={styles.bottom}>
           <View style={styles.formSubmit}>
-            <Button text="GO!" onPress={this.onSigninPress} />
+            <Button
+              text="GO!"
+              onPress={this.onSigninPress}
+              disabled={this.state.loading}
+            />
           </View>
         </View>
       </View>
