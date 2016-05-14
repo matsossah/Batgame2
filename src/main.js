@@ -9,6 +9,10 @@ import Stoplight from './components/games/Stoplight';
 import MathBattle from './components/games/MathBattle';
 import NumberGame from './components/games/numbers/NumberGame';
 
+// @FIX: For testing purposes.
+// This lets us access Parse from the debugger ui's console.
+global.Parse = Parse;
+
 import {
   APP_ID,
   CLIENT_KEY,
