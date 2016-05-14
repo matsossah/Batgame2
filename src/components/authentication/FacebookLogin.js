@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
 import Parse from 'parse/react-native';
 
+import loginWithFacebook from '../../loginWithFacebook';
+
 const styles = StyleSheet.create({
   button: {
     height: 40,
@@ -25,27 +27,18 @@ class FacebookLogin extends Component {
       // Do nothing.
     } else {
       // All good. Granted permissions are stored in `result`.
-      AccessToken.getCurrentAccessToken().then(res => {
-        // We need to retrieve the facebook access token in order to log in
-        // the user.
-        Parse.FacebookUtils.logIn({
-          id: res.userID,
-          access_token: res.accessToken,
-          expiration_date: new Date(res.expirationTime).toISOString(),
-        }, {
-          success: user => {
-            this.props.onLogin(user);
-          },
-          error: err => {
-            let message;
-            switch (err.code) {
-              default:
-                message = 'An unknown error occurred. Please try again.';
-                break;
-            }
-            this.props.onError(message);
-          },
-        });
+      loginWithFacebook((err, user) => {
+        if (err) {
+          let message;
+          switch (err.code) {
+            default:
+              message = 'An unknown error occurred. Please try again.';
+              break;
+          }
+          this.props.onError(message);
+        } else {
+          this.props.onLogin(user);
+        }
       });
     }
   }

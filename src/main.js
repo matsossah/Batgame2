@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Navigator, View, StyleSheet } from 'react-native';
 import Parse from 'parse/react-native';
+import { AccessToken } from 'react-native-fbsdk';
 
 import Home from './components/gamestart/Home';
 import PickOpponent from './components/gamestart/PickOpponent';
@@ -8,6 +9,7 @@ import Authentication from './components/authentication/Authentication';
 import Stoplight from './components/games/Stoplight';
 import MathBattle from './components/games/MathBattle';
 import NumberGame from './components/games/numbers/NumberGame';
+import loginWithFacebook from './loginWithFacebook';
 
 // @FIX: For testing purposes.
 // This lets us access Parse from the debugger ui's console.
@@ -51,7 +53,13 @@ class Main extends Component {
 
     Parse.User.currentAsync().then(user => {
       if (user === null) {
-        this.setState({ shouldAuthenticate: true });
+        loginWithFacebook((err, fbUser) => {
+          if (err || fbUser === null) {
+            this.setState({ shouldAuthenticate: true });
+          } else {
+            this.setState({ user: fbUser });
+          }
+        });
       } else {
         this.setState({ user });
       }
