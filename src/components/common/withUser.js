@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
 
 export default function withUser(Composed) {
-  function WithUser(props) {
-    return <Composed {...props} user={this.context.user} />;
+  function WithUser(props, context) {
+    return <Composed {...props} user={context.user} />;
   }
 
   WithUser.contextTypes = {
     user: PropTypes.object.isRequired,
   };
+
+  return WithUser;
 }
