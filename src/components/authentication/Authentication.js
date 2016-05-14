@@ -9,8 +9,11 @@ import Signin from './Signin';
 import FacebookLogin from './FacebookLogin';
 
 class Authentication extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+    this.onSignin = this.onSignin.bind(this);
+    this.onError = this.onError.bind(this);
+    this.renderFacebookLogin = this.renderFacebookLogin.bind(this);
     this.renderSignupForm = this.renderSignupForm.bind(this);
     this.renderSigninForm = this.renderSigninForm.bind(this);
   }
