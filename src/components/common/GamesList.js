@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
-
 import Parse from 'parse/react-native';
 
+import withUser from './withUser';
 // import GameItem from './gameItem';
 
 const styles = StyleSheet.create({
@@ -20,18 +20,10 @@ const styles = StyleSheet.create({
 class GamesList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: null,
-    };
     // this.onNewGamePress = this.onNewGamePress.bind(this);
   }
-  componentWillMount() {
-    Parse.User.currentAsync()
-      .then((user) => { this.setState({ user }); });
-  }
   render() {
-    // @TODO: Fix this
-    const username = this.state.user.get('username');
+    const username = this.props.user.get('username');
 
     return (
       <View style={styles.container}>
@@ -68,6 +60,7 @@ class GamesList extends Component {
 }
 
 GamesList.propTypes = {
+  user: PropTypes.object.isRequired,
   games: PropTypes.arrayOf(PropTypes.shape({
     userScore: PropTypes.number.isRequired,
     opponent: PropTypes.string.isRequired,
@@ -76,4 +69,4 @@ GamesList.propTypes = {
   })).isRequired,
 };
 
-export default GamesList;
+export default withUser(GamesList);
