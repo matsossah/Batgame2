@@ -54,6 +54,7 @@ class Signin extends Component {
       <View style={styles.container}>
         <View style={styles.top}>
           <TextInput
+            autoCorrect={false}
             style={styles.input}
             autoCapitalize="none"
             placeholder="Username"
