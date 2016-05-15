@@ -21,17 +21,13 @@ const styles = StyleSheet.create({
     height: 60,
     width: 150,
     borderRadius: 10,
-    backgroundColor: '#3498DB',
     borderWidth: 3,
-    borderColor: '#FFD664',
   },
   bottomEquationButton: {
     height: 60,
     width: 150,
     borderRadius: 10,
-    backgroundColor: '#4EB479',
     borderWidth: 3,
-    borderColor: '#FFD664',
   },
 });
 
@@ -41,6 +37,8 @@ class MathBattle extends Component {
     this.state = {
       topEquation: '',
       bottomEquation: '',
+      topUnderlay: '',
+      bottomUnderlay: '',
       score: 0,
     };
     this.onTopPress = this.onTopPress.bind(this);
@@ -77,10 +75,21 @@ class MathBattle extends Component {
     const top = randomNumber() + randomSign() + randomNumber() + randomSign() + randomNumber();
     const bottom = randomNumber() + randomSign() + randomNumber() + randomSign() + randomNumber();
 
-    this.setState({
-      topEquation: top,
-      bottomEquation: bottom,
-    });
+    if (eval(bottom) > eval(top)) {
+      this.setState({
+        topUnderlay: 'red',
+        bottomUnderlay: '#4EB479',
+        topEquation: top,
+        bottomEquation: bottom,
+      });
+    } else {
+      this.setState({
+        topUnderlay: '#4EB479',
+        bottomUnderlay: 'red',
+        topEquation: top,
+        bottomEquation: bottom,
+      });
+    }
   }
   render() {
     return (
@@ -94,13 +103,17 @@ class MathBattle extends Component {
                 style={styles.topEquationButton}
                 buttonText={this.state.topEquation}
                 onPress={this.onTopPress}
-                underlayColor="#3498DB"
+                underlayColor={this.state.topUnderlay}
+                backgroundColor="#3498DB"
+                borderColor="#FFD664"
               />
               <LargeButton
                 style={styles.bottomEquationButton}
                 buttonText={this.state.bottomEquation}
                 onPress={this.onBottomPress}
-                underlayColor="#4EB479"
+                underlayColor={this.state.bottomUnderlay}
+                backgroundColor="#3498DB"
+                borderColor="#FFD664"
               />
             </View>
           </View>
