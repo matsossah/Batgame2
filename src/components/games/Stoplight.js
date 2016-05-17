@@ -63,6 +63,7 @@ class Stoplight extends Component {
       running: false,
       score: 0,
       color: '',
+      message: '',
     };
     this.onGoPress = this.onGoPress.bind(this);
     this.goRed = this.goRed.bind(this);
@@ -79,6 +80,7 @@ class Stoplight extends Component {
         this.setState({
           running: false,
           score: Date.now() - this.state.startTime,
+          message: 'Well Done!',
         })
       );
     }
@@ -88,6 +90,7 @@ class Stoplight extends Component {
     return (
       this.setState({
         score: 1000,
+        message: 'False Start!',
       })
     );
   }
@@ -111,6 +114,7 @@ class Stoplight extends Component {
             <Timer startTime={this.state.startTime} /> :
             <Duration duration={this.state.score} />
         }
+        message={this.state.message}
         footer={
           <View style={styles.container}>
             <View style={styles.stoplight}>
