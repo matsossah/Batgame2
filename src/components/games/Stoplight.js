@@ -140,7 +140,9 @@ class Stoplight extends Component {
               style={styles.newGame}
               buttonText="GO!"
               onPress={this.onGoPress}
-              underlayColor="#FFD664"
+              underlayColor={this.state.color === 'green' ? '#4EB479' : 'red'}
+              backgroundColor="#FFD664"
+              borderColor="transparent"
             />
           </View>
         }

@@ -105,7 +105,7 @@ class MathBattle extends Component {
                 onPress={this.onTopPress}
                 underlayColor={this.state.topUnderlay}
                 backgroundColor="#3498DB"
-                borderColor="#FFD664"
+                borderColor="#583B67"
               />
               <LargeButton
                 style={styles.bottomEquationButton}
@@ -113,7 +113,7 @@ class MathBattle extends Component {
                 onPress={this.onBottomPress}
                 underlayColor={this.state.bottomUnderlay}
                 backgroundColor="#3498DB"
-                borderColor="#FFD664"
+                borderColor="#583B67"
               />
             </View>
           </View>
