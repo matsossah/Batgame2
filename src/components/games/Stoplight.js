@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'stretch',
     backgroundColor: '#FFD664',
+    borderColor: 'transparent',
   },
 });
 
@@ -145,8 +146,6 @@ class Stoplight extends Component {
               buttonText="GO!"
               onPress={this.onGoPress}
               underlayColor={this.state.color === 'green' ? '#4EB479' : 'red'}
-              backgroundColor="#FFD664"
-              borderColor="transparent"
             />
           </View>
         }

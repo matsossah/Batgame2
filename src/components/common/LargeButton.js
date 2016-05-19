@@ -26,16 +26,14 @@ class LargeButton extends Component {
   onPress() {
   }
   render() {
+    const { style, buttonText, ...otherProps } = this.props;
     return (
       <TouchableHighlight
-        style={[styles.container, { backgroundColor: this.props.backgroundColor,
-                                    borderColor: this.props.borderColor,
-                                  }]}
-        onPress={this.props.onPress}
-        underlayColor={this.props.underlayColor}
+        {...otherProps}
+        style={[styles.container].concat(style)}
       >
         <Text style={styles.buttonText}>
-          {this.props.buttonText}
+          {buttonText}
         </Text>
       </TouchableHighlight>
     );
@@ -43,11 +41,8 @@ class LargeButton extends Component {
 }
 
 LargeButton.propTypes = {
+  style: PropTypes.any,
   buttonText: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired,
-  underlayColor: PropTypes.string.isRequired,
-  backgroundColor: React.PropTypes.string.isRequired,
-  borderColor: React.PropTypes.string,
 };
 
 export default LargeButton;
