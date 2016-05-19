@@ -85,6 +85,8 @@ class Main extends Component {
       return <Authentication onAuthenticated={this.onUserAuthenticated} />;
     }
     if (this.state.user === null) {
+      // This state only exists for a *very* short time while we retrieve
+      // the current user from the Parse SDK asynchronously.
       // @TODO: Figure out if it is necessary to display a loading indicator
       return <View />;
     }
