@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { Navigator, View, StyleSheet } from 'react-native';
 import Parse from 'parse/react-native';
-import { AccessToken } from 'react-native-fbsdk';
 
 import Home from './components/gamestart/Home';
 import PickOpponent from './components/gamestart/PickOpponent';
 import Authentication from './components/authentication/Authentication';
+import FacebookUsername from './components/authentication/FacebookUsername';
 import Stoplight from './components/games/Stoplight';
 import MathBattle from './components/games/MathBattle';
 import NumberGame from './components/games/numbers/NumberGame';
@@ -45,11 +45,13 @@ class Main extends Component {
     };
 
     this.onUserAuthenticated = this.onUserAuthenticated.bind(this);
+    this.onFacebookUsernameSuccess = this.onFacebookUsernameSuccess.bind(this);
     this.configureScene = this.configureScene.bind(this);
     this.renderScene = this.renderScene.bind(this);
 
     Parse.initialize(APP_ID, CLIENT_KEY);
     Parse.serverURL = SERVER_URL;
+    Parse.User.logOut();
 
     Parse.User.currentAsync().then(user => {
       if (user === null) {
@@ -73,6 +75,9 @@ class Main extends Component {
   onUserAuthenticated(user) {
     this.setState({ user, shouldAuthenticate: false });
   }
+  onFacebookUsernameSuccess(user) {
+    this.setState({ user });
+  }
   configureScene() {
     return Navigator.SceneConfigs.FloatFromRight;
   }
@@ -89,6 +94,11 @@ class Main extends Component {
       // the current user from the Parse SDK asynchronously.
       // @TODO: Figure out if it is necessary to display a loading indicator
       return <View />;
+    }
+    if (!this.state.user.get('hasUsername')) {
+      return (
+        <FacebookUsername onSuccess={this.onFacebookUsernameSuccess} />
+      );
     }
     return (
       <Navigator
