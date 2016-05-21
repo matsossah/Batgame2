@@ -18,7 +18,6 @@ class Heart extends Component {
     this.pop = new Animated.Value(props.full ? 0 : 1);
 
     this.onPopUpdate = this.onPopUpdate.bind(this);
-    this.pop.addListener(this.onPopUpdate);
 
     this.state = {
       pop: this.pop,
@@ -33,18 +32,25 @@ class Heart extends Component {
         toValue: 1,
         duration: 300,
       }).start();
+      this.pop.addListener(this.onPopUpdate);
     } else if (!prevProps.full && this.props.full) {
       Animated.timing(this.state.pop, {
         toValue: 0,
         duration: 300,
       }).start();
+      this.pop.addListener(this.onPopUpdate);
     }
   }
 
   onPopUpdate({ value }) {
-    if (value > 0.5) {
+    if (this.state.full && value > 0.5) {
       this.setState({
         full: false,
+      });
+      this.pop.removeListener(this.onPopUpdate);
+    } else if (!this.state.full && value < 0.5) {
+      this.setState({
+        full: true,
       });
       this.pop.removeListener(this.onPopUpdate);
     }

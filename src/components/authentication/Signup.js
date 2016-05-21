@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, TextInput } from 'react-native';
 import Parse from 'parse/react-native';
 
 import Button from '../common/Button';
-import FacebookConnect from './FacebookConnect';
 
 import styles from './formStyles';
 
@@ -11,41 +10,58 @@ class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       username: '',
       password: '',
       passwordConfirmation: '',
-      errorMessage: '',
     };
     this.onSignupPress = this.onSignupPress.bind(this);
     this.updateUsername = this.updateUsername.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
-    this.updatePasswordConfirmation = this.updatePassword.bind(this);
+    this.updatePasswordConfirmation = this.updatePasswordConfirmation.bind(this);
   }
   onSignupPress() {
-    const user = new Parse.User();
-    user.set('username', this.state.username);
-    user.set('password', this.state.password);
-
     if (this.state.username.length < 5) {
-      this.setState({ errorMessage: 'Your username must be at least 5 characters' });
+      this.props.onError('Your username must be at least 5 characters.');
       return;
     }
     if (this.state.password.length < 8) {
-      this.setState({ errorMessage: 'Your password must be at least 8 characters' });
+      this.props.onError('Your password must be at least 8 characters.');
       return;
     }
     if (this.state.password !== this.state.passwordConfirmation) {
-      this.setState({ errorMessage: 'Your passwords do not match, please retry' });
+      this.props.onError('Your passwords do not match, please retry.');
       return;
     }
-    user.signUp(null, {
-      success: () => {
-        this.props.navigator.immediatelyResetRouteStack([{ name: 'home' }]);
-        return;
+
+    const newUser = new Parse.User();
+    newUser.set('username', this.state.username);
+    newUser.set('password', this.state.password);
+
+    this.setState({
+      loading: true,
+    });
+    newUser.signUp(null, {
+      success: user => {
+        this.setState({
+          loading: false,
+        });
+        this.props.onSignup(user);
       },
-      error: (error) => {
-        this.setState({ errorMessage: error.message });
-        return;
+      error: (user, err) => {
+        this.setState({
+          loading: false,
+        });
+        let message;
+        switch (err.code) {
+          case Parse.Error.USERNAME_TAKEN:
+            message = 'This username is already taken.';
+            break;
+          default:
+            // @TODO: Find out exactly what errors can be thrown by .signUp()
+            message = 'An unknown error occurred. Please try again.';
+        }
+        this.props.onError(message);
       },
     });
   }
@@ -63,6 +79,7 @@ class Signup extends Component {
       <View style={styles.container}>
         <View style={styles.top}>
           <TextInput
+            autoCorrect={false}
             style={styles.input}
             autoCapitalize="none"
             placeholder="Username"
@@ -82,19 +99,19 @@ class Signup extends Component {
             secureTextEntry
             style={styles.input}
             placeholder="Confirm Password"
-            placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
+            placeholderTextColor="rgba(255, 255, 255, 0.5)"
             value={this.state.passwordConfirmation}
             onChangeText={this.updatePasswordConfirmation}
           />
-          <Text style={styles.errorMessage}>
-            {this.state.errorMessage}
-          </Text>
         </View>
         <View style={styles.bottom}>
           <View style={styles.formSubmit}>
-            <Button text="GO!" onPress={this.onSignupPress} />
+            <Button
+              text="GO!"
+              onPress={this.onSignupPress}
+              disabled={this.state.loading}
+            />
           </View>
-          <FacebookConnect onPress={this.onSignupPress} />
         </View>
       </View>
     );
@@ -102,7 +119,8 @@ class Signup extends Component {
 }
 
 Signup.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  onError: PropTypes.func.isRequired,
+  onSignup: PropTypes.func.isRequired,
 };
 
 export default Signup;
