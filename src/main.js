@@ -11,6 +11,7 @@ import MathBattle from './components/games/MathBattle';
 import NumberGame from './components/games/numbers/NumberGame';
 import loginWithFacebook from './loginWithFacebook';
 
+
 // @FIX: For testing purposes.
 // This lets us access Parse from the debugger ui's console.
 global.Parse = Parse;
@@ -23,6 +24,7 @@ import {
 
 const ROUTES = {
   authentication: Authentication,
+  facebookUsername: FacebookUsername,
   home: Home,
   pickOpponent: PickOpponent,
   stoplight: Stoplight,
@@ -104,7 +106,7 @@ class Main extends Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{ name: 'mathBattle' }}
+        initialRoute={{ name: 'authentication' }}
         renderScene={this.renderScene}
         configureScene={this.configureScene}
       />
