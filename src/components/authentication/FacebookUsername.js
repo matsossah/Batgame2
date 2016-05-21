@@ -53,7 +53,7 @@ class FacebookUsername extends Component {
   render() {
     return (
       <Template
-        header={<Title>Pick a username!</Title>}
+        header={<Title>CHOOSE A USERNAME!</Title>}
         footer={
           <View style={styles.container}>
             <View style={styles.top}>

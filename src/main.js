@@ -22,6 +22,7 @@ import {
 } from './config.js';
 
 const ROUTES = {
+  authentication: Authentication,
   home: Home,
   pickOpponent: PickOpponent,
   stoplight: Stoplight,
@@ -103,7 +104,7 @@ class Main extends Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{ name: 'home' }}
+        initialRoute={{ name: 'mathBattle' }}
         renderScene={this.renderScene}
         configureScene={this.configureScene}
       />
