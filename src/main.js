@@ -46,7 +46,7 @@ class Main extends Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{ name: 'authentication' }}
+        initialRoute={{ name: 'mathBattle' }}
         renderScene={this.renderScene}
         configureScene={this.configureScene}
       />

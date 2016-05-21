@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet } from 'react-native';
+import sample from 'lodash/sample';
 
 import Template from '../common/Template';
 import Title from '../common/Title';
@@ -18,16 +19,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   topEquationButton: {
-    height: 60,
-    width: 150,
+    height: 70,
+    width: 180,
     borderRadius: 10,
     borderWidth: 3,
+    backgroundColor: '#3498DB',
+    borderColor: '#FFD664',
+  },
+  equalEquationButton: {
+    height: 70,
+    width: 180,
+    borderRadius: 10,
+    borderWidth: 3,
+    backgroundColor: '#34485E',
+    borderColor: '#FFD664',
   },
   bottomEquationButton: {
-    height: 60,
-    width: 150,
+    height: 70,
+    width: 180,
     borderRadius: 10,
     borderWidth: 3,
+    backgroundColor: '#3498DB',
+    borderColor: '#FFD664',
   },
 });
 
@@ -37,61 +50,53 @@ class MathBattle extends Component {
     this.state = {
       topEquation: '',
       bottomEquation: '',
-      topUnderlay: '',
-      bottomUnderlay: '',
+      biggerEquation: '',
       score: 0,
+      ...this.newEquations(),
     };
     this.onTopPress = this.onTopPress.bind(this);
     this.onBottomPress = this.onBottomPress.bind(this);
-  }
-  componentWillMount() {
-    this.newEquations();
+    this.onEqualPress = this.onEqualPress.bind(this);
   }
   onTopPress() {
-    if ((eval(this.state.topEquation)) > (eval(this.state.bottomEquation))) {
-      this.setState({ score: this.state.score + 1 });
-      this.newEquations();
+    if ((this.state.topEquation[0] * this.state.topEquation[1]) >
+        (this.state.bottomEquation[0] * this.state.bottomEquation[1])) {
+      this.setState({
+        score: this.state.score + 1,
+        ...this.newEquations(),
+      });
+    }
+  }
+  onEqualPress() {
+    if ((this.state.topEquation[0] * this.state.topEquation[1]) ===
+        (this.state.bottomEquation[0] * this.state.bottomEquation[1])) {
+      this.setState({
+        score: this.state.score + 1,
+        ...this.newEquations(),
+      });
     }
   }
   onBottomPress() {
-    if (eval(this.state.bottomEquation) > eval(this.state.topEquation)) {
-      this.setState({ score: this.state.score + 1 });
-      this.newEquations();
+    if ((this.state.topEquation[0] * this.state.topEquation[1]) <
+        (this.state.bottomEquation[0] * this.state.bottomEquation[1])) {
+      this.setState({
+        score: this.state.score + 1,
+        ...this.newEquations(),
+      });
     }
   }
   newEquations() {
-    function randomNumber() {
-      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-      return (
-        numbers[Math.floor(Math.random() * numbers.length)]
-      );
-    }
-    function randomSign() {
-      const signs = [' + ', ' - ', ' / ', ' * '];
-      return (
-        signs[Math.floor(Math.random() * signs.length)]
-      );
-    }
-    const top = randomNumber() + randomSign() + randomNumber() + randomSign() + randomNumber();
-    const bottom = randomNumber() + randomSign() + randomNumber() + randomSign() + randomNumber();
+    const NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-    if (eval(bottom) > eval(top)) {
-      this.setState({
-        topUnderlay: 'red',
-        bottomUnderlay: '#4EB479',
-        topEquation: top,
-        bottomEquation: bottom,
-      });
-    } else {
-      this.setState({
-        topUnderlay: '#4EB479',
-        bottomUnderlay: 'red',
-        topEquation: top,
-        bottomEquation: bottom,
-      });
-    }
+    const top = [sample(NUMBERS), sample(NUMBERS)];
+    const bottom = [sample(NUMBERS), sample(NUMBERS)];
+    return { topEquation: top, bottomEquation: bottom };
   }
   render() {
+    const { topEquation, bottomEquation } = this.state;
+    const topResult = topEquation[0] * topEquation[1];
+    const bottomResult = bottomEquation[0] * bottomEquation[1];
+
     return (
       <Template
         // pass the title in uppercase if needed
@@ -101,19 +106,21 @@ class MathBattle extends Component {
             <View style={styles.equations}>
               <LargeButton
                 style={styles.topEquationButton}
-                buttonText={this.state.topEquation}
                 onPress={this.onTopPress}
-                underlayColor={this.state.topUnderlay}
-                backgroundColor="#3498DB"
-                borderColor="#583B67"
+                buttonText={topEquation[0].toString() + ' X ' + topEquation[1].toString()}
+                underlayColor={topResult > bottomResult ? '#4EB479' : 'red'}
+              />
+              <LargeButton
+                style={styles.equalEquationButton}
+                buttonText="="
+                onPress={this.onEqualPress}
+                underlayColor={topResult === bottomResult ? '#4EB479' : 'red'}
               />
               <LargeButton
                 style={styles.bottomEquationButton}
-                buttonText={this.state.bottomEquation}
                 onPress={this.onBottomPress}
-                underlayColor={this.state.bottomUnderlay}
-                backgroundColor="#3498DB"
-                borderColor="#583B67"
+                buttonText={bottomEquation[0].toString() + ' X ' + bottomEquation[1].toString()}
+                underlayColor={bottomResult > topResult ? '#4EB479' : 'red'}
               />
             </View>
           </View>

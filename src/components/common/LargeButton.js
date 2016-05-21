@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   buttonText: {
-    fontSize: 24,
+    fontSize: 30,
     color: 'white',
     fontFamily: 'chalkduster',
   },
