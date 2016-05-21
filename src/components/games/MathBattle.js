@@ -48,8 +48,8 @@ class MathBattle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      topEquation: '',
-      bottomEquation: '',
+      topOperands: [],
+      bottomOperands: [],
       biggerEquation: '',
       score: 0,
       ...this.newEquations(),
@@ -59,8 +59,8 @@ class MathBattle extends Component {
     this.onEqualPress = this.onEqualPress.bind(this);
   }
   onTopPress() {
-    if ((this.state.topEquation[0] * this.state.topEquation[1]) >
-        (this.state.bottomEquation[0] * this.state.bottomEquation[1])) {
+    if ((this.state.topOperands[0] * this.state.topOperands[1]) >
+        (this.state.bottomOperands[0] * this.state.bottomOperands[1])) {
       this.setState({
         score: this.state.score + 1,
         ...this.newEquations(),
@@ -68,8 +68,8 @@ class MathBattle extends Component {
     }
   }
   onEqualPress() {
-    if ((this.state.topEquation[0] * this.state.topEquation[1]) ===
-        (this.state.bottomEquation[0] * this.state.bottomEquation[1])) {
+    if ((this.state.topOperands[0] * this.state.topOperands[1]) ===
+        (this.state.bottomOperands[0] * this.state.bottomOperands[1])) {
       this.setState({
         score: this.state.score + 1,
         ...this.newEquations(),
@@ -77,8 +77,8 @@ class MathBattle extends Component {
     }
   }
   onBottomPress() {
-    if ((this.state.topEquation[0] * this.state.topEquation[1]) <
-        (this.state.bottomEquation[0] * this.state.bottomEquation[1])) {
+    if ((this.state.topOperands[0] * this.state.topOperands[1]) <
+        (this.state.bottomOperands[0] * this.state.bottomOperands[1])) {
       this.setState({
         score: this.state.score + 1,
         ...this.newEquations(),
@@ -90,12 +90,12 @@ class MathBattle extends Component {
 
     const top = [sample(NUMBERS), sample(NUMBERS)];
     const bottom = [sample(NUMBERS), sample(NUMBERS)];
-    return { topEquation: top, bottomEquation: bottom };
+    return { topOperands: top, bottomOperands: bottom };
   }
   render() {
-    const { topEquation, bottomEquation } = this.state;
-    const topResult = topEquation[0] * topEquation[1];
-    const bottomResult = bottomEquation[0] * bottomEquation[1];
+    const { topOperands, bottomOperands } = this.state;
+    const topResult = topOperands[0] * topOperands[1];
+    const bottomResult = bottomOperands[0] * bottomOperands[1];
 
     return (
       <Template
@@ -107,7 +107,7 @@ class MathBattle extends Component {
               <LargeButton
                 style={styles.topEquationButton}
                 onPress={this.onTopPress}
-                buttonText={topEquation[0].toString() + ' X ' + topEquation[1].toString()}
+                buttonText={topOperands[0].toString() + ' X ' + topOperands[1].toString()}
                 underlayColor={topResult > bottomResult ? '#4EB479' : 'red'}
               />
               <LargeButton
@@ -119,7 +119,7 @@ class MathBattle extends Component {
               <LargeButton
                 style={styles.bottomEquationButton}
                 onPress={this.onBottomPress}
-                buttonText={bottomEquation[0].toString() + ' X ' + bottomEquation[1].toString()}
+                buttonText={bottomOperands[0].toString() + ' X ' + bottomOperands[1].toString()}
                 underlayColor={bottomResult > topResult ? '#4EB479' : 'red'}
               />
             </View>
