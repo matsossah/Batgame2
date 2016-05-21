@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, TextInput } from 'react-native';
 import Parse from 'parse/react-native';
 
 import Button from '../common/Button';
@@ -103,9 +103,6 @@ class Signup extends Component {
             value={this.state.passwordConfirmation}
             onChangeText={this.updatePasswordConfirmation}
           />
-          <Text style={styles.errorMessage}>
-            {this.state.errorMessage}
-          </Text>
         </View>
         <View style={styles.bottom}>
           <View style={styles.formSubmit}>
