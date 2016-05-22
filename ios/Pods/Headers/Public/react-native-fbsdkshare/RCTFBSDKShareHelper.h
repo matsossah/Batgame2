@@ -1,1 +1,0 @@
-../../../../../node_modules/react-native-fbsdk/iOS/share/iOS/RCTFBSDKShareHelper.h
