@@ -10,6 +10,7 @@ import Stoplight from './components/games/Stoplight';
 import MathBattle from './components/games/MathBattle';
 import NumberGame from './components/games/numbers/NumberGame';
 import loginWithFacebook from './loginWithFacebook';
+import SplashScreen from './splashScreen';
 
 
 // @FIX: For testing purposes.
@@ -89,6 +90,9 @@ class Main extends Component {
     return <RouteComponent route={route} navigator={navigator} />;
   }
   render() {
+    return (
+      <SplashScreen />
+    );
     if (this.state.shouldAuthenticate) {
       return <Authentication onAuthenticated={this.onUserAuthenticated} />;
     }
@@ -106,7 +110,7 @@ class Main extends Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{ name: 'authentication' }}
+        initialRoute={{ name: 'mathBattle' }}
         renderScene={this.renderScene}
         configureScene={this.configureScene}
       />
