@@ -17,7 +17,7 @@ export default function loginWithFacebook(callback) {
       success: user => {
         callback(null, user);
       },
-      error: err => {
+      error: (user, err) => {
         callback(err, null);
       },
     });

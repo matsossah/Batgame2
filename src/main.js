@@ -65,6 +65,8 @@ class Main extends Component {
       } else {
         this.setState({ user });
       }
+    }).catch(err => {
+      console.error(err);
     });
   }
   getChildContext() {
