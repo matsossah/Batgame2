@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
 import Template from '../common/Template';
 import Timer from '../common/Timer';
@@ -50,9 +50,26 @@ const styles = StyleSheet.create({
   },
   newGame: {
     justifyContent: 'center',
-    alignItems: 'stretch',
+    alignItems: 'center',
     backgroundColor: '#FFD664',
     borderColor: 'transparent',
+  },
+  messageBox: {
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
+  message: {
+    fontSize: 26,
+    fontFamily: 'chalkduster',
+    color: 'white',
+    textAlign: 'center',
+  },
+  titleBox: {
+    flex: 2,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    paddingTop: 40,
   },
 });
 
@@ -64,7 +81,7 @@ class Stoplight extends Component {
       running: false,
       score: 0,
       color: '',
-      message: '',
+      success: '',
     };
     this.onGoPress = this.onGoPress.bind(this);
     this.goRed = this.goRed.bind(this);
@@ -81,7 +98,7 @@ class Stoplight extends Component {
         this.setState({
           running: false,
           score: Date.now() - this.state.startTime,
-          message: 'Well Done!',
+          success: 'yes',
         })
       );
     }
@@ -91,7 +108,7 @@ class Stoplight extends Component {
     return (
       this.setState({
         score: 1000,
-        message: 'False Start!',
+        success: 'no',
       })
     );
   }
@@ -112,10 +129,29 @@ class Stoplight extends Component {
         // pass the title in uppercase
         header={
           this.state.running ?
-            <Timer startTime={this.state.startTime} /> :
-            <Duration duration={this.state.score} />
+            <View style={styles.container}>
+              <View style={styles.titleBox}>
+                <Timer startTime={this.state.startTime} />
+              </View>
+              <View style={[styles.messageBox, styles.centered]}>
+                <Text style={styles.message}>
+                  {this.state.success === 'yes' ? 'Well Done!' :
+                  this.state.success === 'no' ? 'False Start!' : ''}
+                </Text>
+              </View>
+            </View> :
+            <View style={styles.container}>
+              <View style={styles.titleBox}>
+                <Duration duration={this.state.score} />
+              </View>
+              <View style={[styles.messageBox, styles.centered]}>
+                <Text style={styles.message}>
+                  {this.state.success === 'yes' ? 'Well Done!' :
+                  this.state.success === 'no' ? 'False Start!' : ''}
+                </Text>
+              </View>
+            </View>
         }
-        message={this.state.message}
         footer={
           <View style={styles.container}>
             <View style={styles.stoplight}>

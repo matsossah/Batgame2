@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#34485E',
     flex: 25,
-    flexDirection: 'row',
     alignSelf: 'stretch',
   },
   separator: {
@@ -27,16 +26,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  messageBox: {
-    backgroundColor: '#34485E',
-    paddingBottom: 10,
-    alignSelf: 'stretch',
-  },
-  message: {
-    fontSize: 26,
-    fontFamily: 'chalkduster',
-    color: 'white',
-  },
 });
 
 function Template(props) {
@@ -45,11 +34,6 @@ function Template(props) {
     <View {...otherProps} style={[styles.container, styles.centered, style]}>
       <View style={[styles.header, styles.centered]}>
         {header}
-      </View>
-      <View style={[styles.messageBox, styles.centered]}>
-        <Text style={styles.message}>
-          {props.message}
-        </Text>
       </View>
       <View style={styles.separator} />
       <View style={[styles.footer, styles.centered]}>
