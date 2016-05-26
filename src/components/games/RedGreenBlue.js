@@ -5,6 +5,7 @@ import Template from '../common/Template';
 import Timer from '../common/Timer';
 import Duration from '../common/Duration';
 import Board from '../common/Board';
+import sample from 'lodash/sample';
 
 const styles = StyleSheet.create({
   container: {
@@ -115,7 +116,7 @@ class RedGreenBlue extends Component {
   }
   newColor() {
     const colors = ['#E74C3C', '#4EB479', '#3498DB'];
-    const color = colors[Math.floor(Math.random() * colors.length)];
+    const color = sample(colors);
     this.setState({ boardButtonColor: color, running: true });
   }
   render() {

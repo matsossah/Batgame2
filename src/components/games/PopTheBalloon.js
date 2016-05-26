@@ -70,11 +70,6 @@ class PopTheBalloon extends Component {
       });
     }
   }
-  newColor() {
-    const colors = ['#E74C3C', '#4EB479', '#3498DB'];
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    this.setState({ boardButtonColor: color, running: true });
-  }
   render() {
     return (
       <Template

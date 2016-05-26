@@ -10,6 +10,8 @@ import MathBattle from './components/games/MathBattle';
 import NumberGame from './components/games/numbers/NumberGame';
 import RedGreenBlue from './components/games/RedGreenBlue';
 import PopTheBalloon from './components/games/PopTheBalloon';
+import WhackAMole from './components/games/WhackAMole';
+
 
 import {
   APP_ID,
@@ -26,6 +28,7 @@ const ROUTES = {
   numbers: NumberGame,
   redGreenBlue: RedGreenBlue,
   popTheBalloon: PopTheBalloon,
+  whackAMole: WhackAMole,
 };
 
 const styles = StyleSheet.create({
@@ -50,7 +53,7 @@ class Main extends Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{ name: 'popTheBalloon' }}
+        initialRoute={{ name: 'whackAMole' }}
         renderScene={this.renderScene}
         configureScene={this.configureScene}
       />
