@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'stretch',
   },
   board: {
     flex: 2,
@@ -20,24 +21,24 @@ const styles = StyleSheet.create({
   options: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
     alignSelf: 'stretch',
   },
   redButton: {
-    backgroundColor: 'red',
+    backgroundColor: '#E74C3C',
     height: 70,
     width: 70,
     borderRadius: 35,
   },
   greenButton: {
-    backgroundColor: 'green',
+    backgroundColor: '#4EB479',
     height: 70,
     width: 70,
     borderRadius: 35,
   },
   blueButton: {
-    backgroundColor: 'blue',
+    backgroundColor: '#3498DB',
     height: 70,
     width: 70,
     borderRadius: 35,
@@ -48,58 +49,74 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     margin: 0,
   },
+  scoreBox: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    alignSelf: 'stretch',
+  },
+  timerBox: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  score: {
+    fontSize: 20,
+    fontFamily: 'chalkduster',
+    color: '#FFD664',
+    marginRight: 10,
+  },
 });
 
 class RedGreenBlue extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startTime: null,
+      startTime: 0,
       running: false,
       score: 0,
-      boardButtonColor: 'green',
+      boardButtonColor: '#4EB479',
     };
     this.onRedPress = this.onRedPress.bind(this);
     this.onGreenPress = this.onGreenPress.bind(this);
     this.onBluePress = this.onBluePress.bind(this);
   }
   onRedPress() {
-    console.log(this.state.score);
-    if (this.state.boardButtonColor === 'red') {
-      this.newColor();
+    if (this.state.boardButtonColor === '#E74C3C') {
       this.setState({
         score: this.state.score + 1,
       });
+      this.newColor();
     } else {
       this.setState({ running: false });
     }
   }
   onGreenPress() {
-    console.log(this.state.score);
-    if (this.state.boardButtonColor === 'green') {
-      this.newColor();
+    if (this.state.boardButtonColor === '#4EB479') {
       this.setState({
         score: this.state.score + 1,
       });
+      this.newColor();
     } else {
       this.setState({ running: false });
     }
   }
   onBluePress() {
-    console.log(this.state.score);
-    if (this.state.boardButtonColor === 'blue') {
-      this.newColor();
+    if (this.state.boardButtonColor === '#3498DB') {
       this.setState({
         score: this.state.score + 1,
       });
+      this.newColor();
     } else {
       this.setState({ running: false });
     }
   }
   newColor() {
-    const colors = ['green', 'red', 'blue'];
+    const colors = ['#E74C3C', '#4EB479', '#3498DB'];
     const color = colors[Math.floor(Math.random() * colors.length)];
-    this.setState({ boardButtonColor: color, startTime: Date.now(), running: true });
+    this.setState({ boardButtonColor: color, running: true });
   }
   render() {
     return (
@@ -107,8 +124,27 @@ class RedGreenBlue extends Component {
         // pass the title in uppercase
         header={
           this.state.running ?
-            <Timer startTime={this.state.startTime} /> :
-            <Duration duration={this.state.score} />
+            <View style={styles.container}>
+              <View style={styles.scoreBox}>
+                <Text style={styles.score}>
+                  {this.state.score}
+                </Text>
+              </View>
+              <View style={styles.timerBox}>
+                <Timer startTime={0} />
+              </View>
+            </View>
+          :
+            <View style={styles.container}>
+              <View style={styles.scoreBox}>
+                <Text style={styles.score}>
+                  {this.state.score}
+                </Text>
+              </View>
+              <View style={styles.timerBox}>
+                <Duration duration={this.state.score} />
+              </View>
+            </View>
         }
         footer={
           <View style={styles.container}>
@@ -120,19 +156,19 @@ class RedGreenBlue extends Component {
             <View style={styles.options}>
               <TouchableHighlight
                 onPress={this.onRedPress}
-                underlayColor="gray"
+                underlayColor="transparent"
               >
                 <View style={styles.redButton} />
               </TouchableHighlight>
               <TouchableHighlight
                 onPress={this.onGreenPress}
-                underlayColor="gray"
+                underlayColor="transparent"
               >
                 <View style={styles.greenButton} />
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={this.onRedPress}
-                underlayColor="gray"
+                onPress={this.onBluePress}
+                underlayColor="transparent"
               >
                 <View style={styles.blueButton} />
               </TouchableHighlight>

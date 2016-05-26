@@ -8,6 +8,7 @@ import Authentication from './components/authentication/Authentication';
 import Stoplight from './components/games/Stoplight';
 import MathBattle from './components/games/MathBattle';
 import NumberGame from './components/games/numbers/NumberGame';
+import RedGreenBlue from './components/games/RedGreenBlue';
 
 import {
   APP_ID,
@@ -22,6 +23,7 @@ const ROUTES = {
   stoplight: Stoplight,
   mathBattle: MathBattle,
   numbers: NumberGame,
+  redGreenBlue: RedGreenBlue,
 };
 
 const styles = StyleSheet.create({
