@@ -6,7 +6,8 @@ import withUser from '../common/withUser';
 import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
-import GamesList from '../common/GamesList';
+import MatchesList from '../common/MatchesList';
+import { normalizeMatch } from '../../normalize';
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -57,22 +58,11 @@ class Home extends Component {
               onPress={this.onNewGamePress}
               underlayColor="#4EB479"
             />
-            <GamesList
-              games={[
-                {
-                  userScore: 5,
-                  opponent: 'Mumu',
-                  opponentScore: 3,
-                  isFinished: false,
-                },
-                {
-                  userScore: 3,
-                  opponent: 'Jess',
-                  opponentScore: 4,
-                  isFinished: false,
-                },
-              ]}
-            />
+            {this.state.matches !== null &&
+              <MatchesList
+                matches={this.state.matches.map(normalizeMatch)}
+              />
+            }
           </ScrollView>
         }
       />
