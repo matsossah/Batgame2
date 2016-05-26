@@ -15,10 +15,32 @@ const styles = StyleSheet.create({
   },
 });
 
+const Match = Parse.Object.extend('Match');
+
 class Home extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      matches: null,
+    };
     this.onNewGamePress = this.onNewGamePress.bind(this);
+  }
+  componentDidMount() {
+    const { user } = this.props;
+    new Parse.Query('Match')
+      .equalTo('participants', user)
+      .include('participants')
+      .include('rounds')
+      .include('rounds.games')
+      .include('rounds.games.scores')
+      .find()
+      .then(matches => {
+        this.setState({ matches });
+      })
+      .catch(e => {
+        // @TODO: handle error
+        console.error(e);
+      });
   }
   onNewGamePress() {
     this.props.navigator.push({ name: 'pick_opponent' });
