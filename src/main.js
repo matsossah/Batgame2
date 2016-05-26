@@ -9,6 +9,7 @@ import Stoplight from './components/games/Stoplight';
 import MathBattle from './components/games/MathBattle';
 import NumberGame from './components/games/numbers/NumberGame';
 import RedGreenBlue from './components/games/RedGreenBlue';
+import PopTheBalloon from './components/games/PopTheBalloon';
 
 import {
   APP_ID,
@@ -24,6 +25,7 @@ const ROUTES = {
   mathBattle: MathBattle,
   numbers: NumberGame,
   redGreenBlue: RedGreenBlue,
+  popTheBalloon: PopTheBalloon,
 };
 
 const styles = StyleSheet.create({
@@ -48,7 +50,7 @@ class Main extends Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{ name: 'stoplight' }}
+        initialRoute={{ name: 'popTheBalloon' }}
         renderScene={this.renderScene}
         configureScene={this.configureScene}
       />
