@@ -44,7 +44,7 @@ class Home extends Component {
       });
   }
   onNewGamePress() {
-    this.props.navigator.push({ name: 'pick_opponent' });
+    this.props.navigator.push({ name: 'pickOpponent' });
   }
   render() {
     return (

@@ -66,7 +66,6 @@ class Main extends Component {
 
     Parse.initialize(APP_ID, CLIENT_KEY);
     Parse.serverURL = SERVER_URL;
-    Parse.User.logOut();
 
     Parse.User.currentAsync().then(user => {
       if (user === null) {
@@ -81,6 +80,7 @@ class Main extends Component {
         this.setState({ user });
       }
     }).catch(err => {
+      // @TODO: handle error
       console.error(err);
     });
   }
