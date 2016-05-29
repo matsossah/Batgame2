@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -21,17 +21,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
   },
-  topSeparator: {
-    height: 1,
-    width: 220,
-    backgroundColor: 'white',
-    marginTop: 30,
-  },
-  separator: {
-    height: 1,
-    width: 220,
-    backgroundColor: 'white',
-  },
   centered: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -43,40 +32,19 @@ const styles = StyleSheet.create({
     fontFamily: 'chalkduster',
     fontSize: 24,
   },
-  input: {
-    height: 35,
-    width: 220,
-    alignSelf: 'center',
-    fontSize: 14,
-    color: 'white',
-    fontFamily: 'chalkduster',
-  },
-  button: {
-    backgroundColor: '#4EB479',
-    borderColor: 'transparent',
-  },
 });
 
-class Board extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      username: '',
-    };
-  }
-  render() {
-    return (
-      <View style={[styles.container]}>
-        <View style={[styles.outer, styles.centered]}>
-          <View style={styles.inner}>
-            <Text style={styles.label}>Au Tableau!</Text>
-              {this.props.children}
-          </View>
+function Board(props) {
+  return (
+    <View style={styles.container}>
+      <View style={[styles.outer, styles.centered]}>
+        <View style={styles.inner}>
+          <Text style={styles.label}>Au Tableau!</Text>
+          {props.children}
         </View>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 Board.propTypes = {
