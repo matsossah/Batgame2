@@ -53,7 +53,7 @@ class Main extends Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{ name: 'whackAMole' }}
+        initialRoute={{ name: 'home' }}
         renderScene={this.renderScene}
         configureScene={this.configureScene}
       />
