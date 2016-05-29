@@ -26,20 +26,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'stretch',
   },
-  redButton: {
-    backgroundColor: '#E74C3C',
-    height: 70,
-    width: 70,
-    borderRadius: 35,
-  },
-  greenButton: {
-    backgroundColor: '#4EB479',
-    height: 70,
-    width: 70,
-    borderRadius: 35,
-  },
-  blueButton: {
-    backgroundColor: '#3498DB',
+  button: {
     height: 70,
     width: 70,
     borderRadius: 35,
@@ -71,108 +58,99 @@ const styles = StyleSheet.create({
   },
 });
 
+const buttonColorStyles = StyleSheet.create({
+  red: {
+    backgroundColor: '#E74C3C',
+  },
+  green: {
+    backgroundColor: '#4EB479',
+  },
+  blue: {
+    backgroundColor: '#3498DB',
+  },
+});
+
+const colors = ['red', 'green', 'blue'];
+
 class RedGreenBlue extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      startTime: 0,
-      running: false,
+      startTime: Date.now(),
+      duration: null,
+      running: true,
       score: 0,
-      boardButtonColor: '#4EB479',
+      color: sample(colors),
     };
-    this.onRedPress = this.onRedPress.bind(this);
-    this.onGreenPress = this.onGreenPress.bind(this);
-    this.onBluePress = this.onBluePress.bind(this);
+    this.onPressHandlers = {
+      red: this.onButtonPress.bind(this, 'red'),
+      green: this.onButtonPress.bind(this, 'green'),
+      blue: this.onButtonPress.bind(this, 'blue'),
+    };
   }
-  onRedPress() {
-    if (this.state.boardButtonColor === '#E74C3C') {
+  onButtonPress(color) {
+    if (this.state.color === color) {
+      const newColor = sample(colors);
       this.setState({
+        color: newColor,
         score: this.state.score + 1,
       });
-      this.newColor();
     } else {
-      this.setState({ running: false });
-    }
-  }
-  onGreenPress() {
-    if (this.state.boardButtonColor === '#4EB479') {
       this.setState({
-        score: this.state.score + 1,
+        running: false,
+        duration: Date.now() - this.state.startTime,
       });
-      this.newColor();
-    } else {
-      this.setState({ running: false });
     }
   }
-  onBluePress() {
-    if (this.state.boardButtonColor === '#3498DB') {
-      this.setState({
-        score: this.state.score + 1,
-      });
-      this.newColor();
-    } else {
-      this.setState({ running: false });
-    }
-  }
-  newColor() {
-    const colors = ['#E74C3C', '#4EB479', '#3498DB'];
-    const color = sample(colors);
-    this.setState({ boardButtonColor: color, running: true });
+  renderButton(color) {
+    return (
+      <TouchableHighlight
+        onPress={this.onPressHandlers[color]}
+        underlayColor="transparent"
+      >
+        <View
+          style={[
+            styles.button,
+            buttonColorStyles[color],
+          ]}
+        />
+      </TouchableHighlight>
+    );
   }
   render() {
     return (
       <Template
-        // pass the title in uppercase
         header={
-          this.state.running ?
-            <View style={styles.container}>
-              <View style={styles.scoreBox}>
-                <Text style={styles.score}>
-                  {this.state.score}
-                </Text>
-              </View>
-              <View style={styles.timerBox}>
-                <Timer startTime={0} />
-              </View>
+          <View style={styles.container}>
+            <View style={styles.scoreBox}>
+              <Text style={styles.score}>
+                {this.state.score}
+              </Text>
             </View>
-          :
-            <View style={styles.container}>
-              <View style={styles.scoreBox}>
-                <Text style={styles.score}>
-                  {this.state.score}
-                </Text>
-              </View>
-              <View style={styles.timerBox}>
-                <Duration duration={this.state.score} />
-              </View>
+            <View style={styles.timerBox}>
+              {this.state.running ?
+                <Timer startTime={this.state.startTime} /> :
+                <Duration duration={this.state.duration} />
+              }
             </View>
+          </View>
         }
         footer={
           <View style={styles.container}>
             <View style={styles.board}>
               <Board>
-                <View style={styles.boardButton} backgroundColor={this.state.boardButtonColor} />
+                <View
+                  style={[
+                    styles.boardButton,
+                    buttonColorStyles[this.state.color],
+                  ]}
+                />
               </Board>
             </View>
             <View style={styles.options}>
-              <TouchableHighlight
-                onPress={this.onRedPress}
-                underlayColor="transparent"
-              >
-                <View style={styles.redButton} />
-              </TouchableHighlight>
-              <TouchableHighlight
-                onPress={this.onGreenPress}
-                underlayColor="transparent"
-              >
-                <View style={styles.greenButton} />
-              </TouchableHighlight>
-              <TouchableHighlight
-                onPress={this.onBluePress}
-                underlayColor="transparent"
-              >
-                <View style={styles.blueButton} />
-              </TouchableHighlight>
+              {this.renderButton('red')}
+              {this.renderButton('green')}
+              {this.renderButton('blue')}
             </View>
           </View>
         }
