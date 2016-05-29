@@ -16,6 +16,7 @@ import Lucky from './components/games/Lucky';
 import RightOn from './components/games/RightOn';
 import Identical from './components/games/Identical';
 
+import Match from './components/match/Match';
 import loginWithFacebook from './loginWithFacebook';
 
 import {
@@ -40,6 +41,7 @@ const ROUTES = {
   lucky: Lucky,
   rightOn: RightOn,
   identical: Identical,
+  match: Match,
 };
 
 const styles = StyleSheet.create({

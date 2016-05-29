@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet } from 'react-native';
+import Parse from 'parse/react-native';
 
 import Template from '../common/Template';
 import Title from '../common/Title';
@@ -37,6 +38,16 @@ class PickOpponent extends Component {
   onFacebookPress() {
   }
   onRandomPress() {
+    // @TODO: show loader or move into another view while looking for a match
+    Parse.Cloud
+      .run('joinRandomMatch')
+      .then(match => {
+        this.props.navigator.push({ name: 'match', match });
+      })
+      .catch(err => {
+        // @TODO: correctly handle error
+        console.error(err);
+      });
   }
   onSearchPress() {
   }
@@ -54,6 +65,7 @@ class PickOpponent extends Component {
                 buttonText="FACEBOOK FRIENDS"
                 onPress={this.onFacebookPress}
                 underlayColor="#3498DB"
+                disabled
               />
               <LargeButton
                 style={styles.newGame}
@@ -66,6 +78,7 @@ class PickOpponent extends Component {
                 buttonText="SEARCH BY USERNAME"
                 onPress={this.onSearchPress}
                 underlayColor="#583B67"
+                disabled
               />
             </View>
             <View style={styles.empty} />
