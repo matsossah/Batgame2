@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#34485E',
     flex: 25,
-    flexDirection: 'row',
     alignSelf: 'stretch',
   },
   separator: {
@@ -53,6 +52,7 @@ Template.propTypes = {
   header: PropTypes.node.isRequired,
   separator: PropTypes.node,
   footer: PropTypes.node.isRequired,
+  message: PropTypes.string,
 };
 
 export default Template;

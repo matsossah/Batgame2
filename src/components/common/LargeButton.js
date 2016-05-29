@@ -8,9 +8,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
+    borderWidth: 2,
   },
   buttonText: {
-    fontSize: 24,
+    fontSize: 30,
     color: 'white',
     fontFamily: 'chalkduster',
   },
@@ -25,14 +26,14 @@ class LargeButton extends Component {
   onPress() {
   }
   render() {
+    const { style, buttonText, ...otherProps } = this.props;
     return (
       <TouchableHighlight
-        style={[styles.container, { backgroundColor: this.props.underlayColor }]}
-        onPress={this.props.onPress}
-        underlayColor={this.props.underlayColor}
+        {...otherProps}
+        style={[styles.container].concat(style)}
       >
         <Text style={styles.buttonText}>
-          {this.props.buttonText}
+          {buttonText}
         </Text>
       </TouchableHighlight>
     );
@@ -40,9 +41,8 @@ class LargeButton extends Component {
 }
 
 LargeButton.propTypes = {
+  style: PropTypes.any,
   buttonText: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired,
-  underlayColor: PropTypes.string.isRequired,
 };
 
 export default LargeButton;

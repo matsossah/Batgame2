@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
 import Template from '../common/Template';
 import Timer from '../common/Timer';
@@ -50,8 +50,26 @@ const styles = StyleSheet.create({
   },
   newGame: {
     justifyContent: 'center',
-    alignItems: 'stretch',
+    alignItems: 'center',
     backgroundColor: '#FFD664',
+    borderColor: 'transparent',
+  },
+  messageBox: {
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
+  message: {
+    fontSize: 26,
+    fontFamily: 'chalkduster',
+    color: 'white',
+    textAlign: 'center',
+  },
+  titleBox: {
+    flex: 2,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    paddingTop: 40,
   },
 });
 
@@ -61,8 +79,10 @@ class Stoplight extends Component {
     this.state = {
       startTime: null,
       running: false,
+      finished: false,
+      failure: false,
       score: 0,
-      color: '',
+      color: null,
     };
     this.onGoPress = this.onGoPress.bind(this);
     this.goRed = this.goRed.bind(this);
@@ -78,6 +98,7 @@ class Stoplight extends Component {
       return (
         this.setState({
           running: false,
+          finished: true,
           score: Date.now() - this.state.startTime,
         })
       );
@@ -87,7 +108,10 @@ class Stoplight extends Component {
 
     return (
       this.setState({
+        running: false,
+        finished: true,
         score: 1000,
+        failure: true,
       })
     );
   }
@@ -102,14 +126,35 @@ class Stoplight extends Component {
   goGreen() {
     this.setState({ color: 'green', startTime: Date.now(), running: true });
   }
+  renderScore() {
+    if (this.state.running) {
+      return <Timer startTime={this.state.startTime} />;
+    }
+
+    if (this.state.finished) {
+      return <Duration duration={this.state.score} />;
+    }
+
+    return <Duration duration={0} />;
+  }
   render() {
     return (
       <Template
-        // pass the title in uppercase
         header={
-          this.state.running ?
-            <Timer startTime={this.state.startTime} /> :
-            <Duration duration={this.state.score} />
+          <View style={styles.container}>
+            <View style={styles.titleBox}>
+              {this.renderScore()}
+            </View>
+            <View style={[styles.messageBox, styles.centered]}>
+              <Text style={styles.message}>
+                {this.state.finished && (
+                  this.state.failure ?
+                    'False Start!' :
+                    'Well Done!'
+                )}
+              </Text>
+            </View>
+          </View>
         }
         footer={
           <View style={styles.container}>
@@ -140,7 +185,7 @@ class Stoplight extends Component {
               style={styles.newGame}
               buttonText="GO!"
               onPress={this.onGoPress}
-              underlayColor="#FFD664"
+              underlayColor={this.state.color === 'green' ? '#4EB479' : 'red'}
             />
           </View>
         }

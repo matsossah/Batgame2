@@ -9,11 +9,11 @@ import FacebookUsername from './components/authentication/FacebookUsername';
 import Stoplight from './components/games/Stoplight';
 import MathBattle from './components/games/MathBattle';
 import NumberGame from './components/games/numbers/NumberGame';
-import loginWithFacebook from './loginWithFacebook';
+import RedGreenBlue from './components/games/RedGreenBlue';
+import PopTheBalloon from './components/games/PopTheBalloon';
+import WhackAMole from './components/games/WhackAMole';
 
-// @FIX: For testing purposes.
-// This lets us access Parse from the debugger ui's console.
-global.Parse = Parse;
+import loginWithFacebook from './loginWithFacebook';
 
 import {
   APP_ID,
@@ -21,12 +21,19 @@ import {
   SERVER_URL,
 } from './config.js';
 
+// @FIX: For testing purposes.
+// This lets us access Parse from the debugger ui's console.
+global.Parse = Parse;
+
 const ROUTES = {
   home: Home,
   pickOpponent: PickOpponent,
   stoplight: Stoplight,
   mathBattle: MathBattle,
   numbers: NumberGame,
+  redGreenBlue: RedGreenBlue,
+  popTheBalloon: PopTheBalloon,
+  whackAMole: WhackAMole,
 };
 
 const styles = StyleSheet.create({
