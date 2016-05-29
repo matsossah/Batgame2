@@ -24,21 +24,22 @@ const styles = StyleSheet.create({
 });
 
 function Button(props) {
+  const { text, style, ...otherProps } = props;
   return (
     <TouchableHighlight
-      style={styles.button}
+      {...otherProps}
+      style={[styles.button].concat(style)}
       underlayColor="gray"
-      onPress={props.onPress}
     >
       <Text style={styles.buttonText}>
-        {props.text}
+        {text}
       </Text>
     </TouchableHighlight>
   );
 }
 
 Button.propTypes = {
-  onPress: PropTypes.func.isRequired,
+  style: PropTypes.any,
   text: PropTypes.string.isRequired,
 };
 

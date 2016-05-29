@@ -30,9 +30,4 @@ export default StyleSheet.create({
     color: 'white',
     fontFamily: 'chalkduster',
   },
-  errorMessage: {
-    fontSize: 14,
-    color: '#FFD664',
-    fontFamily: 'chalkduster',
-  },
 });

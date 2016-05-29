@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#2C3D50',
   },
   header: {
     backgroundColor: '#34485E',
@@ -16,9 +17,10 @@ const styles = StyleSheet.create({
     flex: 2,
     backgroundColor: '#FFD664',
     alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   footer: {
-    backgroundColor: '#2C3D50',
     flex: 73,
     alignSelf: 'stretch',
   },
@@ -29,13 +31,15 @@ const styles = StyleSheet.create({
 });
 
 function Template(props) {
-  const { header, footer, style, ...otherProps } = props;
+  const { header, footer, separator, style, ...otherProps } = props;
   return (
     <View {...otherProps} style={[styles.container, styles.centered, style]}>
       <View style={[styles.header, styles.centered]}>
         {header}
       </View>
-      <View style={styles.separator} />
+      <View style={styles.separator}>
+        {separator}
+      </View>
       <View style={[styles.footer, styles.centered]}>
         {footer}
       </View>
@@ -46,6 +50,7 @@ function Template(props) {
 Template.propTypes = {
   style: PropTypes.any,
   header: PropTypes.node.isRequired,
+  separator: PropTypes.node,
   footer: PropTypes.node.isRequired,
   message: PropTypes.string,
 };

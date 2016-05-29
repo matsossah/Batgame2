@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import Parse from 'parse/react-native';
 
+import withUser from '../common/withUser';
 import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
@@ -17,14 +18,7 @@ const styles = StyleSheet.create({
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: null,
-    };
     this.onNewGamePress = this.onNewGamePress.bind(this);
-  }
-  componentWillMount() {
-    Parse.User.currentAsync()
-      .then((user) => { this.setState({ user }); });
   }
   onNewGamePress() {
     this.props.navigator.push({ name: 'pick_opponent' });
@@ -65,7 +59,8 @@ class Home extends Component {
 }
 
 Home.propTypes = {
+  user: PropTypes.object.isRequired,
   navigator: PropTypes.object.isRequired,
 };
 
-export default Home;
+export default withUser(Home);
