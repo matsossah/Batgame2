@@ -41,14 +41,12 @@ const styles = StyleSheet.create({
 });
 
 class PopTheBalloon extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      startTime: 0,
-      running: false,
-      gameFinished: false,
-      diameter: 150,
-      borderWidth: 0,
+      startTime: Date.now(),
+      duration: null,
+      running: true,
       taps: 0,
     };
     this.onButtonPress = this.onButtonPress.bind(this);
@@ -56,67 +54,56 @@ class PopTheBalloon extends Component {
   onButtonPress() {
     if (this.state.taps < 49) {
       this.setState({
-        running: true,
-        borderWidth: this.state.borderWidth + 2,
         taps: this.state.taps + 1,
-        diameter: this.state.diameter + 1,
       });
     } else {
       this.setState({
-        gameFinished: true,
         running: false,
+        duration: Date.now() - this.state.startTime,
         taps: this.state.taps + 1,
-        diameter: this.state.diameter + 1,
       });
     }
   }
   render() {
     return (
       <Template
-        // pass the title in uppercase
         header={
-          this.state.running ?
-            <View style={styles.container}>
-              <View style={styles.scoreBox}>
-                <Text style={styles.score}>
-                  {this.state.taps}
-                </Text>
-              </View>
-              <View style={styles.timerBox}>
-                <Timer startTime={0} />
-              </View>
+          <View style={styles.container}>
+            <View style={styles.scoreBox}>
+              <Text style={styles.score}>
+                {this.state.taps}
+              </Text>
             </View>
-          :
-            <View style={styles.container}>
-              <View style={styles.scoreBox}>
-                <Text style={styles.score}>
-                  {this.state.taps}
-                </Text>
-              </View>
-              <View style={styles.timerBox}>
-                <Duration duration={0} />
-              </View>
+            <View style={styles.timerBox}>
+              {this.state.running ?
+                <Timer startTime={this.state.startTime} /> :
+                <Duration duration={this.state.duration} />
+              }
             </View>
+          </View>
         }
         footer={
-          this.state.gameFinished ?
-            <View style={styles.container}>
-              <Text style={styles.smiley}>🎉</Text>
-            </View>
-          :
+          this.state.running ?
             <View style={styles.container}>
               <TouchableHighlight
                 onPress={this.onButtonPress}
                 underlayColor="transparent"
               >
                 <View
-                  style={styles.bigButton}
-                  width={this.state.diameter}
-                  height={this.state.diameter}
-                  borderRadius={this.state.diameter / 2}
-                  borderWidth={this.state.borderWidth}
+                  style={[
+                    styles.bigButton,
+                    {
+                      width: 150 + this.state.taps,
+                      height: 150 + this.state.taps,
+                      borderRadius: (150 + this.state.taps) / 2,
+                      borderWidth: this.state.taps * 2,
+                    },
+                  ]}
                 />
               </TouchableHighlight>
+            </View> :
+            <View style={styles.container}>
+              <Text style={styles.smiley}>🎉</Text>
             </View>
         }
       />
