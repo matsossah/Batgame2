@@ -12,6 +12,7 @@ import NumberGame from './components/games/numbers/NumberGame';
 import RedGreenBlue from './components/games/RedGreenBlue';
 import PopTheBalloon from './components/games/PopTheBalloon';
 import WhackAMole from './components/games/WhackAMole';
+import Lucky from './components/games/Lucky';
 
 import loginWithFacebook from './loginWithFacebook';
 
@@ -34,6 +35,7 @@ const ROUTES = {
   redGreenBlue: RedGreenBlue,
   popTheBalloon: PopTheBalloon,
   whackAMole: WhackAMole,
+  lucky: Lucky,
 };
 
 const styles = StyleSheet.create({
