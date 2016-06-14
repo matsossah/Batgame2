@@ -1,24 +1,32 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text } from 'react-native';
+import { TouchableWithoutFeedback, View, Text } from 'react-native';
 
 class Round extends Component {
   render() {
-    const { round, isCurrent, isActive, roundIdx, currentUser } = this.props;
+    const {
+      round, isCurrent, isActive, roundIdx, currentUser,
+      ...otherProps,
+    } = this.props;
 
     return (
-      <View>
-        <Text>Round {roundIdx.toString()}</Text>
-        {isCurrent && <Text>Current</Text>}
-        {isActive && <Text>Active</Text>}
-        {round.games.map(game =>
-          <View key={game.id}>
-            {game.type === 'NONE' ?
-              <Text>?</Text> :
-              <Text>{game.bestScore.users.includes(currentUser) ? 'won' : 'lost'}</Text>
-            }
-          </View>
-        )}
-      </View>
+      <TouchableWithoutFeedback {...otherProps}>
+        <View>
+          <Text>Round {roundIdx.toString()}</Text>
+          {isCurrent && <Text>Current</Text>}
+          {isActive && <Text>Active</Text>}
+          {round.games.map(game =>
+            <View key={game.id}>
+              {
+                game.placeholder ?
+                  <Text>?</Text> :
+                game.isFinished ?
+                  <Text>{game.bestScore.users.includes(currentUser) ? 'won' : 'lost'}</Text> :
+                  <Text>Your turn!</Text>
+              }
+            </View>
+          )}
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

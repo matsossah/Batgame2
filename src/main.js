@@ -17,6 +17,8 @@ import RightOn from './components/games/RightOn';
 import Identical from './components/games/Identical';
 
 import Match from './components/match/Match';
+import Wheel from './components/match/Wheel';
+import Game from './components/match/Game';
 import loginWithFacebook from './loginWithFacebook';
 
 import {
@@ -42,6 +44,8 @@ const ROUTES = {
   rightOn: RightOn,
   identical: Identical,
   match: Match,
+  wheel: Wheel,
+  game: Game,
 };
 
 const styles = StyleSheet.create({
@@ -68,6 +72,11 @@ class Main extends Component {
     Parse.serverURL = SERVER_URL;
 
     Parse.User.currentAsync().then(user => {
+      const usersMap = new WeakMap();
+      usersMap.set(user, 'hello');
+      new Parse.Query(Parse.User).find().then(users => {
+        users.forEach(user2 => console.log(usersMap.get(user2), user2, user, user2 === user));
+      });
       if (user === null) {
         loginWithFacebook((err, fbUser) => {
           if (err || fbUser === null) {

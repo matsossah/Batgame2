@@ -25,6 +25,7 @@ class Home extends Component {
       matches: null,
     };
     this.onNewGamePress = this.onNewGamePress.bind(this);
+    this.onMatchPress = this.onMatchPress.bind(this);
   }
   componentDidMount() {
     const { user } = this.props;
@@ -46,6 +47,9 @@ class Home extends Component {
   onNewGamePress() {
     this.props.navigator.push({ name: 'pickOpponent' });
   }
+  onMatchPress(match) {
+    this.props.navigator.push({ name: 'match', match });
+  }
   render() {
     return (
       <Template
@@ -61,6 +65,7 @@ class Home extends Component {
             {this.state.matches !== null &&
               <MatchesList
                 matches={this.state.matches.map(normalizeMatch)}
+                onMatchPress={this.onMatchPress}
               />
             }
           </ScrollView>

@@ -1,6 +1,4 @@
 import keyBy from 'lodash/keyBy';
-import toPairs from 'lodash/toPairs';
-import fromPairs from 'lodash/fromPairs';
 
 import GAMES from './games';
 
@@ -26,47 +24,60 @@ function getBestScore(best, s1, s2) {
   return s2;
 }
 
-export const normalizeUser = user => ({
-  id: user.id,
-  username: user.get('username'),
-});
+const usersMap = {};
 
-const normalizeScore = (userById, score) => ({
+export const normalizeUser = user => {
+  if (usersMap[user.id]) {
+    return usersMap[user.id];
+  }
+  const normalizedUser = {
+    id: user.id,
+    raw: user,
+    username: user.get('username'),
+  };
+  usersMap[user.id] = normalizedUser;
+  return normalizedUser;
+};
+
+const normalizeScore = score => ({
   id: score.id,
+  raw: score,
   score: score.get('score'),
-  users: [userById[score.get('user').id]],
+  users: [normalizeUser(score.get('user'))],
 });
 
-const normalizeGame = (userById, game) => {
+const normalizeGame = game => {
   const gameType = gameTypeByName[game.get('gameName')];
-  const scores = game.get('scores').map(normalizeScore.bind(null, userById));
+  const scores = game.get('scores').map(normalizeScore);
   const best = gameType.winner === 'GREATEST' ? gt : st;
   const bestScore = scores.reduce(getBestScore.bind(null, best));
   return {
     id: game.id,
+    raw: game,
     type: gameType,
-    finished: scores.length === PARTICIPANTS_NB,
+    isFinished: scores.length === PARTICIPANTS_NB,
     bestScore,
     scores,
   };
 };
 
-const normalizeRound = (userById, round) => {
-  const games = round.get('games').map(normalizeGame.bind(null, userById));
+const normalizeRound = round => {
+  const games = round.get('games').map(normalizeGame);
 
   const additionalGames = GAMES_NB - games.length;
   for (let i = 0; i < additionalGames; i++) {
     games.push({
       id: `temp${i}`,
-      type: 'NONE',
-      finished: false,
+      placeholder: true,
+      isFinished: false,
     });
   }
 
   return {
     id: round.id,
+    raw: round,
     games,
-    finished: games.every(game => game.finished),
+    isFinished: games.every(game => game.isFinished),
   };
 };
 
@@ -77,55 +88,75 @@ export const normalizeMatch = match => {
   for (let i = 0; i < additionalParticipants; i++) {
     participants.push({
       id: `temp${i}`,
-      username: `Opponent ${(i + 1).toString()}`,
       placeholder: true,
+      username: `Opponent ${(i + 1).toString()}`,
     });
   }
 
-  const participantById = keyBy(participants, 'id');
-
-  const startedBy = participantById[match.get('startedBy').id];
-
+  const startedBy = normalizeUser(match.get('startedBy'));
   const rounds = match.get('rounds').map(
-    normalizeRound.bind(null, participantById)
+    normalizeRound.bind(null)
   );
 
-  const userScoreById = fromPairs(participants.map(p => [p.id, 0]));
+  // STATE
+
+  const isFinished = rounds.every(round => round.isFinished);
+  let currentRound;
+  let awaitingPlayers;
+  if (isFinished) {
+    currentRound = null;
+    awaitingPlayers = [];
+  } else {
+    const currentRoundIdx = rounds.findIndex(round => !round.isFinished);
+    currentRound = currentRoundIdx === -1 ? null : rounds[currentRoundIdx];
+
+    const firstPlayerIdx = participants.indexOf(startedBy);
+    const roundStarterOffset = currentRoundIdx % participants.length;
+    const roundStarter = participants[
+      // Get the round starter for the nth round.
+      (firstPlayerIdx + roundStarterOffset) % participants.length
+    ];
+    const roundStarterPlayed = currentRound.games.every(game =>
+      !game.placeholder && game.scores.some(score => score.user === roundStarter)
+    );
+    awaitingPlayers = (
+      roundStarterPlayed ?
+        participants.filter(participant =>
+          // Find participants that don't have a score for every game.
+          !currentRound.games.every(game =>
+            game.scores.some(score => score.user === participant)
+          )
+        ) :
+        [roundStarter]
+    );
+  }
+
+  // SCORE
+
+  const scoreByUser = new Map(participants.map(p => [p, 0]));
   for (const round of rounds) {
     for (const game of round.games) {
-      if (game.type !== 'NONE') {
+      if (!game.placeholder) {
         for (const user of game.bestScore.users) {
-          userScoreById[user.id] += 1;
+          scoreByUser.set(user, scoreByUser.get(user) + 1);
         }
       }
     }
   }
 
-  const isFinished = rounds.every(round => round.finished);
-
-  const currentRoundIdx = rounds.findIndex(round => !round.finished);
-  const currentRound = currentRoundIdx === -1 ? null : rounds[currentRoundIdx];
-
-  const firstPlayerIdx = participants.indexOf(startedBy);
-  const currentPlayerOffset = currentRoundIdx % participants.length;
-  const currentPlayer = participants[
-    // Get the next participant
-    (firstPlayerIdx + currentPlayerOffset) % participants.length
-  ];
-
   let winners = null;
   if (isFinished) {
-    winners = toPairs(userScoreById)
-      .reduce(({ users, score }, [userId, userScore]) => {
+    winners = scoreByUser.values()
+      .reduce(({ users, score }, [user, userScore]) => {
         if (userScore === score) {
           return {
-            users: users.concat(participantById[userId]),
+            users: users.concat(user),
             score,
           };
         }
         if (userScore > score) {
           return {
-            users: [participantById[userId]],
+            users: [user],
             score: userScore,
           };
         }
@@ -135,10 +166,11 @@ export const normalizeMatch = match => {
 
   return {
     id: match.id,
+    raw: match,
     isFinished,
     startedBy,
-    currentPlayer,
     currentRound,
+    awaitingPlayers,
     participants,
     rounds,
     winners,

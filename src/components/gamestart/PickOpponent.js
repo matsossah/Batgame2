@@ -6,6 +6,8 @@ import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
 
+import { normalizeMatch } from '../../normalize';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -42,7 +44,7 @@ class PickOpponent extends Component {
     Parse.Cloud
       .run('joinRandomMatch')
       .then(match => {
-        this.props.navigator.push({ name: 'match', match });
+        this.props.navigator.push({ name: 'match', match: normalizeMatch(match) });
       })
       .catch(err => {
         // @TODO: correctly handle error

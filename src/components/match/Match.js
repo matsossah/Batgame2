@@ -5,18 +5,47 @@ import Template from '../common/Template';
 import Round from './Round';
 import withUser from '../common/withUser';
 
-import { normalizeMatch, normalizeUser } from '../../normalize';
+import { normalizeUser } from '../../normalize';
 
 class Match extends Component {
-  render() {
+  constructor() {
+    super();
+
+    this.onActiveRoundPress = this.onActiveRoundPress.bind(this);
+  }
+
+  onActiveRoundPress() {
     const {
-      route: {
-        match: matchRaw,
-      },
+      route: { match },
       user: userRaw,
     } = this.props;
 
-    const match = normalizeMatch(matchRaw);
+    const user = normalizeUser(userRaw);
+
+    const nextGame = match.currentRound.games.find(game =>
+      game.placeholder || !game.scores.some(score => score.user === user)
+    );
+
+    if (nextGame.placeholder) {
+      this.props.navigator.push({
+        name: 'wheel',
+        round: match.currentRound,
+      });
+    } else {
+      this.props.navigator.push({
+        name: 'game',
+        gameType: nextGame.type,
+        round: match.currentRound,
+      });
+    }
+  }
+
+  render() {
+    const {
+      route: { match },
+      user: userRaw,
+    } = this.props;
+
     const user = normalizeUser(userRaw);
 
     const { participants, rounds } = match;
@@ -29,7 +58,7 @@ class Match extends Component {
       [leftUser, rightUser] = [rightUser, leftUser];
     }
 
-    const isCurrentPlayer = leftUser === match.currentPlayer;
+    const awaitingPlayer = match.awaitingPlayers.includes(leftUser);
 
     return (
       <Template
@@ -37,18 +66,21 @@ class Match extends Component {
           <Text>{leftUser.username} VS {rightUser.username}</Text>
         }
         footer={
-          rounds.map((round, idx) =>
-            <Round
-              key={round.id}
-              isCurrent={round === match.currentRound}
-              isActive={
-                isCurrentPlayer && round === match.currentRound
-              }
-              currentUser={leftUser}
-              roundIdx={idx}
-              round={round}
-            />
-          )
+          rounds.map((round, idx) => {
+            const isCurrent = round === match.currentRound;
+            const isActive = isCurrent && awaitingPlayer;
+            return (
+              <Round
+                key={round.id}
+                isCurrent={isCurrent}
+                isActive={isActive}
+                currentUser={leftUser}
+                roundIdx={idx}
+                round={round}
+                onPress={isActive ? this.onActiveRoundPress : null}
+              />
+            );
+          })
         }
       />
     );
