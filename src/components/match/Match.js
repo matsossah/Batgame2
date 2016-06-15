@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
+import { connect } from 'react-redux';
 
+import { userSelector, matchSelector } from '../../selectors';
 import Template from '../common/Template';
 import Round from './Round';
-import withUser from '../common/withUser';
-
-import { normalizeUser } from '../../normalize';
 
 class Match extends Component {
   constructor() {
@@ -16,11 +15,9 @@ class Match extends Component {
 
   onActiveRoundPress() {
     const {
-      route: { match },
-      user: userRaw,
+      match,
+      user,
     } = this.props;
-
-    const user = normalizeUser(userRaw);
 
     const nextGame = match.currentRound.games.find(game =>
       game.placeholder || !game.scores.some(score => score.user === user)
@@ -29,24 +26,22 @@ class Match extends Component {
     if (nextGame.placeholder) {
       this.props.navigator.push({
         name: 'wheel',
-        round: match.currentRound,
+        roundId: match.currentRound,
       });
     } else {
       this.props.navigator.push({
         name: 'game',
-        gameType: nextGame.type,
-        round: match.currentRound,
+        gameName: nextGame.gameName,
+        roundId: match.currentRound,
       });
     }
   }
 
   render() {
     const {
-      route: { match },
-      user: userRaw,
+      match,
+      user,
     } = this.props;
-
-    const user = normalizeUser(userRaw);
 
     const { participants, rounds } = match;
 
@@ -89,8 +84,11 @@ class Match extends Component {
 
 Match.propTypes = {
   navigator: PropTypes.object.isRequired,
-  route: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
-export default withUser(Match);
+export default connect((state, props) => ({
+  user: userSelector(state.userId, state),
+  match: matchSelector(props.route.matchId, state),
+}))(Match);

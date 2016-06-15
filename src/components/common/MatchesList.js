@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { TouchableWithoutFeedback, View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,7 +15,7 @@ class MatchesList extends Component {
         {this.props.matches.map(match =>
           <TouchableWithoutFeedback
             key={match.id}
-            onPress={this.props.onMatchPress.bind(null, match)}
+            onPress={this.props.onMatchPress.bind(null, match.id)}
           >
             <View>
               <Text>
@@ -35,4 +36,6 @@ MatchesList.propTypes = {
   onMatchPress: PropTypes.func.isRequired,
 };
 
-export default MatchesList;
+export default connect(state => ({
+  users: state.users,
+}))(MatchesList);

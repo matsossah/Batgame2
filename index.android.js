@@ -1,5 +1,5 @@
 import { AppRegistry } from 'react-native';
 
-import Main from './src/main';
+import StoreProvider from './src/StoreProvider';
 
-AppRegistry.registerComponent('Batgame', () => Main);
+AppRegistry.registerComponent('Batgame', () => StoreProvider);

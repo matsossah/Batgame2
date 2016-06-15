@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { Navigator, View, StyleSheet } from 'react-native';
-import Parse from 'parse/react-native';
+import { connect } from 'react-redux';
+
+import { init, userAuthenticated } from './actions/application';
+import { userSelector } from './selectors';
 
 import Home from './components/gamestart/Home';
 import PickOpponent from './components/gamestart/PickOpponent';
@@ -19,17 +22,6 @@ import Identical from './components/games/Identical';
 import Match from './components/match/Match';
 import Wheel from './components/match/Wheel';
 import Game from './components/match/Game';
-import loginWithFacebook from './loginWithFacebook';
-
-import {
-  APP_ID,
-  CLIENT_KEY,
-  SERVER_URL,
-} from './config.js';
-
-// @FIX: For testing purposes.
-// This lets us access Parse from the debugger ui's console.
-global.Parse = Parse;
 
 const ROUTES = {
   home: Home,
@@ -55,54 +47,17 @@ const styles = StyleSheet.create({
 });
 
 class Main extends Component {
-  constructor() {
+  constructor(props) {
     super();
 
-    this.state = {
-      user: null,
-      shouldAuthenticate: false,
-    };
-
     this.onUserAuthenticated = this.onUserAuthenticated.bind(this);
-    this.onFacebookUsernameSuccess = this.onFacebookUsernameSuccess.bind(this);
     this.configureScene = this.configureScene.bind(this);
     this.renderScene = this.renderScene.bind(this);
 
-    Parse.initialize(APP_ID, CLIENT_KEY);
-    Parse.serverURL = SERVER_URL;
-
-    Parse.User.currentAsync().then(user => {
-      const usersMap = new WeakMap();
-      usersMap.set(user, 'hello');
-      new Parse.Query(Parse.User).find().then(users => {
-        users.forEach(user2 => console.log(usersMap.get(user2), user2, user, user2 === user));
-      });
-      if (user === null) {
-        loginWithFacebook((err, fbUser) => {
-          if (err || fbUser === null) {
-            this.setState({ shouldAuthenticate: true });
-          } else {
-            this.setState({ user: fbUser });
-          }
-        });
-      } else {
-        this.setState({ user });
-      }
-    }).catch(err => {
-      // @TODO: handle error
-      console.error(err);
-    });
-  }
-  getChildContext() {
-    return {
-      user: this.state.user,
-    };
+    props.dispatch(init());
   }
   onUserAuthenticated(user) {
-    this.setState({ user, shouldAuthenticate: false });
-  }
-  onFacebookUsernameSuccess(user) {
-    this.setState({ user });
+    this.props.dispatch(userAuthenticated(user));
   }
   configureScene() {
     return Navigator.SceneConfigs.FloatFromRight;
@@ -112,18 +67,18 @@ class Main extends Component {
     return <RouteComponent route={route} navigator={navigator} />;
   }
   render() {
-    if (this.state.shouldAuthenticate) {
+    if (this.props.shouldAuthenticate) {
       return <Authentication onAuthenticated={this.onUserAuthenticated} />;
     }
-    if (this.state.user === null) {
+    if (this.props.user === null) {
       // This state only exists for a *very* short time while we retrieve
       // the current user from the Parse SDK asynchronously.
       // @TODO: Figure out if it is necessary to display a loading indicator
       return <View />;
     }
-    if (!this.state.user.get('hasUsername')) {
+    if (!this.props.user.hasUsername) {
       return (
-        <FacebookUsername onSuccess={this.onFacebookUsernameSuccess} />
+        <FacebookUsername onSuccess={this.onUserAuthenticated} />
       );
     }
     return (
@@ -137,8 +92,13 @@ class Main extends Component {
   }
 }
 
-Main.childContextTypes = {
+Main.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   user: PropTypes.object,
+  shouldAuthenticate: PropTypes.bool.isRequired,
 };
 
-export default Main;
+export default connect(state => ({
+  user: state.userId && userSelector(state.userId, state),
+  shouldAuthenticate: state.shouldAuthenticate,
+}))(Main);

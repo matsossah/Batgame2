@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import Parse from 'parse/react-native';
+import { connect } from 'react-redux';
 
-import withUser from '../common/withUser';
+import { userSelector, matchSelector } from '../../selectors';
+import { retrieveMatches } from '../../actions/application';
+
 import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
 import MatchesList from '../common/MatchesList';
-import { normalizeMatch } from '../../normalize';
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -16,40 +17,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const Match = Parse.Object.extend('Match');
-
 class Home extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      matches: null,
-    };
+    super();
+
     this.onNewGamePress = this.onNewGamePress.bind(this);
     this.onMatchPress = this.onMatchPress.bind(this);
+
+    props.dispatch(retrieveMatches());
   }
-  componentDidMount() {
-    const { user } = this.props;
-    new Parse.Query('Match')
-      .equalTo('participants', user)
-      .include('participants')
-      .include('rounds')
-      .include('rounds.games')
-      .include('rounds.games.scores')
-      .find()
-      .then(matches => {
-        this.setState({ matches });
-      })
-      .catch(e => {
-        // @TODO: handle error
-        console.error(e);
-      });
-  }
+
   onNewGamePress() {
     this.props.navigator.push({ name: 'pickOpponent' });
   }
-  onMatchPress(match) {
-    this.props.navigator.push({ name: 'match', match });
+
+  onMatchPress(matchId) {
+    this.props.navigator.push({ name: 'match', matchId });
   }
+
   render() {
     return (
       <Template
@@ -62,9 +47,12 @@ class Home extends Component {
               onPress={this.onNewGamePress}
               underlayColor="#4EB479"
             />
-            {this.state.matches !== null &&
+            {this.props.matches !== null &&
               <MatchesList
-                matches={this.state.matches.map(normalizeMatch)}
+                matches={
+                  this.props.matches
+                    .sort((m1, m2) => m1.createdAt - m2.createdAt)
+                }
                 onMatchPress={this.onMatchPress}
               />
             }
@@ -77,7 +65,14 @@ class Home extends Component {
 
 Home.propTypes = {
   user: PropTypes.object.isRequired,
+  matches: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
   navigator: PropTypes.object.isRequired,
 };
 
-export default withUser(Home);
+export default connect(state => ({
+  user: userSelector(state.userId, state),
+  matches: Object.keys(state.matches).map(matchId =>
+    matchSelector(matchId, state)
+  ),
+}))(Home);

@@ -1,13 +1,5 @@
-import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 export default function withUser(Composed) {
-  function WithUser(props, context) {
-    return <Composed {...props} user={context.user} />;
-  }
-
-  WithUser.contextTypes = {
-    user: PropTypes.object.isRequired,
-  };
-
-  return WithUser;
+  return connect(state => ({ user: state.user }))(Composed);
 }
