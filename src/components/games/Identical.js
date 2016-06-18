@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 import Template from '../common/Template';
 import Timer from '../common/Timer';
 import Duration from '../common/Duration';
+import Countdown from '../common/Countdown';
 import sample from 'lodash/sample';
 
 const styles = StyleSheet.create({
@@ -73,24 +74,30 @@ class Identical extends Component {
   constructor() {
     super();
     this.state = {
-      startTime: null,
       duration: null,
       running: true,
       started: false,
+      countdownStarted: null,
       score: 0,
       currentEmoji: sample(allEmojis),
-      previousEmoji: '😎',
+      previousEmoji: '',
     };
     this.onYesPress = this.onYesPress.bind(this);
     this.onNoPress = this.onNoPress.bind(this);
+    this.onEnd = this.onEnd.bind(this);
+    this.renderTimer = this.renderTimer.bind(this);
     setTimeout(this.onStarted.bind(this), 3000);
   }
   onStarted() {
     this.setState({
       started: true,
+      countdownStarted: Date.now(),
       previousEmoji: this.state.currentEmoji,
       currentEmoji: sample(allEmojis),
     });
+  }
+  onEnd() {
+    console.log('finished');
   }
   onYesPress() {
     if (this.state.currentEmoji === this.state.previousEmoji) {
@@ -102,7 +109,7 @@ class Identical extends Component {
     } else {
       this.setState({
         running: false,
-        duration: Date.now() - this.state.startTime,
+        duration: 30000 - (Date.now() - this.state.countdownStarted),
       });
     }
   }
@@ -116,9 +123,22 @@ class Identical extends Component {
     } else {
       this.setState({
         running: false,
-        duration: Date.now() - this.state.startTime,
+        duration: 30000 - (Date.now() - this.state.countdownStarted),
       });
     }
+  }
+  renderTimer() {
+    if (this.state.running) {
+      if (this.state.started) {
+        return (<Countdown
+          duration={30}
+          startTime={this.state.countdownStarted}
+          onComplete={this.onEnd}
+        />);
+      }
+      return <Duration duration={30000} />;
+    }
+    return <Duration duration={this.state.duration} />;
   }
   render() {
     return (
@@ -131,10 +151,7 @@ class Identical extends Component {
               </Text>
             </View>
             <View style={styles.timerBox}>
-              {this.state.running ?
-                <Timer startTime={this.state.startTime} /> :
-                <Duration duration={this.state.duration} />
-              }
+              {this.renderTimer()}
             </View>
           </View>
         }

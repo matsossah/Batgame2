@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { Text, TouchableHighlight, View, StyleSheet } from 'react-native';
 import Template from '../common/Template';
 import Timer from '../common/Timer';
-import Duration from '../common/Duration';
-// import formatTime from 'minutes-seconds-milliseconds';
 import moment from 'moment';
 
 const styles = StyleSheet.create({
@@ -11,33 +9,29 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
   },
-  header: {
-    flex: 5,
-  },
-  laps: {
-    flex: 4,
-  },
   scoreBox: {
     flex: 1,
     alignItems: 'center',
   },
   score: {
     fontSize: 30,
+    color: '#FFD664',
+    fontFamily: 'chalkduster',
   },
-  timerWrapper: {
-    flex: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  timer: {
-    fontSize: 60,
-    color: 'blue',
+  laps: {
+    flex: 4,
   },
   buttonWrapper: {
     flex: 3,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+  },
+  timerBox: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
   },
   button: {
     height: 100,
@@ -46,12 +40,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#4EB479',
-  },
-  startButton: {
-    borderColor: 'green',
-  },
-  stopButton: {
-    borderColor: 'red',
   },
   lap: {
     alignItems: 'center',
@@ -93,7 +81,7 @@ class RightOn extends Component {
       return (
         <View key={index} style={styles.lap}>
           <Text style={styles.lapText}>
-            Try {index + 1}: {formatDuration(time)}
+            {index + 1} -> {formatDuration(time)}
           </Text>
         </View>
       );
@@ -102,7 +90,7 @@ class RightOn extends Component {
   score() {
     return (
       <Text style={styles.score}>
-        Your offset: {formatDuration(this.state.difference)}
+        Result: {formatDuration(this.state.difference)}
       </Text>
     );
   }
