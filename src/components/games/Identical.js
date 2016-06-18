@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
 import Template from '../common/Template';
-import Timer from '../common/Timer';
 import Duration from '../common/Duration';
 import Countdown from '../common/Countdown';
 import sample from 'lodash/sample';
@@ -93,8 +92,9 @@ class Identical extends Component {
       started: true,
       countdownStarted: Date.now(),
       previousEmoji: this.state.currentEmoji,
-      currentEmoji: sample(allEmojis),
+      currentEmoji: '',
     });
+    this.timeout = setTimeout(() => this.setState({ currentEmoji: sample(allEmojis) }), 100);
   }
   onEnd() {
     console.log('finished');
@@ -104,8 +104,9 @@ class Identical extends Component {
       this.setState({
         score: this.state.score + 1,
         previousEmoji: this.state.currentEmoji,
-        currentEmoji: sample(allEmojis),
+        currentEmoji: '',
       });
+      this.timeout = setTimeout(() => this.setState({ currentEmoji: sample(allEmojis) }), 100);
     } else {
       this.setState({
         running: false,
@@ -118,8 +119,9 @@ class Identical extends Component {
       this.setState({
         score: this.state.score + 1,
         previousEmoji: this.state.currentEmoji,
-        currentEmoji: sample(allEmojis),
+        currentEmoji: '',
       });
+      this.timeout = setTimeout(() => this.setState({ currentEmoji: sample(allEmojis) }), 100);
     } else {
       this.setState({
         running: false,

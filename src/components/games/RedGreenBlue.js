@@ -104,9 +104,10 @@ class RedGreenBlue extends Component {
     if (this.state.color === color) {
       const newColor = sample(colors);
       this.setState({
-        color: newColor,
+        color: 'black',
         score: this.state.score + 1,
       });
+      this.timeout = setTimeout(() => this.setState({ color: newColor }), 100);
     } else {
       this.setState({
         running: false,
