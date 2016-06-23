@@ -97,7 +97,7 @@ class Identical extends Component {
     this.timeout = setTimeout(() => this.setState({ currentEmoji: sample(allEmojis) }), 100);
   }
   onEnd() {
-    console.log('finished');
+    this.props.onEnd({ score: this.state.score });
   }
   onYesPress() {
     if (this.state.currentEmoji === this.state.previousEmoji) {
@@ -112,6 +112,7 @@ class Identical extends Component {
         running: false,
         duration: 30000 - (Date.now() - this.state.countdownStarted),
       });
+      this.props.onEnd({ score: this.state.score });
     }
   }
   onNoPress() {
@@ -194,7 +195,7 @@ class Identical extends Component {
 }
 
 Identical.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  onEnd: PropTypes.func.isRequired,
 };
 
 export default Identical;

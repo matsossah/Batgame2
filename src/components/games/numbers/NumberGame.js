@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
   },
 });
 
+const MAX_SCORE = 60000;
+
 class NumberGame extends Component {
   constructor() {
     super();
@@ -42,9 +44,9 @@ class NumberGame extends Component {
       currentNumber: 1,
       board: this.generateBoard(),
       cellSize: 0,
+      startTime: Date.now(),
     };
 
-    this.startTime = Date.now();
     this.onLayout = this.onLayout.bind(this);
     this.onCellSuccess = this.onCellSuccess.bind(this);
     this.onCellFailure = this.onCellFailure.bind(this);
@@ -65,8 +67,9 @@ class NumberGame extends Component {
       board: nextBoard,
       currentNumber: nextNumber,
     });
-    if (nextNumber === 0) {
-      this.props.onAction({ type: 'success' });
+    if (nextNumber === 10) {
+      const score = Date.now() - this.state.startTime;
+      this.props.onEnd({ score });
     }
   }
 
@@ -74,7 +77,7 @@ class NumberGame extends Component {
     const livesLost = this.state.livesLost + 1;
     this.setState({ livesLost });
     if (livesLost === this.props.lives) {
-      this.props.onAction({ type: 'failure' });
+      this.props.onEnd({ score: MAX_SCORE });
     }
   }
 
@@ -118,12 +121,12 @@ class NumberGame extends Component {
   render() {
     return (
       <Template
-        {...without(this.props, 'onAction')}
+        {...without(this.props, 'onEnd')}
         onLayout={this.onLayout}
         header={
           <View>
             <Lives lives={3} livesLost={this.state.livesLost} />
-            <Timer startTime={this.startTime} />
+            <Timer startTime={this.state.startTime} />
           </View>
         }
         footer={
@@ -153,7 +156,7 @@ class NumberGame extends Component {
 
 NumberGame.propTypes = {
   lives: PropTypes.number,
-  onAction: PropTypes.func.isRequired,
+  onEnd: PropTypes.func.isRequired,
 };
 
 NumberGame.defaultProps = {

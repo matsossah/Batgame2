@@ -72,6 +72,7 @@ const buttonColorStyles = StyleSheet.create({
 });
 
 const colors = ['red', 'green', 'blue'];
+const COUNTDOWN_DURATION = 30000;
 
 class RedGreenBlue extends Component {
   constructor() {
@@ -90,6 +91,7 @@ class RedGreenBlue extends Component {
       blue: this.onButtonPress.bind(this, 'blue'),
     };
     setTimeout(this.onStarted.bind(this), 3000);
+    this.onEnd = this.onEnd.bind(this);
   }
   onStarted() {
     this.setState({
@@ -98,7 +100,11 @@ class RedGreenBlue extends Component {
     });
   }
   onEnd() {
-    console.log('finished');
+    this.setState({
+      running: false,
+      duration: COUNTDOWN_DURATION - (Date.now() - this.state.countdownStarted),
+    });
+    this.props.onEnd({ score: this.state.score });
   }
   onButtonPress(color) {
     if (this.state.color === color) {
@@ -111,8 +117,9 @@ class RedGreenBlue extends Component {
     } else {
       this.setState({
         running: false,
-        duration: 30000 - (Date.now() - this.state.countdownStarted),
+        duration: COUNTDOWN_DURATION - (Date.now() - this.state.countdownStarted),
       });
+      this.props.onEnd({ score: this.state.score });
     }
   }
   renderButton(color) {
@@ -134,12 +141,12 @@ class RedGreenBlue extends Component {
     if (this.state.running) {
       if (this.state.started) {
         return (<Countdown
-          duration={30}
+          duration={COUNTDOWN_DURATION / 1000}
           startTime={this.state.countdownStarted}
           onComplete={this.onEnd}
         />);
       }
-      return <Duration duration={30000} />;
+      return <Duration duration={COUNTDOWN_DURATION} />;
     }
     return <Duration duration={this.state.duration} />;
   }
@@ -183,7 +190,7 @@ class RedGreenBlue extends Component {
 }
 
 RedGreenBlue.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  onEnd: PropTypes.func.isRequired,
 };
 
 export default RedGreenBlue;

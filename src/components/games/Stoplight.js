@@ -95,25 +95,25 @@ class Stoplight extends Component {
   }
   onGoPress() {
     if (this.state.running) {
-      return (
-        this.setState({
-          running: false,
-          finished: true,
-          score: Date.now() - this.state.startTime,
-        })
-      );
+      const score = Date.now() - this.state.startTime;
+      this.setState({
+        running: false,
+        finished: true,
+        score,
+      });
+      this.props.onEnd({ score });
+      return;
     }
 
     clearTimeout(this.timeout);
 
-    return (
-      this.setState({
-        running: false,
-        finished: true,
-        score: 1000,
-        failure: true,
-      })
-    );
+    this.setState({
+      running: false,
+      finished: true,
+      score: 1000,
+      failure: true,
+    });
+    this.props.onEnd({ score: 1000 });
   }
   goRed() {
     this.setState({ color: 'red' });
@@ -195,7 +195,7 @@ class Stoplight extends Component {
 }
 
 Stoplight.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  onEnd: PropTypes.func.isRequired,
 };
 
 export default Stoplight;

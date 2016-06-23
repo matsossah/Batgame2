@@ -111,7 +111,7 @@ class MathBattle extends Component {
 }
 
 MathBattle.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  onEnd: PropTypes.func.isRequired,
 };
 
 export default MathBattle;

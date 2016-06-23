@@ -116,12 +116,16 @@ class RightOn extends Component {
     });
 
     if (this.state.laps.length === 3) {
+      const score = (
+        Math.abs(this.state.laps[0] - 3000) +
+        Math.abs(this.state.laps[1] - 3000) +
+        Math.abs(this.state.laps[2] - 3000)
+      );
       this.setState({
-        difference: Math.abs(this.state.laps[0] - 3000) +
-                    Math.abs(this.state.laps[1] - 3000) +
-                    Math.abs(this.state.laps[2] - 3000),
+        difference: score,
         running: false,
       });
+      this.props.onEnd({ score });
     }
   }
   render() {
@@ -158,7 +162,7 @@ class RightOn extends Component {
 }
 
 RightOn.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  onEnd: PropTypes.func.isRequired,
 };
 
 export default RightOn;
