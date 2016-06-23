@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet } from 'react-native';
-import Parse from 'parse/react-native';
 import { connect } from 'react-redux';
 
-import { joinMatch } from '../../actions/application';
+import { joinRandomMatch } from '../../actions/application';
 
 import Template from '../common/Template';
 import Title from '../common/Title';
@@ -42,16 +41,7 @@ class PickOpponent extends Component {
   }
   onRandomPress() {
     // @TODO: show loader or move into another view while looking for a match
-    Parse.Cloud
-      .run('joinRandomMatch')
-      .then(match => {
-        this.props.dispatch(joinMatch(match));
-        this.props.navigator.push({ name: 'match', matchId: match.id });
-      })
-      .catch(err => {
-        // @TODO: correctly handle error
-        console.error(err);
-      });
+    this.props.dispatch(joinRandomMatch());
   }
   onSearchPress() {
   }
@@ -95,7 +85,6 @@ class PickOpponent extends Component {
 
 PickOpponent.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  navigator: PropTypes.object.isRequired,
 };
 
 export default connect()(PickOpponent);

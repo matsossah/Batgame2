@@ -3,7 +3,10 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { userSelector, matchSelector } from '../../selectors';
-import { retrieveMatches } from '../../actions/application';
+import {
+  retrieveMatches,
+} from '../../actions/application';
+import { push } from '../../actions/navigation';
 
 import Template from '../common/Template';
 import Title from '../common/Title';
@@ -28,11 +31,11 @@ class Home extends Component {
   }
 
   onNewGamePress() {
-    this.props.navigator.push({ name: 'pickOpponent' });
+    this.props.dispatch(push({ key: 'pick_opponent' }));
   }
 
   onMatchPress(matchId) {
-    this.props.navigator.push({ name: 'match', matchId });
+    this.props.dispatch(push({ key: 'match', matchId }));
   }
 
   render() {
@@ -67,12 +70,11 @@ Home.propTypes = {
   user: PropTypes.object.isRequired,
   matches: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
-  navigator: PropTypes.object.isRequired,
 };
 
 export default connect(state => ({
-  user: userSelector(state.userId, state),
-  matches: Object.keys(state.matches).map(matchId =>
+  user: userSelector(state.application.userId, state),
+  matches: Object.keys(state.application.matches).map(matchId =>
     matchSelector(matchId, state)
   ),
 }))(Home);

@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { TouchableWithoutFeedback, View, Text, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
   container: {
@@ -36,6 +35,4 @@ MatchesList.propTypes = {
   onMatchPress: PropTypes.func.isRequired,
 };
 
-export default connect(state => ({
-  users: state.users,
-}))(MatchesList);
+export default MatchesList;

@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { View, TextInput, Alert } from 'react-native';
 import Parse from 'parse/react-native';
+import { connect } from 'react-redux';
 
 import Button from '../common/Button';
 import Title from '../common/Title';
 import Template from '../common/Template';
-import withUser from '../common/withUser';
 
 import styles from './formStyles';
 
@@ -25,15 +25,15 @@ class FacebookUsername extends Component {
       Alert.alert('Your username must be at least 5 characters.');
       return;
     }
-
-    this.props.user.save({
+    const user = new Parse.User({ id: this.props.userId });
+    user.save({
       username: this.state.username,
       hasUsername: true,
     }, {
-      success: user => {
+      success: () => {
         this.props.onSuccess(user);
       },
-      error: (user, err) => {
+      error: (user2, err) => {
         let message;
         switch (err.code) {
           case Parse.Error.USERNAME_TAKEN:
@@ -41,6 +41,7 @@ class FacebookUsername extends Component {
             break;
           default:
             // @TODO: Find out exactly what errors can be thrown by .signUp()
+            console.error(err);
             message = 'An unknown error occurred. Please try again.';
         }
         Alert.alert(message);
@@ -88,4 +89,6 @@ FacebookUsername.propTypes = {
   onSuccess: PropTypes.func.isRequired,
 };
 
-export default withUser(FacebookUsername);
+export default connect(state => ({
+  userId: state.application.userId,
+}))(FacebookUsername);

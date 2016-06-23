@@ -1,8 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { Navigator, View, StyleSheet } from 'react-native';
+import { View, StyleSheet, NavigationExperimental } from 'react-native';
 import { connect } from 'react-redux';
+const {
+ CardStack: NavigationCardStack,
+} = NavigationExperimental;
 
 import { init, userAuthenticated } from './actions/application';
+import { pop } from './actions/navigation';
 import { userSelector } from './selectors';
 
 import Home from './components/gamestart/Home';
@@ -23,49 +27,46 @@ import Match from './components/match/Match';
 import Wheel from './components/match/Wheel';
 import Game from './components/match/Game';
 
-const ROUTES = {
-  home: Home,
-  pickOpponent: PickOpponent,
-  stoplight: Stoplight,
-  mathBattle: MathBattle,
-  numbers: NumberGame,
-  redGreenBlue: RedGreenBlue,
-  popTheBalloon: PopTheBalloon,
-  whackAMole: WhackAMole,
-  lucky: Lucky,
-  rightOn: RightOn,
-  identical: Identical,
-  match: Match,
-  wheel: Wheel,
-  game: Game,
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
 class Main extends Component {
   constructor(props) {
     super();
 
     this.onUserAuthenticated = this.onUserAuthenticated.bind(this);
-    this.configureScene = this.configureScene.bind(this);
+    // this.configureScene = this.configureScene.bind(this);
     this.renderScene = this.renderScene.bind(this);
+    this.onPopRoute = this.onPopRoute.bind(this);
 
     props.dispatch(init());
   }
+
   onUserAuthenticated(user) {
     this.props.dispatch(userAuthenticated(user));
   }
-  configureScene() {
-    return Navigator.SceneConfigs.FloatFromRight;
+
+  onPopRoute(action) {
+    if (action.type === 'back') {
+      this.props.dispatch(pop());
+    }
   }
-  renderScene(route, navigator) {
-    const RouteComponent = ROUTES[route.name];
-    return <RouteComponent route={route} navigator={navigator} />;
+
+  renderScene({ scene }) {
+    const { route } = scene;
+    switch (route.key) {
+      case 'home':
+        return <Home />;
+      case 'pick_opponent':
+        return <PickOpponent />;
+      case 'match':
+        return <Match matchId={route.matchId} />;
+      case 'wheel':
+        return <Wheel roundId={route.roundId} />;
+      case 'game':
+        return <Game gameId={route.gameId} roundId={route.roundId} />;
+      default:
+        throw new Error(`Unknown route key: ${route.key}`);
+    }
   }
+
   render() {
     if (this.props.shouldAuthenticate) {
       return <Authentication onAuthenticated={this.onUserAuthenticated} />;
@@ -82,11 +83,10 @@ class Main extends Component {
       );
     }
     return (
-      <Navigator
-        style={styles.container}
-        initialRoute={{ name: 'home' }}
+      <NavigationCardStack
+        onNavigate={this.onPopRoute}
         renderScene={this.renderScene}
-        configureScene={this.configureScene}
+        navigationState={this.props.navigationState}
       />
     );
   }
@@ -95,10 +95,12 @@ class Main extends Component {
 Main.propTypes = {
   dispatch: PropTypes.func.isRequired,
   user: PropTypes.object,
+  navigationState: PropTypes.object,
   shouldAuthenticate: PropTypes.bool.isRequired,
 };
 
 export default connect(state => ({
-  user: state.userId && userSelector(state.userId, state),
-  shouldAuthenticate: state.shouldAuthenticate,
+  user: state.application.userId && userSelector(state.application.userId, state),
+  navigationState: state.navigation,
+  shouldAuthenticate: state.application.shouldAuthenticate,
 }))(Main);

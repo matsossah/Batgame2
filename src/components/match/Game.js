@@ -1,11 +1,16 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { connect } from 'react-redux';
 
 import Stoplight from '../games/Stoplight';
 import MathBattle from '../games/MathBattle';
 import PopTheBalloon from '../games/PopTheBalloon';
 import RedGreenBlue from '../games/RedGreenBlue';
 import NumberGame from '../games/numbers/NumberGame';
+import GameOverlay from './GameOverlay';
+
+import { gameSelector, roundSelector } from '../../selectors';
+import { createGameScore } from '../../actions/application';
 
 const gameComponents = {
   STOPLIGHT: Stoplight,
@@ -16,21 +21,72 @@ const gameComponents = {
   NUMBER: NumberGame,
 };
 
-class Game extends Component {
-  render() {
-    const { route: { game, round } } = this.props;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  gameComponent: {
+    flex: 1,
+  },
+  gameOverlay: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+  },
+});
 
-    const GameComponent = gameComponents[game.name];
+class Game extends Component {
+  constructor() {
+    super();
+
+    this.onGameEnd = this.onGameEnd.bind(this);
+  }
+
+  onGameEnd(result) {
+    const { game } = this.props;
+    this.props.dispatch(createGameScore(game.id, result.score));
+  }
+
+  render() {
+    const { game, round } = this.props;
+
+    const GameComponent = gameComponents[game.gameName];
 
     return (
-      <GameComponent />
+      <View style={styles.container}>
+        {/*
+        I'd rather set this directly on GameComponent but it would mean passing
+        otherProps and style on all game components.
+        */}
+        <View
+          style={styles.gameComponent}
+          pointerEvents={game.myScore ? 'none' : 'auto'}
+        >
+          <GameComponent
+            onEnd={this.onGameEnd}
+          />
+        </View>
+        {game.myScore &&
+          <GameOverlay
+            style={styles.gameOverlay}
+            game={game}
+            round={round}
+          />
+        }
+      </View>
     );
   }
 }
 
 Game.propTypes = {
-  navigator: PropTypes.object.isRequired,
-  route: PropTypes.object.isRequired,
+  game: PropTypes.object.isRequired,
+  round: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default Game;
+export default connect((state, props) => ({
+  game: gameSelector(props.gameId, state),
+  round: roundSelector(props.roundId, state),
+}))(Game);

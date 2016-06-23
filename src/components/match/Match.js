@@ -3,6 +3,7 @@ import { Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import { userSelector, matchSelector } from '../../selectors';
+import { gotoNextGame } from '../../actions/application';
 import Template from '../common/Template';
 import Round from './Round';
 
@@ -16,25 +17,10 @@ class Match extends Component {
   onActiveRoundPress() {
     const {
       match,
-      user,
+      dispatch,
     } = this.props;
 
-    const nextGame = match.currentRound.games.find(game =>
-      game.placeholder || !game.scores.some(score => score.user === user)
-    );
-
-    if (nextGame.placeholder) {
-      this.props.navigator.push({
-        name: 'wheel',
-        roundId: match.currentRound,
-      });
-    } else {
-      this.props.navigator.push({
-        name: 'game',
-        gameName: nextGame.gameName,
-        roundId: match.currentRound,
-      });
-    }
+    dispatch(gotoNextGame(match.currentRound.id));
   }
 
   render() {
@@ -83,12 +69,12 @@ class Match extends Component {
 }
 
 Match.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
 };
 
 export default connect((state, props) => ({
-  user: userSelector(state.userId, state),
-  match: matchSelector(props.route.matchId, state),
+  user: userSelector(state.application.userId, state),
+  match: matchSelector(props.matchId, state),
 }))(Match);
