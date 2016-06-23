@@ -6,6 +6,7 @@ import Timer from '../common/Timer';
 import Duration from '../common/Duration';
 import Board from '../common/Board';
 import sample from 'lodash/sample';
+import Countdown from '../common/Countdown';
 
 const styles = StyleSheet.create({
   container: {
@@ -76,9 +77,10 @@ class RedGreenBlue extends Component {
   constructor() {
     super();
     this.state = {
-      startTime: Date.now(),
       duration: null,
       running: true,
+      started: false,
+      countdownStarted: null,
       score: 0,
       color: sample(colors),
     };
@@ -87,18 +89,29 @@ class RedGreenBlue extends Component {
       green: this.onButtonPress.bind(this, 'green'),
       blue: this.onButtonPress.bind(this, 'blue'),
     };
+    setTimeout(this.onStarted.bind(this), 3000);
+  }
+  onStarted() {
+    this.setState({
+      started: true,
+      countdownStarted: Date.now(),
+    });
+  }
+  onEnd() {
+    console.log('finished');
   }
   onButtonPress(color) {
     if (this.state.color === color) {
       const newColor = sample(colors);
       this.setState({
-        color: newColor,
+        color: 'black',
         score: this.state.score + 1,
       });
+      this.timeout = setTimeout(() => this.setState({ color: newColor }), 100);
     } else {
       this.setState({
         running: false,
-        duration: Date.now() - this.state.startTime,
+        duration: 30000 - (Date.now() - this.state.countdownStarted),
       });
     }
   }
@@ -117,6 +130,19 @@ class RedGreenBlue extends Component {
       </TouchableHighlight>
     );
   }
+  renderTimer() {
+    if (this.state.running) {
+      if (this.state.started) {
+        return (<Countdown
+          duration={30}
+          startTime={this.state.countdownStarted}
+          onComplete={this.onEnd}
+        />);
+      }
+      return <Duration duration={30000} />;
+    }
+    return <Duration duration={this.state.duration} />;
+  }
   render() {
     return (
       <Template
@@ -128,10 +154,7 @@ class RedGreenBlue extends Component {
               </Text>
             </View>
             <View style={styles.timerBox}>
-              {this.state.running ?
-                <Timer startTime={this.state.startTime} /> :
-                <Duration duration={this.state.duration} />
-              }
+              {this.renderTimer()}
             </View>
           </View>
         }

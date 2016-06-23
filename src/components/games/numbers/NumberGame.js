@@ -39,7 +39,7 @@ class NumberGame extends Component {
 
     this.state = {
       livesLost: 0,
-      currentNumber: 9,
+      currentNumber: 1,
       board: this.generateBoard(),
       cellSize: 0,
     };
@@ -57,7 +57,7 @@ class NumberGame extends Component {
   }
 
   onCellSuccess(cell) {
-    const nextNumber = cell.number - 1;
+    const nextNumber = cell.number + 1;
     const nextBoard = this.state.board.slice();
     const nextCell = { ...cell, success: true };
     nextBoard.splice(nextBoard.indexOf(cell), 1, nextCell);

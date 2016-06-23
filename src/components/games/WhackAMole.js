@@ -3,9 +3,9 @@ import { View, Text, StyleSheet } from 'react-native';
 import sample from 'lodash/sample';
 
 import Template from '../common/Template';
-import Timer from '../common/Timer';
 import Duration from '../common/Duration';
 import WhackAMoleCell from './WhackAMoleCell';
+import Countdown from '../common/Countdown';
 
 const styles = StyleSheet.create({
   container: {
@@ -47,53 +47,50 @@ class WhackAMole extends Component {
   constructor() {
     super();
     this.state = {
-      startTime: Date.now(),
       duration: null,
       running: true,
+      started: false,
+      countdownStarted: null,
       activeCell: null,
       score: 0,
       round: 0,
     };
     this.onCellPress = this.onCellPress.bind(this);
     this.newMole = this.newMole.bind(this);
-    this.timeout = setTimeout(this.newMole, 1000);
+    this.newMoleTimeout = setTimeout(this.newMole, 3000);
+    this.onStartedTimeout = setTimeout(this.onStarted.bind(this), 3000);
   }
-
   componentWillUnmount() {
-    clearTimeout(this.timeout);
+    clearTimeout(this.newMoleTimeout);
   }
-
+  onStarted() {
+    this.setState({
+      started: true,
+      countdownStarted: Date.now(),
+    });
+  }
+  onEnd() {
+    console.log('finished');
+  }
   onCellPress(cell) {
     if (!this.state.running) {
       return;
     }
-
     if (this.state.activeCell === cell) {
-      if (this.state.round < 10) {
-        this.setState({
-          score: this.state.score + 1,
-          activeCell: null,
-        });
-        this.timeout = setTimeout(this.newMole, 1000);
-      } else {
-        this.setState({
-          score: this.state.score + 1,
-          activeCell: null,
-          running: false,
-          duration: Date.now() - this.state.startTime,
-        });
-        clearTimeout(this.timeout);
-      }
+      this.setState({
+        score: this.state.score + 1,
+        activeCell: null,
+      });
+      this.timeout = setTimeout(this.newMole, 500);
     } else {
       this.setState({
         activeCell: null,
         running: false,
-        duration: Date.now() - this.state.startTime,
+        duration: 30000 - (Date.now() - this.state.countdownStarted),
       });
       clearTimeout(this.timeout);
     }
   }
-
   newMole() {
     const moles = ['topLeft', 'topRight', 'middle', 'bottomLeft', 'bottomRight'];
     const mole = sample(moles);
@@ -102,7 +99,19 @@ class WhackAMole extends Component {
       round: this.state.round + 1,
     });
   }
-
+  renderTimer() {
+    if (this.state.running) {
+      if (this.state.started) {
+        return (<Countdown
+          duration={30}
+          startTime={this.state.countdownStarted}
+          onComplete={this.onEnd}
+        />);
+      }
+      return <Duration duration={30000} />;
+    }
+    return <Duration duration={this.state.duration} />;
+  }
   render() {
     return (
       <Template
@@ -114,11 +123,7 @@ class WhackAMole extends Component {
               </Text>
             </View>
             <View style={styles.timerBox}>
-              {
-                this.state.running ?
-                  <Timer startTime={this.state.startTime} /> :
-                  <Duration duration={this.state.duration} />
-              }
+              {this.renderTimer()}
             </View>
           </View>
         }

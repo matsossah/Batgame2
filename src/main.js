@@ -12,6 +12,9 @@ import NumberGame from './components/games/numbers/NumberGame';
 import RedGreenBlue from './components/games/RedGreenBlue';
 import PopTheBalloon from './components/games/PopTheBalloon';
 import WhackAMole from './components/games/WhackAMole';
+import Lucky from './components/games/Lucky';
+import RightOn from './components/games/RightOn';
+import Identical from './components/games/Identical';
 
 import loginWithFacebook from './loginWithFacebook';
 
@@ -34,6 +37,9 @@ const ROUTES = {
   redGreenBlue: RedGreenBlue,
   popTheBalloon: PopTheBalloon,
   whackAMole: WhackAMole,
+  lucky: Lucky,
+  rightOn: RightOn,
+  identical: Identical,
 };
 
 const styles = StyleSheet.create({
