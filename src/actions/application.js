@@ -8,7 +8,7 @@ import {
 import loginWithFacebook from '../loginWithFacebook';
 import actionTypes from '../actionTypes';
 import { push } from './navigation';
-import { roundSelector } from '../selectors';
+import { matchSelector } from '../selectors';
 
 // @FIX: For testing purposes.
 // This lets us access Parse from the debugger ui's console.
@@ -96,9 +96,10 @@ export function joinRandomMatch() {
   };
 }
 
-export function gameCreatedSuccess(game) {
+export function gameCreatedSuccess(round, game) {
   return {
     type: actionTypes.GAME_CREATED_SUCCESS,
+    round,
     game,
   };
 }
@@ -124,20 +125,21 @@ export function createGameScore(gameId, score) {
   };
 }
 
-export function gotoNextGame(roundId) {
+export function gotoNextGame(matchId) {
   return (dispatch, getState) => {
-    const round = roundSelector(roundId, getState());
-    const { nextGame } = round;
+    const match = matchSelector(matchId, getState());
+    const { nextGame } = match.currentRound;
 
     if (nextGame.placeholder) {
       dispatch(push({
         key: 'wheel',
-        roundId: round.id,
+        matchId: match.id,
+        roundId: match.currentRound.id,
       }));
     } else {
       dispatch(push({
         key: 'game',
-        roundId: round.id,
+        matchId: match.id,
         gameId: nextGame.id,
       }));
     }

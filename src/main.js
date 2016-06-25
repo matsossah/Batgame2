@@ -57,11 +57,26 @@ class Main extends Component {
       case 'pick_opponent':
         return <PickOpponent />;
       case 'match':
-        return <Match matchId={route.matchId} />;
+        return (
+          <Match
+            matchId={route.matchId}
+          />
+        );
       case 'wheel':
-        return <Wheel roundId={route.roundId} />;
+        return (
+          <Wheel
+            matchId={route.matchId}
+            roundId={route.roundId}
+          />
+        );
       case 'game':
-        return <Game gameId={route.gameId} roundId={route.roundId} />;
+        return (
+          <Game
+            matchId={route.matchId}
+            roundId={route.roundId}
+            gameId={route.gameId}
+          />
+        );
       default:
         throw new Error(`Unknown route key: ${route.key}`);
     }
@@ -82,13 +97,18 @@ class Main extends Component {
         <FacebookUsername onSuccess={this.onUserAuthenticated} />
       );
     }
-    return (
-      <NavigationCardStack
-        onNavigate={this.onPopRoute}
-        renderScene={this.renderScene}
-        navigationState={this.props.navigationState}
-      />
-    );
+    return this.renderScene({
+      scene: {
+        route: this.props.navigationState.routes.slice(-1)[0],
+      },
+    });
+    // return (
+    //   <NavigationCardStack
+    //     onNavigate={this.onPopRoute}
+    //     renderScene={this.renderScene}
+    //     navigationState={this.props.navigationState}
+    //   />
+    // );
   }
 }
 

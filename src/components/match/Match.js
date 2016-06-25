@@ -20,7 +20,7 @@ class Match extends Component {
       dispatch,
     } = this.props;
 
-    dispatch(gotoNextGame(match.currentRound.id));
+    dispatch(gotoNextGame(match.id));
   }
 
   render() {

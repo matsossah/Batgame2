@@ -71,6 +71,8 @@ class MathBattle extends Component {
         topOperands: [sample(NUMBERS), sample(NUMBERS)],
         bottomOperands: [sample(NUMBERS), sample(NUMBERS)],
       });
+    } else {
+      this.props.onEnd({ score: this.state.score });
     }
   }
   render() {

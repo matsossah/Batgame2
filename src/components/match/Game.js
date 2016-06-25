@@ -9,7 +9,7 @@ import RedGreenBlue from '../games/RedGreenBlue';
 import NumberGame from '../games/numbers/NumberGame';
 import GameOverlay from './GameOverlay';
 
-import { gameSelector, roundSelector } from '../../selectors';
+import { gameSelector, matchSelector } from '../../selectors';
 import { createGameScore } from '../../actions/application';
 
 const gameComponents = {
@@ -50,7 +50,7 @@ class Game extends Component {
   }
 
   render() {
-    const { game, round } = this.props;
+    const { game, match } = this.props;
 
     const GameComponent = gameComponents[game.gameName];
 
@@ -72,7 +72,7 @@ class Game extends Component {
           <GameOverlay
             style={styles.gameOverlay}
             game={game}
-            round={round}
+            match={match}
           />
         }
       </View>
@@ -82,11 +82,11 @@ class Game extends Component {
 
 Game.propTypes = {
   game: PropTypes.object.isRequired,
-  round: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
 export default connect((state, props) => ({
   game: gameSelector(props.gameId, state),
-  round: roundSelector(props.roundId, state),
+  match: matchSelector(props.matchId, state),
 }))(Game);

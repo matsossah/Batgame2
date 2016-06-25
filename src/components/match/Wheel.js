@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import GAMES from '../../games';
 import { gameCreatedSuccess } from '../../actions/application';
 import { push } from '../../actions/navigation';
-import { roundSelector } from '../../selectors';
+import { matchSelector, roundSelector } from '../../selectors';
 
 const Game = Parse.Object.extend('Game');
 const Round = Parse.Object.extend('Round');
@@ -20,7 +20,7 @@ class Wheel extends Component {
   }
 
   pickRandomGame() {
-    const { round } = this.props;
+    const { match, round } = this.props;
     const gameInfo = sample(GAMES);
 
     // @TODO: move this into a createGame action creator
@@ -38,11 +38,12 @@ class Wheel extends Component {
 
     roundObj.save()
       .then(() => {
-        this.props.dispatch(gameCreatedSuccess(game));
+        this.props.dispatch(gameCreatedSuccess(roundObj, game));
         this.props.dispatch(push({
           key: 'game',
           gameId: game.id,
           roundId: round.id,
+          matchId: match.id,
         }));
       })
       .catch(e => {
@@ -68,8 +69,10 @@ class Wheel extends Component {
 Wheel.propTypes = {
   dispatch: PropTypes.func.isRequired,
   round: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 export default connect((state, props) => ({
+  match: matchSelector(props.matchId, state),
   round: roundSelector(props.roundId, state),
 }))(Wheel);

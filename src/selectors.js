@@ -131,14 +131,14 @@ export const matchSelector = (matchId, state) => {
       (firstPlayerIdx + roundStarterOffset) % participants.length
     ];
     const roundStarterPlayed = currentRound.games.every(game =>
-      !game.placeholder && game.scores.some(score => score.user === roundStarter)
+      !game.placeholder && game.scores.some(score => score.users.includes(roundStarter))
     );
     awaitingPlayers = (
       roundStarterPlayed ?
         participants.filter(participant =>
           // Find participants that don't have a score for every game.
           !currentRound.games.every(game =>
-            game.scores.some(score => score.user === participant)
+            game.scores.some(score => score.users.includes(participant))
           )
         ) :
         [roundStarter]

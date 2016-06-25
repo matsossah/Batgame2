@@ -64,7 +64,7 @@ export default function applicationReducer(state = initialState, action) {
       };
     }
     case actionTypes.GAME_CREATED_SUCCESS: {
-      const { store } = normalize([action.game]);
+      const { store } = normalize([action.round, action.game]);
       // Navigation
       return mergeStoreIntoState(state, store);
     }

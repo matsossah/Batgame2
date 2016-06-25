@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { TouchableHighlight, View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
+import { userSelector } from '../../selectors';
 import { push } from '../../actions/navigation';
 import { gotoNextGame } from '../../actions/application';
 
@@ -22,25 +23,25 @@ class GameOverlay extends Component {
   constructor() {
     super();
 
-    this.onRoundPress = this.onRoundPress.bind(this);
+    this.onMatchPress = this.onMatchPress.bind(this);
     this.onNextPress = this.onNextPress.bind(this);
   }
 
-  onRoundPress() {
-    const { round, dispatch } = this.props;
+  onMatchPress() {
+    const { match, dispatch } = this.props;
     dispatch(push({
-      key: 'round',
-      roundId: round.id,
+      key: 'match',
+      matchId: match.id,
     }));
   }
 
   onNextPress() {
-    const { round, dispatch } = this.props;
-    dispatch(gotoNextGame(round.id));
+    const { match, dispatch } = this.props;
+    dispatch(gotoNextGame(match.id));
   }
 
   render() {
-    const { game, style, ...otherProps } = this.props;
+    const { game, match, user, style, ...otherProps } = this.props;
 
     if (game.myScore === undefined) {
       return (
@@ -60,15 +61,17 @@ class GameOverlay extends Component {
           <Text>Score</Text>
           <Text>{game.myScore.score}</Text>
           <TouchableHighlight
-            onPress={this.onRoundPress}
+            onPress={this.onMatchPress}
           >
-            <Text>Round</Text>
+            <Text>Match</Text>
           </TouchableHighlight>
-          <TouchableHighlight
-            onPress={this.onNextPress}
-          >
-            <Text>Next</Text>
-          </TouchableHighlight>
+          {match.awaitingPlayers.includes(user) &&
+            <TouchableHighlight
+              onPress={this.onNextPress}
+            >
+              <Text>Next</Text>
+            </TouchableHighlight>
+          }
         </View>
       </View>
     );
@@ -76,10 +79,13 @@ class GameOverlay extends Component {
 }
 
 GameOverlay.propTypes = {
+  user: PropTypes.object.isRequired,
   game: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  round: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
   style: PropTypes.any,
 };
 
-export default connect()(GameOverlay);
+export default connect(state => ({
+  user: userSelector(state.application.userId, state),
+}))(GameOverlay);

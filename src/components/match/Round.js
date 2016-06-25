@@ -21,6 +21,8 @@ class Round extends Component {
                   <Text>?</Text> :
                 game.isFinished ?
                   <Text>{game.bestScore.users.includes(currentUser) ? 'won' : 'lost'}</Text> :
+                game.myScore ?
+                  <Text>Waiting for opponent</Text> :
                   <Text>Your turn!</Text>
               }
             </View>
