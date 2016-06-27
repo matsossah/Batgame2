@@ -11,16 +11,20 @@
     "moment": "^2.13.0",
     "parse": "^1.8.3",
     "parse-react": "^0.5.2",
-    "react": "^0.14.8",
-    "react-native": "^0.25.1",
-    "react-native-fbsdk": "^0.2.0",
-    "react-native-vector-icons": "^2.0.1"
+    "react": "^15.1.0",
+    "react-native": "^0.29.0-rc.0",
+    "react-native-fbsdk": "^0.2.1",
+    "react-native-vector-icons": "^2.0.3",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "eslint": "^2.9.0",
     "eslint-config-airbnb": "^8.0.0",
     "eslint-plugin-import": "^1.6.1",
     "eslint-plugin-jsx-a11y": "^1.0.4",
-    "eslint-plugin-react": "^5.0.1"
+    "eslint-plugin-react": "^5.0.1",
+    "redux-logger": "^2.6.1"
   }
 }

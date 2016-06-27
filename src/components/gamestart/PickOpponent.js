@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+
+import { joinRandomMatch } from '../../actions/application';
 
 import Template from '../common/Template';
 import Title from '../common/Title';
@@ -37,6 +40,8 @@ class PickOpponent extends Component {
   onFacebookPress() {
   }
   onRandomPress() {
+    // @TODO: show loader or move into another view while looking for a match
+    this.props.dispatch(joinRandomMatch());
   }
   onSearchPress() {
   }
@@ -54,6 +59,7 @@ class PickOpponent extends Component {
                 buttonText="FACEBOOK FRIENDS"
                 onPress={this.onFacebookPress}
                 underlayColor="#3498DB"
+                disabled
               />
               <LargeButton
                 style={styles.newGame}
@@ -66,6 +72,7 @@ class PickOpponent extends Component {
                 buttonText="SEARCH BY USERNAME"
                 onPress={this.onSearchPress}
                 underlayColor="#583B67"
+                disabled
               />
             </View>
             <View style={styles.empty} />
@@ -77,7 +84,7 @@ class PickOpponent extends Component {
 }
 
 PickOpponent.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default PickOpponent;
+export default connect()(PickOpponent);

@@ -57,11 +57,13 @@ class PopTheBalloon extends Component {
         taps: this.state.taps + 1,
       });
     } else {
+      const score = Date.now() - this.state.startTime;
       this.setState({
         running: false,
-        duration: Date.now() - this.state.startTime,
+        duration: score,
         taps: this.state.taps + 1,
       });
+      this.props.onEnd({ score });
     }
   }
   render() {
@@ -112,7 +114,7 @@ class PopTheBalloon extends Component {
 }
 
 PopTheBalloon.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  onEnd: PropTypes.func.isRequired,
 };
 
 export default PopTheBalloon;

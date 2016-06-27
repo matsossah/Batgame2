@@ -32,6 +32,7 @@ class FacebookLogin extends Component {
           let message;
           switch (err.code) {
             default:
+              console.error(err);
               message = 'An unknown error occurred. Please try again.';
               break;
           }

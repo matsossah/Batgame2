@@ -52,6 +52,7 @@ class Lucky extends Component {
   onCellPress(emoji) {
     if (emoji === '☠') {
       this.setState({ running: false });
+      this.props.onEnd({ score: this.state.score });
     } else {
       this.setState({ score: this.state.score + 1 });
     }
@@ -92,7 +93,7 @@ class Lucky extends Component {
 }
 
 Lucky.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  onEnd: PropTypes.func.isRequired,
 };
 
 export default Lucky;

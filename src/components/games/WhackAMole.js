@@ -59,6 +59,7 @@ class WhackAMole extends Component {
     this.newMole = this.newMole.bind(this);
     this.newMoleTimeout = setTimeout(this.newMole, 3000);
     this.onStartedTimeout = setTimeout(this.onStarted.bind(this), 3000);
+    this.onEnd = this.onEnd.bind(this);
   }
   componentWillUnmount() {
     clearTimeout(this.newMoleTimeout);
@@ -70,7 +71,7 @@ class WhackAMole extends Component {
     });
   }
   onEnd() {
-    console.log('finished');
+    this.props.onEnd({ score: this.state.score });
   }
   onCellPress(cell) {
     if (!this.state.running) {
@@ -89,6 +90,7 @@ class WhackAMole extends Component {
         duration: 30000 - (Date.now() - this.state.countdownStarted),
       });
       clearTimeout(this.timeout);
+      this.props.onEnd({ score: this.state.score });
     }
   }
   newMole() {
@@ -168,7 +170,7 @@ class WhackAMole extends Component {
 }
 
 WhackAMole.propTypes = {
-  navigator: PropTypes.object.isRequired,
+  onEnd: PropTypes.func.isRequired,
 };
 
 export default WhackAMole;

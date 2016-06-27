@@ -1,12 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import Parse from 'parse/react-native';
+import { connect } from 'react-redux';
 
-import withUser from '../common/withUser';
+import { userSelector, matchSelector } from '../../selectors';
+import {
+  retrieveMatches,
+} from '../../actions/application';
+import { gotoPickOpponent, gotoMatch } from '../../actions/navigation';
+
 import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
-import GamesList from '../common/GamesList';
+import MatchesList from '../common/MatchesList';
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -17,12 +22,22 @@ const styles = StyleSheet.create({
 
 class Home extends Component {
   constructor(props) {
-    super(props);
+    super();
+
     this.onNewGamePress = this.onNewGamePress.bind(this);
+    this.onMatchPress = this.onMatchPress.bind(this);
+
+    props.dispatch(retrieveMatches());
   }
+
   onNewGamePress() {
-    this.props.navigator.push({ name: 'pick_opponent' });
+    this.props.dispatch(gotoPickOpponent());
   }
+
+  onMatchPress(matchId) {
+    this.props.dispatch(gotoMatch(matchId));
+  }
+
   render() {
     return (
       <Template
@@ -35,22 +50,15 @@ class Home extends Component {
               onPress={this.onNewGamePress}
               underlayColor="#4EB479"
             />
-            <GamesList
-              games={[
-                {
-                  userScore: 5,
-                  opponent: 'Mumu',
-                  opponentScore: 3,
-                  isFinished: false,
-                },
-                {
-                  userScore: 3,
-                  opponent: 'Jess',
-                  opponentScore: 4,
-                  isFinished: false,
-                },
-              ]}
-            />
+            {this.props.matches !== null &&
+              <MatchesList
+                matches={
+                  this.props.matches
+                    .sort((m1, m2) => m1.createdAt - m2.createdAt)
+                }
+                onMatchPress={this.onMatchPress}
+              />
+            }
           </ScrollView>
         }
       />
@@ -60,7 +68,13 @@ class Home extends Component {
 
 Home.propTypes = {
   user: PropTypes.object.isRequired,
-  navigator: PropTypes.object.isRequired,
+  matches: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default withUser(Home);
+export default connect(state => ({
+  user: userSelector(state.application.userId, state),
+  matches: Object.keys(state.application.matches).map(matchId =>
+    matchSelector(matchId, state)
+  ),
+}))(Home);

@@ -19,13 +19,16 @@ class Countdown extends Component {
   }
 
   updateCountdown() {
+    // We need to set the timeout here since `onComplete` might trigger a
+    // synchronous unmounting of the component, which means we need
+    // `this.timeout` to be updated when we clear it.
+    this.timeout = setTimeout(this.updateCountdown, 10);
     const countdown = Date.now() - this.props.startTime;
     if (countdown > this.props.duration * 1000) {
       this.props.onComplete();
     } else {
       this.setState({ countdown });
     }
-    this.timeout = setTimeout(this.updateCountdown, 10);
   }
 
   render() {
