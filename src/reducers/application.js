@@ -63,15 +63,12 @@ export default function applicationReducer(state = initialState, action) {
         ...mergeStoreIntoState(state, store),
       };
     }
-    case actionTypes.GAME_CREATED_SUCCESS: {
-      const { store } = normalize([action.round, action.game]);
-      // Navigation
+    case actionTypes.GAME_PICKED_SUCCESS: {
+      const { store } = normalize([action.game]);
       return mergeStoreIntoState(state, store);
     }
     case actionTypes.GAME_SCORE_CREATED_SUCCESS: {
       const { store } = normalize([action.game, action.gameScore]);
-      console.log(store);
-      /// Navigation
       return mergeStoreIntoState(state, store);
     }
     default:

@@ -7,8 +7,7 @@ import {
 } from '../config.js';
 import loginWithFacebook from '../loginWithFacebook';
 import actionTypes from '../actionTypes';
-import { push } from './navigation';
-import { matchSelector } from '../selectors';
+import { gotoMatch } from './navigation';
 
 // @FIX: For testing purposes.
 // This lets us access Parse from the debugger ui's console.
@@ -87,7 +86,7 @@ export function joinRandomMatch() {
           type: actionTypes.JOIN_RANDOM_MATCH_SUCCESS,
           match,
         });
-        dispatch(push({ key: 'match', matchId: match.id }));
+        dispatch(gotoMatch(match.id));
       })
       .catch(err => {
         // @TODO: correctly handle error
@@ -96,10 +95,9 @@ export function joinRandomMatch() {
   };
 }
 
-export function gameCreatedSuccess(round, game) {
+export function gamePickedSuccess(game) {
   return {
-    type: actionTypes.GAME_CREATED_SUCCESS,
-    round,
+    type: actionTypes.GAME_PICKED_SUCCESS,
     game,
   };
 }
@@ -122,26 +120,5 @@ export function createGameScore(gameId, score) {
         // @TODO: correctly handle error
         console.error(err);
       });
-  };
-}
-
-export function gotoNextGame(matchId) {
-  return (dispatch, getState) => {
-    const match = matchSelector(matchId, getState());
-    const { nextGame } = match.currentRound;
-
-    if (nextGame.placeholder) {
-      dispatch(push({
-        key: 'wheel',
-        matchId: match.id,
-        roundId: match.currentRound.id,
-      }));
-    } else {
-      dispatch(push({
-        key: 'game',
-        matchId: match.id,
-        gameId: nextGame.id,
-      }));
-    }
   };
 }

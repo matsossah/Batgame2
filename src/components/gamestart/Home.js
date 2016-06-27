@@ -6,7 +6,7 @@ import { userSelector, matchSelector } from '../../selectors';
 import {
   retrieveMatches,
 } from '../../actions/application';
-import { push } from '../../actions/navigation';
+import { gotoPickOpponent, gotoMatch } from '../../actions/navigation';
 
 import Template from '../common/Template';
 import Title from '../common/Title';
@@ -31,11 +31,11 @@ class Home extends Component {
   }
 
   onNewGamePress() {
-    this.props.dispatch(push({ key: 'pick_opponent' }));
+    this.props.dispatch(gotoPickOpponent());
   }
 
   onMatchPress(matchId) {
-    this.props.dispatch(push({ key: 'match', matchId }));
+    this.props.dispatch(gotoMatch(matchId));
   }
 
   render() {

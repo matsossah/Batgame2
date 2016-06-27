@@ -36,23 +36,32 @@ export const scoreSelector = (scoreId, state) => {
 
 export const gameSelector = (gameId, state) => {
   const game = state.application.games[gameId];
-  const gameInfo = gameInfoByName[game.gameName];
-  const scores = game.scores.map(scoreId =>
-    scoreSelector(scoreId, state)
-  );
-  const myScore = scores.find(score =>
-    score.users.some(user => user.id === state.application.userId)
-  );
-  const best = gameInfo.winner === 'GREATEST' ? gt : st;
+  let info = null;
+  let scores = [];
+  let isFinished = false;
+  let myScore = null;
   let bestScore = null;
-  if (scores.length > 0) {
-    bestScore = scores.reduce(getBestScore.bind(null, best));
+
+  if (game.gamePicked) {
+    info = gameInfoByName[game.gameName];
+    scores = game.scores.map(scoreId =>
+      scoreSelector(scoreId, state)
+    );
+    myScore = scores.find(score =>
+      score.users.some(user => user.id === state.application.userId)
+    );
+    const best = info.winner === 'GREATEST' ? gt : st;
+    if (scores.length > 0) {
+      bestScore = scores.reduce(getBestScore.bind(null, best));
+    }
+    isFinished = scores.length === PARTICIPANTS_NB;
   }
+
   return {
     ...game,
     scores,
-    info: gameInfo,
-    isFinished: scores.length === PARTICIPANTS_NB,
+    info,
+    isFinished,
     myScore,
     bestScore,
   };
@@ -60,26 +69,16 @@ export const gameSelector = (gameId, state) => {
 
 export const roundSelector = (roundId, state) => {
   const round = state.application.rounds[roundId];
-  const userId = state.application.userId;
 
   const games = round.games.map(gameId =>
     gameSelector(gameId, state)
   );
 
-  const additionalGames = GAMES_NB - games.length;
-  for (let i = 0; i < additionalGames; i++) {
-    games.push({
-      id: `temp${i}`,
-      placeholder: true,
-      isFinished: false,
-    });
-  }
-
   const isFinished = games.every(game => game.isFinished);
 
   let nextGame = null;
   if (!isFinished) {
-    nextGame = games.find(game => game.placeholder || !game.myScore);
+    nextGame = games.find(game => !game.gamePicked || !game.myScore);
   }
 
   return {
@@ -131,7 +130,7 @@ export const matchSelector = (matchId, state) => {
       (firstPlayerIdx + roundStarterOffset) % participants.length
     ];
     const roundStarterPlayed = currentRound.games.every(game =>
-      !game.placeholder && game.scores.some(score => score.users.includes(roundStarter))
+      game.gamePicked && game.scores.some(score => score.users.includes(roundStarter))
     );
     awaitingPlayers = (
       roundStarterPlayed ?
@@ -150,7 +149,7 @@ export const matchSelector = (matchId, state) => {
   const scoreByUser = keyBy(participants.map(p => [p.id, 0]), 0);
   for (const round of rounds) {
     for (const game of round.games) {
-      if (!game.placeholder && game.bestScore !== null) {
+      if (game.gamePicked && game.bestScore !== null) {
         for (const user of game.bestScore.users) {
           scoreByUser[user.id] += 1;
         }

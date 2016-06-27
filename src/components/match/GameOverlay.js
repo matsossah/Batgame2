@@ -3,8 +3,7 @@ import { TouchableHighlight, View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { userSelector } from '../../selectors';
-import { push } from '../../actions/navigation';
-import { gotoNextGame } from '../../actions/application';
+import { gotoMatch, gotoNextGame } from '../../actions/navigation';
 
 const styles = StyleSheet.create({
   overlay: {
@@ -29,10 +28,7 @@ class GameOverlay extends Component {
 
   onMatchPress() {
     const { match, dispatch } = this.props;
-    dispatch(push({
-      key: 'match',
-      matchId: match.id,
-    }));
+    dispatch(gotoMatch(match.id));
   }
 
   onNextPress() {

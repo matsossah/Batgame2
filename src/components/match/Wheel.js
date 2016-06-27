@@ -5,12 +5,11 @@ import Parse from 'parse/react-native';
 import { connect } from 'react-redux';
 
 import GAMES from '../../games';
-import { gameCreatedSuccess } from '../../actions/application';
-import { push } from '../../actions/navigation';
-import { matchSelector, roundSelector } from '../../selectors';
+import { gamePickedSuccess } from '../../actions/application';
+import { gotoGame } from '../../actions/navigation';
+import { gameSelector } from '../../selectors';
 
 const Game = Parse.Object.extend('Game');
-const Round = Parse.Object.extend('Round');
 
 class Wheel extends Component {
   constructor() {
@@ -20,31 +19,21 @@ class Wheel extends Component {
   }
 
   pickRandomGame() {
-    const { match, round } = this.props;
+    const { game, matchId, roundId } = this.props;
     const gameInfo = sample(GAMES);
 
     // @TODO: move this into a createGame action creator
     // Will have to do this once we have navigation experimental
-    const game = new Game({
+    const gameObj = new Game({
+      id: game.id,
       gameName: gameInfo.name,
-      scores: [],
+      gamePicked: true,
     });
 
-    const roundObj = new Round({
-      id: round.id,
-    });
-
-    roundObj.add('games', game);
-
-    roundObj.save()
+    gameObj.save()
       .then(() => {
-        this.props.dispatch(gameCreatedSuccess(roundObj, game));
-        this.props.dispatch(push({
-          key: 'game',
-          gameId: game.id,
-          roundId: round.id,
-          matchId: match.id,
-        }));
+        this.props.dispatch(gamePickedSuccess(gameObj));
+        this.props.dispatch(gotoGame(matchId, roundId, game.id));
       })
       .catch(e => {
         // @TODO: handle error
@@ -68,11 +57,11 @@ class Wheel extends Component {
 
 Wheel.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  round: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired,
+  matchId: PropTypes.string.isRequired,
+  roundId: PropTypes.string.isRequired,
+  game: PropTypes.object.isRequired,
 };
 
 export default connect((state, props) => ({
-  match: matchSelector(props.matchId, state),
-  round: roundSelector(props.roundId, state),
+  game: gameSelector(props.gameId, state),
 }))(Wheel);

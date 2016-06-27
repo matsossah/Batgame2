@@ -17,8 +17,12 @@ class Round extends Component {
           {round.games.map(game =>
             <View key={game.id}>
               {
-                game.placeholder ?
-                  <Text>?</Text> :
+                !game.gamePicked ?
+                (
+                  isActive ?
+                    <Text>Turn the wheel!</Text> :
+                    <Text>Opponent has yet to turn the wheel</Text>
+                ) :
                 game.isFinished ?
                   <Text>{game.bestScore.users.includes(currentUser) ? 'won' : 'lost'}</Text> :
                 game.myScore ?

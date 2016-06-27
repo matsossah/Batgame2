@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import { userSelector, matchSelector } from '../../selectors';
-import { gotoNextGame } from '../../actions/application';
+import { gotoNextGame } from '../../actions/navigation';
 import Template from '../common/Template';
 import Round from './Round';
 
