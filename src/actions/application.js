@@ -16,6 +16,21 @@ global.Parse = Parse;
 const Game = Parse.Object.extend('Game');
 const GameScore = Parse.Object.extend('GameScore');
 
+function tryToLogin(dispatch) {
+  loginWithFacebook((err, fbUser) => {
+    if (err || fbUser === null) {
+      dispatch({
+        type: actionTypes.USER_SHOULD_AUTHENTICATE,
+      });
+    } else {
+      dispatch({
+        type: actionTypes.USER_AUTHENTICATED,
+        user: fbUser,
+      });
+    }
+  });
+}
+
 export function init() {
   return dispatch => {
     Parse.initialize(APP_ID, CLIENT_KEY);
@@ -23,23 +38,25 @@ export function init() {
 
     Parse.User.currentAsync().then(user => {
       if (user === null) {
-        loginWithFacebook((err, fbUser) => {
-          if (err || fbUser === null) {
-            dispatch({
-              type: actionTypes.USER_SHOULD_AUTHENTICATE,
-            });
-          } else {
+        tryToLogin(dispatch);
+      } else {
+        // Check that the session hasn't expired
+        Parse.Session.current()
+          .then(() => {
             dispatch({
               type: actionTypes.USER_AUTHENTICATED,
-              user: fbUser,
+              user,
             });
-          }
-        });
-      } else {
-        dispatch({
-          type: actionTypes.USER_AUTHENTICATED,
-          user,
-        });
+          })
+          .catch(err => {
+            if (err.code === Parse.Error.INVALID_SESSION_TOKEN) {
+              Parse.User.logOut().then(() =>
+                tryToLogin(dispatch)
+              );
+            } else {
+              throw err;
+            }
+          });
       }
     }).catch(err => {
       // @TODO: handle error
