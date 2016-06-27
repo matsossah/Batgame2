@@ -1,5 +1,9 @@
 import Parse from 'parse/react-native';
-import { AccessToken } from 'react-native-fbsdk';
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
+
+// @FIX: For testing purposes.
+// This lets us access the LoginManager from the debugger ui's console.
+global.LoginManager = LoginManager;
 
 export default function loginWithFacebook(callback) {
   AccessToken.getCurrentAccessToken().then(res => {
