@@ -9,7 +9,7 @@ export default [
   },
   {
     name: 'POP_THE_BALLOON',
-    winner: 'GREATEST',
+    winner: 'SMALLEST',
   },
   {
     name: 'RED_GREEN_BLUE',
@@ -21,6 +21,6 @@ export default [
   },
   {
     name: 'NUMBER',
-    winner: 'GREATEST',
+    winner: 'SMALLEST',
   },
 ];

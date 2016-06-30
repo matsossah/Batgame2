@@ -8,8 +8,8 @@ const GAMES_NB = 3;
 
 const gameInfoByName = keyBy(GAMES, 'name');
 
-const gt = (a, b) => a > b;
-const st = (a, b) => a < b;
+const gt = (a, b) => b > a;
+const st = (a, b) => b < a;
 
 function getBestScore(best, s1, s2) {
   if (best(s1.score, s2.score)) {
