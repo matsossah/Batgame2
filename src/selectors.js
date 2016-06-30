@@ -160,7 +160,7 @@ export const matchSelector = (matchId, state) => {
 
   let winners = null;
   if (isFinished) {
-    winners = Object.values(scoreByUser)
+    winners = Object.entries(scoreByUser)
       .reduce(({ users, score }, [userId, userScore]) => {
         if (userScore === score) {
           return {
