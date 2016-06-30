@@ -18,6 +18,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 60,
   },
+  newGame: {
+    borderColor: '#4EB479',
+  },
 });
 
 class Home extends Component {
@@ -42,13 +45,14 @@ class Home extends Component {
     return (
       <Template
         // pass the title in uppercase
-        header={<Title>START A GAME!</Title>}
+        header={<Title style={styles.title}>START A GAME!</Title>}
         footer={
           <ScrollView style={styles.scrollView}>
             <LargeButton
               buttonText="NEW GAME"
               onPress={this.onNewGamePress}
               underlayColor="#4EB479"
+              style={styles.newGame}
             />
             {this.props.matches !== null &&
               <MatchesList

@@ -11,7 +11,7 @@ class Round extends Component {
     return (
       <TouchableWithoutFeedback {...otherProps}>
         <View>
-          <Text>Round {roundIdx.toString()}</Text>
+          <Text>Round {(roundIdx + 1).toString()}</Text>
           {isCurrent && <Text>Current</Text>}
           {isActive && <Text>Active</Text>}
           {round.games.map(game =>
