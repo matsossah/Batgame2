@@ -33,6 +33,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'chalkduster',
   },
+  victory: {
+    color: '#FFD664',
+    fontSize: 14,
+    fontFamily: 'chalkduster',
+  },
 });
 
 class MatchesList extends Component {
@@ -51,15 +56,28 @@ class MatchesList extends Component {
               onPress={this.props.onMatchPress.bind(null, match.id)}
             >
               <View style={styles.match}>
-                <Text style={styles.text}>
-                  {match.leftUser.username}
-                  {' VS '}
-                  {match.rightUser.username}
-                </Text>
+                {match.isFinished ?
+                  match.winners.users.includes(match.leftUser.id) ?
+                    <Text style={styles.victory}>
+                        {'YOU BEAT ' + match.rightUser.username + ' !'}
+                    </Text>
+                  :
+                    <Text style={styles.text}>
+                      {match.rightUser.username + ' BEAT YOU...'}
+                    </Text>
+                :
+                  <Text style={styles.text}>
+                    {match.awaitingPlayers.includes(match.leftUser) ?
+                      'Your turn VS ' + match.rightUser.username
+                    :
+                      'Waiting for ' + match.rightUser.username
+                    }
+                  </Text>
+                }
               </View>
             </TouchableWithoutFeedback>
           )
-          :
+        :
           <View style={styles.match}>
             <Text style={styles.text}>
             {emptyTabName}

@@ -181,7 +181,7 @@ export const matchSelector = (matchId, state) => {
   let [leftUser, rightUser] = participants;
   // Can't compare references here because `normalizeUser` does not return
   // the same reference for users with the same `id` (yet).
-  if (leftUser.id !== state.userId) {
+  if (leftUser.id !== state.application.userId) {
     // Ensure that the current user is on the left
     [leftUser, rightUser] = [rightUser, leftUser];
   }
