@@ -41,12 +41,23 @@ class Game extends Component {
   constructor() {
     super();
 
+    this.state = {
+      ended: false,
+    };
+
     this.onGameEnd = this.onGameEnd.bind(this);
   }
 
   onGameEnd(result) {
     const { game } = this.props;
-    this.props.dispatch(createGameScore(game.id, result.score));
+    this.setState(state => {
+      if (!state.ended) {
+        this.props.dispatch(createGameScore(game.id, result.score));
+      } else {
+        console.error('`onEnd` has been called more than once.');
+      }
+      return { ended: true };
+    });
   }
 
   render() {
