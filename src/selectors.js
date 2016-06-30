@@ -1,4 +1,5 @@
 import keyBy from 'lodash/keyBy';
+import fromPairs from 'lodash/fromPairs';
 import omit from 'lodash/omit';
 
 import GAMES from './games';
@@ -146,7 +147,7 @@ export const matchSelector = (matchId, state) => {
 
   // SCORE
 
-  const scoreByUser = keyBy(participants.map(p => [p.id, 0]), 0);
+  const scoreByUser = fromPairs(participants.map(p => [p.id, 0]), 0);
   for (const round of rounds) {
     for (const game of round.games) {
       if (game.gamePicked && game.bestScore !== null) {
