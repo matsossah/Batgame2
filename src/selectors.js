@@ -14,7 +14,7 @@ const st = (a, b) => b < a;
 
 function getBestScore(best, s1, s2) {
   if (best(s1.score, s2.score)) {
-    return s1;
+    return s2;
   }
   if (s1.score === s2.score) {
     return {
@@ -22,7 +22,7 @@ function getBestScore(best, s1, s2) {
       users: s1.users.concat(s2.users),
     };
   }
-  return s2;
+  return s1;
 }
 
 export const userSelector = (userId, state) => state.application.users[userId];
@@ -150,7 +150,7 @@ export const matchSelector = (matchId, state) => {
   const scoreByUser = fromPairs(participants.map(p => [p.id, 0]), 0);
   for (const round of rounds) {
     for (const game of round.games) {
-      if (game.gamePicked && game.bestScore !== null) {
+      if (game.isFinished) {
         for (const user of game.bestScore.users) {
           scoreByUser[user.id] += 1;
         }
@@ -188,6 +188,7 @@ export const matchSelector = (matchId, state) => {
 
   return {
     ...match,
+    scoreByUser,
     leftUser,
     rightUser,
     isFinished,

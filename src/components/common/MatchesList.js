@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     height: 70,
     width: 250,
     justifyContent: 'center',
-    alignItems: 'center',
     borderRadius: 5,
     borderColor: '#34485E',
     backgroundColor: '#34485E',
@@ -32,11 +31,13 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 14,
     fontFamily: 'chalkduster',
+    marginLeft: 30,
   },
   victory: {
     color: '#FFD664',
     fontSize: 14,
     fontFamily: 'chalkduster',
+    marginLeft: 30,
   },
 });
 

@@ -1,5 +1,81 @@
 import React, { Component, PropTypes } from 'react';
-import { TouchableWithoutFeedback, View, Text } from 'react-native';
+import { TouchableWithoutFeedback, View, Text, StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  round: {
+    height: 60,
+    width: 280,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#FFD664',
+    alignItems: 'center',
+    backgroundColor: '#34485E',
+  },
+  game: {
+    height: 50,
+    width: 80,
+    padding: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    backgroundColor: '#2C3D50',
+  },
+  won: {
+    height: 50,
+    width: 80,
+    padding: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    backgroundColor: '#4EB479',
+  },
+  lost: {
+    height: 50,
+    width: 80,
+    padding: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    backgroundColor: '#E74C3C',
+  },
+  titleBox: {
+    height: 20,
+    width: 90,
+    borderWidth: 1,
+    borderColor: '#FFD664',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#34485E',
+  },
+  title: {
+    fontSize: 14,
+    fontFamily: 'chalkduster',
+    color: '#FFD664',
+  },
+  action: {
+    fontSize: 12,
+    fontFamily: 'chalkduster',
+    color: 'white',
+  },
+  gameName: {
+    fontSize: 6,
+    fontFamily: 'chalkduster',
+    color: 'white',
+  },
+  playButton: {
+    height: 30,
+    width: 90,
+    backgroundColor: 'green',
+  },
+});
 
 class Round extends Component {
   render() {
@@ -9,30 +85,45 @@ class Round extends Component {
     } = this.props;
 
     return (
-      <TouchableWithoutFeedback {...otherProps}>
-        <View>
-          <Text>Round {(roundIdx + 1).toString()}</Text>
-          {isCurrent && <Text>Current</Text>}
-          {isActive && <Text>Active</Text>}
-          {round.games.map(game =>
-            <View key={game.id}>
-              {
-                !game.gamePicked ?
+      <View style={styles.container}>
+        <View style={styles.titleBox}>
+          <Text style={styles.title}>Round {(roundIdx + 1).toString()}</Text>
+        </View>
+        <TouchableWithoutFeedback {...otherProps}>
+          <View style={styles.round}>
+            {round.games.map(game =>
+              !game.gamePicked ?
                 (
                   isActive ?
-                    <Text>Turn the wheel!</Text> :
-                    <Text>Opponent has yet to turn the wheel</Text>
-                ) :
+                    <View style={styles.game} key={game.id}>
+                      <Text style={styles.action}>YOUR TURN</Text>
+                    </View>
+                  :
+                    <View style={styles.game} key={game.id} />
+                )
+              :
                 game.isFinished ?
-                  <Text>{game.bestScore.users.includes(currentUser) ? 'won' : 'lost'}</Text> :
-                game.myScore ?
-                  <Text>Waiting for opponent</Text> :
-                  <Text>Your turn!</Text>
-              }
-            </View>
-          )}
-        </View>
-      </TouchableWithoutFeedback>
+                  game.bestScore.users.includes(currentUser) ?
+                    <View style={styles.won} key={game.id}>
+                      <Text style={styles.gameName}>{game.gameName}</Text>
+                    </View>
+                  :
+                    <View style={styles.lost} key={game.id}>
+                      <Text style={styles.gameName}>{game.gameName}</Text>
+                    </View>
+                :
+                  game.myScore ?
+                    <View style={styles.game} key={game.id}>
+                      <Text style={styles.action}>WAITING</Text>
+                    </View>
+                  :
+                    <View style={styles.game} key={game.id}>
+                      <Text style={styles.action}>YOUR TURN</Text>
+                    </View>
+                )}
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
     );
   }
 }
