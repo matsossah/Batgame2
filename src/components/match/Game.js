@@ -11,7 +11,11 @@ import Lucky from '../games/Lucky';
 import RightOn from '../games/RightOn';
 import WhackAMole from '../games/WhackAMole';
 import NumberGame from '../games/numbers/NumberGame';
+
+import StoplightRules from '../gameRules/StoplightRules';
+
 import GameOverlay from './GameOverlay';
+import GameCountdown from './GameCountdown';
 
 import { gameSelector, matchSelector } from '../../selectors';
 import { createGameScore } from '../../actions/application';
@@ -26,6 +30,15 @@ const gameComponents = {
   LUCKY: Lucky,
   RIGHT_ON: RightOn,
   NUMBER: NumberGame,
+};
+
+const gameRuleComponents = {
+  STOPLIGHT: StoplightRules,
+  MATH_BATTLE: StoplightRules,
+  POP_THE_BALLOON: StoplightRules,
+  RED_GREEN_BLUE: StoplightRules,
+  WHACK_A_MOLE: StoplightRules,
+  NUMBER: StoplightRules,
 };
 
 const styles = StyleSheet.create({
@@ -49,10 +62,14 @@ class Game extends Component {
     super();
 
     this.state = {
+      showRules: true,
+      started: false,
       ended: false,
     };
 
     this.onGameEnd = this.onGameEnd.bind(this);
+    this.onGameRuleEnd = this.onGameRuleEnd.bind(this);
+    this.onGameCountdownEnd = this.onGameCountdownEnd.bind(this);
   }
 
   onGameEnd(result) {
@@ -67,25 +84,48 @@ class Game extends Component {
     });
   }
 
+  onGameRuleEnd() {
+    this.setState({
+      showRules: false,
+    });
+  }
+
+  onGameCountdownEnd() {
+    this.setState({
+      started: true,
+    });
+  }
+
   render() {
     const { game, match } = this.props;
 
     const GameComponent = gameComponents[game.gameName];
+    const GameRuleComponent = gameRuleComponents[game.gameName];
 
     return (
       <View style={styles.container}>
-        {/*
-        I'd rather set this directly on GameComponent but it would mean passing
-        otherProps and style on all game components.
-        */}
-        <View
-          style={styles.gameComponent}
-          pointerEvents={game.myScore ? 'none' : 'auto'}
-        >
-          <GameComponent
-            onEnd={this.onGameEnd}
+        {this.state.showRules &&
+          <GameRuleComponent
+            onEnd={this.onGameRuleEnd}
           />
-        </View>
+        }
+        {!this.state.showRules && !this.state.started &&
+          <GameCountdown
+            onEnd={this.onGameCountdownEnd}
+          />
+        }
+        {this.state.started &&
+          // I'd rather set this directly on GameComponent but it would mean passing
+          // otherProps and style on all game components.
+          <View
+            style={styles.gameComponent}
+            pointerEvents={game.myScore ? 'none' : 'auto'}
+          >
+            <GameComponent
+              onEnd={this.onGameEnd}
+            />
+          </View>
+        }
         {game.myScore &&
           <GameOverlay
             style={styles.gameOverlay}
