@@ -46,15 +46,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: '#E74C3C',
   },
-  titleBox: {
-    height: 20,
-    width: 90,
-    borderWidth: 1,
-    borderColor: '#FFD664',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#34485E',
-  },
   title: {
     fontSize: 14,
     fontFamily: 'chalkduster',
@@ -86,8 +77,8 @@ class Round extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.titleBox}>
-          <Text style={styles.title}>Round {(roundIdx + 1).toString()}</Text>
+        <View>
+          <Text style={styles.title}>ROUND {(roundIdx + 1).toString()}</Text>
         </View>
         <TouchableWithoutFeedback {...otherProps}>
           <View style={styles.round}>

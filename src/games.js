@@ -23,4 +23,16 @@ export default [
     name: 'NUMBER',
     winner: 'SMALLEST',
   },
+  {
+    name: 'IDENTICAL',
+    winner: 'GREATEST',
+  },
+  {
+    name: 'LUCKY',
+    winner: 'GREATEST',
+  },
+  {
+    name: 'RIGHT_ON',
+    winner: 'SMALLEST',
+  },
 ];

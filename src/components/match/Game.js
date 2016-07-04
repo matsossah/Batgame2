@@ -6,6 +6,10 @@ import Stoplight from '../games/Stoplight';
 import MathBattle from '../games/MathBattle';
 import PopTheBalloon from '../games/PopTheBalloon';
 import RedGreenBlue from '../games/RedGreenBlue';
+import Identical from '../games/Identical';
+import Lucky from '../games/Lucky';
+import RightOn from '../games/RightOn';
+import WhackAMole from '../games/WhackAMole';
 import NumberGame from '../games/numbers/NumberGame';
 import GameOverlay from './GameOverlay';
 
@@ -17,7 +21,10 @@ const gameComponents = {
   MATH_BATTLE: MathBattle,
   POP_THE_BALLOON: PopTheBalloon,
   RED_GREEN_BLUE: RedGreenBlue,
-  WHACK_A_MOLE: Stoplight,
+  WHACK_A_MOLE: WhackAMole,
+  IDENTICAL: Identical,
+  LUCKY: Lucky,
+  RIGHT_ON: RightOn,
   NUMBER: NumberGame,
 };
 
