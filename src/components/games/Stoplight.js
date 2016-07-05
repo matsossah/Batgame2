@@ -88,7 +88,7 @@ class Stoplight extends Component {
     this.goRed = this.goRed.bind(this);
     this.goOrange = this.goOrange.bind(this);
     this.goGreen = this.goGreen.bind(this);
-    this.timeout = setTimeout(this.goRed, 1000);
+    this.timeout = setTimeout(this.goRed, 1);
   }
   componentWillUnmount() {
     clearTimeout(this.timeout);
@@ -121,7 +121,7 @@ class Stoplight extends Component {
   }
   goOrange() {
     this.setState({ color: 'orange' });
-    this.timeout = setTimeout(this.goGreen, 5000 * Math.random() + 5000);
+    this.timeout = setTimeout(this.goGreen, 5000 * Math.random() + 1000);
   }
   goGreen() {
     this.setState({ color: 'green', startTime: Date.now(), running: true });

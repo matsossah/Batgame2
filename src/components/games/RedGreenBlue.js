@@ -90,7 +90,7 @@ class RedGreenBlue extends Component {
       green: this.onButtonPress.bind(this, 'green'),
       blue: this.onButtonPress.bind(this, 'blue'),
     };
-    setTimeout(this.onStarted.bind(this), 3000);
+    setTimeout(this.onStarted.bind(this), 1);
     this.onEnd = this.onEnd.bind(this);
   }
   onStarted() {

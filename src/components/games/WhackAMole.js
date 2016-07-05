@@ -57,8 +57,8 @@ class WhackAMole extends Component {
     };
     this.onCellPress = this.onCellPress.bind(this);
     this.newMole = this.newMole.bind(this);
-    this.newMoleTimeout = setTimeout(this.newMole, 3000);
-    this.onStartedTimeout = setTimeout(this.onStarted.bind(this), 3000);
+    this.newMoleTimeout = setTimeout(this.newMole, 1);
+    this.onStartedTimeout = setTimeout(this.onStarted.bind(this), 1);
     this.onEnd = this.onEnd.bind(this);
   }
   componentWillUnmount() {

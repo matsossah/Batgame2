@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { TouchableHighlight, View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import { userSelector } from '../../selectors';
 import { gotoMatch, gotoNextGame } from '../../actions/navigation';
@@ -17,6 +18,12 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
+
+function formatDuration(d) {
+  // This approach has issues
+  // See https://github.com/moment/moment/issues/1048
+  return moment.utc(d).format('s.SS');
+}
 
 class GameOverlay extends Component {
   constructor() {

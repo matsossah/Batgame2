@@ -51,8 +51,9 @@ const styles = StyleSheet.create({
     fontFamily: 'chalkduster',
   },
   buttonText: {
-    fontSize: 20,
+    fontSize: 40,
     color: 'white',
+    fontWeight: 'bold',
     fontFamily: 'chalkduster',
   },
 });
@@ -115,7 +116,7 @@ class RightOn extends Component {
       laps: this.state.laps.concat([lap]),
     });
 
-    if (this.state.laps.length === 3) {
+    if (this.state.laps.length === 2) {
       const score = (
         Math.abs(this.state.laps[0] - 3000) +
         Math.abs(this.state.laps[1] - 3000) +

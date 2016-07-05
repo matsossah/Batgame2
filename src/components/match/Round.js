@@ -90,7 +90,9 @@ class Round extends Component {
                       <Text style={styles.action}>YOUR TURN</Text>
                     </View>
                   :
-                    <View style={styles.game} key={game.id} />
+                    <View style={styles.game} key={game.id}>
+                      <Text style={styles.action}>WAITING</Text>
+                    </View>
                 )
               :
                 game.isFinished ?

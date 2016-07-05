@@ -37,13 +37,14 @@ function StoplightRules(props) {
         <View style={styles.container}>
           <View style={styles.rulesContainer}>
             <Text style={styles.rules}>
-              Press the GO! button as soon as the light turns green!
+              Press the GO button as soon as the light turns green!
             </Text>
           </View>
           <LargeButton
             buttonText="START"
             onPress={props.onEnd}
             underlayColor="#FFD664"
+            borderColor="#FFD664"
           />
         </View>
       }

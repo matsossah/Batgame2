@@ -84,7 +84,7 @@ class MathBattle extends Component {
       topOperands: [sample(NUMBERS), sample(NUMBERS)],
       bottomOperands: [sample(NUMBERS), sample(NUMBERS)],
     };
-    setTimeout(this.onStarted.bind(this), 3000);
+    setTimeout(this.onStarted.bind(this), 1);
     this.onEnd = this.onEnd.bind(this);
     this.onGtPress = this.onButtonPress.bind(this, 'gt');
     this.onEqPress = this.onButtonPress.bind(this, 'eq');
