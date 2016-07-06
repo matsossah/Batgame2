@@ -54,9 +54,10 @@ const styles = StyleSheet.create({
     color: '#2C3D50',
   },
   action: {
-    fontSize: 14,
+    fontSize: 18,
     fontFamily: 'chalkduster',
-    color: 'white',
+    fontWeight: 'bold',
+    color: '#34485E',
   },
   username: {
     fontSize: 16,
