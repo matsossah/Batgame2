@@ -37,7 +37,7 @@ function LuckyRules(props) {
         <View style={styles.container}>
           <View style={styles.rulesContainer}>
             <Text style={styles.rules}>
-              Try avoiding the ☠!
+              Turn over as many cells as possible without flipping the ☠!
             </Text>
           </View>
           <LargeButton

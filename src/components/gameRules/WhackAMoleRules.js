@@ -37,7 +37,7 @@ function WhackAMoleRules(props) {
         <View style={styles.container}>
           <View style={styles.rulesContainer}>
             <Text style={styles.rules}>
-              Press on the right cell as soon as it lights up!
+              Press on the circles as soon as they turn yellow!
             </Text>
           </View>
           <LargeButton

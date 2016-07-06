@@ -89,11 +89,14 @@ class RightOn extends Component {
     });
   }
   score() {
-    return (
-      <Text style={styles.score}>
-        Result: {formatDuration(this.state.difference)}
-      </Text>
-    );
+    if (this.state.running === false) {
+      return (
+        <Text style={styles.score}>
+          Result: {formatDuration(this.state.difference)}
+        </Text>
+      );
+    }
+    return ('');
   }
   lapButton() {
     return (

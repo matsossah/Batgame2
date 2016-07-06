@@ -92,9 +92,8 @@ class Identical extends Component {
       started: true,
       countdownStarted: Date.now(),
       previousEmoji: this.state.currentEmoji,
-      currentEmoji: '',
+      currentEmoji: sample(allEmojis),
     });
-    this.timeout = setTimeout(() => this.setState({ currentEmoji: sample(allEmojis) }), 300);
   }
   onEnd() {
     this.props.onEnd({ score: this.state.score });
@@ -104,9 +103,8 @@ class Identical extends Component {
       this.setState({
         score: this.state.score + 1,
         previousEmoji: this.state.currentEmoji,
-        currentEmoji: '',
+        currentEmoji: sample(allEmojis),
       });
-      this.timeout = setTimeout(() => this.setState({ currentEmoji: sample(allEmojis) }), 100);
     } else {
       this.setState({
         running: false,

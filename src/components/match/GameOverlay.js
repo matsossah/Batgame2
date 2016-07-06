@@ -110,7 +110,12 @@ class GameOverlay extends Component {
         <View style={styles.scoreBox}>
           <View style={styles.scoreInfo}>
             <Text style={styles.scoreLabel}>Score</Text>
-            <Text style={styles.score}>{game.myScore.score}</Text>
+            <Text style={styles.score}>{game.info.scoreType === 'DATE' ?
+              formatDuration(game.myScore.score)
+              :
+              game.myScore.score
+            }
+            </Text>
           </View>
           <View style={styles.options}>
             <View style={styles.match}>
