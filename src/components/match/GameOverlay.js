@@ -108,15 +108,21 @@ class GameOverlay extends Component {
         {...otherProps}
       >
         <View style={styles.scoreBox}>
-          <View style={styles.scoreInfo}>
-            <Text style={styles.scoreLabel}>Score</Text>
-            <Text style={styles.score}>{game.info.scoreType === 'DATE' ?
-              formatDuration(game.myScore.score)
+          {game.info.scoreType === 'DATE' ?
+            <View style={styles.scoreInfo}>
+              <Text style={styles.scoreLabel}>Time</Text>
+              <Text style={styles.score}>
+                {formatDuration(game.myScore.score) + 's'}
+              </Text>
+            </View>
               :
-              game.myScore.score
-            }
-            </Text>
-          </View>
+            <View style={styles.scoreInfo}>
+              <Text style={styles.scoreLabel}>Score</Text>
+              <Text style={styles.score}>
+                {game.myScore.score + ' pts'}
+              </Text>
+            </View>
+          }
           <View style={styles.options}>
             <View style={styles.match}>
               <TouchableHighlight
