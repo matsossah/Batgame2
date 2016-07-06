@@ -53,6 +53,7 @@ class Home extends Component {
               onPress={this.onNewGamePress}
               underlayColor="#4EB479"
               style={styles.newGame}
+              fontSize={30}
             />
             {this.props.matches !== null &&
               <MatchesList

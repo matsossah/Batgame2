@@ -20,13 +20,28 @@ const styles = StyleSheet.create({
   buttonsView: {
     justifyContent: 'space-around',
     alignItems: 'center',
-    flex: 6,
+    flex: 8,
   },
-  newGame: {
-    flex: 2,
+  facebook: {
+    height: 90,
+    width: 240,
     justifyContent: 'center',
-    alignItems: 'stretch',
-    backgroundColor: 'green',
+    alignItems: 'center',
+    backgroundColor: '#3b5998',
+  },
+  random: {
+    height: 90,
+    width: 240,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#3498DB',
+  },
+  byUsername: {
+    height: 90,
+    width: 240,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#77c2f4',
   },
 });
 
@@ -55,23 +70,26 @@ class PickOpponent extends Component {
             <View style={styles.empty} />
             <View style={styles.buttonsView}>
               <LargeButton
-                style={styles.newGame}
+                style={styles.facebook}
                 buttonText="FACEBOOK FRIENDS"
                 onPress={this.onFacebookPress}
                 underlayColor="#3498DB"
+                fontSize={18}
                 disabled
               />
               <LargeButton
-                style={styles.newGame}
+                style={styles.random}
                 buttonText="RANDOM OPPONENT"
                 onPress={this.onRandomPress}
                 underlayColor="#E67E2C"
+                fontSize={18}
               />
               <LargeButton
-                style={styles.newGame}
+                style={styles.byUsername}
                 buttonText="SEARCH BY USERNAME"
                 onPress={this.onSearchPress}
                 underlayColor="#583B67"
+                fontSize={18}
                 disabled
               />
             </View>
