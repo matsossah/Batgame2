@@ -8,14 +8,61 @@ import { gotoMatch, gotoNextGame } from '../../actions/navigation';
 
 const styles = StyleSheet.create({
   overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    paddingBottom: 200,
+  },
+  scoreBox: {
+    backgroundColor: '#34485E',
+    height: 150,
+    width: 200,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    borderWidth: 5,
+    borderColor: '#FFD664',
+  },
+  scoreInfo: {
+    flex: 2,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
+  options: {
+    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  scoreBox: {
-    backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 20,
+  match: {
+    flex: 1,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    backgroundColor: '#3498DB',
+  },
+  next: {
+    flex: 1,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    backgroundColor: '#4EB479',
+  },
+  scoreLabel: {
+    fontSize: 20,
+    fontFamily: 'chalkduster',
+    color: 'white',
+  },
+  optionLabel: {
+    fontSize: 14,
+    fontFamily: 'chalkduster',
+    color: 'white',
+  },
+  score: {
+    fontSize: 30,
+    fontFamily: 'chalkduster',
+    color: '#FFD664',
   },
 });
 
@@ -61,20 +108,29 @@ class GameOverlay extends Component {
         {...otherProps}
       >
         <View style={styles.scoreBox}>
-          <Text>Score</Text>
-          <Text>{game.myScore.score}</Text>
-          <TouchableHighlight
-            onPress={this.onMatchPress}
-          >
-            <Text>Match</Text>
-          </TouchableHighlight>
-          {match.awaitingPlayers.includes(user) &&
-            <TouchableHighlight
-              onPress={this.onNextPress}
-            >
-              <Text>Next</Text>
-            </TouchableHighlight>
-          }
+          <View style={styles.scoreInfo}>
+            <Text style={styles.scoreLabel}>Score</Text>
+            <Text style={styles.score}>{game.myScore.score}</Text>
+          </View>
+          <View style={styles.options}>
+            <View style={styles.match}>
+              <TouchableHighlight
+                onPress={this.onMatchPress}
+              >
+                <Text style={styles.optionLabel}>Match</Text>
+              </TouchableHighlight>
+            </View>
+
+            {match.awaitingPlayers.includes(user) &&
+              <View style={styles.next}>
+                <TouchableHighlight
+                  onPress={this.onNextPress}
+                >
+                  <Text style={styles.optionLabel}>Next</Text>
+                </TouchableHighlight>
+              </View>
+            }
+          </View>
         </View>
       </View>
     );

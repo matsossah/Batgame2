@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#4EB479',
+    backgroundColor: '#FFD664',
     marginBottom: 20,
   },
   emoji: {

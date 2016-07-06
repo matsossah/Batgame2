@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { TouchableWithoutFeedback, View, Text, StyleSheet } from 'react-native';
+import { TouchableWithoutFeedback, View, Text, StyleSheet, Image } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -66,6 +66,10 @@ const styles = StyleSheet.create({
     width: 90,
     backgroundColor: 'green',
   },
+  image: {
+    width: 53,
+    height: 30,
+  },
 });
 
 class Round extends Component {
@@ -91,7 +95,12 @@ class Round extends Component {
                     </View>
                   :
                     <View style={styles.game} key={game.id}>
-                      <Text style={styles.action}>WAITING</Text>
+                      <View style={styles.container}>
+                        <Image
+                          style={styles.image}
+                          source={require('../../assets/logo.png')}
+                        />
+                      </View>
                     </View>
                 )
               :

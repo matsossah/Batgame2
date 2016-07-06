@@ -113,7 +113,7 @@ class Stoplight extends Component {
       score: 1000,
       failure: true,
     });
-    this.props.onEnd({ score: 1000 });
+    this.props.onEnd({ score: 3000 });
   }
   goRed() {
     this.setState({ color: 'red' });

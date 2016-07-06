@@ -85,7 +85,7 @@ class Identical extends Component {
     this.onNoPress = this.onNoPress.bind(this);
     this.onEnd = this.onEnd.bind(this);
     this.renderTimer = this.renderTimer.bind(this);
-    setTimeout(this.onStarted.bind(this), 3000);
+    setTimeout(this.onStarted.bind(this), 800);
   }
   onStarted() {
     this.setState({
@@ -94,7 +94,7 @@ class Identical extends Component {
       previousEmoji: this.state.currentEmoji,
       currentEmoji: '',
     });
-    this.timeout = setTimeout(() => this.setState({ currentEmoji: sample(allEmojis) }), 100);
+    this.timeout = setTimeout(() => this.setState({ currentEmoji: sample(allEmojis) }), 300);
   }
   onEnd() {
     this.props.onEnd({ score: this.state.score });
