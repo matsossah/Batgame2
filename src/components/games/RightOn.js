@@ -7,11 +7,14 @@ import moment from 'moment';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
   },
   scoreBox: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: 'blue',
   },
   score: {
     fontSize: 30,
@@ -20,9 +23,12 @@ const styles = StyleSheet.create({
   },
   laps: {
     flex: 4,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    alignSelf: 'stretch',
   },
   buttonWrapper: {
-    flex: 3,
+    flex: 2,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -39,11 +45,16 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#4EB479',
+    backgroundColor: '#FFD664',
   },
   lap: {
+    height: 70,
+    width: 200,
+    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: 'red',
   },
   lapText: {
     fontSize: 30,
@@ -55,6 +66,36 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontFamily: 'chalkduster',
+  },
+});
+
+const borderStyles = StyleSheet.create({
+  0: {
+    borderColor: '#E74C3C',
+  },
+  1: {
+    borderColor: '#3498DB',
+  },
+  2: {
+    borderColor: '#4EB479',
+  },
+  '#FFD664': {
+    borderColor: '#FFD664',
+  },
+});
+
+const colorStyles = StyleSheet.create({
+  0: {
+    color: '#E74C3C',
+  },
+  1: {
+    color: '#3498DB',
+  },
+  2: {
+    color: '#4EB479',
+  },
+  '#FFD664': {
+    color: '#FFD664',
   },
 });
 
@@ -71,7 +112,7 @@ class RightOn extends Component {
       startTime: Date.now(),
       duration: null,
       running: true,
-      laps: [],
+      laps: ['', '', ''],
       difference: null,
     };
 
@@ -80,23 +121,13 @@ class RightOn extends Component {
   laps() {
     return this.state.laps.map((time, index) => {
       return (
-        <View key={index} style={styles.lap}>
-          <Text style={styles.lapText}>
-            {index + 1} -> {formatDuration(time)}
+        <View key={index} style={[styles.lap, borderStyles[index]]}>
+          <Text style={[styles.lapText, colorStyles[index]]}>
+            {index + 1} | {formatDuration(time)}
           </Text>
         </View>
       );
     });
-  }
-  score() {
-    if (this.state.running === false) {
-      return (
-        <Text style={styles.score}>
-          Result: {this.state.difference}
-        </Text>
-      );
-    }
-    return (<Text />);
   }
   lapButton() {
     return (
@@ -154,9 +185,6 @@ class RightOn extends Component {
             </View>
             <View style={styles.buttonWrapper}>
               {this.lapButton()}
-            </View>
-            <View style={styles.scoreBox}>
-              {this.score()}
             </View>
           </View>
         }

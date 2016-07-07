@@ -44,4 +44,9 @@ export default [
     winner: 'SMALLEST',
     scoreType: 'DATE',
   },
+  {
+    name: 'REAL_COLOR',
+    winner: 'GREATEST',
+    scoreType: 'NUMBER',
+  },
 ];

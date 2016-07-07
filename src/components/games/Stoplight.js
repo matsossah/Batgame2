@@ -110,7 +110,7 @@ class Stoplight extends Component {
     this.setState({
       running: false,
       finished: true,
-      score: 1000,
+      score: 3000,
       failure: true,
     });
     this.props.onEnd({ score: 3000 });

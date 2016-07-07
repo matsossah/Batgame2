@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 });
 
 function Duration(props) {
-  const { duration, style, ...otherProps } = props;
+  const { duration, style, textStyle, ...otherProps } = props;
   return (
     <View {...otherProps} style={[styles.container].concat(style)}>
       {formatDuration(duration).split('').map((c, idx) => {
@@ -40,7 +40,7 @@ function Duration(props) {
             style={[
               styles.char,
               isNumber ? styles.numberChar : styles.symbolChar,
-            ]}
+            ].concat(textStyle)}
           >
             {c}
           </Text>
@@ -53,6 +53,7 @@ function Duration(props) {
 Duration.propTypes = {
   style: PropTypes.any,
   duration: PropTypes.number.isRequired,
+  textStyle: PropTypes.any,
 };
 
 export default Duration;

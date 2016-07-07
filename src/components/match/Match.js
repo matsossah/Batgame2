@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'chalkduster',
     fontWeight: 'bold',
-    color: '#34485E',
+    color: 'white',
   },
   username: {
     fontSize: 16,

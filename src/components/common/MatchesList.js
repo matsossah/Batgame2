@@ -21,6 +21,21 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'chalkduster',
   },
+  emptyTab: {
+    height: 70,
+    width: 250,
+    borderWidth: 1,
+    borderColor: '#FFD664',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    backgroundColor: '#34485E',
+  },
+  emptyTabName: {
+    color: 'white',
+    fontSize: 16,
+    fontFamily: 'chalkduster',
+  },
   match: {
     height: 70,
     width: 250,
@@ -133,8 +148,8 @@ class MatchesList extends Component {
             </TouchableWithoutFeedback>
           )
         :
-          <View style={styles.match}>
-            <Text style={styles.text}>
+          <View style={styles.emptyTab}>
+            <Text style={styles.emptyTabName}>
             {emptyTabName}
             </Text>
           </View>
