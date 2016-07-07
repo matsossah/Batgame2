@@ -29,6 +29,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#3b5998',
   },
+  buttonTextStyle: {
+    fontSize: 18,
+  },
   random: {
     height: 90,
     width: 240,
@@ -71,25 +74,25 @@ class PickOpponent extends Component {
             <View style={styles.buttonsView}>
               <LargeButton
                 style={styles.facebook}
+                buttonTextStyle={styles.buttonTextStyle}
                 buttonText="FACEBOOK FRIENDS"
                 onPress={this.onFacebookPress}
                 underlayColor="#3498DB"
-                fontSize={18}
                 disabled
               />
               <LargeButton
                 style={styles.random}
+                buttonTextStyle={styles.buttonTextStyle}
                 buttonText="RANDOM OPPONENT"
                 onPress={this.onRandomPress}
                 underlayColor="#E67E2C"
-                fontSize={18}
               />
               <LargeButton
                 style={styles.byUsername}
+                buttonTextStyle={styles.buttonTextStyle}
                 buttonText="SEARCH BY USERNAME"
                 onPress={this.onSearchPress}
                 underlayColor="#583B67"
-                fontSize={18}
                 disabled
               />
             </View>

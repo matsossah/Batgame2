@@ -92,11 +92,11 @@ class RightOn extends Component {
     if (this.state.running === false) {
       return (
         <Text style={styles.score}>
-          Result: {formatDuration(this.state.difference)}
+          Result: {this.state.difference}
         </Text>
       );
     }
-    return ('');
+    return (<Text />);
   }
   lapButton() {
     return (
@@ -126,7 +126,7 @@ class RightOn extends Component {
         Math.abs(this.state.laps[2] - 3000)
       );
       this.setState({
-        difference: score,
+        difference: score / 1000,
         running: false,
       });
       this.props.onEnd({ score });

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 
 function LargeButton(props) {
-  const { style, buttonText, underlayColor, fontSize, ...otherProps } = props;
+  const { style, buttonText, underlayColor, buttonTextStyle, ...otherProps } = props;
   return (
     <TouchableHighlight
       {...otherProps}
@@ -30,8 +30,7 @@ function LargeButton(props) {
       <Text
         style={[
           styles.buttonText,
-          { fontSize: fontSize },
-        ]}
+        ].concat(buttonTextStyle)}
       >
         {buttonText}
       </Text>
@@ -41,9 +40,9 @@ function LargeButton(props) {
 
 LargeButton.propTypes = {
   style: PropTypes.any,
+  buttonTextStyle: PropTypes.any,
   buttonText: PropTypes.string.isRequired,
   underlayColor: PropTypes.string.isRequired,
-  fontSize: PropTypes.number,
 };
 
 export default LargeButton;
