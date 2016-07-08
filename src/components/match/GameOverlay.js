@@ -108,20 +108,28 @@ class GameOverlay extends Component {
         {...otherProps}
       >
         <View style={styles.scoreBox}>
-          {game.info.scoreType === 'DATE' ?
+          {game.info.name === 'RIGHT_ON' ?
             <View style={styles.scoreInfo}>
-              <Text style={styles.scoreLabel}>Time</Text>
+              <Text style={styles.scoreLabel}>Total Difference</Text>
               <Text style={styles.score}>
                 {formatDuration(game.myScore.score) + 's'}
               </Text>
             </View>
-              :
-            <View style={styles.scoreInfo}>
-              <Text style={styles.scoreLabel}>Score</Text>
-              <Text style={styles.score}>
-                {game.myScore.score + ' pts'}
-              </Text>
-            </View>
+          :
+            game.info.scoreType === 'DATE' ?
+              <View style={styles.scoreInfo}>
+                <Text style={styles.scoreLabel}>Time</Text>
+                <Text style={styles.score}>
+                  {formatDuration(game.myScore.score) + 's'}
+                </Text>
+              </View>
+                :
+              <View style={styles.scoreInfo}>
+                <Text style={styles.scoreLabel}>Score</Text>
+                <Text style={styles.score}>
+                  {game.myScore.score + ' pts'}
+                </Text>
+              </View>
           }
           <View style={styles.options}>
             <View style={styles.match}>

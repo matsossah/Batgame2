@@ -78,23 +78,16 @@ class MathBattle extends Component {
     this.state = {
       duration: null,
       running: true,
-      started: false,
-      countdownStarted: null,
+      started: true,
+      countdownStarted: Date.now(),
       score: 0,
       topOperands: [sample(NUMBERS), sample(NUMBERS)],
       bottomOperands: [sample(NUMBERS), sample(NUMBERS)],
     };
-    setTimeout(this.onStarted.bind(this), 1);
     this.onEnd = this.onEnd.bind(this);
     this.onGtPress = this.onButtonPress.bind(this, 'gt');
     this.onEqPress = this.onButtonPress.bind(this, 'eq');
     this.onLtPress = this.onButtonPress.bind(this, 'lt');
-  }
-  onStarted() {
-    this.setState({
-      started: true,
-      countdownStarted: Date.now(),
-    });
   }
   onEnd() {
     this.setState({

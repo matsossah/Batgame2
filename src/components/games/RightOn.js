@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
   },
   laps: {
     flex: 4,
-    justifyContent: 'space-around',
     alignItems: 'center',
     alignSelf: 'stretch',
   },
@@ -40,9 +39,9 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   button: {
-    height: 100,
-    width: 100,
-    borderRadius: 50,
+    height: 120,
+    width: 120,
+    borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFD664',
@@ -50,6 +49,7 @@ const styles = StyleSheet.create({
   lap: {
     height: 70,
     width: 200,
+    marginTop: 30,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     fontFamily: 'chalkduster',
   },
   buttonText: {
-    fontSize: 40,
+    fontSize: 30,
     color: 'white',
     fontWeight: 'bold',
     fontFamily: 'chalkduster',
@@ -109,14 +109,20 @@ class RightOn extends Component {
   constructor() {
     super();
     this.state = {
-      startTime: Date.now(),
+      startTime: null,
       duration: null,
-      running: true,
-      laps: ['', '', ''],
-      difference: null,
+      running: false,
+      laps: [],
     };
-
     this.handleLapPress = this.handleLapPress.bind(this);
+    this.onStarted = this.onStarted.bind(this);
+    this.timeout = setTimeout(this.onStarted, 1000);
+  }
+  onStarted() {
+    this.setState({
+      running: true,
+      startTime: Date.now(),
+    });
   }
   laps() {
     return this.state.laps.map((time, index) => {
@@ -145,21 +151,21 @@ class RightOn extends Component {
   handleLapPress() {
     const lap = Date.now() - this.state.startTime;
 
-    this.setState({
-      startTime: Date.now(),
-      laps: this.state.laps.concat([lap]),
-    });
-
-    if (this.state.laps.length === 2) {
+    if (this.state.laps.length < 2) {
+      this.setState({
+        startTime: Date.now(),
+        laps: this.state.laps.concat([lap]),
+      });
+    } else if (this.state.laps.length === 2) {
+      this.setState({
+        running: false,
+        laps: this.state.laps.concat([lap]),
+      });
       const score = (
         Math.abs(this.state.laps[0] - 3000) +
         Math.abs(this.state.laps[1] - 3000) +
-        Math.abs(this.state.laps[2] - 3000)
+        Math.abs(lap - 3000)
       );
-      this.setState({
-        difference: score / 1000,
-        running: false,
-      });
       this.props.onEnd({ score });
     }
   }

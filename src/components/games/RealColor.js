@@ -139,27 +139,22 @@ class RealColor extends Component {
     this.state = {
       duration: null,
       running: true,
-      started: false,
-      countdownStarted: null,
-      color: '',
-      word: '',
+      started: true,
+      countdownStarted: Date.now(),
+      color: sample(colors),
+      word: sample(words),
       score: 0,
     };
     this.onYesPress = this.onYesPress.bind(this);
     this.onNoPress = this.onNoPress.bind(this);
     this.onEnd = this.onEnd.bind(this);
     this.renderTimer = this.renderTimer.bind(this);
-    setTimeout(this.onStarted.bind(this), 1);
-  }
-  onStarted() {
-    this.setState({
-      started: true,
-      countdownStarted: Date.now(),
-      color: sample(colors),
-      word: sample(words),
-    });
   }
   onEnd() {
+    this.setState({
+      running: false,
+      duration: 30000 - (Date.now() - this.state.countdownStarted),
+    });
     this.props.onEnd({ score: this.state.score });
   }
   onYesPress() {
@@ -184,7 +179,6 @@ class RealColor extends Component {
         color: sample(colors),
         word: sample(words),
       });
-      // this.timeout = setTimeout(() => this.setState({ currentEmoji: sample(allEmojis) }), 100);
     } else {
       this.setState({
         running: false,
@@ -205,7 +199,11 @@ class RealColor extends Component {
       }
       return <Duration duration={30000} />;
     }
-    return <Duration duration={this.state.duration} />;
+    return (
+      <Duration
+        duration={this.state.duration}
+        textStyle={colorStyles[this.state.color]}
+      />);
   }
   render() {
     return (

@@ -96,6 +96,10 @@ class Identical extends Component {
     });
   }
   onEnd() {
+    this.setState({
+      running: false,
+      duration: 30000 - (Date.now() - this.state.countdownStarted),
+    });
     this.props.onEnd({ score: this.state.score });
   }
   onYesPress() {
@@ -126,6 +130,7 @@ class Identical extends Component {
         running: false,
         duration: 30000 - (Date.now() - this.state.countdownStarted),
       });
+      this.props.onEnd({ score: this.state.score });
     }
   }
   renderTimer() {
