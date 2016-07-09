@@ -1,6 +1,7 @@
 package com.batgame;
 
 import com.facebook.react.ReactActivity;
+import io.branch.rnbranch.RNBranchPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactPackage;
@@ -37,6 +38,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new RNBranchPackage(),
             new FBSDKPackage(),
             new VectorIconsPackage()
         );
