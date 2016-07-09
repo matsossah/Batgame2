@@ -13,19 +13,9 @@ import WhackAMole from '../games/WhackAMole';
 import NumberGame from '../games/numbers/NumberGame';
 import RealColor from '../games/RealColor';
 
-import StoplightRules from '../gameRules/StoplightRules';
-import MathBattleRules from '../gameRules/MathBattleRules';
-import PopTheBalloonRules from '../gameRules/PopTheBalloonRules';
-import RedGreenBlueRules from '../gameRules/RedGreenBlueRules';
-import WhackAMoleRules from '../gameRules/WhackAMoleRules';
-import IdenticalRules from '../gameRules/IdenticalRules';
-import LuckyRules from '../gameRules/LuckyRules';
-import RightOnRules from '../gameRules/RightOnRules';
-import NumberGameRules from '../gameRules/NumberGameRules';
-import RealColorRules from '../gameRules/RealColorRules';
-
 import GameOverlay from './GameOverlay';
 import GameCountdown from './GameCountdown';
+import GameRule from './GameRule';
 
 import { gameSelector, matchSelector } from '../../selectors';
 import { createGameScore } from '../../actions/application';
@@ -41,19 +31,6 @@ const gameComponents = {
   RIGHT_ON: RightOn,
   NUMBER: NumberGame,
   REAL_COLOR: RealColor,
-};
-
-const gameRuleComponents = {
-  STOPLIGHT: StoplightRules,
-  MATH_BATTLE: MathBattleRules,
-  POP_THE_BALLOON: PopTheBalloonRules,
-  RED_GREEN_BLUE: RedGreenBlueRules,
-  WHACK_A_MOLE: WhackAMoleRules,
-  IDENTICAL: IdenticalRules,
-  LUCKY: LuckyRules,
-  RIGHT_ON: RightOnRules,
-  NUMBER: NumberGameRules,
-  REAL_COLOR: RealColorRules,
 };
 
 const styles = StyleSheet.create({
@@ -115,12 +92,13 @@ class Game extends Component {
     const { game, match } = this.props;
 
     const GameComponent = gameComponents[game.gameName];
-    const GameRuleComponent = gameRuleComponents[game.gameName];
 
     return (
       <View style={styles.container}>
         {this.state.showRules &&
-          <GameRuleComponent
+          <GameRule
+            name={game.info.fullName}
+            rule={game.info.rule}
             onEnd={this.onGameRuleEnd}
           />
         }
