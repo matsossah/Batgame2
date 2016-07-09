@@ -8,6 +8,7 @@
  */
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "RNBranch.h"
 
 #import "AppDelegate.h"
 
@@ -17,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [RNBranch initSessionWithLaunchOptions:launchOptions isReferrable:YES];
+
   NSURL *jsCodeLocation;
 
   /**
@@ -60,15 +63,24 @@
                                   didFinishLaunchingWithOptions:launchOptions];
 }
 
-
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-  BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+  BOOL branchHandled = [RNBranch handleDeepLink:url];
+
+  if (branchHandled) {
+    return branchHandled;
+  }
+
+  BOOL fbHandled = [[FBSDKApplicationDelegate sharedInstance] application:application
                                                                 openURL:url
                                                       sourceApplication:sourceApplication
                                                              annotation:annotation
-                  ];
-  // Add any custom logic here.
-  return handled;
+                   ];
+
+  return fbHandled;
+}
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+  return [RNBranch continueUserActivity:userActivity];
 }
 
 @end
