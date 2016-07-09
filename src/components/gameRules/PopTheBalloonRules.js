@@ -27,17 +27,17 @@ const styles = StyleSheet.create({
   },
 });
 
-function StoplightRules(props) {
+function PopTheBalloonRules(props) {
   return (
     <Template
       header={
-        <Title>STOPLIGHT</Title>
+        <Title>POP THE BALLON</Title>
       }
       footer={
         <View style={styles.container}>
           <View style={styles.rulesContainer}>
             <Text style={styles.rules}>
-              Press the GO button as soon as the light turns green!
+              Press 50 times on the balloon as quickly as possible to pop it!
             </Text>
           </View>
           <LargeButton
@@ -52,8 +52,8 @@ function StoplightRules(props) {
   );
 }
 
-StoplightRules.propTypes = {
+PopTheBalloonRules.propTypes = {
   onEnd: PropTypes.func.isRequired,
 };
 
-export default StoplightRules;
+export default PopTheBalloonRules;

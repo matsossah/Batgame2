@@ -27,17 +27,17 @@ const styles = StyleSheet.create({
   },
 });
 
-function StoplightRules(props) {
+function MathBattleRules(props) {
   return (
     <Template
       header={
-        <Title>STOPLIGHT</Title>
+        <Title>MATH BATTLE</Title>
       }
       footer={
         <View style={styles.container}>
           <View style={styles.rulesContainer}>
             <Text style={styles.rules}>
-              Press the GO button as soon as the light turns green!
+              Press on the multiplication with the bigger result!
             </Text>
           </View>
           <LargeButton
@@ -52,8 +52,8 @@ function StoplightRules(props) {
   );
 }
 
-StoplightRules.propTypes = {
+MathBattleRules.propTypes = {
   onEnd: PropTypes.func.isRequired,
 };
 
-export default StoplightRules;
+export default MathBattleRules;

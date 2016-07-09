@@ -27,17 +27,17 @@ const styles = StyleSheet.create({
   },
 });
 
-function StoplightRules(props) {
+function LuckyRules(props) {
   return (
     <Template
       header={
-        <Title>STOPLIGHT</Title>
+        <Title>LUCKY</Title>
       }
       footer={
         <View style={styles.container}>
           <View style={styles.rulesContainer}>
             <Text style={styles.rules}>
-              Press the GO button as soon as the light turns green!
+              Turn over as many cells as possible without flipping the ☠!
             </Text>
           </View>
           <LargeButton
@@ -52,8 +52,8 @@ function StoplightRules(props) {
   );
 }
 
-StoplightRules.propTypes = {
+LuckyRules.propTypes = {
   onEnd: PropTypes.func.isRequired,
 };
 
-export default StoplightRules;
+export default LuckyRules;

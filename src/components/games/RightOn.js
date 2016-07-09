@@ -7,11 +7,14 @@ import moment from 'moment';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
   },
   scoreBox: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: 'blue',
   },
   score: {
     fontSize: 30,
@@ -20,9 +23,11 @@ const styles = StyleSheet.create({
   },
   laps: {
     flex: 4,
+    alignItems: 'center',
+    alignSelf: 'stretch',
   },
   buttonWrapper: {
-    flex: 3,
+    flex: 2,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -34,16 +39,22 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   button: {
-    height: 100,
-    width: 100,
-    borderRadius: 50,
+    height: 120,
+    width: 120,
+    borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#4EB479',
+    backgroundColor: '#FFD664',
   },
   lap: {
-    alignItems: 'center',
+    height: 70,
+    width: 200,
     marginTop: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: 'red',
   },
   lapText: {
     fontSize: 30,
@@ -51,9 +62,40 @@ const styles = StyleSheet.create({
     fontFamily: 'chalkduster',
   },
   buttonText: {
-    fontSize: 20,
+    fontSize: 30,
     color: 'white',
+    fontWeight: 'bold',
     fontFamily: 'chalkduster',
+  },
+});
+
+const borderStyles = StyleSheet.create({
+  0: {
+    borderColor: '#E74C3C',
+  },
+  1: {
+    borderColor: '#3498DB',
+  },
+  2: {
+    borderColor: '#4EB479',
+  },
+  '#FFD664': {
+    borderColor: '#FFD664',
+  },
+});
+
+const colorStyles = StyleSheet.create({
+  0: {
+    color: '#E74C3C',
+  },
+  1: {
+    color: '#3498DB',
+  },
+  2: {
+    color: '#4EB479',
+  },
+  '#FFD664': {
+    color: '#FFD664',
   },
 });
 
@@ -67,32 +109,31 @@ class RightOn extends Component {
   constructor() {
     super();
     this.state = {
-      startTime: Date.now(),
+      startTime: null,
       duration: null,
-      running: true,
+      running: false,
       laps: [],
-      difference: null,
     };
-
     this.handleLapPress = this.handleLapPress.bind(this);
+    this.onStarted = this.onStarted.bind(this);
+    this.timeout = setTimeout(this.onStarted, 1000);
+  }
+  onStarted() {
+    this.setState({
+      running: true,
+      startTime: Date.now(),
+    });
   }
   laps() {
     return this.state.laps.map((time, index) => {
       return (
-        <View key={index} style={styles.lap}>
-          <Text style={styles.lapText}>
-            {index + 1} -> {formatDuration(time)}
+        <View key={index} style={[styles.lap, borderStyles[index]]}>
+          <Text style={[styles.lapText, colorStyles[index]]}>
+            {index + 1} | {formatDuration(time)}
           </Text>
         </View>
       );
     });
-  }
-  score() {
-    return (
-      <Text style={styles.score}>
-        Result: {formatDuration(this.state.difference)}
-      </Text>
-    );
   }
   lapButton() {
     return (
@@ -110,21 +151,21 @@ class RightOn extends Component {
   handleLapPress() {
     const lap = Date.now() - this.state.startTime;
 
-    this.setState({
-      startTime: Date.now(),
-      laps: this.state.laps.concat([lap]),
-    });
-
-    if (this.state.laps.length === 3) {
+    if (this.state.laps.length < 2) {
+      this.setState({
+        startTime: Date.now(),
+        laps: this.state.laps.concat([lap]),
+      });
+    } else if (this.state.laps.length === 2) {
+      this.setState({
+        running: false,
+        laps: this.state.laps.concat([lap]),
+      });
       const score = (
         Math.abs(this.state.laps[0] - 3000) +
         Math.abs(this.state.laps[1] - 3000) +
-        Math.abs(this.state.laps[2] - 3000)
+        Math.abs(lap - 3000)
       );
-      this.setState({
-        difference: score,
-        running: false,
-      });
       this.props.onEnd({ score });
     }
   }
@@ -150,9 +191,6 @@ class RightOn extends Component {
             </View>
             <View style={styles.buttonWrapper}>
               {this.lapButton()}
-            </View>
-            <View style={styles.scoreBox}>
-              {this.score()}
             </View>
           </View>
         }

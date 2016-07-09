@@ -27,17 +27,17 @@ const styles = StyleSheet.create({
   },
 });
 
-function StoplightRules(props) {
+function IdenticalRules(props) {
   return (
     <Template
       header={
-        <Title>STOPLIGHT</Title>
+        <Title>REAL COLOR</Title>
       }
       footer={
         <View style={styles.container}>
           <View style={styles.rulesContainer}>
             <Text style={styles.rules}>
-              Press the GO button as soon as the light turns green!
+              Does the word match the color?
             </Text>
           </View>
           <LargeButton
@@ -52,8 +52,8 @@ function StoplightRules(props) {
   );
 }
 
-StoplightRules.propTypes = {
+IdenticalRules.propTypes = {
   onEnd: PropTypes.func.isRequired,
 };
 
-export default StoplightRules;
+export default IdenticalRules;

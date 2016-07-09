@@ -6,6 +6,7 @@ import without from 'lodash/without';
 import Template from '../../common/Template';
 import NumberCell from './NumberCell';
 import Timer from '../../common/Timer';
+import Duration from '../../common/Duration';
 import Lives from '../../common/Lives';
 
 // Spacing in pixels between cells
@@ -41,8 +42,10 @@ class NumberGame extends Component {
 
     this.state = {
       livesLost: 0,
+      running: true,
       currentNumber: 1,
       board: this.generateBoard(),
+      score: null,
       cellSize: 0,
       startTime: Date.now(),
     };
@@ -69,6 +72,10 @@ class NumberGame extends Component {
     });
     if (nextNumber === 10) {
       const score = Date.now() - this.state.startTime;
+      this.setState({
+        running: false,
+        score,
+      });
       this.props.onEnd({ score });
     }
   }
@@ -126,7 +133,11 @@ class NumberGame extends Component {
         header={
           <View>
             <Lives lives={3} livesLost={this.state.livesLost} />
-            <Timer startTime={this.state.startTime} />
+            {this.state.running ?
+              <Timer startTime={this.state.startTime} />
+            :
+              <Duration duration={this.state.score} />
+            }
           </View>
         }
         footer={

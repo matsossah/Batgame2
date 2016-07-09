@@ -27,17 +27,17 @@ const styles = StyleSheet.create({
   },
 });
 
-function StoplightRules(props) {
+function NumberGameRules(props) {
   return (
     <Template
       header={
-        <Title>STOPLIGHT</Title>
+        <Title>NUMBERS</Title>
       }
       footer={
         <View style={styles.container}>
           <View style={styles.rulesContainer}>
             <Text style={styles.rules}>
-              Press the GO button as soon as the light turns green!
+              Press on the numbers from 1 to 9 as quickly as you can!
             </Text>
           </View>
           <LargeButton
@@ -52,8 +52,8 @@ function StoplightRules(props) {
   );
 }
 
-StoplightRules.propTypes = {
+NumberGameRules.propTypes = {
   onEnd: PropTypes.func.isRequired,
 };
 
-export default StoplightRules;
+export default NumberGameRules;

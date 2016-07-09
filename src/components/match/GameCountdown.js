@@ -11,7 +11,18 @@ const styles = StyleSheet.create({
   countdown: {
     fontSize: 90,
     fontFamily: 'chalkduster',
-    color: 'white',
+  },
+});
+
+const numberStyles = StyleSheet.create({
+  3: {
+    color: '#E74C3C',
+  },
+  2: {
+    color: '#E67E2C',
+  },
+  1: {
+    color: '#4EB479',
   },
 });
 
@@ -72,7 +83,7 @@ class GameCountdown extends Component {
             ],
           }}
         >
-          <Text style={styles.countdown}>
+          <Text style={[styles.countdown, numberStyles[this.state.timeRemaining]]}>
             {this.state.timeRemaining.toString()}
           </Text>
         </Animated.View>

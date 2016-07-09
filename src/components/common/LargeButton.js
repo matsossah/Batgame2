@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
-    borderWidth: 2,
   },
   buttonText: {
     fontSize: 30,
@@ -19,7 +18,7 @@ const styles = StyleSheet.create({
 
 
 function LargeButton(props) {
-  const { style, buttonText, underlayColor, ...otherProps } = props;
+  const { style, buttonText, underlayColor, buttonTextStyle, ...otherProps } = props;
   return (
     <TouchableHighlight
       {...otherProps}
@@ -28,7 +27,11 @@ function LargeButton(props) {
         { backgroundColor: underlayColor },
       ].concat(style)}
     >
-      <Text style={styles.buttonText}>
+      <Text
+        style={[
+          styles.buttonText,
+        ].concat(buttonTextStyle)}
+      >
         {buttonText}
       </Text>
     </TouchableHighlight>
@@ -37,6 +40,7 @@ function LargeButton(props) {
 
 LargeButton.propTypes = {
   style: PropTypes.any,
+  buttonTextStyle: PropTypes.any,
   buttonText: PropTypes.string.isRequired,
   underlayColor: PropTypes.string.isRequired,
 };

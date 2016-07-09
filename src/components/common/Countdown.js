@@ -45,6 +45,7 @@ Countdown.propTypes = {
   startTime: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
   onComplete: PropTypes.func.isRequired,
+  textStyle: PropTypes.any,
 };
 
 export default Countdown;

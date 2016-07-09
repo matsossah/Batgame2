@@ -31,13 +31,13 @@ const styles = StyleSheet.create({
 });
 
 function Template(props) {
-  const { header, footer, separator, style, ...otherProps } = props;
+  const { header, footer, separator, style, separatorStyle, ...otherProps } = props;
   return (
     <View {...otherProps} style={[styles.container, styles.centered, style]}>
       <View style={[styles.header, styles.centered]}>
         {header}
       </View>
-      <View style={styles.separator}>
+      <View style={[styles.separator, separatorStyle]}>
         {separator}
       </View>
       <View style={[styles.footer, styles.centered]}>
@@ -49,6 +49,7 @@ function Template(props) {
 
 Template.propTypes = {
   style: PropTypes.any,
+  separatorStyle: PropTypes.any,
   header: PropTypes.node.isRequired,
   separator: PropTypes.node,
   footer: PropTypes.node.isRequired,

@@ -11,7 +11,7 @@ import LargeButton from '../common/LargeButton';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
   empty: {
@@ -20,13 +20,31 @@ const styles = StyleSheet.create({
   buttonsView: {
     justifyContent: 'space-around',
     alignItems: 'center',
-    flex: 6,
+    flex: 8,
   },
-  newGame: {
-    flex: 2,
+  facebook: {
+    height: 90,
+    width: 240,
     justifyContent: 'center',
-    alignItems: 'stretch',
-    backgroundColor: 'green',
+    alignItems: 'center',
+    backgroundColor: '#3b5998',
+  },
+  buttonTextStyle: {
+    fontSize: 16,
+  },
+  random: {
+    height: 90,
+    width: 240,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#3498DB',
+  },
+  byUsername: {
+    height: 90,
+    width: 240,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#77c2f4',
   },
 });
 
@@ -52,30 +70,31 @@ class PickOpponent extends Component {
         header={<Title>PICK YOUR VICTIM!</Title>}
         footer={
           <View style={styles.container}>
-            <View style={styles.empty} />
             <View style={styles.buttonsView}>
               <LargeButton
-                style={styles.newGame}
+                style={styles.facebook}
+                buttonTextStyle={styles.buttonTextStyle}
                 buttonText="FACEBOOK FRIENDS"
                 onPress={this.onFacebookPress}
                 underlayColor="#3498DB"
                 disabled
               />
               <LargeButton
-                style={styles.newGame}
+                style={styles.random}
+                buttonTextStyle={styles.buttonTextStyle}
                 buttonText="RANDOM OPPONENT"
                 onPress={this.onRandomPress}
                 underlayColor="#E67E2C"
               />
               <LargeButton
-                style={styles.newGame}
+                style={styles.byUsername}
+                buttonTextStyle={styles.buttonTextStyle}
                 buttonText="SEARCH BY USERNAME"
                 onPress={this.onSearchPress}
                 underlayColor="#583B67"
                 disabled
               />
             </View>
-            <View style={styles.empty} />
           </View>
         }
       />

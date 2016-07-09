@@ -80,8 +80,8 @@ class RedGreenBlue extends Component {
     this.state = {
       duration: null,
       running: true,
-      started: false,
-      countdownStarted: null,
+      started: true,
+      countdownStarted: Date.now(),
       score: 0,
       color: sample(colors),
     };
@@ -90,19 +90,12 @@ class RedGreenBlue extends Component {
       green: this.onButtonPress.bind(this, 'green'),
       blue: this.onButtonPress.bind(this, 'blue'),
     };
-    setTimeout(this.onStarted.bind(this), 3000);
     this.onEnd = this.onEnd.bind(this);
-  }
-  onStarted() {
-    this.setState({
-      started: true,
-      countdownStarted: Date.now(),
-    });
   }
   onEnd() {
     this.setState({
       running: false,
-      duration: COUNTDOWN_DURATION - (Date.now() - this.state.countdownStarted),
+      duration: 0,
     });
     this.props.onEnd({ score: this.state.score });
   }

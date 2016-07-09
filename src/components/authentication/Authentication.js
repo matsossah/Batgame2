@@ -51,7 +51,7 @@ class Authentication extends Component {
     return (
       <Template
         // pass the title in uppercase
-        header={<Title>BRAINING</Title>}
+        header={<Title>SPEEDY BRAIN</Title>}
         separator={this.renderFacebookLogin()}
         footer={
           <Tabs

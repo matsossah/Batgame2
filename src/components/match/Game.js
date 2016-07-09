@@ -6,9 +6,23 @@ import Stoplight from '../games/Stoplight';
 import MathBattle from '../games/MathBattle';
 import PopTheBalloon from '../games/PopTheBalloon';
 import RedGreenBlue from '../games/RedGreenBlue';
+import Identical from '../games/Identical';
+import Lucky from '../games/Lucky';
+import RightOn from '../games/RightOn';
+import WhackAMole from '../games/WhackAMole';
 import NumberGame from '../games/numbers/NumberGame';
+import RealColor from '../games/RealColor';
 
 import StoplightRules from '../gameRules/StoplightRules';
+import MathBattleRules from '../gameRules/MathBattleRules';
+import PopTheBalloonRules from '../gameRules/PopTheBalloonRules';
+import RedGreenBlueRules from '../gameRules/RedGreenBlueRules';
+import WhackAMoleRules from '../gameRules/WhackAMoleRules';
+import IdenticalRules from '../gameRules/IdenticalRules';
+import LuckyRules from '../gameRules/LuckyRules';
+import RightOnRules from '../gameRules/RightOnRules';
+import NumberGameRules from '../gameRules/NumberGameRules';
+import RealColorRules from '../gameRules/RealColorRules';
 
 import GameOverlay from './GameOverlay';
 import GameCountdown from './GameCountdown';
@@ -21,17 +35,25 @@ const gameComponents = {
   MATH_BATTLE: MathBattle,
   POP_THE_BALLOON: PopTheBalloon,
   RED_GREEN_BLUE: RedGreenBlue,
-  WHACK_A_MOLE: Stoplight,
+  WHACK_A_MOLE: WhackAMole,
+  IDENTICAL: Identical,
+  LUCKY: Lucky,
+  RIGHT_ON: RightOn,
   NUMBER: NumberGame,
+  REAL_COLOR: RealColor,
 };
 
 const gameRuleComponents = {
   STOPLIGHT: StoplightRules,
-  MATH_BATTLE: StoplightRules,
-  POP_THE_BALLOON: StoplightRules,
-  RED_GREEN_BLUE: StoplightRules,
-  WHACK_A_MOLE: StoplightRules,
-  NUMBER: StoplightRules,
+  MATH_BATTLE: MathBattleRules,
+  POP_THE_BALLOON: PopTheBalloonRules,
+  RED_GREEN_BLUE: RedGreenBlueRules,
+  WHACK_A_MOLE: WhackAMoleRules,
+  IDENTICAL: IdenticalRules,
+  LUCKY: LuckyRules,
+  RIGHT_ON: RightOnRules,
+  NUMBER: NumberGameRules,
+  REAL_COLOR: RealColorRules,
 };
 
 const styles = StyleSheet.create({

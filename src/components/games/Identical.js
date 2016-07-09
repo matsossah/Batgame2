@@ -84,19 +84,23 @@ class Identical extends Component {
     this.onYesPress = this.onYesPress.bind(this);
     this.onNoPress = this.onNoPress.bind(this);
     this.onEnd = this.onEnd.bind(this);
+    this.newEmoji = this.newEmoji.bind(this);
     this.renderTimer = this.renderTimer.bind(this);
-    setTimeout(this.onStarted.bind(this), 3000);
+    setTimeout(this.onStarted.bind(this), 800);
   }
   onStarted() {
     this.setState({
       started: true,
       countdownStarted: Date.now(),
       previousEmoji: this.state.currentEmoji,
-      currentEmoji: '',
+      currentEmoji: sample(allEmojis),
     });
-    this.timeout = setTimeout(() => this.setState({ currentEmoji: sample(allEmojis) }), 100);
   }
   onEnd() {
+    this.setState({
+      running: false,
+      duration: 0,
+    });
     this.props.onEnd({ score: this.state.score });
   }
   onYesPress() {
@@ -106,7 +110,7 @@ class Identical extends Component {
         previousEmoji: this.state.currentEmoji,
         currentEmoji: '',
       });
-      this.timeout = setTimeout(() => this.setState({ currentEmoji: sample(allEmojis) }), 100);
+      this.timeout = setTimeout(this.newEmoji, 100);
     } else {
       this.setState({
         running: false,
@@ -122,13 +126,20 @@ class Identical extends Component {
         previousEmoji: this.state.currentEmoji,
         currentEmoji: '',
       });
-      this.timeout = setTimeout(() => this.setState({ currentEmoji: sample(allEmojis) }), 100);
+      this.timeout = setTimeout(this.newEmoji, 100);
     } else {
       this.setState({
         running: false,
         duration: 30000 - (Date.now() - this.state.countdownStarted),
       });
+      this.props.onEnd({ score: this.state.score });
     }
+  }
+  newEmoji() {
+    const emoji = sample(allEmojis);
+    this.setState({
+      currentEmoji: emoji,
+    });
   }
   renderTimer() {
     if (this.state.running) {

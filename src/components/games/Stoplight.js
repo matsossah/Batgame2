@@ -82,13 +82,13 @@ class Stoplight extends Component {
       finished: false,
       failure: false,
       score: 0,
-      color: null,
+      color: 'red',
     };
     this.onGoPress = this.onGoPress.bind(this);
     this.goRed = this.goRed.bind(this);
     this.goOrange = this.goOrange.bind(this);
     this.goGreen = this.goGreen.bind(this);
-    this.timeout = setTimeout(this.goRed, 1000);
+    this.goRed();
   }
   componentWillUnmount() {
     clearTimeout(this.timeout);
@@ -110,18 +110,17 @@ class Stoplight extends Component {
     this.setState({
       running: false,
       finished: true,
-      score: 1000,
+      score: 3000,
       failure: true,
     });
-    this.props.onEnd({ score: 1000 });
+    this.props.onEnd({ score: 3000 });
   }
   goRed() {
-    this.setState({ color: 'red' });
     this.timeout = setTimeout(this.goOrange, 1000);
   }
   goOrange() {
     this.setState({ color: 'orange' });
-    this.timeout = setTimeout(this.goGreen, 5000 * Math.random() + 5000);
+    this.timeout = setTimeout(this.goGreen, 5000 * Math.random() + 1000);
   }
   goGreen() {
     this.setState({ color: 'green', startTime: Date.now(), running: true });
