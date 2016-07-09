@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
   won: {
     height: 50,
     width: 80,
-    padding: 5,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
@@ -40,7 +39,6 @@ const styles = StyleSheet.create({
   lost: {
     height: 50,
     width: 80,
-    padding: 5,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
@@ -52,12 +50,12 @@ const styles = StyleSheet.create({
     color: '#FFD664',
   },
   action: {
-    fontSize: 12,
+    fontSize: 10,
     fontFamily: 'chalkduster',
     color: 'white',
   },
   gameName: {
-    fontSize: 6,
+    fontSize: 7,
     fontFamily: 'chalkduster',
     color: 'white',
   },

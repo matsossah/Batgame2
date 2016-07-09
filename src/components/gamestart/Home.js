@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
     paddingTop: 60,
+    marginBottom: 20,
   },
   newGame: {
     borderColor: '#4EB479',
@@ -47,7 +48,10 @@ class Home extends Component {
         // pass the title in uppercase
         header={<Title style={styles.title}>START A GAME!</Title>}
         footer={
-          <ScrollView style={styles.scrollView}>
+          <ScrollView
+            style={styles.scrollView}
+            showsVerticalScrollIndicator={false}
+          >
             <LargeButton
               buttonText="NEW GAME"
               onPress={this.onNewGamePress}

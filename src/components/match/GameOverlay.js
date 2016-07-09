@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4EB479',
   },
   scoreLabel: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'chalkduster',
     color: 'white',
   },

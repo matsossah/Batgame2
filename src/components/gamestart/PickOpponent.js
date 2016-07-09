@@ -11,7 +11,7 @@ import LargeButton from '../common/LargeButton';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
   empty: {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#3b5998',
   },
   buttonTextStyle: {
-    fontSize: 18,
+    fontSize: 16,
   },
   random: {
     height: 90,
@@ -70,7 +70,6 @@ class PickOpponent extends Component {
         header={<Title>PICK YOUR VICTIM!</Title>}
         footer={
           <View style={styles.container}>
-            <View style={styles.empty} />
             <View style={styles.buttonsView}>
               <LargeButton
                 style={styles.facebook}
@@ -96,7 +95,6 @@ class PickOpponent extends Component {
                 disabled
               />
             </View>
-            <View style={styles.empty} />
           </View>
         }
       />
