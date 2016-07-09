@@ -84,6 +84,7 @@ class Identical extends Component {
     this.onYesPress = this.onYesPress.bind(this);
     this.onNoPress = this.onNoPress.bind(this);
     this.onEnd = this.onEnd.bind(this);
+    this.newEmoji = this.newEmoji.bind(this);
     this.renderTimer = this.renderTimer.bind(this);
     setTimeout(this.onStarted.bind(this), 800);
   }
@@ -98,7 +99,7 @@ class Identical extends Component {
   onEnd() {
     this.setState({
       running: false,
-      duration: 30000 - (Date.now() - this.state.countdownStarted),
+      duration: 0,
     });
     this.props.onEnd({ score: this.state.score });
   }
@@ -107,8 +108,9 @@ class Identical extends Component {
       this.setState({
         score: this.state.score + 1,
         previousEmoji: this.state.currentEmoji,
-        currentEmoji: sample(allEmojis),
+        currentEmoji: '',
       });
+      this.timeout = setTimeout(this.newEmoji, 100);
     } else {
       this.setState({
         running: false,
@@ -124,7 +126,7 @@ class Identical extends Component {
         previousEmoji: this.state.currentEmoji,
         currentEmoji: '',
       });
-      this.timeout = setTimeout(() => this.setState({ currentEmoji: sample(allEmojis) }), 100);
+      this.timeout = setTimeout(this.newEmoji, 100);
     } else {
       this.setState({
         running: false,
@@ -132,6 +134,12 @@ class Identical extends Component {
       });
       this.props.onEnd({ score: this.state.score });
     }
+  }
+  newEmoji() {
+    const emoji = sample(allEmojis);
+    this.setState({
+      currentEmoji: emoji,
+    });
   }
   renderTimer() {
     if (this.state.running) {

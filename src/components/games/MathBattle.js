@@ -92,7 +92,7 @@ class MathBattle extends Component {
   onEnd() {
     this.setState({
       running: false,
-      duration: COUNTDOWN_DURATION - (Date.now() - this.state.countdownStarted),
+      duration: 0,
     });
     this.props.onEnd({ score: this.state.score });
   }
@@ -154,19 +154,19 @@ class MathBattle extends Component {
                 style={[styles.equationButton, styles.topEquationButton]}
                 onPress={this.onGtPress}
                 buttonText={equationToString(topOperands)}
-                underlayColor={topResult > bottomResult ? '#4EB479' : 'red'}
+                underlayColor="#3498DB"
               />
               <LargeButton
                 style={[styles.equationButton, styles.equalEquationButton]}
                 buttonText="="
                 onPress={this.onEqPress}
-                underlayColor={topResult === bottomResult ? '#4EB479' : 'red'}
+                underlayColor="#34485E"
               />
               <LargeButton
                 style={[styles.equationButton, styles.bottomEquationButton]}
                 onPress={this.onLtPress}
                 buttonText={equationToString(bottomOperands)}
-                underlayColor={bottomResult > topResult ? '#4EB479' : 'red'}
+                underlayColor="#3498DB"
               />
             </View>
           </View>

@@ -149,11 +149,12 @@ class RealColor extends Component {
     this.onNoPress = this.onNoPress.bind(this);
     this.onEnd = this.onEnd.bind(this);
     this.renderTimer = this.renderTimer.bind(this);
+    this.newCombination = this.newCombination.bind(this);
   }
   onEnd() {
     this.setState({
       running: false,
-      duration: 30000 - (Date.now() - this.state.countdownStarted),
+      duration: 0,
     });
     this.props.onEnd({ score: this.state.score });
   }
@@ -161,9 +162,10 @@ class RealColor extends Component {
     if (this.state.color === colorName[this.state.word]) {
       this.setState({
         score: this.state.score + 1,
-        color: sample(colors),
-        word: sample(words),
+        color: '',
+        word: '',
       });
+      this.timeout = setTimeout(this.newCombination, 100);
     } else {
       this.setState({
         running: false,
@@ -176,9 +178,10 @@ class RealColor extends Component {
     if (this.state.color !== colorName[this.state.word]) {
       this.setState({
         score: this.state.score + 1,
-        color: sample(colors),
-        word: sample(words),
+        color: '',
+        word: '',
       });
+      this.timeout = setTimeout(this.newCombination, 100);
     } else {
       this.setState({
         running: false,
@@ -186,6 +189,14 @@ class RealColor extends Component {
       });
       this.props.onEnd({ score: this.state.score });
     }
+  }
+  newCombination() {
+    const color = sample(colors);
+    const word = sample(words);
+    this.setState({
+      color,
+      word,
+    });
   }
   renderTimer() {
     if (this.state.running) {

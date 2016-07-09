@@ -71,6 +71,10 @@ class WhackAMole extends Component {
     this.newMole();
   }
   onEnd() {
+    this.setState({
+      running: false,
+      duration: 0,
+    });
     this.props.onEnd({ score: this.state.score });
   }
   onCellPress(cell) {

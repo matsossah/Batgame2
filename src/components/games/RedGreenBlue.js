@@ -95,7 +95,7 @@ class RedGreenBlue extends Component {
   onEnd() {
     this.setState({
       running: false,
-      duration: COUNTDOWN_DURATION - (Date.now() - this.state.countdownStarted),
+      duration: 0,
     });
     this.props.onEnd({ score: this.state.score });
   }

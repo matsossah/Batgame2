@@ -51,7 +51,7 @@ class Wheel extends Component {
 
   pickRandomGame() {
     const { game, matchId, roundId } = this.props;
-    const gameInfo = GAMES[9];
+    const gameInfo = sample(GAMES);
 
     // @TODO: move this into a createGame action creator
     // Will have to do this once we have navigation experimental
