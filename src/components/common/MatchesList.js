@@ -55,9 +55,9 @@ const styles = StyleSheet.create({
     flex: 2,
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    alignItems: 'center',
     alignSelf: 'stretch',
     paddingRight: 20,
-    paddingBottom: 10,
   },
   pending: {
     justifyContent: 'center',
@@ -82,12 +82,7 @@ const styles = StyleSheet.create({
     fontFamily: 'chalkduster',
     marginLeft: 30,
   },
-  playUsername: {
-    color: '#FFD664',
-    fontSize: 12,
-    fontFamily: 'chalkduster',
-  },
-  waitUsername: {
+  opponentUsername: {
     color: '#FFD664',
     fontSize: 12,
     fontFamily: 'chalkduster',
@@ -132,7 +127,7 @@ class MatchesList extends Component {
                         <Text style={styles.play}>👍 YOUR TURN!</Text>
                       </View>
                       <View style={styles.usernameBox}>
-                        <Text style={styles.playUsername}>{match.rightUser.username}</Text>
+                        <Text style={styles.opponentUsername}>{match.rightUser.username}</Text>
                       </View>
                     </View>
                   :
@@ -141,7 +136,7 @@ class MatchesList extends Component {
                         <Text style={styles.wait}>✋ WAITING...</Text>
                       </View>
                       <View style={styles.usernameBox}>
-                        <Text style={styles.waitUsername}>{match.rightUser.username}</Text>
+                        <Text style={styles.opponentUsername}>{match.rightUser.username}</Text>
                       </View>
                     </View>
                 }
