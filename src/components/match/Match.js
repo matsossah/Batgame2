@@ -4,13 +4,26 @@ import { connect } from 'react-redux';
 import sample from 'lodash/sample';
 
 import { userSelector, matchSelector } from '../../selectors';
-import { gotoNextGame } from '../../actions/navigation';
+import { gotoNextGame, popMain } from '../../actions/navigation';
 import Template from '../common/Template';
 import Round from './Round';
 
 const styles = StyleSheet.create({
-  container: {
+  footerContainer: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  topFooter: {
+    flex: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  bottomFooter: {
+    flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',
@@ -49,6 +62,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFD664',
     marginBottom: 20,
   },
+  backButton: {
+    height: 50,
+    width: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#2C3D50',
+  },
   emoji: {
     fontSize: 50,
     color: '#2C3D50',
@@ -58,6 +78,27 @@ const styles = StyleSheet.create({
     fontFamily: 'chalkduster',
     fontWeight: 'bold',
     color: 'white',
+  },
+  backBox: {
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flex: 1,
+  },
+  playBox: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  empty: {
+    flex: 1,
+  },
+  back: {
+    fontSize: 50,
+    fontFamily: 'chalkduster',
+    fontWeight: 'bold',
+    color: '#FFD664',
   },
   username: {
     fontSize: 16,
@@ -74,6 +115,7 @@ class Match extends Component {
     super();
 
     this.onActiveRoundPress = this.onActiveRoundPress.bind(this);
+    this.onBackPress = this.onBackPress.bind(this);
   }
 
   onActiveRoundPress() {
@@ -83,6 +125,10 @@ class Match extends Component {
     } = this.props;
 
     dispatch(gotoNextGame(match.id));
+  }
+
+  onBackPress() {
+    this.props.dispatch(popMain());
   }
 
   render() {
@@ -113,27 +159,44 @@ class Match extends Component {
           </View>
         }
         footer={
-          <View style={styles.container}>
-            {rounds.map((round, idx) => {
-              const isCurrent = round === match.currentRound;
-              const isActive = isCurrent && awaitingPlayer;
-              return (
-                <Round
-                  key={round.id}
-                  isCurrent={isCurrent}
-                  isActive={isActive}
-                  currentUser={match.leftUser}
-                  roundIdx={idx}
-                  round={round}
-                  onPress={isActive ? this.onActiveRoundPress : null}
-                />
-              );
-            })}
-            <TouchableHighlight>
-              <View style={styles.playButton}>
-                <Text style={styles.action}>PLAY</Text>
+          <View style={styles.footerContainer}>
+            <View style={styles.topFooter}>
+              {rounds.map((round, idx) => {
+                const isCurrent = round === match.currentRound;
+                const isActive = isCurrent && awaitingPlayer;
+                return (
+                  <Round
+                    key={round.id}
+                    isCurrent={isCurrent}
+                    isActive={isActive}
+                    currentUser={match.leftUser}
+                    roundIdx={idx}
+                    round={round}
+                    onPress={isActive ? this.onActiveRoundPress : null}
+                  />
+                );
+              })}
+            </View>
+            <View style={styles.bottomFooter}>
+              <View style={styles.backBox}>
+                <TouchableHighlight
+                  onPress={this.onBackPress}
+                  underlayColor="transparent"
+                >
+                  <View style={styles.backButton}>
+                    <Text style={styles.back}>{'<'}</Text>
+                  </View>
+                </TouchableHighlight>
               </View>
-            </TouchableHighlight>
+              <View style={styles.playBox}>
+                <TouchableHighlight>
+                  <View style={styles.playButton}>
+                    <Text style={styles.action}>PLAY</Text>
+                  </View>
+                </TouchableHighlight>
+              </View>
+              <View style={styles.empty} />
+            </View>
           </View>
         }
       />
