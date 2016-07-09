@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>branch_key</key>
+	<dict>
+		<key>test</key>
+		<string>key_test_ojp82vIiij9NisRidSQ7qldozFeet87r</string>
+		<key>live</key>
+		<string>key_live_mhi67ASpbpXNoxPpnTVGudinzFmhv3Xj</string>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
