@@ -72,7 +72,7 @@ const buttonColorStyles = StyleSheet.create({
 });
 
 const colors = ['red', 'green', 'blue'];
-const COUNTDOWN_DURATION = 30000;
+const COUNTDOWN_DURATION = 20000;
 
 class RedGreenBlue extends Component {
   constructor() {

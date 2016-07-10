@@ -65,7 +65,7 @@ const OPS = {
   lt: (a, b) => a < b,
 };
 const NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-const COUNTDOWN_DURATION = 30000;
+const COUNTDOWN_DURATION = 20000;
 
 function equationToString([n1, n2]) {
   // Can't use the multiplication symbol × because the font doesn't support it

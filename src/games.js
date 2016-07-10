@@ -58,7 +58,7 @@ export default [
   {
     name: 'RIGHT_ON',
     fullName: 'RIGHT ON',
-    rule: 'Stop the timer on 3 seconds, 3 times in a row!',
+    rule: 'Press the GO button on 3 seconds, 3 times in a row!',
     winner: 'SMALLEST',
     scoreType: 'DATE',
   },
