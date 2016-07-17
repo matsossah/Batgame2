@@ -4,7 +4,6 @@ import {
   TouchableWithoutFeedback,
   Text,
   View,
-  Animated,
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -35,34 +34,7 @@ class NumberCell extends Component {
   constructor() {
     super();
 
-    this.state = {
-      scale: new Animated.Value(1),
-      opacity: new Animated.Value(1),
-    };
-
     this.onPress = this.onPress.bind(this);
-    this.onPressIn = this.onPressIn.bind(this);
-    this.onPressOut = this.onPressOut.bind(this);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (!prevProps.cell.success && this.props.cell.success) {
-      Animated.parallel([
-        Animated.spring(
-          this.state.scale,
-          {
-            toValue: 0,
-          }
-        ),
-        Animated.spring(
-          this.state.opacity,
-          {
-            toValue: 0,
-            tension: 60,
-          }
-        ),
-      ]).start();
-    }
   }
 
   onPress() {
@@ -73,44 +45,14 @@ class NumberCell extends Component {
     }
   }
 
-  onPressIn() {
-    Animated.spring(
-      this.state.scale,
-      {
-        toValue: 1.2,
-        friction: 5,
-      }
-    ).start();
-  }
-
-  onPressOut() {
-    Animated.spring(
-      this.state.scale,
-      {
-        toValue: 1,
-        friction: 5,
-      }
-    ).start();
-  }
-
   render() {
     return (
-      <Animated.View
+      <View
         {...this.props}
-        style={[
-          styles.container,
-          {
-            opacity: this.state.opacity,
-            transform: [
-              { scale: this.state.scale },
-            ],
-          },
-        ].concat(this.props.style)}
+        style={[styles.container].concat(this.props.style)}
       >
         <TouchableWithoutFeedback
           onPress={this.onPress}
-          onPressIn={this.onPressIn}
-          onPressOut={this.onPressOut}
         >
           <View
             style={[
@@ -123,7 +65,7 @@ class NumberCell extends Component {
             <Text style={styles.text}>{this.props.cell.number.toString()}</Text>
           </View>
         </TouchableWithoutFeedback>
-      </Animated.View>
+      </View>
     );
   }
 }
