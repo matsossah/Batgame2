@@ -38,10 +38,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'stretch',
   },
+  char: {
+    fontFamily: 'chalkduster',
+    fontSize: 40,
+    color: '#FFD664',
+  },
   button: {
-    height: 120,
-    width: 120,
-    borderRadius: 60,
+    height: 60,
+    width: 150,
+    borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFD664',
@@ -105,18 +110,23 @@ function formatDuration(d) {
   return moment.utc(d).format('s.SS');
 }
 
+function formatTimer(d) {
+  // This approach has issues
+  // See https://github.com/moment/moment/issues/1048
+  return moment.utc(d).format('mm.ss.SS');
+}
+
 class RightOn extends Component {
   constructor() {
     super();
     this.state = {
-      startTime: null,
+      startTime: 0,
       duration: null,
       running: false,
       laps: [],
     };
     this.handleLapPress = this.handleLapPress.bind(this);
     this.onStarted = this.onStarted.bind(this);
-    this.timeout = setTimeout(this.onStarted, 1000);
   }
   onStarted() {
     this.setState({
@@ -144,6 +154,19 @@ class RightOn extends Component {
       >
         <Text style={styles.buttonText}>
           GO
+        </Text>
+      </TouchableHighlight>
+    );
+  }
+  startButton() {
+    return (
+      <TouchableHighlight
+        underlayColor="gray"
+        onPress={this.onStarted}
+        style={styles.button}
+      >
+        <Text style={styles.buttonText}>
+          START
         </Text>
       </TouchableHighlight>
     );
@@ -180,7 +203,11 @@ class RightOn extends Component {
               </Text>
             </View>
             <View style={styles.timerBox}>
-              {this.state.running && <Timer startTime={this.state.startTime} />}
+              {this.state.running ?
+                <Timer startTime={this.state.startTime} />
+              :
+                <Text style={styles.char}>{formatTimer(0)}</Text>
+              }
             </View>
           </View>
         }
@@ -189,9 +216,15 @@ class RightOn extends Component {
             <View style={styles.laps}>
               {this.laps()}
             </View>
-            <View style={styles.buttonWrapper}>
-              {this.lapButton()}
-            </View>
+            {this.state.running ?
+              <View style={styles.buttonWrapper}>
+                {this.lapButton()}
+              </View>
+            :
+              <View style={styles.buttonWrapper}>
+                {this.startButton()}
+              </View>
+            }
           </View>
         }
       />

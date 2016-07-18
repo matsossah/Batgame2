@@ -7,6 +7,7 @@ import {
   retrieveMatches,
 } from '../../actions/application';
 import { gotoPickOpponent, gotoMatch } from '../../actions/navigation';
+import { joinRandomMatch } from '../../actions/application';
 
 import Template from '../common/Template';
 import Title from '../common/Title';
@@ -35,7 +36,11 @@ class Home extends Component {
   }
 
   onNewGamePress() {
-    this.props.dispatch(gotoPickOpponent());
+    // Option 1 to go to pick opponent from FB, random or username
+    // this.props.dispatch(gotoPickOpponent());
+
+    // Option 2 to start a game with a random opponent right away.
+    this.props.dispatch(joinRandomMatch());
   }
 
   onMatchPress(matchId) {
