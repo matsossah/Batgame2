@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Text, StyleSheet, TouchableHighlight } from 'react-native';
+import { Text, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,21 +20,22 @@ const styles = StyleSheet.create({
 function LargeButton(props) {
   const { style, buttonText, underlayColor, buttonTextStyle, ...otherProps } = props;
   return (
-    <TouchableHighlight
-      {...otherProps}
-      style={[
-        styles.container,
-        { backgroundColor: underlayColor },
-      ].concat(style)}
-    >
-      <Text
+    <TouchableWithoutFeedback {...otherProps}>
+      <View
         style={[
-          styles.buttonText,
-        ].concat(buttonTextStyle)}
+          styles.container,
+          { backgroundColor: underlayColor },
+        ].concat(style)}
       >
-        {buttonText}
-      </Text>
-    </TouchableHighlight>
+        <Text
+          style={[
+            styles.buttonText,
+          ].concat(buttonTextStyle)}
+        >
+          {buttonText}
+        </Text>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 

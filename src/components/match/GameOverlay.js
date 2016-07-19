@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { TouchableHighlight, View, Text, StyleSheet } from 'react-native';
+import { TouchableWithoutFeedback, View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
@@ -132,22 +132,27 @@ class GameOverlay extends Component {
               </View>
           }
           <View style={styles.options}>
-            <View style={styles.match}>
-              <TouchableHighlight
-                onPress={this.onMatchPress}
+            <TouchableWithoutFeedback
+              onPress={this.onMatchPress}
+            >
+              <View
+                style={styles.match}
               >
                 <Text style={styles.optionLabel}>Match</Text>
-              </TouchableHighlight>
-            </View>
+              </View>
+            </TouchableWithoutFeedback>
 
             {match.awaitingPlayers.includes(user) &&
-              <View style={styles.next}>
-                <TouchableHighlight
-                  onPress={this.onNextPress}
+
+              <TouchableWithoutFeedback
+                onPress={this.onNextPress}
+              >
+                <View
+                  style={styles.next}
                 >
                   <Text style={styles.optionLabel}>Next</Text>
-                </TouchableHighlight>
-              </View>
+                </View>
+              </TouchableWithoutFeedback>
             }
           </View>
         </View>
