@@ -86,12 +86,12 @@ class WhackAMole extends Component {
         score: this.state.score + 1,
         activeCell: null,
       });
-      this.timeout = setTimeout(this.newMole, 500);
+      this.timeout = setTimeout(this.newMole, 200);
     } else {
       this.setState({
         activeCell: null,
         running: false,
-        duration: 30000 - (Date.now() - this.state.countdownStarted),
+        duration: 20000 - (Date.now() - this.state.countdownStarted),
       });
       clearTimeout(this.timeout);
       this.props.onEnd({ score: this.state.score });
@@ -109,12 +109,12 @@ class WhackAMole extends Component {
     if (this.state.running) {
       if (this.state.started) {
         return (<Countdown
-          duration={30}
+          duration={20}
           startTime={this.state.countdownStarted}
           onComplete={this.onEnd}
         />);
       }
-      return <Duration duration={30000} />;
+      return <Duration duration={20000} />;
     }
     return <Duration duration={this.state.duration} />;
   }

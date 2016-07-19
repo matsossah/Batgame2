@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   gameName: {
-    fontSize: 7,
+    fontSize: 6,
     fontFamily: 'chalkduster',
     color: 'white',
   },
@@ -105,11 +105,11 @@ class Round extends Component {
                 game.isFinished ?
                   game.bestScore.users.includes(currentUser) ?
                     <View style={styles.won} key={game.id}>
-                      <Text style={styles.gameName}>{game.gameName}</Text>
+                      <Text style={styles.gameName}>{game.info.fullName}</Text>
                     </View>
                   :
                     <View style={styles.lost} key={game.id}>
-                      <Text style={styles.gameName}>{game.gameName}</Text>
+                      <Text style={styles.gameName}>{game.info.fullName}</Text>
                     </View>
                 :
                   game.myScore ?

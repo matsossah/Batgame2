@@ -169,7 +169,7 @@ class RealColor extends Component {
     } else {
       this.setState({
         running: false,
-        duration: 30000 - (Date.now() - this.state.countdownStarted),
+        duration: 20000 - (Date.now() - this.state.countdownStarted),
       });
       this.props.onEnd({ score: this.state.score });
     }
@@ -185,7 +185,7 @@ class RealColor extends Component {
     } else {
       this.setState({
         running: false,
-        duration: 30000 - (Date.now() - this.state.countdownStarted),
+        duration: 20000 - (Date.now() - this.state.countdownStarted),
       });
       this.props.onEnd({ score: this.state.score });
     }
@@ -202,13 +202,13 @@ class RealColor extends Component {
     if (this.state.running) {
       if (this.state.started) {
         return (<Countdown
-          duration={30}
+          duration={20}
           startTime={this.state.countdownStarted}
           onComplete={this.onEnd}
           textStyle={colorStyles[this.state.color]}
         />);
       }
-      return <Duration duration={30000} />;
+      return <Duration duration={20000} />;
     }
     return (
       <Duration

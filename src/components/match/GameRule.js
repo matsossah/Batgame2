@@ -27,17 +27,17 @@ const styles = StyleSheet.create({
   },
 });
 
-function PopTheBalloonRules(props) {
+function GameRule(props) {
   return (
     <Template
       header={
-        <Title>POP THE BALLON</Title>
+        <Title>{props.name}</Title>
       }
       footer={
         <View style={styles.container}>
           <View style={styles.rulesContainer}>
             <Text style={styles.rules}>
-              Press 50 times on the balloon as quickly as possible to pop it!
+              {props.rule}
             </Text>
           </View>
           <LargeButton
@@ -52,8 +52,10 @@ function PopTheBalloonRules(props) {
   );
 }
 
-PopTheBalloonRules.propTypes = {
+GameRule.propTypes = {
+  name: PropTypes.string.isRequired,
+  rule: PropTypes.string.isRequired,
   onEnd: PropTypes.func.isRequired,
 };
 
-export default PopTheBalloonRules;
+export default GameRule;
