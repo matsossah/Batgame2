@@ -150,12 +150,14 @@ class NumberGame extends Component {
                   height: this.state.cellSize,
                 }]}
               >
-                <NumberCell
-                  cell={cell}
-                  current={this.state.currentNumber === cell.number}
-                  onSuccess={this.onCellSuccess}
-                  onFailure={this.onCellFailure}
-                />
+                {!cell.success &&
+                  <NumberCell
+                    cell={cell}
+                    current={this.state.currentNumber === cell.number}
+                    onSuccess={this.onCellSuccess}
+                    onFailure={this.onCellFailure}
+                  />
+                }
               </View>
             )}
           </View>
