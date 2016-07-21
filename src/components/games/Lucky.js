@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const allEmojis = ['🤑', '😎', '💪', '😋', '😜', '😘', '🙆', '👏', '😅', '🤗', '💃', '☠'];
+const allEmojis = ['moneybag', 'moneybag', 'moneybag', 'moneybag', 'moneybag',
+                  'moneybag', 'moneybag', 'moneybag', 'moneybag', 'moneybag', 'moneybag', 'bomb'];
 
 class Lucky extends Component {
   constructor() {
@@ -50,7 +51,7 @@ class Lucky extends Component {
     this.onCellPress = this.onCellPress.bind(this);
   }
   onCellPress(emoji) {
-    if (emoji === '☠') {
+    if (emoji === 'bomb') {
       this.setState({ running: false });
       this.props.onEnd({ score: this.state.score });
     } else {

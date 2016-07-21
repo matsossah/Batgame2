@@ -7,6 +7,7 @@ import { userSelector, matchSelector } from '../../selectors';
 import { gotoNextGame, popMain } from '../../actions/navigation';
 import Template from '../common/Template';
 import Round from './Round';
+import Emoji from 'react-native-emoji';
 
 const styles = StyleSheet.create({
   footerContainer: {
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#2C3D50',
   },
-  emoji: {
+  profileSeparator: {
     fontSize: 50,
     color: '#2C3D50',
   },
@@ -107,8 +108,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const allEmojis = ['🤑', '😎', '💪', '😋', '😜', '😘', '👏',
-                    '😅', '🤗', '😙', '😚', '😝', '😛', '🤓', '😏'];
+const allEmojis = ['grinning', 'smile', 'joy', 'laughing', 'wink', 'blush', 'yum',
+                    'sunglasses', 'heart_eyes', 'smirk', 'stuck_out_tongue_winking_eye',
+                     'see_no_evil', 'hear_no_evil', 'speak_no_evil', 'raised_hands', 'fire', 'v'];
 
 class Match extends Component {
   constructor() {
@@ -144,15 +146,15 @@ class Match extends Component {
         header={
           <View style={styles.headerContainer}>
             <View style={styles.left}>
-              <Text style={styles.emoji}>{sample(allEmojis)}</Text>
+              <Text style={{ fontSize: 50 }}><Emoji name={sample(allEmojis)} /></Text>
               <Text style={styles.username}>{match.leftUser.username}</Text>
               <Text style={styles.username}>{match.scoreByUser[match.leftUser.id]}</Text>
             </View>
             <View style={styles.middle}>
-              <Text style={styles.emoji}>-</Text>
+              <Text style={styles.profileSeparator}>-</Text>
             </View>
             <View style={styles.right}>
-              <Text style={styles.emoji}>{sample(allEmojis)}</Text>
+              <Text style={{ fontSize: 50 }}><Emoji name={sample(allEmojis)} /></Text>
               <Text style={styles.username}>{match.rightUser.username}</Text>
               <Text style={styles.username}>{match.scoreByUser[match.rightUser.id]}</Text>
             </View>

@@ -44,14 +44,14 @@ export default [
   {
     name: 'IDENTICAL',
     fullName: 'IDENTICAL',
-    rule: 'Is the current emoji the same as the previous one?',
+    rule: 'Is the food on the screen the same as the previous one?',
     winner: 'GREATEST',
     scoreType: 'NUMBER',
   },
   {
     name: 'LUCKY',
     fullName: 'LUCKY',
-    rule: 'Turn over as many cells as possible without flipping the ☠!',
+    rule: 'Get all the money without hitting the bomb!',
     winner: 'GREATEST',
     scoreType: 'NUMBER',
   },

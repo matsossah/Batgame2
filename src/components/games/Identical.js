@@ -5,6 +5,7 @@ import Template from '../common/Template';
 import Duration from '../common/Duration';
 import Countdown from '../common/Countdown';
 import sample from 'lodash/sample';
+import Emoji from 'react-native-emoji';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,9 +32,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',
-  },
-  bigEmoji: {
-    fontSize: 150,
   },
   scoreBox: {
     flex: 1,
@@ -67,7 +65,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const allEmojis = ['😎', '😘', '😅'];
+const allEmojis = ['strawberry', 'hamburger', 'pizza'];
 
 class Identical extends Component {
   constructor() {
@@ -86,13 +84,20 @@ class Identical extends Component {
     this.onEnd = this.onEnd.bind(this);
     this.newEmoji = this.newEmoji.bind(this);
     this.renderTimer = this.renderTimer.bind(this);
-    setTimeout(this.onStarted.bind(this), 800);
+    this.onStarted = this.onStarted.bind(this);
+    setTimeout(this.onFlicker.bind(this), 800);
+  }
+  onFlicker() {
+    this.setState({
+      previousEmoji: this.state.currentEmoji,
+      currentEmoji: '',
+    });
+    this.timeout = setTimeout(this.onStarted, 100);
   }
   onStarted() {
     this.setState({
       started: true,
       countdownStarted: Date.now(),
-      previousEmoji: this.state.currentEmoji,
       currentEmoji: sample(allEmojis),
     });
   }
@@ -172,7 +177,11 @@ class Identical extends Component {
         footer={
           <View style={styles.container}>
             <View style={styles.emojiBox}>
-              <Text style={styles.bigEmoji}>{this.state.currentEmoji}</Text>
+              {this.state.currentEmoji === '' ?
+                <Text />
+              :
+                <Text style={{ fontSize: 150 }}><Emoji name={this.state.currentEmoji} /></Text>
+              }
             </View>
             {this.state.started ?
               <View style={styles.options}>

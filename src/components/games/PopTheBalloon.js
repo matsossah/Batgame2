@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 import Template from '../common/Template';
 import Timer from '../common/Timer';
 import Duration from '../common/Duration';
+import Emoji from 'react-native-emoji';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,9 +35,6 @@ const styles = StyleSheet.create({
     fontFamily: 'chalkduster',
     color: '#FFD664',
     marginRight: 10,
-  },
-  smiley: {
-    fontSize: 150,
   },
 });
 
@@ -103,9 +101,10 @@ class PopTheBalloon extends Component {
                   ]}
                 />
               </TouchableHighlight>
-            </View> :
+            </View>
+            :
             <View style={styles.container}>
-              <Text style={styles.smiley}>🎉</Text>
+              <Text style={{ fontSize: 150 }}><Emoji name="tada" /></Text>
             </View>
         }
       />
