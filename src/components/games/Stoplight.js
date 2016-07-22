@@ -5,6 +5,8 @@ import Template from '../common/Template';
 import Timer from '../common/Timer';
 import Duration from '../common/Duration';
 import LargeButton from '../common/LargeButton';
+import I18n from '../../config/i18n';
+
 
 const styles = StyleSheet.create({
   stoplight: {
@@ -148,8 +150,8 @@ class Stoplight extends Component {
               <Text style={styles.message}>
                 {this.state.finished && (
                   this.state.failure ?
-                    'False Start!' :
-                    'Well Done!'
+                    I18n.t('falseStart') :
+                    I18n.t('wellDone')
                 )}
               </Text>
             </View>

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { TouchableWithoutFeedback, View, Text, StyleSheet, Image } from 'react-native';
+import I18n from '../../config/i18n';
 
 const styles = StyleSheet.create({
   container: {
@@ -89,7 +90,7 @@ class Round extends Component {
                 (
                   isActive ?
                     <View style={styles.game} key={game.id}>
-                      <Text style={styles.action}>YOUR TURN</Text>
+                      <Text style={styles.action}>{I18n.t('yourTurn2')}</Text>
                     </View>
                   :
                     <View style={styles.game} key={game.id}>
@@ -114,11 +115,11 @@ class Round extends Component {
                 :
                   game.myScore ?
                     <View style={styles.game} key={game.id}>
-                      <Text style={styles.action}>WAITING</Text>
+                      <Text style={styles.action}>{I18n.t('waiting')}</Text>
                     </View>
                   :
                     <View style={styles.game} key={game.id}>
-                      <Text style={styles.action}>YOUR TURN</Text>
+                      <Text style={styles.action}>{I18n.t('yourTurn2')}</Text>
                     </View>
                 )}
           </View>

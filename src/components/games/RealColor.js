@@ -5,6 +5,7 @@ import Template from '../common/Template';
 import Duration from '../common/Duration';
 import Countdown from '../common/Countdown';
 import sample from 'lodash/sample';
+import I18n from '../../config/i18n';
 
 const styles = StyleSheet.create({
   container: {
@@ -234,13 +235,17 @@ class RealColor extends Component {
         separatorStyle={backgroundStyles[this.state.color]}
         footer={
           <View style={styles.container}>
-            <View style={[styles.colorBox]}>
-              <View style={[styles.colorBorder, borderStyles[this.state.color]]}>
-                <Text style={[styles.label, colorStyles[this.state.color]]}>
-                  {this.state.word}
-                </Text>
+            {this.state.word === '' ?
+              <View style={[styles.colorBox]} />
+            :
+              <View style={[styles.colorBox]}>
+                <View style={[styles.colorBorder, borderStyles[this.state.color]]}>
+                  <Text style={[styles.label, colorStyles[this.state.color]]}>
+                    {I18n.t(this.state.word)}
+                  </Text>
+                </View>
               </View>
-            </View>
+            }
             <View style={styles.options}>
               <TouchableHighlight
                 onPress={this.onYesPress}
@@ -248,7 +253,7 @@ class RealColor extends Component {
                 style={[styles.yes, styles.choice]}
               >
                 <View>
-                  <Text style={styles.label}>YES</Text>
+                  <Text style={styles.label}>{I18n.t('yes')}</Text>
                 </View>
               </TouchableHighlight>
               <TouchableHighlight
@@ -257,7 +262,7 @@ class RealColor extends Component {
                 style={[styles.no, styles.choice]}
               >
                 <View>
-                  <Text style={styles.label}>NO</Text>
+                  <Text style={styles.label}>{I18n.t('no')}</Text>
                 </View>
               </TouchableHighlight>
             </View>

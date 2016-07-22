@@ -166,6 +166,7 @@ class Match extends Component {
               {rounds.map((round, idx) => {
                 const isCurrent = round === match.currentRound;
                 const isActive = isCurrent && awaitingPlayer;
+
                 return (
                   <Round
                     key={round.id}

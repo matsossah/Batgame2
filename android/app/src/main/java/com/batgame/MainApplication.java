@@ -2,7 +2,7 @@ package com.batgame;
 
 import android.app.Application;
 import android.util.Log;
-
+import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.facebook.CallbackManager;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
@@ -36,7 +36,8 @@ public class MainApplication extends Application implements ReactApplication {
             return Arrays.<ReactPackage>asList(
                 new MainReactPackage(),
                 new FBSDKPackage(mCallbackManager),
-                new VectorIconsPackage()
+                new VectorIconsPackage(),
+                new ReactNativeI18n()
             );
         }
     };

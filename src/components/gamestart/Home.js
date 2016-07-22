@@ -5,14 +5,15 @@ import { connect } from 'react-redux';
 import { userSelector, matchSelector } from '../../selectors';
 import {
   retrieveMatches,
+  joinRandomMatch,
 } from '../../actions/application';
 import { gotoPickOpponent, gotoMatch } from '../../actions/navigation';
-import { joinRandomMatch } from '../../actions/application';
+import I18n from '../../config/i18n';
 
 import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
-import MatchesList from '../common/MatchesList';
+import MatchesList from '../match/MatchesList';
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -51,14 +52,17 @@ class Home extends Component {
     return (
       <Template
         // pass the title in uppercase
-        header={<Title style={styles.title}>START A GAME!</Title>}
+        header={<Title style={styles.title}>{I18n.t('start')}</Title>}
         footer={
           <ScrollView
             style={styles.scrollView}
             showsVerticalScrollIndicator={false}
+            initialListSize={1}
+            pageSize={1}
+            scrollRenderAheadDistance={1}
           >
             <LargeButton
-              buttonText="NEW GAME"
+              buttonText={I18n.t('newGame')}
               onPress={this.onNewGamePress}
               underlayColor="#4EB479"
               style={styles.newGame}

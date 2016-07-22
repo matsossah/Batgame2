@@ -16,6 +16,7 @@ import RealColor from '../games/RealColor';
 import GameOverlay from './GameOverlay';
 import GameCountdown from './GameCountdown';
 import GameRule from './GameRule';
+import I18n from 'react-native-i18n-complete';
 
 import { gameSelector, matchSelector } from '../../selectors';
 import { createGameScore } from '../../actions/application';
@@ -97,7 +98,7 @@ class Game extends Component {
       <View style={styles.container}>
         {this.state.showRules &&
           <GameRule
-            name={game.info.fullName}
+            name={game.info.name}
             rule={game.info.rule}
             onEnd={this.onGameRuleEnd}
           />

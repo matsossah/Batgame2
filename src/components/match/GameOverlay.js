@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { TouchableWithoutFeedback, View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import I18n from '../../config/i18n';
 
 import { userSelector } from '../../selectors';
 import { gotoMatch, gotoNextGame } from '../../actions/navigation';
@@ -110,7 +111,7 @@ class GameOverlay extends Component {
         <View style={styles.scoreBox}>
           {game.info.name === 'RIGHT_ON' ?
             <View style={styles.scoreInfo}>
-              <Text style={styles.scoreLabel}>Total Difference</Text>
+              <Text style={styles.scoreLabel}>{I18n.t('totalDifference')}</Text>
               <Text style={styles.score}>
                 {formatDuration(game.myScore.score) + 's'}
               </Text>
@@ -118,14 +119,14 @@ class GameOverlay extends Component {
           :
             game.info.scoreType === 'DATE' ?
               <View style={styles.scoreInfo}>
-                <Text style={styles.scoreLabel}>Time</Text>
+                <Text style={styles.scoreLabel}>{I18n.t('time')}</Text>
                 <Text style={styles.score}>
                   {formatDuration(game.myScore.score) + 's'}
                 </Text>
               </View>
                 :
               <View style={styles.scoreInfo}>
-                <Text style={styles.scoreLabel}>Score</Text>
+                <Text style={styles.scoreLabel}>{I18n.t('score')}</Text>
                 <Text style={styles.score}>
                   {game.myScore.score + ' pts'}
                 </Text>
@@ -138,7 +139,7 @@ class GameOverlay extends Component {
               <View
                 style={styles.match}
               >
-                <Text style={styles.optionLabel}>Match</Text>
+                <Text style={styles.optionLabel}>{I18n.t('match')}</Text>
               </View>
             </TouchableWithoutFeedback>
 
@@ -150,7 +151,7 @@ class GameOverlay extends Component {
                 <View
                   style={styles.next}
                 >
-                  <Text style={styles.optionLabel}>Next</Text>
+                  <Text style={styles.optionLabel}>{I18n.t('next')}</Text>
                 </View>
               </TouchableWithoutFeedback>
             }

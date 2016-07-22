@@ -8,6 +8,7 @@ import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
 import WheelItem from './WheelItem';
+import I18n from '../../config/i18n';
 
 import GAMES from '../../games';
 import { gamePicked } from '../../actions/application';
@@ -181,7 +182,7 @@ class Wheel extends Component {
     return (
       <Template
         header={
-          <Title>SPIN THE WHEEL!</Title>
+          <Title>{I18n.t('spinWheel')}</Title>
         }
         footer={
           <View style={styles.container}>
@@ -208,7 +209,7 @@ class Wheel extends Component {
                 <LargeButton
                   style={styles.spinButton}
                   onPress={this.onSpin}
-                  buttonText="SPIN"
+                  buttonText={I18n.t('spin')}
                   underlayColor="#FFD664"
                 />
               }
