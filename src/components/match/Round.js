@@ -106,11 +106,11 @@ class Round extends Component {
                 game.isFinished ?
                   game.bestScore.users.includes(currentUser) ?
                     <View style={styles.won} key={game.id}>
-                      <Text style={styles.gameName}>{game.info.fullName}</Text>
+                      <Text style={styles.gameName}>{I18n.t(game.info.name)}</Text>
                     </View>
                   :
                     <View style={styles.lost} key={game.id}>
-                      <Text style={styles.gameName}>{game.info.fullName}</Text>
+                      <Text style={styles.gameName}>{I18n.t(game.info.name)}</Text>
                     </View>
                 :
                   game.myScore ?
