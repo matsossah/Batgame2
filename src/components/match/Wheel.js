@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import sample from 'lodash/sample';
+import shuffle from 'lodash/shuffle';
 import Parse from 'parse/react-native';
 import { connect } from 'react-redux';
 import Template from '../common/Template';
@@ -10,7 +10,7 @@ import LargeButton from '../common/LargeButton';
 import GAMES from '../../games';
 import { gamePickedSuccess } from '../../actions/application';
 import { gotoGame } from '../../actions/navigation';
-import { gameSelector } from '../../selectors';
+import { gameSelector, matchSelector } from '../../selectors';
 
 const Game = Parse.Object.extend('Game');
 
@@ -50,8 +50,22 @@ class Wheel extends Component {
   }
 
   pickRandomGame() {
-    const { game, matchId, roundId } = this.props;
-    const gameInfo = sample(GAMES);
+    const { game, match, matchId, roundId } = this.props;
+
+    // Retrieve all played games
+    const playedGames = match.rounds.reduce(
+      (res, round) => res.concat(
+        round.games
+          // Not strictly necessary, but avoids having undefined values in the
+          // final result.
+          .filter(g => g.gamePicked)
+          .map(g => g.gameName)
+      )
+    , []);
+    // Retrieve the first game that hasn't been played yet.
+    // We need to shuffle the GAMES list first to make sure the order is
+    // random every time.
+    const gameInfo = shuffle(GAMES).find(g => !playedGames.includes(g.name));
 
     // @TODO: move this into a createGame action creator
     // Will have to do this once we have navigation experimental
@@ -103,8 +117,10 @@ Wheel.propTypes = {
   matchId: PropTypes.string.isRequired,
   roundId: PropTypes.string.isRequired,
   game: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 export default connect((state, props) => ({
   game: gameSelector(props.gameId, state),
+  match: matchSelector(props.matchId, state),
 }))(Wheel);
