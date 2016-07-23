@@ -11,7 +11,7 @@ const logger = createLogger();
 
 const applicationStore = createStore(
   reducer,
-  applyMiddleware(thunk, logger)
+  __DEV__ ? applyMiddleware(thunk, logger) : applyMiddleware(thunk)
 );
 
 function StoreProvider() {
