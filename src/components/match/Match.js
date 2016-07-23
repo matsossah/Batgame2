@@ -114,11 +114,11 @@ class Match extends Component {
   constructor() {
     super();
 
-    this.onActiveRoundPress = this.onActiveRoundPress.bind(this);
+    this.onPlayPress = this.onPlayPress.bind(this);
     this.onBackPress = this.onBackPress.bind(this);
   }
 
-  onActiveRoundPress() {
+  onPlayPress() {
     const {
       match,
       dispatch,
@@ -172,7 +172,6 @@ class Match extends Component {
                     currentUser={match.leftUser}
                     roundIdx={idx}
                     round={round}
-                    onPress={isActive ? this.onActiveRoundPress : null}
                   />
                 );
               })}
@@ -189,11 +188,13 @@ class Match extends Component {
                 </TouchableHighlight>
               </View>
               <View style={styles.playBox}>
-                <TouchableHighlight>
-                  <View style={styles.playButton}>
-                    <Text style={styles.action}>PLAY</Text>
-                  </View>
-                </TouchableHighlight>
+                {awaitingPlayer &&
+                  <TouchableHighlight onPress={this.onPlayPress}>
+                    <View style={styles.playButton}>
+                      <Text style={styles.action}>PLAY</Text>
+                    </View>
+                  </TouchableHighlight>
+                }
               </View>
               <View style={styles.empty} />
             </View>
