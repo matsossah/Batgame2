@@ -5,7 +5,7 @@ import Template from '../common/Template';
 import Duration from '../common/Duration';
 import Countdown from '../common/Countdown';
 import sample from 'lodash/sample';
-import Emoji from 'react-native-emoji';
+// import Emoji from 'react-native-emoji';
 import I18n from '../../config/i18n';
 
 const styles = StyleSheet.create({
@@ -65,8 +65,10 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
+// const allEmojis to use with react-native-emoji
+//const allEmojis = ['strawberry', 'hamburger', 'pizza'];
 
-const allEmojis = ['strawberry', 'hamburger', 'pizza'];
+const allEmojis = ['🍓', '🍔', '🍭'];
 
 class Identical extends Component {
   constructor() {
@@ -181,7 +183,7 @@ class Identical extends Component {
               {this.state.currentEmoji === '' ?
                 <Text />
               :
-                <Text style={{ fontSize: 150 }}><Emoji name={this.state.currentEmoji} /></Text>
+                <Text style={{ fontSize: 150 }}>{this.state.currentEmoji}</Text>
               }
             </View>
             {this.state.started ?

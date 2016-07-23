@@ -61,6 +61,8 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   pending: {
+    flex: 1,
+    borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#34485E',

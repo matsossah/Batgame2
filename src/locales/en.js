@@ -16,6 +16,7 @@ const en = {
   waiting: 'WAITING',
   ok: 'OK',
   time: 'Time',
+  toBoard: 'Game Time!',
   spinWheel: 'SPIN THE WHEEL!',
   spin: 'SPIN',
   totalDifference: 'Total Difference',

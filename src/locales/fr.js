@@ -15,6 +15,7 @@ const fr = {
   YELLOW: 'JAUNE',
   waiting: 'PATIENTE',
   ok: 'OK',
+  toBoard: 'Au Tableau!',
   time: 'Temps',
   spinWheel: 'TOURNE LA ROUE!',
   spin: 'TOURNER',

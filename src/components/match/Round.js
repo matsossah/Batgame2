@@ -53,6 +53,11 @@ const styles = StyleSheet.create({
   action: {
     fontSize: 10,
     fontFamily: 'chalkduster',
+    color: '#FFD664',
+  },
+  yourTurn: {
+    fontSize: 10,
+    fontFamily: 'chalkduster',
     color: 'white',
   },
   gameName: {
@@ -90,7 +95,7 @@ class Round extends Component {
                 (
                   isActive ?
                     <View style={styles.game} key={game.id}>
-                      <Text style={styles.action}>{I18n.t('yourTurn2')}</Text>
+                      <Text style={styles.yourTurn}>{I18n.t('yourTurn2')}</Text>
                     </View>
                   :
                     <View style={styles.game} key={game.id}>
@@ -119,7 +124,7 @@ class Round extends Component {
                     </View>
                   :
                     <View style={styles.game} key={game.id}>
-                      <Text style={styles.action}>{I18n.t('yourTurn2')}</Text>
+                      <Text style={styles.yourTurn}>{I18n.t('yourTurn2')}</Text>
                     </View>
                 )}
           </View>

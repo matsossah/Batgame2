@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Text, TouchableHighlight, View, StyleSheet } from 'react-native';
-import Emoji from 'react-native-emoji';
+// import Emoji from 'react-native-emoji';
 
 const styles = StyleSheet.create({
   cellText: {
@@ -37,7 +37,7 @@ class LuckyCell extends Component {
           style={style}
         >
           {this.state.flipped ?
-            <Text style={{ fontSize: 36 }}><Emoji name={this.props.emoji} /></Text>
+            <Text style={{ fontSize: 36 }}>{this.props.emoji}</Text>
           :
             <Text style={styles.cellText} >?</Text>}
         </View>

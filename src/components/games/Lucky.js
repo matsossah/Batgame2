@@ -28,16 +28,23 @@ const styles = StyleSheet.create({
   cell: {
     width: 90,
     height: 90,
+    marginTop: 5,
+    marginBottom: 5,
+    marginLeft: 10,
+    marginRight: 10,
     borderRadius: 45,
     backgroundColor: '#34485E',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 10,
   },
 });
+// const allEmojis to use with react-native-emoji
+// const allEmojis = ['moneybag', 'moneybag', 'moneybag', 'moneybag', 'moneybag',
+//                   'moneybag', 'moneybag', 'moneybag', 'moneybag', 'moneybag', 'moneybag', 'bomb'
+//                    ];
 
-const allEmojis = ['moneybag', 'moneybag', 'moneybag', 'moneybag', 'moneybag',
-                  'moneybag', 'moneybag', 'moneybag', 'moneybag', 'moneybag', 'moneybag', 'bomb'];
+const allEmojis = ['💰', '💰', '💰', '💰', '💰',
+                  '💰', '💰', '💰', '💰', '💰', '💰', '💣'];
 
 class Lucky extends Component {
   constructor() {
@@ -51,7 +58,7 @@ class Lucky extends Component {
     this.onCellPress = this.onCellPress.bind(this);
   }
   onCellPress(emoji) {
-    if (emoji === 'bomb') {
+    if (emoji === '💣') {
       this.setState({ running: false });
       this.props.onEnd({ score: this.state.score });
     } else {
