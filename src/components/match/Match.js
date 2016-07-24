@@ -118,8 +118,8 @@ const styles = StyleSheet.create({
 //                   ];
 
 const allEmojis = ['😘', '😜', '😎', '🤗', '🤓', '👻', '💪',
-                    '👼', '💃', '🐹', '🐷',
-                     '🙈', '🔞'];
+                    '👼', '💃', '👊', '😍',
+                     '🙈', '😏'];
 
 class Match extends Component {
   constructor() {
