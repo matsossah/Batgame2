@@ -1,18 +1,18 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, Animated, ListView, Easing } from 'react-native';
 import shuffle from 'lodash/shuffle';
-import Parse from 'parse/react-native';
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
+
 import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
+import WheelItem from './WheelItem';
 
 import GAMES from '../../games';
-import { gamePickedSuccess } from '../../actions/application';
+import { gamePicked } from '../../actions/application';
 import { gotoGame } from '../../actions/navigation';
-import { gameSelector, matchSelector } from '../../selectors';
-
-const Game = Parse.Object.extend('Game');
+import { matchSelector } from '../../selectors';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,8 +23,18 @@ const styles = StyleSheet.create({
   },
   wheel: {
     flex: 3,
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
+    overflow: 'visible',
+    alignSelf: 'stretch',
+    marginTop: 60,
+    marginBottom: 60,
+  },
+  linearGradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
   },
   buttonBox: {
     flex: 1,
@@ -42,15 +52,34 @@ const styles = StyleSheet.create({
   },
 });
 
+const WHEEL_TIMEOUT = 1500;
+const ROWS = 5;
+const AROUND = Math.floor(ROWS / 2);
+const OVERSHOOT = 1;
+const LENGTH = 100;
+
 class Wheel extends Component {
   constructor() {
     super();
 
-    this.pickRandomGame = this.pickRandomGame.bind(this);
+    this.state = {
+      games: null,
+      gamesDataSource: null,
+      finalOffset: null,
+      pickedGame: null,
+      wheelItemHeight: null,
+      spinStarted: false,
+    };
+
+    this.onSpin = this.onSpin.bind(this);
+    this.onWheelLayout = this.onWheelLayout.bind(this);
+    this.onListViewMount = this.onListViewMount.bind(this);
+    this.renderRow = this.renderRow.bind(this);
   }
 
-  pickRandomGame() {
-    const { game, match, matchId, roundId } = this.props;
+  onWheelLayout(e) {
+    const { height } = e.nativeEvent.layout;
+    const { match } = this.props;
 
     // Retrieve all played games
     const playedGames = match.rounds.reduce(
@@ -67,23 +96,85 @@ class Wheel extends Component {
     // random every time.
     const gameInfo = shuffle(GAMES).find(g => !playedGames.includes(g.name));
 
-    // @TODO: move this into a createGame action creator
-    // Will have to do this once we have navigation experimental
-    const gameObj = new Game({
-      id: game.id,
-      gameName: gameInfo.name,
-      gamePicked: true,
+    const games = shuffle(GAMES);
+    const gameOffset = games.indexOf(gameInfo);
+    const finalOffset = gameOffset + LENGTH;
+    const repeatedGames = [];
+    for (let i = 0; i <= finalOffset + AROUND + OVERSHOOT; i++) {
+      repeatedGames.push({
+        name: games[i % games.length].fullName,
+        active: false,
+      });
+    }
+
+    const ds = new ListView.DataSource({
+      rowHasChanged: (prev, next) => prev.active !== next.active,
     });
 
-    gameObj.save()
-      .then(() => {
-        this.props.dispatch(gamePickedSuccess(gameObj));
-        this.props.dispatch(gotoGame(matchId, roundId, game.id));
-      })
-      .catch(e => {
-        // @TODO: handle error
-        console.error(e);
+    this.setState({
+      wheelItemHeight: Math.floor(height / ROWS),
+      finalOffset,
+      pickedGame: gameInfo.name,
+      games: repeatedGames,
+      gamesDataSource: ds.cloneWithRows(repeatedGames),
+    });
+  }
+
+  onSpin() {
+    const { gameId, matchId, roundId } = this.props;
+    const {
+      wheelItemHeight,
+      finalOffset,
+      pickedGame,
+      games,
+      gamesDataSource,
+    } = this.state;
+    const spin = new Animated.Value(0);
+    spin.addListener(({ value }) => {
+      this.listView.scrollTo({
+        y: value,
+        animated: false,
       });
+    });
+    spin.setValue(0);
+    Animated.timing(spin, {
+      toValue: ((finalOffset - AROUND) * wheelItemHeight),
+      easing: Easing.inOut(Easing.quad),
+      duration: 10000,
+    }).start(() => {
+      const newGames = games.slice();
+      const activeGameIdx = newGames.length - OVERSHOOT - AROUND - 1;
+      newGames[activeGameIdx] = {
+        ...newGames[activeGameIdx],
+        active: true,
+      };
+      this.setState({
+        gamesDataSource: gamesDataSource.cloneWithRows(newGames),
+      });
+      setTimeout(() => {
+        this.props.dispatch(gamePicked(gameId, pickedGame))
+          .then(() => {
+            this.props.dispatch(gotoGame(matchId, roundId, gameId));
+          });
+      }, WHEEL_TIMEOUT);
+    });
+    this.setState({
+      spinStarted: true,
+    });
+  }
+
+  onListViewMount(el) {
+    this.listView = el;
+  }
+
+  renderRow(game) {
+    const { wheelItemHeight } = this.state;
+    return (
+      <WheelItem
+        height={wheelItemHeight}
+        game={game}
+      />
+    );
   }
 
   render() {
@@ -94,16 +185,33 @@ class Wheel extends Component {
         }
         footer={
           <View style={styles.container}>
-            <View style={styles.wheel}>
-              <Text>WHEEL</Text>
+            <View
+              style={styles.wheel}
+              onLayout={this.onWheelLayout}
+            >
+              {this.state.gamesDataSource &&
+                <ListView
+                  ref={this.onListViewMount}
+                  dataSource={this.state.gamesDataSource}
+                  scrollEnabled={false}
+                  showsVerticalScrollIndicator={false}
+                  renderRow={this.renderRow}
+                />
+              }
+              <LinearGradient
+                colors={['#2C3D50', 'rgba(44, 61, 80, 0)', '#2C3D50']}
+                style={styles.linearGradient}
+              />
             </View>
             <View style={styles.buttonBox}>
-              <LargeButton
-                style={styles.spinButton}
-                onPress={this.pickRandomGame}
-                buttonText="SPIN"
-                underlayColor="#FFD664"
-              />
+              {!this.state.spinStarted &&
+                <LargeButton
+                  style={styles.spinButton}
+                  onPress={this.onSpin}
+                  buttonText="SPIN"
+                  underlayColor="#FFD664"
+                />
+              }
             </View>
           </View>
         }
@@ -116,11 +224,10 @@ Wheel.propTypes = {
   dispatch: PropTypes.func.isRequired,
   matchId: PropTypes.string.isRequired,
   roundId: PropTypes.string.isRequired,
-  game: PropTypes.object.isRequired,
+  gameId: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired,
 };
 
 export default connect((state, props) => ({
-  game: gameSelector(props.gameId, state),
   match: matchSelector(props.matchId, state),
 }))(Wheel);

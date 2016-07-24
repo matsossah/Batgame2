@@ -119,6 +119,27 @@ export function gamePickedSuccess(game) {
   };
 }
 
+export function gamePicked(gameId, gameName) {
+  return dispatch => {
+    // @TODO: move this into a createGame action creator
+    // Will have to do this once we have navigation experimental
+    const gameObj = new Game({
+      id: gameId,
+      gameName,
+      gamePicked: true,
+    });
+
+    return gameObj.save()
+      .then(() => {
+        dispatch(gamePickedSuccess(gameObj));
+      })
+      .catch(e => {
+        // @TODO: handle error
+        console.error(e);
+      });
+  };
+}
+
 export function createGameScore(gameId, score) {
   return (dispatch, getState) => {
     const game = new Game({ id: gameId });
