@@ -20,6 +20,7 @@ export default createActionTypes([
   'POP_MAIN',
   'POP_MODALS',
   'GOTO_PICK_OPPONENT',
+  'GOTO_SEARCH_SCREEN',
   'GOTO_MATCH',
   'GOTO_WHEEL',
   'GOTO_GAME',

@@ -49,6 +49,17 @@ export default function navigationReducer(state = initialState, action) {
           }])
         ),
       };
+    case actionTypes.GOTO_SEARCH_SCREEN:
+      return {
+        main: state.main,
+        modals: StateUtils.reset(
+          state.modals,
+          initialState.modals.routes.concat([{
+            key: 'search_screen',
+            type: 'search_screen',
+          }])
+        ),
+      };
     case actionTypes.GOTO_MATCH: {
       const key = `match_${action.matchId}`;
       let main;

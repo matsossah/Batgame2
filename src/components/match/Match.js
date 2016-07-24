@@ -7,6 +7,7 @@ import { userSelector, matchSelector } from '../../selectors';
 import { gotoNextGame, popMain } from '../../actions/navigation';
 import Template from '../common/Template';
 import Round from './Round';
+import I18n from '../../config/i18n';
 // import Emoji from 'react-native-emoji';
 
 const styles = StyleSheet.create({
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
   },
   playButton: {
     height: 50,
-    width: 90,
+    width: 100,
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
@@ -106,6 +107,9 @@ const styles = StyleSheet.create({
     fontFamily: 'chalkduster',
     color: '#FFD664',
   },
+  emoji: {
+    fontSize: 50,
+  },
 });
 // const allEmojis to use with react-native-emoji
 // const allEmojis = ['grinning', 'smile', 'joy', 'laughing', 'wink', 'blush', 'yum',
@@ -151,7 +155,7 @@ class Match extends Component {
         header={
           <View style={styles.headerContainer}>
             <View style={styles.left}>
-              <Text style={{ fontSize: 50 }}>{sample(allEmojis)}</Text>
+              <Text style={styles.emoji}>{sample(allEmojis)}</Text>
               <Text style={styles.username}>{match.leftUser.username}</Text>
               <Text style={styles.username}>{match.scoreByUser[match.leftUser.id]}</Text>
             </View>
@@ -160,9 +164,9 @@ class Match extends Component {
             </View>
             <View style={styles.right}>
             {
-// TODO the 6 spaces after sample allEmojis is the only way to have it diplayed on Android
+// TODO emojis displayed on Android only if 6 spaces are added after {sample(allEmojis is the only way to have it diplayed on Android
             }
-              <Text style={{ fontSize: 50 }}>{sample(allEmojis)}      </Text>
+              <Text style={styles.emoji}>{sample(allEmojis)}</Text>
               <Text style={styles.username}>{match.rightUser.username}</Text>
               <Text style={styles.username}>{match.scoreByUser[match.rightUser.id]}</Text>
             </View>
@@ -202,7 +206,7 @@ class Match extends Component {
                 {awaitingPlayer &&
                   <TouchableHighlight onPress={this.onPlayPress}>
                     <View style={styles.playButton}>
-                      <Text style={styles.action}>PLAY</Text>
+                      <Text style={styles.action}>{I18n.t('play')}</Text>
                     </View>
                   </TouchableHighlight>
                 }

@@ -38,10 +38,10 @@ class Home extends Component {
 
   onNewGamePress() {
     // Option 1 to go to pick opponent from FB, random or username
-    // this.props.dispatch(gotoPickOpponent());
+    this.props.dispatch(gotoPickOpponent());
 
     // Option 2 to start a game with a random opponent right away.
-    this.props.dispatch(joinRandomMatch());
+    // this.props.dispatch(joinRandomMatch());
   }
 
   onMatchPress(matchId) {
