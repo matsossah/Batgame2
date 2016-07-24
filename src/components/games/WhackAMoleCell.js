@@ -1,15 +1,20 @@
 import React, { Component, PropTypes } from 'react';
-import { TouchableHighlight, View, StyleSheet } from 'react-native';
+import { TouchableHighlight, Text, View, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   cell: {
     width: 90,
+    justifyContent: 'center',
+    alignItems: 'center',
     height: 90,
     borderRadius: 45,
     backgroundColor: '#34485E',
   },
   cellActive: {
     backgroundColor: '#FFD664',
+  },
+  mole: {
+    fontSize: 50,
   },
 });
 
@@ -34,9 +39,10 @@ class WhackAMoleCell extends Component {
         <View
           style={[
             styles.cell,
-            isActive && styles.cellActive,
           ].concat(style)}
-        />
+        >
+          {isActive && <Text style={styles.mole}>🐭</Text>}
+        </View>
       </TouchableHighlight>
     );
   }

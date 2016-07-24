@@ -123,7 +123,9 @@ class RightOn extends Component {
       startTime: 0,
       duration: null,
       running: false,
-      laps: [],
+      lapOne: 0,
+      lapTwo: 0,
+      lapThree: 0,
     };
     this.handleLapPress = this.handleLapPress.bind(this);
     this.onStarted = this.onStarted.bind(this);
@@ -132,17 +134,6 @@ class RightOn extends Component {
     this.setState({
       running: true,
       startTime: Date.now(),
-    });
-  }
-  laps() {
-    return this.state.laps.map((time, index) => {
-      return (
-        <View key={index} style={[styles.lap, borderStyles[index]]}>
-          <Text style={[styles.lapText, colorStyles[index]]}>
-            {index + 1} | {formatDuration(time)}
-          </Text>
-        </View>
-      );
     });
   }
   lapButton() {
@@ -174,22 +165,27 @@ class RightOn extends Component {
   handleLapPress() {
     const lap = Date.now() - this.state.startTime;
 
-    if (this.state.laps.length < 2) {
-      this.setState({
-        startTime: Date.now(),
-        laps: this.state.laps.concat([lap]),
-      });
-    } else if (this.state.laps.length === 2) {
+    if (this.state.lapOne !== 0 && this.state.lapTwo !== 0) {
       this.setState({
         running: false,
-        laps: this.state.laps.concat([lap]),
+        lapThree: lap,
       });
       const score = (
-        Math.abs(this.state.laps[0] - 3000) +
-        Math.abs(this.state.laps[1] - 3000) +
+        Math.abs(this.state.lapOne - 3000) +
+        Math.abs(this.state.lapTwo - 3000) +
         Math.abs(lap - 3000)
       );
       this.props.onEnd({ score });
+    } else if (this.state.lapOne !== 0) {
+      this.setState({
+        startTime: Date.now(),
+        lapTwo: lap,
+      });
+    } else {
+      this.setState({
+        startTime: Date.now(),
+        lapOne: lap,
+      });
     }
   }
   render() {
@@ -214,7 +210,21 @@ class RightOn extends Component {
         footer={
           <View style={styles.container}>
             <View style={styles.laps}>
-              {this.laps()}
+              <View style={[styles.lap, borderStyles[0]]}>
+                <Text style={[styles.lapText, colorStyles[0]]}>
+                  1 | {formatDuration(this.state.lapOne)}
+                </Text>
+              </View>
+              <View style={[styles.lap, borderStyles[1]]}>
+                <Text style={[styles.lapText, colorStyles[1]]}>
+                  2 | {formatDuration(this.state.lapTwo)}
+                </Text>
+              </View>
+              <View style={[styles.lap, borderStyles[2]]}>
+                <Text style={[styles.lapText, colorStyles[2]]}>
+                  3 | {formatDuration(this.state.lapThree)}
+                </Text>
+              </View>
             </View>
             {this.state.running ?
               <View style={styles.buttonWrapper}>

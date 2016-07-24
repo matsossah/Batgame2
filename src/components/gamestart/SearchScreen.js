@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Text, TextInput, View, TouchableHighlight, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
-import { joinRandomMatch } from '../../actions/application';
-import { popModals, gotoSearchBar } from '../../actions/navigation';
+import { popModals } from '../../actions/navigation';
 
 import Template from '../common/Template';
 import Title from '../common/Title';
@@ -95,7 +94,7 @@ class SearchScreen extends Component {
                 placeholder={I18n.t('startSearch')}
                 autoCorrect={false}
                 autoCapitalize="none"
-                placeholderTextColor="white"
+                placeholderTextColor="#34485E"
               />
             </View>
             <View style={styles.middleFooter} />
