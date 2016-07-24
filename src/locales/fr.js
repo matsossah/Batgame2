@@ -44,11 +44,11 @@ const fr = {
   MATH_BATTLE_RULE: 'Appuie sur la multiplication au plus haut résultat!',
   POP_THE_BALLOON_RULE: 'Appuie 50 fois sur le ballon pour le faire éclater!',
   RED_GREEN_BLUE_RULE: 'Appuie sur la couleur au tableau le plus vite possible!',
-  WHACK_A_MOLE_RULE: 'Appuie sur les cercles dès qu ils passent au jaune!',
+  WHACK_A_MOLE_RULE: 'Appuie sur les taupes dès qu elles passent leur tête!',
   NUMBER_RULE: 'Appuie sur les chiffres de 1 à 9 le plus vite possible!',
-  IDENTICAL_RULE: 'Le pictogramme à l ecran est il le même que le précédent?',
+  IDENTICAL_RULE: 'L emoji à l ecran est il le même que celui juste avant?',
   LUCKY_RULE: 'Trouve tout les $$$ sans toucher la bombe',
-  RIGHT_ON_RULE: 'Appuie sur GO exactement à 3 secondes, 3 fois de suite!',
+  RIGHT_ON_RULE: 'Appuie sur GO chaque fois que le chrono est à 3 secondes!',
   REAL_COLOR_RULE: 'Le mot est il bien associé à sa couleur?',
 };
 

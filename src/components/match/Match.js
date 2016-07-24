@@ -124,6 +124,10 @@ const allEmojis = ['😘', '😜', '😎', '🤗', '🤓', '👻', '💪',
 class Match extends Component {
   constructor() {
     super();
+    this.state = {
+      leftEmoji: sample(allEmojis),
+      rightEmoji: sample(allEmojis),
+    };
 
     this.onPlayPress = this.onPlayPress.bind(this);
     this.onBackPress = this.onBackPress.bind(this);
@@ -155,7 +159,7 @@ class Match extends Component {
         header={
           <View style={styles.headerContainer}>
             <View style={styles.left}>
-              <Text style={styles.emoji}>{sample(allEmojis)}</Text>
+              <Text style={styles.emoji}>{this.state.leftEmoji}</Text>
               <Text style={styles.username}>{match.leftUser.username}</Text>
               <Text style={styles.username}>{match.scoreByUser[match.leftUser.id]}</Text>
             </View>
@@ -166,7 +170,7 @@ class Match extends Component {
             {
 // TODO emojis displayed on Android only if 6 spaces are added after {sample(allEmojis is the only way to have it diplayed on Android
             }
-              <Text style={styles.emoji}>{sample(allEmojis)}</Text>
+              <Text style={styles.emoji}>{this.state.rightEmoji}</Text>
               <Text style={styles.username}>{match.rightUser.username}</Text>
               <Text style={styles.username}>{match.scoreByUser[match.rightUser.id]}</Text>
             </View>

@@ -103,7 +103,7 @@ class Wheel extends Component {
     const repeatedGames = [];
     for (let i = 0; i <= finalOffset + AROUND + OVERSHOOT; i++) {
       repeatedGames.push({
-        name: games[i % games.length].name,
+        game: games[i % games.length],
         active: false,
       });
     }
@@ -141,7 +141,7 @@ class Wheel extends Component {
     Animated.timing(spin, {
       toValue: ((finalOffset - AROUND) * wheelItemHeight),
       easing: Easing.inOut(Easing.quad),
-      duration: 10000,
+      duration: 5000,
     }).start(() => {
       const newGames = games.slice();
       const activeGameIdx = newGames.length - OVERSHOOT - AROUND - 1;
@@ -168,12 +168,13 @@ class Wheel extends Component {
     this.listView = el;
   }
 
-  renderRow(game) {
+  renderRow(row) {
     const { wheelItemHeight } = this.state;
     return (
       <WheelItem
         height={wheelItemHeight}
-        game={game}
+        game={row.game}
+        active={row.active}
       />
     );
   }

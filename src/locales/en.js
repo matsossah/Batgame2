@@ -44,11 +44,11 @@ const en = {
   MATH_BATTLE_RULE: 'Press on the multiplication with the bigger result!',
   POP_THE_BALLOON_RULE: 'Press 50 times on the balloon as quickly as possible to pop it!',
   RED_GREEN_BLUE_RULE: 'Press on the color that’s on the board as fast as possible!',
-  WHACK_A_MOLE_RULE: 'Press on the circles as soon as they turn yellow!',
+  WHACK_A_MOLE_RULE: 'Press on the moles as soon as they show up!',
   NUMBER_RULE: 'Press on the numbers from 1 to 9 as quickly as you can!',
-  IDENTICAL_RULE: 'Is the food on the screen the same as the previous one?',
+  IDENTICAL_RULE: 'Is the emoji on the screen the same as the one right before?',
   LUCKY_RULE: 'Get all the $$$ without hitting the bomb!',
-  RIGHT_ON_RULE: 'Press the GO button on 3 seconds, 3 times in a row!',
+  RIGHT_ON_RULE: 'Press on GO each time the timer hits 3 seconds!',
   REAL_COLOR_RULE: 'Does the meaning of the word match the color?',
 };
 
