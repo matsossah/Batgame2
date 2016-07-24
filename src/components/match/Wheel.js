@@ -103,7 +103,7 @@ class Wheel extends Component {
     const repeatedGames = [];
     for (let i = 0; i <= finalOffset + AROUND + OVERSHOOT; i++) {
       repeatedGames.push({
-        name: games[i % games.length].fullName,
+        name: games[i % games.length].name,
         active: false,
       });
     }
