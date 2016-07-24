@@ -41,7 +41,7 @@ class WheelItem extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.game.active !== this.props.active) {
       Animated.timing(this.state.activeValue, {
-        toValue: nextProps.éactive ? 1 : 0,
+        toValue: nextProps.active ? 1 : 0,
         duration: 300,
         easing: Easing.inOut(Easing.sin),
       }).start();
