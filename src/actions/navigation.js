@@ -19,6 +19,12 @@ export function gotoPickOpponent() {
   };
 }
 
+export function gotoSearchScreen() {
+  return {
+    type: actionTypes.GOTO_SEARCH_SCREEN,
+  };
+}
+
 export function gotoMatch(matchId) {
   return {
     type: actionTypes.GOTO_MATCH,

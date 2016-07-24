@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import { View, Animated, Easing, StyleSheet } from 'react-native';
 
+import I18n from '../../config/i18n';
+
 const styles = StyleSheet.create({
   wheelItem: {
     justifyContent: 'center',
@@ -60,7 +62,7 @@ class WheelItem extends Component {
             },
           ]}
         >
-          {game.name}
+          {I18n.t(game.name)}
         </Animated.Text>
       </View>
     );

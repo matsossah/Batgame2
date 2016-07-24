@@ -7,6 +7,8 @@ import { userSelector, matchSelector } from '../../selectors';
 import { gotoNextGame, popMain } from '../../actions/navigation';
 import Template from '../common/Template';
 import Round from './Round';
+import I18n from '../../config/i18n';
+// import Emoji from 'react-native-emoji';
 
 const styles = StyleSheet.create({
   footerContainer: {
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
   },
   playButton: {
     height: 50,
-    width: 90,
+    width: 100,
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#2C3D50',
   },
-  emoji: {
+  profileSeparator: {
     fontSize: 50,
     color: '#2C3D50',
   },
@@ -105,10 +107,19 @@ const styles = StyleSheet.create({
     fontFamily: 'chalkduster',
     color: '#FFD664',
   },
+  emoji: {
+    fontSize: 50,
+  },
 });
+// const allEmojis to use with react-native-emoji
+// const allEmojis = ['grinning', 'smile', 'joy', 'laughing', 'wink', 'blush', 'yum',
+//                    'sunglasses', 'heart_eyes', 'smirk', 'stuck_out_tongue_winking_eye',
+//                    'see_no_evil', 'hear_no_evil', 'speak_no_evil', 'raised_hands', 'fire', 'v'
+//                   ];
 
-const allEmojis = ['🤑', '😎', '💪', '😋', '😜', '😘', '👏',
-                    '😅', '🤗', '😙', '😚', '😝', '😛', '🤓', '😏'];
+const allEmojis = ['😘', '😜', '😎', '🤗', '🤓', '👻', '💪',
+                    '👼', '💃', '🐹', '🐷',
+                     '🙈', '🔞'];
 
 class Match extends Component {
   constructor() {
@@ -149,9 +160,12 @@ class Match extends Component {
               <Text style={styles.username}>{match.scoreByUser[match.leftUser.id]}</Text>
             </View>
             <View style={styles.middle}>
-              <Text style={styles.emoji}>-</Text>
+              <Text style={styles.profileSeparator}>-</Text>
             </View>
             <View style={styles.right}>
+            {
+// TODO emojis displayed on Android only if 6 spaces are added after {sample(allEmojis is the only way to have it diplayed on Android
+            }
               <Text style={styles.emoji}>{sample(allEmojis)}</Text>
               <Text style={styles.username}>{match.rightUser.username}</Text>
               <Text style={styles.username}>{match.scoreByUser[match.rightUser.id]}</Text>
@@ -164,6 +178,7 @@ class Match extends Component {
               {rounds.map((round, idx) => {
                 const isCurrent = round === match.currentRound;
                 const isActive = isCurrent && awaitingPlayer;
+
                 return (
                   <Round
                     key={round.id}
@@ -191,7 +206,7 @@ class Match extends Component {
                 {awaitingPlayer &&
                   <TouchableHighlight onPress={this.onPlayPress}>
                     <View style={styles.playButton}>
-                      <Text style={styles.action}>PLAY</Text>
+                      <Text style={styles.action}>{I18n.t('play')}</Text>
                     </View>
                   </TouchableHighlight>
                 }

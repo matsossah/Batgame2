@@ -5,6 +5,8 @@ import Template from '../common/Template';
 import Duration from '../common/Duration';
 import Countdown from '../common/Countdown';
 import sample from 'lodash/sample';
+// import Emoji from 'react-native-emoji';
+import I18n from '../../config/i18n';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,9 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',
-  },
-  bigEmoji: {
-    fontSize: 150,
   },
   scoreBox: {
     flex: 1,
@@ -66,8 +65,10 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
+// const allEmojis to use with react-native-emoji
+//const allEmojis = ['strawberry', 'hamburger', 'pizza'];
 
-const allEmojis = ['😎', '😘', '😅'];
+const allEmojis = ['🍓', '🍔', '🍭'];
 
 class Identical extends Component {
   constructor() {
@@ -86,13 +87,20 @@ class Identical extends Component {
     this.onEnd = this.onEnd.bind(this);
     this.newEmoji = this.newEmoji.bind(this);
     this.renderTimer = this.renderTimer.bind(this);
-    setTimeout(this.onStarted.bind(this), 800);
+    this.onStarted = this.onStarted.bind(this);
+    setTimeout(this.onFlicker.bind(this), 800);
+  }
+  onFlicker() {
+    this.setState({
+      previousEmoji: this.state.currentEmoji,
+      currentEmoji: '',
+    });
+    this.timeout = setTimeout(this.onStarted, 100);
   }
   onStarted() {
     this.setState({
       started: true,
       countdownStarted: Date.now(),
-      previousEmoji: this.state.currentEmoji,
       currentEmoji: sample(allEmojis),
     });
   }
@@ -172,7 +180,11 @@ class Identical extends Component {
         footer={
           <View style={styles.container}>
             <View style={styles.emojiBox}>
-              <Text style={styles.bigEmoji}>{this.state.currentEmoji}</Text>
+              {this.state.currentEmoji === '' ?
+                <Text />
+              :
+                <Text style={{ fontSize: 150 }}>{this.state.currentEmoji}</Text>
+              }
             </View>
             {this.state.started ?
               <View style={styles.options}>
@@ -182,7 +194,7 @@ class Identical extends Component {
                   style={[styles.yes, styles.choice]}
                 >
                   <View>
-                    <Text style={styles.label}>YES</Text>
+                    <Text style={styles.label}>{I18n.t('yes')}</Text>
                   </View>
                 </TouchableHighlight>
                 <TouchableHighlight
@@ -191,7 +203,7 @@ class Identical extends Component {
                   style={[styles.no, styles.choice]}
                 >
                   <View>
-                    <Text style={styles.label}>NO</Text>
+                    <Text style={styles.label}>{I18n.t('no')}</Text>
                   </View>
                 </TouchableHighlight>
               </View>

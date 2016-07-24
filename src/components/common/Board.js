@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import I18n from '../../config/i18n';
 
 const styles = StyleSheet.create({
   container: {
@@ -39,7 +40,7 @@ function Board(props) {
     <View style={styles.container}>
       <View style={[styles.outer, styles.centered]}>
         <View style={styles.inner}>
-          <Text style={styles.label}>Au Tableau!</Text>
+          <Text style={styles.label}>{I18n.t('toBoard')}</Text>
           {props.children}
         </View>
       </View>

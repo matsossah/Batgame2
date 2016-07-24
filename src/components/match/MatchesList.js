@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { TouchableWithoutFeedback, View, Text, StyleSheet } from 'react-native';
 import partition from 'lodash/partition';
+import I18n from '../../config/i18n';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
   },
   section: {
     height: 30,
-    width: 100,
+    width: 120,
     borderWidth: 1,
     borderColor: '#FFD664',
     borderRadius: 5,
@@ -60,6 +61,8 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   pending: {
+    flex: 1,
+    borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#34485E',
@@ -95,13 +98,14 @@ const styles = StyleSheet.create({
   },
 });
 
+
 class MatchesList extends Component {
   renderTab(tabName, emptyTabName, array) {
     return (
       <View style={styles.container}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>
-            {tabName}
+            {I18n.t(tabName)}
           </Text>
         </View>
         {array.length !== 0 ?
@@ -124,7 +128,7 @@ class MatchesList extends Component {
                   match.awaitingPlayers.includes(match.leftUser) ?
                     <View style={styles.pending}>
                       <View style={styles.playBox}>
-                        <Text style={styles.play}>👍 YOUR TURN!</Text>
+                        <Text style={styles.play}>👍 {I18n.t('yourTurn')}</Text>
                       </View>
                       <View style={styles.usernameBox}>
                         <Text style={styles.opponentUsername}>{match.rightUser.username}</Text>
@@ -133,7 +137,7 @@ class MatchesList extends Component {
                   :
                     <View style={styles.pending}>
                       <View style={styles.playBox}>
-                        <Text style={styles.wait}>✋ WAITING...</Text>
+                        <Text style={styles.wait}>✋ {I18n.t('waiting')}...</Text>
                       </View>
                       <View style={styles.usernameBox}>
                         <Text style={styles.opponentUsername}>{match.rightUser.username}</Text>

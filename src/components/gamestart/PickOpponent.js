@@ -3,11 +3,12 @@ import { Text, View, TouchableHighlight, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { joinRandomMatch } from '../../actions/application';
-import { popModals } from '../../actions/navigation';
+import { popModals, gotoSearchScreen } from '../../actions/navigation';
 
 import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
+import I18n from '../../config/i18n';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,15 +35,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 8,
   },
-  facebook: {
+  buttonTextStyle: {
+    fontSize: 14,
+  },
+  byUsername: {
     height: 90,
     width: 240,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#3b5998',
-  },
-  buttonTextStyle: {
-    fontSize: 16,
+    backgroundColor: '#77c2f4',
   },
   random: {
     height: 90,
@@ -51,12 +52,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#3498DB',
   },
-  byUsername: {
+  facebook: {
     height: 90,
     width: 240,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#77c2f4',
+    backgroundColor: '#3b5998',
   },
   backButton: {
     height: 50,
@@ -95,6 +96,7 @@ class PickOpponent extends Component {
     this.props.dispatch(joinRandomMatch());
   }
   onSearchPress() {
+    this.props.dispatch(gotoSearchScreen());
   }
   onBackPress() {
     this.props.dispatch(popModals());
@@ -103,32 +105,31 @@ class PickOpponent extends Component {
     return (
       <Template
         // pass the title in uppercase
-        header={<Title>PICK YOUR VICTIM!</Title>}
+        header={<Title>{I18n.t('pickVictim')}</Title>}
         footer={
           <View style={styles.container}>
             <View style={styles.topFooter}>
               <View style={styles.buttonsView}>
                 <LargeButton
-                  style={styles.facebook}
+                  style={styles.byUsername}
                   buttonTextStyle={styles.buttonTextStyle}
-                  buttonText="FACEBOOK FRIENDS"
-                  onPress={this.onFacebookPress}
-                  underlayColor="#3498DB"
-                  disabled
+                  buttonText={I18n.t('searchByUsername')}
+                  onPress={this.onSearchPress}
+                  underlayColor="#583B67"
                 />
                 <LargeButton
                   style={styles.random}
                   buttonTextStyle={styles.buttonTextStyle}
-                  buttonText="RANDOM OPPONENT"
+                  buttonText={I18n.t('randomOpponent')}
                   onPress={this.onRandomPress}
                   underlayColor="#E67E2C"
                 />
                 <LargeButton
-                  style={styles.byUsername}
+                  style={styles.facebook}
                   buttonTextStyle={styles.buttonTextStyle}
-                  buttonText="SEARCH BY USERNAME"
-                  onPress={this.onSearchPress}
-                  underlayColor="#583B67"
+                  buttonText={I18n.t('inviteFBFriends')}
+                  onPress={this.onFacebookPress}
+                  underlayColor="#3498DB"
                   disabled
                 />
               </View>

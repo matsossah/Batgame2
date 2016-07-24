@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { TouchableWithoutFeedback, View, Text, StyleSheet, Image } from 'react-native';
+import I18n from '../../config/i18n';
 
 const styles = StyleSheet.create({
   container: {
@@ -52,6 +53,11 @@ const styles = StyleSheet.create({
   action: {
     fontSize: 10,
     fontFamily: 'chalkduster',
+    color: '#FFD664',
+  },
+  yourTurn: {
+    fontSize: 10,
+    fontFamily: 'chalkduster',
     color: 'white',
   },
   gameName: {
@@ -89,7 +95,7 @@ class Round extends Component {
                 (
                   isActive ?
                     <View style={styles.game} key={game.id}>
-                      <Text style={styles.action}>YOUR TURN</Text>
+                      <Text style={styles.yourTurn}>{I18n.t('yourTurn2')}</Text>
                     </View>
                   :
                     <View style={styles.game} key={game.id}>
@@ -105,20 +111,20 @@ class Round extends Component {
                 game.isFinished ?
                   game.bestScore.users.includes(currentUser) ?
                     <View style={styles.won} key={game.id}>
-                      <Text style={styles.gameName}>{game.info.fullName}</Text>
+                      <Text style={styles.gameName}>{I18n.t(game.info.name)}</Text>
                     </View>
                   :
                     <View style={styles.lost} key={game.id}>
-                      <Text style={styles.gameName}>{game.info.fullName}</Text>
+                      <Text style={styles.gameName}>{I18n.t(game.info.name)}</Text>
                     </View>
                 :
                   game.myScore ?
                     <View style={styles.game} key={game.id}>
-                      <Text style={styles.action}>WAITING</Text>
+                      <Text style={styles.action}>{I18n.t('waiting')}</Text>
                     </View>
                   :
                     <View style={styles.game} key={game.id}>
-                      <Text style={styles.action}>YOUR TURN</Text>
+                      <Text style={styles.yourTurn}>{I18n.t('yourTurn2')}</Text>
                     </View>
                 )}
           </View>

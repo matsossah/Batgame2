@@ -6,6 +6,7 @@ const { CardStack } = NavigationExperimental;
 import { popModals } from '../../actions/navigation';
 
 import PickOpponent from '../gamestart/PickOpponent';
+import SearchScreen from '../gamestart/SearchScreen';
 import Wheel from '../match/Wheel';
 import Game from '../match/Game';
 
@@ -32,6 +33,8 @@ class ModalsNavigator extends Component {
         );
       case 'pick_opponent':
         return <PickOpponent />;
+      case 'search_screen':
+        return <SearchScreen />;
       case 'wheel':
         return (
           <Wheel

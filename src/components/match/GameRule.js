@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
+import I18n from '../../config/i18n';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,17 +32,17 @@ function GameRule(props) {
   return (
     <Template
       header={
-        <Title>{props.name}</Title>
+        <Title>{I18n.t(props.name)}</Title>
       }
       footer={
         <View style={styles.container}>
           <View style={styles.rulesContainer}>
             <Text style={styles.rules}>
-              {props.rule}
+              {I18n.t(props.rule)}
             </Text>
           </View>
           <LargeButton
-            buttonText="START"
+            buttonText={I18n.t('ok')}
             onPress={props.onEnd}
             underlayColor="#FFD664"
             borderColor="#FFD664"
