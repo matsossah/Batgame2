@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   bigButton: {
-    backgroundColor: '#E74C3C',
-    borderColor: '#4EB479',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   scoreBox: {
     flex: 1,
@@ -45,21 +45,24 @@ class PopTheBalloon extends Component {
       startTime: Date.now(),
       duration: null,
       running: true,
+      balloonSize: 150,
+      counter: 0,
       taps: 0,
     };
     this.onButtonPress = this.onButtonPress.bind(this);
   }
   onButtonPress() {
-    if (this.state.taps < 49) {
+    if (this.state.balloonSize < 297) {
       this.setState({
-        taps: this.state.taps + 1,
+        balloonSize: this.state.balloonSize + 3,
+        counter: this.state.counter + 1,
       });
     } else {
       const score = Date.now() - this.state.startTime;
       this.setState({
         running: false,
         duration: score,
-        taps: this.state.taps + 1,
+        counter: this.state.counter + 1,
       });
       this.props.onEnd({ score });
     }
@@ -71,7 +74,7 @@ class PopTheBalloon extends Component {
           <View style={styles.container}>
             <View style={styles.scoreBox}>
               <Text style={styles.score}>
-                {this.state.taps}
+                {this.state.counter}
               </Text>
             </View>
             <View style={styles.timerBox}>
@@ -89,22 +92,14 @@ class PopTheBalloon extends Component {
                 onPress={this.onButtonPress}
                 underlayColor="transparent"
               >
-                <View
-                  style={[
-                    styles.bigButton,
-                    {
-                      width: 150 + this.state.taps,
-                      height: 150 + this.state.taps,
-                      borderRadius: (150 + this.state.taps) / 2,
-                      borderWidth: this.state.taps * 2,
-                    },
-                  ]}
-                />
+                <View style={styles.bigButton}>
+                  <Text style={{ fontSize: this.state.balloonSize }}>🎈</Text>
+                </View>
               </TouchableHighlight>
             </View>
             :
             <View style={styles.container}>
-              <Text style={{ fontSize: 150 }}>🎉</Text>
+              <Text style={{ fontSize: 300 }}>🎉</Text>
             </View>
         }
       />
