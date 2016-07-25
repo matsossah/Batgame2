@@ -99,7 +99,7 @@ class PopTheBalloon extends Component {
             </View>
             :
             <View style={styles.container}>
-              <Text style={{ fontSize: 300 }}>🎉</Text>
+              <Text style={{ fontSize: 250 }}>🎉</Text>
             </View>
         }
       />
