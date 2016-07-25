@@ -51,7 +51,7 @@ const en = {
   LUCKY_RULE: 'Get all the $$$ without hitting the bomb!',
   RIGHT_ON_RULE: 'Press on GO each time the timer hits 3 seconds!',
   REAL_COLOR_RULE: 'Does the meaning of the word match the color?',
-  MEMORY_RULE: 'Find the 6 twins hiding using as few tries as possible',
+  MEMORY_RULE: 'Find all the doubles using as few tries as possible',
   tries: 'Tries',
 };
 

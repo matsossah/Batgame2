@@ -105,7 +105,7 @@ class Game extends Component {
             onEnd={this.onGameRuleEnd}
           />
         }
-        {!this.state.showRules && !this.state.started &&
+        {!this.state.showRules && !this.state.started && game.info.countdown &&
           <GameCountdown
             onEnd={this.onGameCountdownEnd}
           />
