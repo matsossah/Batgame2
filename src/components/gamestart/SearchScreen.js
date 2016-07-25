@@ -34,10 +34,10 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   backButton: {
-    height: 50,
-    width: 50,
+    width: 100,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    paddingLeft: 20,
     backgroundColor: '#34485E',
   },
   backBox: {

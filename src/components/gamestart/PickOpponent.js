@@ -50,10 +50,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#3b5998',
   },
   backButton: {
-    height: 50,
-    width: 50,
+    width: 100,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    paddingLeft: 20,
     backgroundColor: '#34485E',
   },
   backBox: {
