@@ -11,21 +11,16 @@ import LargeButton from '../common/LargeButton';
 import I18n from '../../config/i18n';
 
 const styles = StyleSheet.create({
-  container: {
+  header: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'stretch',
   },
-  topFooter: {
-    flex: 5,
+  footer: {
+    flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
-  },
-  bottomFooter: {
-    flexDirection: 'row',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
   },
   empty: {
     flex: 1,
@@ -61,10 +56,10 @@ const styles = StyleSheet.create({
   },
   backButton: {
     height: 50,
-    width: 100,
+    width: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2C3D50',
+    backgroundColor: '#34485E',
   },
   backBox: {
     flexDirection: 'row',
@@ -72,6 +67,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     flex: 1,
+  },
+  titleBox: {
+    flex: 3,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
   },
   back: {
     fontSize: 50,
@@ -105,46 +107,50 @@ class PickOpponent extends Component {
     return (
       <Template
         // pass the title in uppercase
-        header={<Title>{I18n.t('pickVictim')}</Title>}
-        footer={
-          <View style={styles.container}>
-            <View style={styles.topFooter}>
-              <View style={styles.buttonsView}>
-                <LargeButton
-                  style={styles.byUsername}
-                  buttonTextStyle={styles.buttonTextStyle}
-                  buttonText={I18n.t('searchByUsername')}
-                  onPress={this.onSearchPress}
-                  underlayColor="#583B67"
-                />
-                <LargeButton
-                  style={styles.random}
-                  buttonTextStyle={styles.buttonTextStyle}
-                  buttonText={I18n.t('randomOpponent')}
-                  onPress={this.onRandomPress}
-                  underlayColor="#E67E2C"
-                />
-                <LargeButton
-                  style={styles.facebook}
-                  buttonTextStyle={styles.buttonTextStyle}
-                  buttonText={I18n.t('inviteFBFriends')}
-                  onPress={this.onFacebookPress}
-                  underlayColor="#3498DB"
-                  disabled
-                />
-              </View>
+        header={
+          <View style={styles.header}>
+            <View style={styles.backBox}>
+              <TouchableHighlight
+                onPress={this.onBackPress}
+                underlayColor="transparent"
+              >
+                <View style={styles.backButton}>
+                  <Text style={styles.back}>{'<'}</Text>
+                </View>
+              </TouchableHighlight>
             </View>
-            <View style={styles.bottomFooter}>
-              <View style={styles.backBox}>
-                <TouchableHighlight
-                  onPress={this.onBackPress}
-                  underlayColor="transparent"
-                >
-                  <View style={styles.backButton}>
-                    <Text style={styles.back}>{'<'}</Text>
-                  </View>
-                </TouchableHighlight>
-              </View>
+            <View style={styles.titleBox}>
+              <Title>
+                {I18n.t('pickVictim')}
+              </Title>
+            </View>
+          </View>
+        }
+        footer={
+          <View style={styles.footer}>
+            <View style={styles.buttonsView}>
+              <LargeButton
+                style={styles.byUsername}
+                buttonTextStyle={styles.buttonTextStyle}
+                buttonText={I18n.t('searchByUsername')}
+                onPress={this.onSearchPress}
+                underlayColor="#583B67"
+              />
+              <LargeButton
+                style={styles.random}
+                buttonTextStyle={styles.buttonTextStyle}
+                buttonText={I18n.t('randomOpponent')}
+                onPress={this.onRandomPress}
+                underlayColor="#E67E2C"
+              />
+              <LargeButton
+                style={styles.facebook}
+                buttonTextStyle={styles.buttonTextStyle}
+                buttonText={I18n.t('inviteFBFriends')}
+                onPress={this.onFacebookPress}
+                underlayColor="#3498DB"
+                disabled
+              />
             </View>
           </View>
         }

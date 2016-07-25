@@ -25,13 +25,18 @@ const styles = StyleSheet.create({
   },
   bottomFooter: {
     flex: 1,
-    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',
   },
   headerContainer: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  participants: {
+    flex: 3,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -66,10 +71,10 @@ const styles = StyleSheet.create({
   },
   backButton: {
     height: 50,
-    width: 100,
+    width: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2C3D50',
+    backgroundColor: '#34485E',
   },
   profileSeparator: {
     fontSize: 50,
@@ -158,21 +163,30 @@ class Match extends Component {
       <Template
         header={
           <View style={styles.headerContainer}>
-            <View style={styles.left}>
-              <Text style={styles.emoji}>{this.state.leftEmoji}</Text>
-              <Text style={styles.username}>{match.leftUser.username}</Text>
-              <Text style={styles.username}>{match.scoreByUser[match.leftUser.id]}</Text>
+            <View style={styles.backBox}>
+              <TouchableHighlight
+                onPress={this.onBackPress}
+                underlayColor="transparent"
+              >
+                <View style={styles.backButton}>
+                  <Text style={styles.back}>{'<'}</Text>
+                </View>
+              </TouchableHighlight>
             </View>
-            <View style={styles.middle}>
-              <Text style={styles.profileSeparator}>-</Text>
-            </View>
-            <View style={styles.right}>
-            {
-// TODO emojis displayed on Android only if 6 spaces are added after {sample(allEmojis is the only way to have it diplayed on Android
-            }
-              <Text style={styles.emoji}>{this.state.rightEmoji}</Text>
-              <Text style={styles.username}>{match.rightUser.username}</Text>
-              <Text style={styles.username}>{match.scoreByUser[match.rightUser.id]}</Text>
+            <View style={styles.participants}>
+              <View style={styles.left}>
+                <Text style={styles.emoji}>{this.state.leftEmoji}</Text>
+                <Text style={styles.username}>{match.leftUser.username}</Text>
+                <Text style={styles.username}>{match.scoreByUser[match.leftUser.id]}</Text>
+              </View>
+              <View style={styles.middle}>
+                <Text style={styles.profileSeparator}>-</Text>
+              </View>
+              <View style={styles.right}>
+                <Text style={styles.emoji}>{this.state.rightEmoji}</Text>
+                <Text style={styles.username}>{match.rightUser.username}</Text>
+                <Text style={styles.username}>{match.scoreByUser[match.rightUser.id]}</Text>
+              </View>
             </View>
           </View>
         }
@@ -196,16 +210,6 @@ class Match extends Component {
               })}
             </View>
             <View style={styles.bottomFooter}>
-              <View style={styles.backBox}>
-                <TouchableHighlight
-                  onPress={this.onBackPress}
-                  underlayColor="transparent"
-                >
-                  <View style={styles.backButton}>
-                    <Text style={styles.back}>{'<'}</Text>
-                  </View>
-                </TouchableHighlight>
-              </View>
               <View style={styles.playBox}>
                 {awaitingPlayer &&
                   <TouchableHighlight onPress={this.onPlayPress}>
@@ -215,7 +219,6 @@ class Match extends Component {
                   </TouchableHighlight>
                 }
               </View>
-              <View style={styles.empty} />
             </View>
           </View>
         }
