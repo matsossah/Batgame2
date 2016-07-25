@@ -117,7 +117,7 @@ class GameOverlay extends Component {
               </Text>
             </View>
           :
-            game.info.name === 'MEMORY' ?
+            game.info.scoreType === 'TRIES' ?
               <View style={styles.scoreInfo}>
                 <Text style={styles.scoreLabel}>{I18n.t('tries')}</Text>
                 <Text style={styles.score}>
