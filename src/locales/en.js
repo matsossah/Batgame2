@@ -20,7 +20,7 @@ const en = {
   BLUE: 'BLUE',
   GREEN: 'GREEN',
   YELLOW: 'YELLOW',
-  waiting: 'WAITING',
+  waiting: 'OPPONENT`S TURN',
   ok: 'OK',
   time: 'Time',
   toBoard: 'Game Time!',

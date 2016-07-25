@@ -25,11 +25,6 @@ const styles = StyleSheet.create({
   empty: {
     flex: 1,
   },
-  buttonsView: {
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    flex: 8,
-  },
   buttonTextStyle: {
     fontSize: 14,
   },
@@ -128,30 +123,28 @@ class PickOpponent extends Component {
         }
         footer={
           <View style={styles.footer}>
-            <View style={styles.buttonsView}>
-              <LargeButton
-                style={styles.byUsername}
-                buttonTextStyle={styles.buttonTextStyle}
-                buttonText={I18n.t('searchByUsername')}
-                onPress={this.onSearchPress}
-                underlayColor="#583B67"
-              />
-              <LargeButton
-                style={styles.random}
-                buttonTextStyle={styles.buttonTextStyle}
-                buttonText={I18n.t('randomOpponent')}
-                onPress={this.onRandomPress}
-                underlayColor="#E67E2C"
-              />
-              <LargeButton
-                style={styles.facebook}
-                buttonTextStyle={styles.buttonTextStyle}
-                buttonText={I18n.t('inviteFBFriends')}
-                onPress={this.onFacebookPress}
-                underlayColor="#3498DB"
-                disabled
-              />
-            </View>
+            <LargeButton
+              style={styles.byUsername}
+              buttonTextStyle={styles.buttonTextStyle}
+              buttonText={I18n.t('searchByUsername')}
+              onPress={this.onSearchPress}
+              underlayColor="#583B67"
+            />
+            <LargeButton
+              style={styles.random}
+              buttonTextStyle={styles.buttonTextStyle}
+              buttonText={I18n.t('randomOpponent')}
+              onPress={this.onRandomPress}
+              underlayColor="#E67E2C"
+            />
+            <LargeButton
+              style={styles.facebook}
+              buttonTextStyle={styles.buttonTextStyle}
+              buttonText={I18n.t('inviteFBFriends')}
+              onPress={this.onFacebookPress}
+              underlayColor="#3498DB"
+              disabled
+            />
           </View>
         }
       />

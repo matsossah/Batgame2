@@ -80,9 +80,17 @@ class Game extends Component {
   }
 
   onGameRuleEnd() {
-    this.setState({
-      showRules: false,
-    });
+    const { game } = this.props;
+    if (game.info.countdown) {
+      this.setState({
+        showRules: false,
+      });
+    } else {
+      this.setState({
+        showRules: false,
+        started: true,
+      });
+    }
   }
 
   onGameCountdownEnd() {
@@ -105,7 +113,7 @@ class Game extends Component {
             onEnd={this.onGameRuleEnd}
           />
         }
-        {!this.state.showRules && !this.state.started && game.info.countdown &&
+        {!this.state.showRules && !this.state.started &&
           <GameCountdown
             onEnd={this.onGameCountdownEnd}
           />

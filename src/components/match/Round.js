@@ -98,14 +98,7 @@ class Round extends Component {
                       <Text style={styles.yourTurn}>{I18n.t('yourTurn2')}</Text>
                     </View>
                   :
-                    <View style={styles.game} key={game.id}>
-                      <View style={styles.container}>
-                        <Image
-                          style={styles.image}
-                          source={require('../../assets/logo.png')}
-                        />
-                      </View>
-                    </View>
+                    <View style={styles.game} key={game.id} />
                 )
               :
                 game.isFinished ?
@@ -120,7 +113,12 @@ class Round extends Component {
                 :
                   game.myScore ?
                     <View style={styles.game} key={game.id}>
-                      <Text style={styles.action}>{I18n.t('waiting')}</Text>
+                      <View style={styles.container}>
+                        <Image
+                          style={styles.image}
+                          source={require('../../assets/logo.png')}
+                        />
+                      </View>
                     </View>
                   :
                     <View style={styles.game} key={game.id}>
