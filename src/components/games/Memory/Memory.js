@@ -72,7 +72,7 @@ class Memory extends Component {
     });
   }
   compatibilityCheck(discovered, guess, key) {
-    const array = this.state.guesses;
+    const array = this.state.guesses.slice();
     if (discovered === '') {
       array[key] = guess;
       this.setState({

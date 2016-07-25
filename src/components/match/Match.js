@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#3498DB',
+    backgroundColor: '#FFD664',
     marginBottom: 20,
   },
   backButton: {
