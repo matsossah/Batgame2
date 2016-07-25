@@ -20,7 +20,7 @@ const fr = {
   BLUE: 'BLEU',
   GREEN: 'VERT',
   YELLOW: 'JAUNE',
-  waiting: 'PATIENTE',
+  waiting: 'À L\'ADVERSAIRE!',
   ok: 'OK',
   toBoard: 'Au Tableau!',
   time: 'Temps',
