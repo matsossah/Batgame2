@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     height: 50,
-    width: 100,
+    width: 50,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#34485E',
