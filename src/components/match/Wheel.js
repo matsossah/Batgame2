@@ -115,7 +115,7 @@ class Wheel extends Component {
     this.setState({
       wheelItemHeight: Math.floor(height / ROWS),
       finalOffset,
-      pickedGame: 'POP_THE_BALLOON',
+      pickedGame: gameInfo.name,
       games: repeatedGames,
       gamesDataSource: ds.cloneWithRows(repeatedGames),
     });
