@@ -79,4 +79,12 @@ export default [
     scoreType: 'NUMBER',
     emoji: '🖌',
   },
+  {
+    name: 'MEMORY',
+    fullName: 'MEMORY',
+    rule: 'MEMORY_RULE',
+    winner: 'SMALLEST',
+    scoreType: 'NUMBER',
+    emoji: '👀',
+  },
 ];

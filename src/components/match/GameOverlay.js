@@ -117,20 +117,28 @@ class GameOverlay extends Component {
               </Text>
             </View>
           :
-            game.info.scoreType === 'DATE' ?
+            game.info.name === 'MEMORY' ?
               <View style={styles.scoreInfo}>
-                <Text style={styles.scoreLabel}>{I18n.t('time')}</Text>
+                <Text style={styles.scoreLabel}>{I18n.t('tries')}</Text>
                 <Text style={styles.score}>
-                  {formatDuration(game.myScore.score) + 's'}
+                  {game.myScore.score}
                 </Text>
               </View>
-                :
-              <View style={styles.scoreInfo}>
-                <Text style={styles.scoreLabel}>{I18n.t('score')}</Text>
-                <Text style={styles.score}>
-                  {game.myScore.score + ' pts'}
-                </Text>
-              </View>
+            :
+              game.info.scoreType === 'DATE' ?
+                <View style={styles.scoreInfo}>
+                  <Text style={styles.scoreLabel}>{I18n.t('time')}</Text>
+                  <Text style={styles.score}>
+                    {formatDuration(game.myScore.score) + 's'}
+                  </Text>
+                </View>
+                  :
+                <View style={styles.scoreInfo}>
+                  <Text style={styles.scoreLabel}>{I18n.t('score')}</Text>
+                  <Text style={styles.score}>
+                    {game.myScore.score + ' pts'}
+                  </Text>
+                </View>
           }
           <View style={styles.options}>
             <TouchableWithoutFeedback

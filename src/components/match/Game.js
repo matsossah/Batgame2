@@ -12,6 +12,7 @@ import RightOn from '../games/RightOn';
 import WhackAMole from '../games/WhackAMole';
 import NumberGame from '../games/numbers/NumberGame';
 import RealColor from '../games/RealColor';
+import Memory from '../games/Memory/Memory';
 
 import GameOverlay from './GameOverlay';
 import GameCountdown from './GameCountdown';
@@ -32,6 +33,7 @@ const gameComponents = {
   RIGHT_ON: RightOn,
   NUMBER: NumberGame,
   REAL_COLOR: RealColor,
+  MEMORY: Memory,
 };
 
 const styles = StyleSheet.create({

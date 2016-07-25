@@ -39,6 +39,7 @@ const en = {
   IDENTICAL: 'IDENTICAL',
   LUCKY: 'LUCKY',
   RIGHT_ON: 'RIGHT ON',
+  MEMORY: 'MEMORY',
   REAL_COLOR: 'REAL COLOR',
   STOPLIGHT_RULE: 'Press the GO button as soon as the light turns green!',
   MATH_BATTLE_RULE: 'Press on the multiplication with the bigger result!',
@@ -50,6 +51,8 @@ const en = {
   LUCKY_RULE: 'Get all the $$$ without hitting the bomb!',
   RIGHT_ON_RULE: 'Press on GO each time the timer hits 3 seconds!',
   REAL_COLOR_RULE: 'Does the meaning of the word match the color?',
+  MEMORY_RULE: 'Find the 6 twins hiding using as few tries as possible',
+  tries: 'Tries',
 };
 
 export default en;

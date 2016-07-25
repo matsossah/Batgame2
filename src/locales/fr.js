@@ -40,6 +40,7 @@ const fr = {
   LUCKY: 'CHANCEUX',
   RIGHT_ON: 'TOUT PILE',
   REAL_COLOR: 'VRAIE COULEUR',
+  MEMORY: 'MEMORY',
   STOPLIGHT_RULE: 'Appuie sur GO dès que le feu passe au vert',
   MATH_BATTLE_RULE: 'Appuie sur la multiplication au plus haut résultat!',
   POP_THE_BALLOON_RULE: 'Appuie 50 fois sur le ballon pour le faire éclater!',
@@ -50,6 +51,8 @@ const fr = {
   LUCKY_RULE: 'Trouve tout les $$$ sans toucher la bombe',
   RIGHT_ON_RULE: 'Appuie sur GO chaque fois que le chrono est à 3 secondes!',
   REAL_COLOR_RULE: 'Le mot est il bien associé à sa couleur?',
+  MEMORY_RULE: 'Trouve les 6 jumeaux cachés en le de coup possibles',
+  tries: 'Coups',
 };
 
 export default fr;
