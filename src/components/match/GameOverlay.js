@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   participant: {
-    flex: 3,
+    flex: 2,
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'stretch',
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   participantScore: {
-    flex: 2,
+    flex: 1,
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'center',
@@ -143,7 +143,7 @@ class GameOverlay extends Component {
         </View>
         <View style={styles.participants}>
           <View style={styles.participant}>
-            <Text style={styles.userString}>{I18n.t('you')} -></Text>
+            <Text style={styles.userString}>{I18n.t('you')} :</Text>
           </View>
           <View style={styles.participantScore}>
             <Text style={styles.scoreString}>{scores[0]}</Text>
@@ -151,7 +151,7 @@ class GameOverlay extends Component {
         </View>
         <View style={styles.scores}>
           <View style={styles.participant}>
-            <Text style={styles.userString}>{rightUser} -></Text>
+            <Text style={styles.userString}>{rightUser} :</Text>
           </View>
           <View style={styles.participantScore} />
         </View>
@@ -163,7 +163,7 @@ class GameOverlay extends Component {
         </View>
         <View style={styles.participants}>
           <View style={styles.participant}>
-            <Text style={styles.userString}>{leftUser} -></Text>
+            <Text style={styles.userString}>{leftUser} :</Text>
           </View>
           <View style={styles.participantScore}>
             <Text style={styles.scoreString}>{scores[0]}</Text>
@@ -171,7 +171,7 @@ class GameOverlay extends Component {
         </View>
         <View style={styles.scores}>
           <View style={styles.participant}>
-            <Text style={styles.userString}>{rightUser} -></Text>
+            <Text style={styles.userString}>{rightUser} :</Text>
           </View>
           <View style={styles.participantScore}>
             <Text style={styles.scoreString}>{scores[1]}</Text>
