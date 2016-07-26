@@ -45,20 +45,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   participant: {
-    flex: 2,
-    flexDirection: 'row',
+    flex: 4,
     alignItems: 'center',
     alignSelf: 'stretch',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
   },
-  scoreInfo: {
-    flex: 3,
+  arrowBox: {
+    flex: 1,
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'center',
   },
   participantScore: {
-    flex: 1,
+    flex: 2,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
+  scoreInfo: {
+    flex: 3,
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'center',
@@ -96,6 +101,11 @@ const styles = StyleSheet.create({
   },
   scoreString: {
     fontSize: 14,
+    fontFamily: 'chalkduster',
+    color: 'white',
+  },
+  arrow: {
+    fontSize: 20,
     fontFamily: 'chalkduster',
     color: 'white',
   },
@@ -143,7 +153,10 @@ class GameOverlay extends Component {
         </View>
         <View style={styles.participants}>
           <View style={styles.participant}>
-            <Text style={styles.userString}>{I18n.t('you')} :</Text>
+            <Text style={styles.userString}>{I18n.t('you')}</Text>
+          </View>
+          <View style={styles.arrowBox}>
+            <Text style={styles.arrow}>-></Text>
           </View>
           <View style={styles.participantScore}>
             <Text style={styles.scoreString}>{scores[0]}</Text>
@@ -151,9 +164,14 @@ class GameOverlay extends Component {
         </View>
         <View style={styles.scores}>
           <View style={styles.participant}>
-            <Text style={styles.userString}>{rightUser} :</Text>
+            <Text style={styles.userString}>{rightUser}</Text>
           </View>
-          <View style={styles.participantScore} />
+          <View style={styles.arrowBox}>
+            <Text style={styles.arrow}>-></Text>
+          </View>
+          <View style={styles.participantScore}>
+            <Text style={styles.scoreString}>. . .</Text>
+          </View>
         </View>
       </View>
      :
@@ -163,7 +181,10 @@ class GameOverlay extends Component {
         </View>
         <View style={styles.participants}>
           <View style={styles.participant}>
-            <Text style={styles.userString}>{leftUser} :</Text>
+            <Text style={styles.userString}>{leftUser}</Text>
+          </View>
+          <View style={styles.arrowBox}>
+            <Text style={styles.arrow}>-></Text>
           </View>
           <View style={styles.participantScore}>
             <Text style={styles.scoreString}>{scores[0]}</Text>
@@ -171,7 +192,10 @@ class GameOverlay extends Component {
         </View>
         <View style={styles.scores}>
           <View style={styles.participant}>
-            <Text style={styles.userString}>{rightUser} :</Text>
+            <Text style={styles.userString}>{rightUser}</Text>
+          </View>
+          <View style={styles.arrowBox}>
+            <Text style={styles.arrow}>-></Text>
           </View>
           <View style={styles.participantScore}>
             <Text style={styles.scoreString}>{scores[1]}</Text>
