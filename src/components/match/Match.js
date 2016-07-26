@@ -68,6 +68,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFD664',
     marginBottom: 20,
+    marginLeft: 40,
+    marginRight: 40,
   },
   backButton: {
     width: 100,
@@ -118,6 +120,9 @@ const styles = StyleSheet.create({
   },
   waitEmoji: {
     fontSize: 30,
+  },
+  playEmoji: {
+    fontSize: 50,
   },
   firstEmoji: {
     flex: 1,
@@ -238,24 +243,27 @@ class Match extends Component {
             <View style={styles.bottomFooter}>
               {awaitingPlayer ?
                 <View style={styles.playBox}>
+                  <Text style={styles.playEmoji}>👉</Text>
                   <TouchableHighlight onPress={this.onPlayPress}>
                     <View style={styles.playButton}>
                       <Text style={styles.action}>{I18n.t('play')}</Text>
                     </View>
                   </TouchableHighlight>
+                  <Text style={styles.playEmoji}>👈</Text>
                 </View>
               :
-                <View style={styles.playBox}>
-                  <View style={styles.firstEmoji}>
-                    <Text style={styles.waitEmoji}>👉</Text>
+                !match.isFinished &&
+                  <View style={styles.playBox}>
+                    <View style={styles.firstEmoji}>
+                      <Text style={styles.waitEmoji}>👉</Text>
+                    </View>
+                    <View style={styles.waitingBox}>
+                      <Text style={styles.waitingText}>{I18n.t('waiting')}</Text>
+                    </View>
+                    <View style={styles.lastEmoji}>
+                      <Text style={styles.waitEmoji}>👈</Text>
+                    </View>
                   </View>
-                  <View style={styles.waitingBox}>
-                    <Text style={styles.waitingText}>{I18n.t('waiting')}</Text>
-                  </View>
-                  <View style={styles.lastEmoji}>
-                    <Text style={styles.waitEmoji}>👈</Text>
-                  </View>
-                </View>
               }
             </View>
           </View>
