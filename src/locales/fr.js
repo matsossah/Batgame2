@@ -23,13 +23,13 @@ const fr = {
   waiting: 'À L\'ADVERSAIRE!',
   ok: 'OK',
   toBoard: 'Au Tableau!',
-  time: 'Temps',
+  time: 'TEMPS',
   spinWheel: 'TOURNE LA ROUE!',
   spin: 'TOURNER',
-  totalDifference: 'Ecart total',
-  score: 'Score',
-  match: 'Match',
-  next: 'Suivant',
+  totalDifference: 'ECARTS TOTALS',
+  score: 'SCORES',
+  match: 'MATCH',
+  next: 'SUIVANT',
   STOPLIGHT: 'FEU ROUGE',
   MATH_BATTLE: 'BOSSE DES MATHS',
   POP_THE_BALLOON: 'BALLON POP',
@@ -52,7 +52,7 @@ const fr = {
   RIGHT_ON_RULE: 'Appuie sur GO chaque fois que le chrono est à 3 secondes!',
   REAL_COLOR_RULE: 'Le mot est il bien associé à sa couleur?',
   MEMORY_RULE: 'Trouve tous les doubles en le moins de coups possibles',
-  tries: 'Coups',
+  tries: 'COUPS',
 };
 
 export default fr;

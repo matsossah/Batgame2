@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   scoreBox: {
     backgroundColor: '#34485E',
-    height: 150,
+    height: 200,
     width: 200,
     alignItems: 'center',
     justifyContent: 'center',
@@ -24,8 +24,40 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: '#FFD664',
   },
+  titleBox: {
+    flex: 1,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
+  participants: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
+  scores: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
+  participant: {
+    flex: 1,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
   scoreInfo: {
-    flex: 2,
+    flex: 3,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
+  participantScore: {
+    flex: 1,
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'center',
@@ -53,17 +85,22 @@ const styles = StyleSheet.create({
   scoreLabel: {
     fontSize: 18,
     fontFamily: 'chalkduster',
+    color: '#FFD664',
+  },
+  userInfo: {
+    fontSize: 14,
+    fontFamily: 'chalkduster',
     color: 'white',
   },
   optionLabel: {
     fontSize: 14,
     fontFamily: 'chalkduster',
-    color: 'white',
+    color: '#34485E',
   },
   score: {
     fontSize: 30,
     fontFamily: 'chalkduster',
-    color: '#FFD664',
+    color: 'white',
   },
 });
 
@@ -91,6 +128,51 @@ class GameOverlay extends Component {
     dispatch(gotoNextGame(match.id));
   }
 
+  renderScoreInfo(title, leftUser, rightUser, scores, length) {
+    return (length === 1) ?
+      <View style={styles.scoreInfo}>
+        <View style={styles.titleBox}>
+          <Text style={styles.scoreLabel}>{title}</Text>
+        </View>
+        <View style={styles.participants}>
+          <View style={styles.participant}>
+            <Text style={styles.userInfo}>{leftUser}</Text>
+          </View>
+          <View style={styles.participantScore}>
+            <Text style={styles.userInfo}>{scores[0]}</Text>
+          </View>
+        </View>
+        <View style={styles.scores}>
+          <View style={styles.participant}>
+            <Text style={styles.userInfo}>{rightUser}</Text>
+          </View>
+          <View style={styles.participantScore} />
+        </View>
+      </View>
+    :
+      <View style={styles.scoreInfo}>
+        <View style={styles.titleBox}>
+          <Text style={styles.scoreLabel}>{title}</Text>
+        </View>
+        <View style={styles.participants}>
+          <View style={styles.participant}>
+            <Text style={styles.userInfo}>{leftUser}</Text>
+          </View>
+          <View style={styles.participantScore}>
+            <Text style={styles.userInfo}>{scores[0]}</Text>
+          </View>
+        </View>
+        <View style={styles.scores}>
+          <View style={styles.participant}>
+            <Text style={styles.userInfo}>{rightUser}</Text>
+          </View>
+          <View style={styles.participantScore}>
+            <Text style={styles.userInfo}>{scores[1]}</Text>
+          </View>
+        </View>
+      </View>;
+  }
+
   render() {
     const { game, match, user, style, ...otherProps } = this.props;
 
@@ -110,35 +192,43 @@ class GameOverlay extends Component {
       >
         <View style={styles.scoreBox}>
           {game.info.name === 'RIGHT_ON' ?
-            <View style={styles.scoreInfo}>
-              <Text style={styles.scoreLabel}>{I18n.t('totalDifference')}</Text>
-              <Text style={styles.score}>
-                {formatDuration(game.myScore.score) + 's'}
-              </Text>
-            </View>
+            this.renderScoreInfo(
+              I18n.t('totalDifference'),
+              match.leftUser.username,
+              match.rightUser.username,
+              [(formatDuration(game.myScore.score) + 's'),
+              (formatDuration(game.scores[0].score) + 's')],
+              game.scores.length
+            )
           :
             game.info.scoreType === 'TRIES' ?
-              <View style={styles.scoreInfo}>
-                <Text style={styles.scoreLabel}>{I18n.t('tries')}</Text>
-                <Text style={styles.score}>
-                  {game.myScore.score}
-                </Text>
-              </View>
+              this.renderScoreInfo(
+                I18n.t('tries'),
+                match.leftUser.username,
+                match.rightUser.username,
+                [game.myScore.score,
+                game.scores[0].score],
+                game.scores.length
+              )
             :
               game.info.scoreType === 'DATE' ?
-                <View style={styles.scoreInfo}>
-                  <Text style={styles.scoreLabel}>{I18n.t('time')}</Text>
-                  <Text style={styles.score}>
-                    {formatDuration(game.myScore.score) + 's'}
-                  </Text>
-                </View>
-                  :
-                <View style={styles.scoreInfo}>
-                  <Text style={styles.scoreLabel}>{I18n.t('score')}</Text>
-                  <Text style={styles.score}>
-                    {game.myScore.score + ' pts'}
-                  </Text>
-                </View>
+                this.renderScoreInfo(
+                  I18n.t('time'),
+                  match.leftUser.username,
+                  match.rightUser.username,
+                  [(formatDuration(game.myScore.score) + 's'),
+                  (formatDuration(game.scores[0].score) + 's')],
+                  game.scores.length
+                )
+              :
+                this.renderScoreInfo(
+                  I18n.t('score'),
+                  match.leftUser.username,
+                  match.rightUser.username,
+                  [(game.myScore.score + 'pts'),
+                  (game.scores[0].score + 'pts')],
+                  game.scores.length
+                )
           }
           <View style={styles.options}>
             <TouchableWithoutFeedback

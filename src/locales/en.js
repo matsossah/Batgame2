@@ -22,14 +22,14 @@ const en = {
   YELLOW: 'YELLOW',
   waiting: 'OPPONENT\'S TURN',
   ok: 'OK',
-  time: 'Time',
+  time: 'TIMES',
   toBoard: 'Game Time!',
   spinWheel: 'SPIN THE WHEEL!',
   spin: 'SPIN',
-  totalDifference: 'Total Difference',
-  score: 'Score',
-  match: 'Match',
-  next: 'Next',
+  totalDifference: 'OFFSETS',
+  score: 'SCORES',
+  match: 'MATCH',
+  next: 'NEXT',
   STOPLIGHT: 'STOPLIGHT',
   MATH_BATTLE: 'MATH BATTLE',
   POP_THE_BALLOON: 'POP THE BALLON',
@@ -52,7 +52,7 @@ const en = {
   RIGHT_ON_RULE: 'Press on GO each time the timer hits 3 seconds!',
   REAL_COLOR_RULE: 'Does the meaning of the word match the color?',
   MEMORY_RULE: 'Find all the doubles using as few tries as possible',
-  tries: 'Tries',
+  tries: 'TRIES',
 };
 
 export default en;
