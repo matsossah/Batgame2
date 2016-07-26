@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   },
   playBox: {
     flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -114,6 +115,31 @@ const styles = StyleSheet.create({
   },
   emoji: {
     fontSize: 50,
+  },
+  waitEmoji: {
+    fontSize: 30,
+  },
+  firstEmoji: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  waitingBox: {
+    flex: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  waitingText: {
+    fontSize: 20,
+    fontFamily: 'chalkduster',
+    color: '#7c7c7c',
+  },
+  lastEmoji: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
   },
 });
 // const allEmojis to use with react-native-emoji
@@ -210,15 +236,27 @@ class Match extends Component {
               })}
             </View>
             <View style={styles.bottomFooter}>
-              <View style={styles.playBox}>
-                {awaitingPlayer &&
+              {awaitingPlayer ?
+                <View style={styles.playBox}>
                   <TouchableHighlight onPress={this.onPlayPress}>
                     <View style={styles.playButton}>
                       <Text style={styles.action}>{I18n.t('play')}</Text>
                     </View>
                   </TouchableHighlight>
-                }
-              </View>
+                </View>
+              :
+                <View style={styles.playBox}>
+                  <View style={styles.firstEmoji}>
+                    <Text style={styles.waitEmoji}>👉</Text>
+                  </View>
+                  <View style={styles.waitingBox}>
+                    <Text style={styles.waitingText}>{I18n.t('waiting')}</Text>
+                  </View>
+                  <View style={styles.lastEmoji}>
+                    <Text style={styles.waitEmoji}>👈</Text>
+                  </View>
+                </View>
+              }
             </View>
           </View>
         }

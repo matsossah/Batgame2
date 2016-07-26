@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import sample from 'lodash/sample';
 
-import Template from '../common/Template';
-import Duration from '../common/Duration';
+import Template from '../../common/Template';
+import Duration from '../../common/Duration';
 import WhackAMoleCell from './WhackAMoleCell';
-import Countdown from '../common/Countdown';
+import Countdown from '../../common/Countdown';
 
 const styles = StyleSheet.create({
   container: {
