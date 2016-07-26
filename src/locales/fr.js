@@ -53,6 +53,7 @@ const fr = {
   REAL_COLOR_RULE: 'Le mot est il bien associé à sa couleur?',
   MEMORY_RULE: 'Trouve tous les doubles en le moins de coups possibles',
   tries: 'COUPS',
+  you: 'TOI',
 };
 
 export default fr;

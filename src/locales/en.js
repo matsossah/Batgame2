@@ -53,6 +53,7 @@ const en = {
   REAL_COLOR_RULE: 'Does the meaning of the word match the color?',
   MEMORY_RULE: 'Find all the doubles using as few tries as possible',
   tries: 'TRIES',
+  you: 'YOU',
 };
 
 export default en;

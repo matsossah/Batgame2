@@ -45,10 +45,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   participant: {
-    flex: 1,
+    flex: 3,
+    flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'stretch',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
   scoreInfo: {
     flex: 3,
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   participantScore: {
-    flex: 1,
+    flex: 2,
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'center',
@@ -87,7 +88,13 @@ const styles = StyleSheet.create({
     fontFamily: 'chalkduster',
     color: '#FFD664',
   },
-  userInfo: {
+  userString: {
+    fontSize: 14,
+    fontFamily: 'chalkduster',
+    color: 'white',
+    textAlign: 'right',
+  },
+  scoreString: {
     fontSize: 14,
     fontFamily: 'chalkduster',
     color: 'white',
@@ -136,38 +143,38 @@ class GameOverlay extends Component {
         </View>
         <View style={styles.participants}>
           <View style={styles.participant}>
-            <Text style={styles.userInfo}>{leftUser}</Text>
+            <Text style={styles.userString}>{I18n.t('you')} -></Text>
           </View>
           <View style={styles.participantScore}>
-            <Text style={styles.userInfo}>{scores[0]}</Text>
+            <Text style={styles.scoreString}>{scores[0]}</Text>
           </View>
         </View>
         <View style={styles.scores}>
           <View style={styles.participant}>
-            <Text style={styles.userInfo}>{rightUser}</Text>
+            <Text style={styles.userString}>{rightUser} -></Text>
           </View>
           <View style={styles.participantScore} />
         </View>
       </View>
-    :
+     :
       <View style={styles.scoreInfo}>
         <View style={styles.titleBox}>
           <Text style={styles.scoreLabel}>{title}</Text>
         </View>
         <View style={styles.participants}>
           <View style={styles.participant}>
-            <Text style={styles.userInfo}>{leftUser}</Text>
+            <Text style={styles.userString}>{leftUser} -></Text>
           </View>
           <View style={styles.participantScore}>
-            <Text style={styles.userInfo}>{scores[0]}</Text>
+            <Text style={styles.scoreString}>{scores[0]}</Text>
           </View>
         </View>
         <View style={styles.scores}>
           <View style={styles.participant}>
-            <Text style={styles.userInfo}>{rightUser}</Text>
+            <Text style={styles.userString}>{rightUser} -></Text>
           </View>
           <View style={styles.participantScore}>
-            <Text style={styles.userInfo}>{scores[1]}</Text>
+            <Text style={styles.scoreString}>{scores[1]}</Text>
           </View>
         </View>
       </View>;
@@ -196,8 +203,8 @@ class GameOverlay extends Component {
               I18n.t('totalDifference'),
               match.leftUser.username,
               match.rightUser.username,
-              [(formatDuration(game.myScore.score) + 's'),
-              (formatDuration(game.scores[0].score) + 's')],
+              [(formatDuration(game.myScore.score)),
+              (formatDuration(game.scores[0].score))],
               game.scores.length
             )
           :
@@ -216,8 +223,8 @@ class GameOverlay extends Component {
                   I18n.t('time'),
                   match.leftUser.username,
                   match.rightUser.username,
-                  [(formatDuration(game.myScore.score) + 's'),
-                  (formatDuration(game.scores[0].score) + 's')],
+                  [(formatDuration(game.myScore.score)),
+                  (formatDuration(game.scores[0].score))],
                   game.scores.length
                 )
               :
@@ -225,8 +232,8 @@ class GameOverlay extends Component {
                   I18n.t('score'),
                   match.leftUser.username,
                   match.rightUser.username,
-                  [(game.myScore.score + 'pts'),
-                  (game.scores[0].score + 'pts')],
+                  [(game.myScore.score),
+                  (game.scores[0].score)],
                   game.scores.length
                 )
           }
