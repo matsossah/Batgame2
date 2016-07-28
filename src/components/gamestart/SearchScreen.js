@@ -92,23 +92,24 @@ class SearchScreen extends Component {
     return (
       <Template
         header={
-          <View style={styles.header}>
-            <View style={styles.backBox}>
-              <TouchableHighlight
-                onPress={this.onBackPress}
-                underlayColor="transparent"
-              >
+          <TouchableHighlight
+            onPress={this.onBackPress}
+            underlayColor="transparent"
+            style={styles.header}
+          >
+            <View style={styles.header}>
+              <View style={styles.backBox}>
                 <View style={styles.backButton}>
                   <Text style={styles.back}>{'<'}</Text>
                 </View>
-              </TouchableHighlight>
+              </View>
+              <View style={styles.titleBox}>
+                <Title>
+                  {I18n.t('search')}
+                </Title>
+              </View>
             </View>
-            <View style={styles.titleBox}>
-              <Title>
-                {I18n.t('search')}
-              </Title>
-            </View>
-          </View>
+          </TouchableHighlight>
         }
         footer={
           <View style={styles.container}>

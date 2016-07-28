@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Text, View, TouchableHighlight, StyleSheet } from 'react-native';
+import { Text, View, TouchableHighlight, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import sample from 'lodash/sample';
 
@@ -193,33 +193,34 @@ class Match extends Component {
     return (
       <Template
         header={
-          <View style={styles.headerContainer}>
-            <View style={styles.backBox}>
-              <TouchableHighlight
-                onPress={this.onBackPress}
-                underlayColor="transparent"
-              >
+          <TouchableHighlight
+            onPress={this.onBackPress}
+            underlayColor="transparent"
+            style={styles.headerContainer}
+          >
+            <View style={styles.headerContainer}>
+              <View style={styles.backBox}>
                 <View style={styles.backButton}>
                   <Text style={styles.back}>{'<'}</Text>
                 </View>
-              </TouchableHighlight>
+              </View>
+              <View style={styles.participants}>
+                <View style={styles.left}>
+                  <Text style={styles.emoji}>{this.state.leftEmoji}</Text>
+                  <Text style={styles.username}>{match.leftUser.username}</Text>
+                  <Text style={styles.username}>{match.scoreByUser[match.leftUser.id]}</Text>
+                </View>
+                <View style={styles.middle}>
+                  <Text style={styles.profileSeparator}>-</Text>
+                </View>
+                <View style={styles.right}>
+                  <Text style={styles.emoji}>{this.state.rightEmoji}</Text>
+                  <Text style={styles.username}>{match.rightUser.username}</Text>
+                  <Text style={styles.username}>{match.scoreByUser[match.rightUser.id]}</Text>
+                </View>
+              </View>
             </View>
-            <View style={styles.participants}>
-              <View style={styles.left}>
-                <Text style={styles.emoji}>{this.state.leftEmoji}</Text>
-                <Text style={styles.username}>{match.leftUser.username}</Text>
-                <Text style={styles.username}>{match.scoreByUser[match.leftUser.id]}</Text>
-              </View>
-              <View style={styles.middle}>
-                <Text style={styles.profileSeparator}>-</Text>
-              </View>
-              <View style={styles.right}>
-                <Text style={styles.emoji}>{this.state.rightEmoji}</Text>
-                <Text style={styles.username}>{match.rightUser.username}</Text>
-                <Text style={styles.username}>{match.scoreByUser[match.rightUser.id]}</Text>
-              </View>
-            </View>
-          </View>
+          </TouchableHighlight>
         }
         footer={
           <View style={styles.footerContainer}>
@@ -244,24 +245,27 @@ class Match extends Component {
               {awaitingPlayer ?
                 <View style={styles.playBox}>
                   <Text style={styles.playEmoji}>👉</Text>
-                  <TouchableHighlight onPress={this.onPlayPress}>
+                  <TouchableOpacity
+                    onPress={this.onPlayPress}
+                    activeOpacity={0.6}
+                  >
                     <View style={styles.playButton}>
                       <Text style={styles.action}>{I18n.t('play')}</Text>
                     </View>
-                  </TouchableHighlight>
+                  </TouchableOpacity>
                   <Text style={styles.playEmoji}>👈</Text>
                 </View>
               :
                 !match.isFinished &&
                   <View style={styles.playBox}>
                     <View style={styles.firstEmoji}>
-                      <Text style={styles.waitEmoji}>👉</Text>
+                      <Text style={styles.waitEmoji}></Text>
                     </View>
                     <View style={styles.waitingBox}>
                       <Text style={styles.waitingText}>{I18n.t('waiting')}</Text>
                     </View>
                     <View style={styles.lastEmoji}>
-                      <Text style={styles.waitEmoji}>👈</Text>
+                      <Text style={styles.waitEmoji}></Text>
                     </View>
                   </View>
               }

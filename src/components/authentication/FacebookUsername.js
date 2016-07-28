@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Button from '../common/Button';
 import Title from '../common/Title';
 import Template from '../common/Template';
+import I18n from '../../config/i18n';
 
 import styles from './formStyles';
 
@@ -21,8 +22,8 @@ class FacebookUsername extends Component {
     this.updateUsername = this.updateUsername.bind(this);
   }
   onPress() {
-    if (this.state.username.length < 5) {
-      Alert.alert('Your username must be at least 5 characters.');
+    if (this.state.username.length < 5 || this.state.username.length > 10) {
+      Alert.alert(I18n.t('username5To10Characters'));
       return;
     }
     const user = new Parse.User({ id: this.props.userId });
@@ -37,12 +38,12 @@ class FacebookUsername extends Component {
         let message;
         switch (err.code) {
           case Parse.Error.USERNAME_TAKEN:
-            message = 'This username is already taken.';
+            message = I18n.t('usernameTaken');
             break;
           default:
             // @TODO: Find out exactly what errors can be thrown by .signUp()
             console.error(err);
-            message = 'An unknown error occurred. Please try again.';
+            message = I18n.t('unknownError');
         }
         Alert.alert(message);
       },
@@ -54,7 +55,7 @@ class FacebookUsername extends Component {
   render() {
     return (
       <Template
-        header={<Title>Pick a username!</Title>}
+        header={<Title>{I18n.t('pickUsername')}</Title>}
         footer={
           <View style={styles.container}>
             <View style={styles.top}>
@@ -62,7 +63,7 @@ class FacebookUsername extends Component {
                 autoCorrect={false}
                 style={styles.input}
                 autoCapitalize="none"
-                placeholder="Username"
+                placeholder={I18n.t('username')}
                 placeholderTextColor="rgba(255, 255, 255, 0.5)"
                 onChangeText={this.updateUsername}
                 value={this.state.username}
@@ -71,7 +72,7 @@ class FacebookUsername extends Component {
             <View style={styles.bottom}>
               <View style={styles.formSubmit}>
                 <Button
-                  text="GO!"
+                  text={I18n.t('go')}
                   onPress={this.onPress}
                   disabled={this.state.loading}
                 />

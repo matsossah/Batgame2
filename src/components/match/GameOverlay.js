@@ -181,7 +181,7 @@ class GameOverlay extends Component {
         </View>
         <View style={styles.participants}>
           <View style={styles.participant}>
-            <Text style={styles.userString}>{leftUser}</Text>
+            <Text style={styles.userString}>{I18n.t('you')}</Text>
           </View>
           <View style={styles.arrowBox}>
             <Text style={styles.arrow}>-></Text>

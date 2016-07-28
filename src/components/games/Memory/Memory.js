@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
 //                   'moneybag', 'moneybag', 'moneybag', 'moneybag', 'moneybag', 'moneybag', 'bomb'
 //                    ];
 
-const allEmojis = ['😂', '😂', '😜', '😜', '😘',
-                  '😘', '😎', '😎', '🤓', '🤓', '😇', '😇'];
+const allEmojis = ['🌍', '🌍', '🍎', '🍎', '🙈',
+                  '🙈', '🔥', '🔥', '🤓', '🤓', '😈', '😈'];
 
 class Memory extends Component {
   constructor() {
@@ -63,7 +63,12 @@ class Memory extends Component {
     this.compatibilityCheck = this.compatibilityCheck.bind(this);
   }
   onCellPress(guess, key) {
-    this.compatibilityCheck(this.state.discovered, guess, key);
+    if (this.state.tries === 99) {
+      this.setState({ tries: 100 });
+      this.props.onEnd({ score: this.state.tries + 1 });
+    } else {
+      this.compatibilityCheck(this.state.discovered, guess, key);
+    }
   }
   onMiss() {
     this.setState({

@@ -103,23 +103,24 @@ class PickOpponent extends Component {
       <Template
         // pass the title in uppercase
         header={
-          <View style={styles.header}>
-            <View style={styles.backBox}>
-              <TouchableHighlight
-                onPress={this.onBackPress}
-                underlayColor="transparent"
-              >
+          <TouchableHighlight
+            onPress={this.onBackPress}
+            underlayColor="transparent"
+            style={styles.header}
+          >
+            <View style={styles.header}>
+              <View style={styles.backBox}>
                 <View style={styles.backButton}>
                   <Text style={styles.back}>{'<'}</Text>
                 </View>
-              </TouchableHighlight>
+              </View>
+              <View style={styles.titleBox}>
+                <Title>
+                  {I18n.t('pickVictim')}
+                </Title>
+              </View>
             </View>
-            <View style={styles.titleBox}>
-              <Title>
-                {I18n.t('pickVictim')}
-              </Title>
-            </View>
-          </View>
+          </TouchableHighlight>
         }
         footer={
           <View style={styles.footer}>
