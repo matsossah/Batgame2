@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { NavigationExperimental } from 'react-native';
 import { connect } from 'react-redux';
-const { CardStack } = NavigationExperimental;
 
 import { popModals } from '../../actions/navigation';
 
@@ -9,6 +7,7 @@ import PickOpponent from '../gamestart/PickOpponent';
 import SearchScreen from '../gamestart/SearchScreen';
 import Wheel from '../match/Wheel';
 import Game from '../match/Game';
+import VerticalCardStack from './VerticalCardStack';
 
 import MainNavigator from './MainNavigator';
 
@@ -57,10 +56,12 @@ class ModalsNavigator extends Component {
   }
 
   render() {
+    const currentRoute = this.props.navigationState.routes[this.props.navigationState.index];
     return (
-      <CardStack
-        direction="vertical"
+      <VerticalCardStack
         onNavigateBack={this.onNavigateBack}
+        // Only enable navigate back for pick opponent
+        canNavigateBack={currentRoute.key === 'pick_opponent'}
         navigationState={this.props.navigationState}
         renderScene={this.renderScene}
       />
