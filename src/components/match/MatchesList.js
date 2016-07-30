@@ -161,8 +161,26 @@ class MatchesList extends Component {
     const [finishedGames, pendingGames] = partition(this.props.matches, { isFinished: true });
     return (
       <View>
-        {this.renderTab('PENDING', 'NO PENDING GAMES', pendingGames)}
-        {this.renderTab('FINISHED', 'NO FINISHED GAMES', finishedGames)}
+        {this.renderTab(
+          'PENDING',
+          'NO PENDING GAMES',
+          pendingGames.sort((a, b) => {
+            const awaiting1 = a.awaitingPlayers.includes(a.leftUser);
+            const awaiting2 = b.awaitingPlayers.includes(b.leftUser);
+            if (awaiting1 && !awaiting2) {
+              return -1;
+            }
+            if (awaiting2 && !awaiting1) {
+              return 1;
+            }
+            return b.createdAt - a.createdAt;
+          })
+        )}
+        {this.renderTab(
+          'FINISHED',
+          'NO FINISHED GAMES',
+          finishedGames.sort((a, b) => b.createdAt - a.createdAt)
+        )}
       </View>
     );
   }

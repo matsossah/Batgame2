@@ -70,10 +70,7 @@ class Home extends Component {
             />
             {this.props.matches !== null &&
               <MatchesList
-                matches={
-                  this.props.matches
-                    .sort((m1, m2) => m1.createdAt - m2.createdAt)
-                }
+                matches={this.props.matches}
                 onMatchPress={this.onMatchPress}
               />
             }
