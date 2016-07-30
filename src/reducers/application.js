@@ -63,6 +63,12 @@ export default function applicationReducer(state = initialState, action) {
         ...mergeStoreIntoState(state, store),
       };
     }
+    case actionTypes.JOIN_MATCH_AGAINST_SUCCESS: {
+      const { store } = normalize([action.match]);
+      return {
+        ...mergeStoreIntoState(state, store),
+      };
+    }
     case actionTypes.GAME_PICKED_SUCCESS: {
       const { store } = normalize([action.game]);
       return mergeStoreIntoState(state, store);

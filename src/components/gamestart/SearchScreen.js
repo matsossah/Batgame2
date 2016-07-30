@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { Text, TextInput, View, TouchableHighlight, StyleSheet } from 'react-native';
+import { Alert, Text, TextInput, View, TouchableHighlight, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
+import { joinMatchAgainst } from '../../actions/application';
 import { popModals } from '../../actions/navigation';
 
 import Template from '../common/Template';
@@ -80,9 +81,20 @@ class SearchScreen extends Component {
     };
     this.setSearchText = this.setSearchText.bind(this);
     this.onBackPress = this.onBackPress.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   onBackPress() {
     this.props.dispatch(popModals());
+  }
+  onSubmit() {
+    if (this.state.searchText.length < 5) {
+      Alert.alert(I18n.t('usernameTooShort'));
+      return;
+    }
+    this.props.dispatch(joinMatchAgainst(this.state.searchText))
+      .catch(() => {
+        Alert.alert(I18n.t('unknownUser'));
+      });
   }
   setSearchText(event) {
     const searchText = event.nativeEvent.text;
@@ -122,6 +134,8 @@ class SearchScreen extends Component {
                 autoCorrect={false}
                 autoCapitalize="none"
                 placeholderTextColor="#34485E"
+                onSubmitEditing={this.onSubmit}
+                returnKeyType="search"
               />
             </View>
             <View style={styles.bottomFooter} />

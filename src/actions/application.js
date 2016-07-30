@@ -112,6 +112,20 @@ export function joinRandomMatch() {
   };
 }
 
+export function joinMatchAgainst(username) {
+  return dispatch => Parse.Cloud
+    .run('joinMatchAgainst', { username })
+    .then(match => {
+      dispatch({
+        type: actionTypes.JOIN_MATCH_AGAINST_SUCCESS,
+        match,
+      });
+      dispatch(gotoMatch(match.id));
+    });
+    // We don't catch the error, we expect it to be caught from the
+    // dispatch handler.
+}
+
 export function gamePickedSuccess(game) {
   return {
     type: actionTypes.GAME_PICKED_SUCCESS,
