@@ -74,6 +74,7 @@ class Wheel extends Component {
       pickedGame: null,
       wheelItemHeight: null,
       spinStarted: false,
+      layoutDone: false,
     };
 
     this.onSpin = this.onSpin.bind(this);
@@ -83,6 +84,11 @@ class Wheel extends Component {
   }
 
   onWheelLayout(e) {
+    // For some reason, on Android, this keeps getting called.
+    if (this.state.layoutDone) {
+      return;
+    }
+
     const { height } = e.nativeEvent.layout;
     const { match } = this.props;
 
@@ -122,6 +128,7 @@ class Wheel extends Component {
       pickedGame: gameInfo.name,
       games: repeatedGames,
       gamesDataSource: ds.cloneWithRows(repeatedGames),
+      layoutDone: true,
     });
   }
 
