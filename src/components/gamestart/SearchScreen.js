@@ -13,31 +13,32 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  header: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
   },
   topFooter: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    alignSelf: 'stretch',
-  },
-  middleFooter: {
-    flex: 4,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',
   },
   bottomFooter: {
-    flexDirection: 'row',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-  },
-  backButton: {
-    height: 50,
-    width: 100,
+    flex: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2C3D50',
+    alignSelf: 'stretch',
+  },
+  backButton: {
+    width: 100,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingLeft: 20,
+    backgroundColor: '#34485E',
   },
   backBox: {
     flexDirection: 'row',
@@ -45,6 +46,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     flex: 1,
+  },
+  titleBox: {
+    flex: 3,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
   },
   back: {
     fontSize: 50,
@@ -83,7 +91,26 @@ class SearchScreen extends Component {
   render() {
     return (
       <Template
-        header={<Title>{I18n.t('search')}</Title>}
+        header={
+          <TouchableHighlight
+            onPress={this.onBackPress}
+            underlayColor="transparent"
+            style={styles.header}
+          >
+            <View style={styles.header}>
+              <View style={styles.backBox}>
+                <View style={styles.backButton}>
+                  <Text style={styles.back}>{'<'}</Text>
+                </View>
+              </View>
+              <View style={styles.titleBox}>
+                <Title>
+                  {I18n.t('search')}
+                </Title>
+              </View>
+            </View>
+          </TouchableHighlight>
+        }
         footer={
           <View style={styles.container}>
             <View style={styles.topFooter}>
@@ -97,19 +124,7 @@ class SearchScreen extends Component {
                 placeholderTextColor="#34485E"
               />
             </View>
-            <View style={styles.middleFooter} />
-            <View style={styles.bottomFooter}>
-              <View style={styles.backBox}>
-                <TouchableHighlight
-                  onPress={this.onBackPress}
-                  underlayColor="transparent"
-                >
-                  <View style={styles.backButton}>
-                    <Text style={styles.back}>{'<'}</Text>
-                  </View>
-                </TouchableHighlight>
-              </View>
-            </View>
+            <View style={styles.bottomFooter} />
           </View>
         }
       />

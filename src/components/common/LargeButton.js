@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Text, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +20,10 @@ const styles = StyleSheet.create({
 function LargeButton(props) {
   const { style, buttonText, underlayColor, buttonTextStyle, ...otherProps } = props;
   return (
-    <TouchableWithoutFeedback {...otherProps}>
+    <TouchableOpacity
+      {...otherProps}
+      activeOpacity={0.6}
+    >
       <View
         style={[
           styles.container,
@@ -35,7 +38,7 @@ function LargeButton(props) {
           {buttonText}
         </Text>
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 }
 

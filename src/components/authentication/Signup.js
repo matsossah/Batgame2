@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { View, TextInput } from 'react-native';
 import Parse from 'parse/react-native';
+import I18n from '../../config/i18n';
 
 import Button from '../common/Button';
 
@@ -22,15 +23,15 @@ class Signup extends Component {
   }
   onSignupPress() {
     if (this.state.username.length < 5) {
-      this.props.onError('Your username must be at least 5 characters.');
+      this.props.onError(I18n.t('username5To10Characters'));
       return;
     }
     if (this.state.password.length < 8) {
-      this.props.onError('Your password must be at least 8 characters.');
+      this.props.onError(I18n.t('password8Characters'));
       return;
     }
     if (this.state.password !== this.state.passwordConfirmation) {
-      this.props.onError('Your passwords do not match, please retry.');
+      this.props.onError(I18n.t('passwordsNotMatching'));
       return;
     }
 
@@ -55,11 +56,11 @@ class Signup extends Component {
         let message;
         switch (err.code) {
           case Parse.Error.USERNAME_TAKEN:
-            message = 'This username is already taken.';
+            message = I18n.t('usernameTaken');
             break;
           default:
             // @TODO: Find out exactly what errors can be thrown by .signUp()
-            message = 'An unknown error occurred. Please try again.';
+            message = I18n.t('unknownError');
         }
         this.props.onError(message);
       },
@@ -82,7 +83,7 @@ class Signup extends Component {
             autoCorrect={false}
             style={styles.input}
             autoCapitalize="none"
-            placeholder="Username"
+            placeholder={I18n.t('username')}
             placeholderTextColor="rgba(255, 255, 255, 0.5)"
             value={this.state.username}
             onChangeText={this.updateUsername}
@@ -90,7 +91,7 @@ class Signup extends Component {
           <TextInput
             secureTextEntry
             style={styles.input}
-            placeholder="Password"
+            placeholder={I18n.t('password')}
             placeholderTextColor="rgba(255, 255, 255, 0.5)"
             value={this.state.password}
             onChangeText={this.updatePassword}
@@ -98,7 +99,7 @@ class Signup extends Component {
           <TextInput
             secureTextEntry
             style={styles.input}
-            placeholder="Confirm Password"
+            placeholder={I18n.t('passwordConfirmation')}
             placeholderTextColor="rgba(255, 255, 255, 0.5)"
             value={this.state.passwordConfirmation}
             onChangeText={this.updatePasswordConfirmation}
@@ -107,7 +108,7 @@ class Signup extends Component {
         <View style={styles.bottom}>
           <View style={styles.formSubmit}>
             <Button
-              text="GO!"
+              text={I18n.t('go')}
               onPress={this.onSignupPress}
               disabled={this.state.loading}
             />

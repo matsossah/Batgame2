@@ -71,19 +71,19 @@ const styles = StyleSheet.create({
     color: '#895524',
     fontSize: 20,
     fontFamily: 'chalkduster',
-    marginLeft: 30,
+    marginLeft: 20,
   },
   play: {
     color: '#4EB479',
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: 'chalkduster',
-    marginLeft: 30,
+    marginLeft: 20,
   },
   wait: {
     color: '#E67E2C',
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: 'chalkduster',
-    marginLeft: 30,
+    marginLeft: 20,
   },
   opponentUsername: {
     color: '#FFD664',
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     color: '#FFD664',
     fontSize: 20,
     fontFamily: 'chalkduster',
-    marginLeft: 30,
+    marginLeft: 20,
   },
 });
 
@@ -137,7 +137,7 @@ class MatchesList extends Component {
                   :
                     <View style={styles.pending}>
                       <View style={styles.playBox}>
-                        <Text style={styles.wait}>✋ {I18n.t('waiting')}...</Text>
+                        <Text style={styles.wait}>✋ {I18n.t('waiting')}</Text>
                       </View>
                       <View style={styles.usernameBox}>
                         <Text style={styles.opponentUsername}>{match.rightUser.username}</Text>

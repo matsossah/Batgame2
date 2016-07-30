@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Text, View, TouchableHighlight, StyleSheet } from 'react-native';
+import { Text, View, TouchableHighlight, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import sample from 'lodash/sample';
 
@@ -25,13 +25,18 @@ const styles = StyleSheet.create({
   },
   bottomFooter: {
     flex: 1,
-    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',
   },
   headerContainer: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  participants: {
+    flex: 3,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -63,13 +68,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFD664',
     marginBottom: 20,
+    marginLeft: 40,
+    marginRight: 40,
   },
   backButton: {
-    height: 50,
     width: 100,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#2C3D50',
+    alignItems: 'flex-start',
+    paddingLeft: 20,
+    backgroundColor: '#34485E',
   },
   profileSeparator: {
     fontSize: 50,
@@ -90,6 +97,7 @@ const styles = StyleSheet.create({
   },
   playBox: {
     flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -109,6 +117,34 @@ const styles = StyleSheet.create({
   },
   emoji: {
     fontSize: 50,
+  },
+  waitEmoji: {
+    fontSize: 30,
+  },
+  playEmoji: {
+    fontSize: 50,
+  },
+  firstEmoji: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  waitingBox: {
+    flex: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  waitingText: {
+    fontSize: 20,
+    fontFamily: 'chalkduster',
+    color: '#7c7c7c',
+  },
+  lastEmoji: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
   },
 });
 // const allEmojis to use with react-native-emoji
@@ -157,24 +193,34 @@ class Match extends Component {
     return (
       <Template
         header={
-          <View style={styles.headerContainer}>
-            <View style={styles.left}>
-              <Text style={styles.emoji}>{this.state.leftEmoji}</Text>
-              <Text style={styles.username}>{match.leftUser.username}</Text>
-              <Text style={styles.username}>{match.scoreByUser[match.leftUser.id]}</Text>
+          <TouchableHighlight
+            onPress={this.onBackPress}
+            underlayColor="transparent"
+            style={styles.headerContainer}
+          >
+            <View style={styles.headerContainer}>
+              <View style={styles.backBox}>
+                <View style={styles.backButton}>
+                  <Text style={styles.back}>{'<'}</Text>
+                </View>
+              </View>
+              <View style={styles.participants}>
+                <View style={styles.left}>
+                  <Text style={styles.emoji}>{this.state.leftEmoji}</Text>
+                  <Text style={styles.username}>{match.leftUser.username}</Text>
+                  <Text style={styles.username}>{match.scoreByUser[match.leftUser.id]}</Text>
+                </View>
+                <View style={styles.middle}>
+                  <Text style={styles.profileSeparator}>-</Text>
+                </View>
+                <View style={styles.right}>
+                  <Text style={styles.emoji}>{this.state.rightEmoji}</Text>
+                  <Text style={styles.username}>{match.rightUser.username}</Text>
+                  <Text style={styles.username}>{match.scoreByUser[match.rightUser.id]}</Text>
+                </View>
+              </View>
             </View>
-            <View style={styles.middle}>
-              <Text style={styles.profileSeparator}>-</Text>
-            </View>
-            <View style={styles.right}>
-            {
-// TODO emojis displayed on Android only if 6 spaces are added after {sample(allEmojis is the only way to have it diplayed on Android
-            }
-              <Text style={styles.emoji}>{this.state.rightEmoji}</Text>
-              <Text style={styles.username}>{match.rightUser.username}</Text>
-              <Text style={styles.username}>{match.scoreByUser[match.rightUser.id]}</Text>
-            </View>
-          </View>
+          </TouchableHighlight>
         }
         footer={
           <View style={styles.footerContainer}>
@@ -196,26 +242,33 @@ class Match extends Component {
               })}
             </View>
             <View style={styles.bottomFooter}>
-              <View style={styles.backBox}>
-                <TouchableHighlight
-                  onPress={this.onBackPress}
-                  underlayColor="transparent"
-                >
-                  <View style={styles.backButton}>
-                    <Text style={styles.back}>{'<'}</Text>
-                  </View>
-                </TouchableHighlight>
-              </View>
-              <View style={styles.playBox}>
-                {awaitingPlayer &&
-                  <TouchableHighlight onPress={this.onPlayPress}>
+              {awaitingPlayer ?
+                <View style={styles.playBox}>
+                  <Text style={styles.playEmoji}>👉</Text>
+                  <TouchableOpacity
+                    onPress={this.onPlayPress}
+                    activeOpacity={0.6}
+                  >
                     <View style={styles.playButton}>
                       <Text style={styles.action}>{I18n.t('play')}</Text>
                     </View>
-                  </TouchableHighlight>
-                }
-              </View>
-              <View style={styles.empty} />
+                  </TouchableOpacity>
+                  <Text style={styles.playEmoji}>👈</Text>
+                </View>
+              :
+                !match.isFinished &&
+                  <View style={styles.playBox}>
+                    <View style={styles.firstEmoji}>
+                      <Text style={styles.waitEmoji}></Text>
+                    </View>
+                    <View style={styles.waitingBox}>
+                      <Text style={styles.waitingText}>{I18n.t('waiting')}</Text>
+                    </View>
+                    <View style={styles.lastEmoji}>
+                      <Text style={styles.waitEmoji}></Text>
+                    </View>
+                  </View>
+              }
             </View>
           </View>
         }

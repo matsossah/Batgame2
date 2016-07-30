@@ -7,16 +7,16 @@ import MathBattle from '../games/MathBattle';
 import PopTheBalloon from '../games/PopTheBalloon';
 import RedGreenBlue from '../games/RedGreenBlue';
 import Identical from '../games/Identical';
-import Lucky from '../games/Lucky';
+import Lucky from '../games/Lucky/Lucky';
 import RightOn from '../games/RightOn';
-import WhackAMole from '../games/WhackAMole';
+import WhackAMole from '../games/WhackAMole/WhackAMole';
 import NumberGame from '../games/numbers/NumberGame';
 import RealColor from '../games/RealColor';
+import Memory from '../games/Memory/Memory';
 
 import GameOverlay from './GameOverlay';
 import GameCountdown from './GameCountdown';
 import GameRule from './GameRule';
-import I18n from 'react-native-i18n-complete';
 
 import { gameSelector, matchSelector } from '../../selectors';
 import { createGameScore } from '../../actions/application';
@@ -32,6 +32,7 @@ const gameComponents = {
   RIGHT_ON: RightOn,
   NUMBER: NumberGame,
   REAL_COLOR: RealColor,
+  MEMORY: Memory,
 };
 
 const styles = StyleSheet.create({
@@ -78,9 +79,17 @@ class Game extends Component {
   }
 
   onGameRuleEnd() {
-    this.setState({
-      showRules: false,
-    });
+    const { game } = this.props;
+    if (game.info.countdown) {
+      this.setState({
+        showRules: false,
+      });
+    } else {
+      this.setState({
+        showRules: false,
+        started: true,
+      });
+    }
   }
 
   onGameCountdownEnd() {

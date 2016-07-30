@@ -4,7 +4,7 @@ import LuckyCell from './LuckyCell';
 
 import shuffle from 'lodash/shuffle';
 
-import Template from '../common/Template';
+import Template from '../../common/Template';
 
 const styles = StyleSheet.create({
   container: {

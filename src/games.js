@@ -6,6 +6,7 @@ export default [
     winner: 'SMALLEST',
     scoreType: 'DATE',
     emoji: '🚦',
+    countdown: true,
   },
   {
     name: 'MATH_BATTLE',
@@ -14,6 +15,7 @@ export default [
     winner: 'GREATEST',
     scoreType: 'NUMBER',
     emoji: '🤓',
+    countdown: true,
   },
   {
     name: 'POP_THE_BALLOON',
@@ -22,6 +24,7 @@ export default [
     winner: 'SMALLEST',
     scoreType: 'DATE',
     emoji: '🎈',
+    countdown: true,
   },
   {
     name: 'RED_GREEN_BLUE',
@@ -30,6 +33,7 @@ export default [
     winner: 'GREATEST',
     scoreType: 'NUMBER',
     emoji: '🎨',
+    countdown: true,
   },
   {
     name: 'WHACK_A_MOLE',
@@ -38,6 +42,7 @@ export default [
     winner: 'GREATEST',
     scoreType: 'NUMBER',
     emoji: '🐭',
+    countdown: true,
   },
   {
     name: 'NUMBER',
@@ -46,6 +51,7 @@ export default [
     winner: 'SMALLEST',
     scoreType: 'DATE',
     emoji: '⚡️',
+    countdown: true,
   },
   {
     name: 'IDENTICAL',
@@ -54,6 +60,7 @@ export default [
     winner: 'GREATEST',
     scoreType: 'NUMBER',
     emoji: '🍻',
+    countdown: true,
   },
   {
     name: 'LUCKY',
@@ -62,6 +69,7 @@ export default [
     winner: 'GREATEST',
     scoreType: 'NUMBER',
     emoji: '💰',
+    countdown: false,
   },
   {
     name: 'RIGHT_ON',
@@ -70,6 +78,7 @@ export default [
     winner: 'SMALLEST',
     scoreType: 'DATE',
     emoji: '⏱',
+    countdown: false,
   },
   {
     name: 'REAL_COLOR',
@@ -78,5 +87,15 @@ export default [
     winner: 'GREATEST',
     scoreType: 'NUMBER',
     emoji: '🖌',
+    countdown: true,
+  },
+  {
+    name: 'MEMORY',
+    fullName: 'MEMORY',
+    rule: 'MEMORY_RULE',
+    winner: 'SMALLEST',
+    scoreType: 'TRIES',
+    emoji: '👀',
+    countdown: false,
   },
 ];

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { View, TextInput } from 'react-native';
 import Parse from 'parse/react-native';
+import I18n from '../../config/i18n';
 
 import Button from '../common/Button';
 
@@ -36,17 +37,17 @@ class Signin extends Component {
         let message;
         switch (err.code) {
           case Parse.Error.OBJECT_NOT_FOUND:
-            message = 'Wrong username or password. Please try again.';
+            message = I18n.t('wrongID');
             break;
           case Parse.Error.USERNAME_MISSING:
-            message = 'Please enter a username.';
+            message = I18n.t('enterUsername');
             break;
           case Parse.Error.PASSWORD_MISSING:
-            message = 'Please enter a password.';
+            message = I18n.t('enterPassword');
             break;
           default:
             // @TODO: Find out exactly what errors can be thrown by .logIn()
-            message = 'An unknown error occurred. Please try again.';
+            message = I18n.t('unknownError');
             break;
         }
         this.props.onError(message);
@@ -67,7 +68,7 @@ class Signin extends Component {
             autoCorrect={false}
             style={styles.input}
             autoCapitalize="none"
-            placeholder="Username"
+            placeholder={I18n.t('username')}
             placeholderTextColor="rgba(255, 255, 255, 0.5)"
             onChangeText={this.updateUsername}
             value={this.state.username}
@@ -75,7 +76,7 @@ class Signin extends Component {
           <TextInput
             secureTextEntry
             style={styles.input}
-            placeholder="Password"
+            placeholder={I18n.t('password')}
             placeholderTextColor="rgba(255, 255, 255, 0.5)"
             onChangeText={this.updatePassword}
             value={this.state.password}
@@ -84,7 +85,7 @@ class Signin extends Component {
         <View style={styles.bottom}>
           <View style={styles.formSubmit}>
             <Button
-              text="GO!"
+              text={I18n.t('go')}
               onPress={this.onSigninPress}
               disabled={this.state.loading}
             />

@@ -59,6 +59,10 @@ const AROUND = Math.floor(ROWS / 2);
 const OVERSHOOT = 1;
 const LENGTH = 100;
 
+function negativeMod(i, n) {
+  return ((i % n) + n) % n;
+}
+
 class Wheel extends Component {
   constructor() {
     super();
@@ -103,7 +107,7 @@ class Wheel extends Component {
     const repeatedGames = [];
     for (let i = 0; i <= finalOffset + AROUND + OVERSHOOT; i++) {
       repeatedGames.push({
-        game: games[i % games.length],
+        game: games[negativeMod(i - LENGTH, games.length)],
         active: false,
       });
     }
