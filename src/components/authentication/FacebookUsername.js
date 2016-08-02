@@ -68,8 +68,6 @@ class FacebookUsername extends Component {
                 onChangeText={this.updateUsername}
                 value={this.state.username}
               />
-            </View>
-            <View style={styles.bottom}>
               <View style={styles.formSubmit}>
                 <Button
                   text={I18n.t('go')}
@@ -78,6 +76,7 @@ class FacebookUsername extends Component {
                 />
               </View>
             </View>
+            <View style={styles.bottom} />
           </View>
         }
       />

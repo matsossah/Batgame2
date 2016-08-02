@@ -7,6 +7,13 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  top: {
+    flex: 1,
+    paddingTop: 30,
+  },
+  bottom: {
+    flex: 2,
+  },
   formSubmit: {
     alignSelf: 'stretch',
     alignItems: 'flex-end',

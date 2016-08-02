@@ -14,7 +14,9 @@ import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
 import MatchesList from '../match/MatchesList';
+import Fabric from 'react-native-fabric';
 
+const { Answers } = Fabric;
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
@@ -39,6 +41,7 @@ class Home extends Component {
   onNewGamePress() {
     // Option 1 to go to pick opponent from FB, random or username
     this.props.dispatch(gotoPickOpponent());
+    Answers.logCustom('new game');
 
     // Option 2 to start a game with a random opponent right away.
     // this.props.dispatch(joinRandomMatch());
