@@ -70,6 +70,8 @@ const fr = {
   password8Characters: 'Ton mot de passe doit faire 8 caractères minimum',
   passwordsNotMatching: 'Tes mots de passe sont différents, merci de réessayer',
   passwordConfirmation: 'Confirmation du mot de passe',
+  noPending: 'AUCUNE PARTIES',
+  noFinished: 'AUCUNE PARTIES',
 };
 
 export default fr;

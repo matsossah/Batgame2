@@ -150,7 +150,7 @@ class MatchesList extends Component {
         :
           <View style={styles.emptyTab}>
             <Text style={styles.emptyTabName}>
-            {emptyTabName}
+            {I18n.t(emptyTabName)}
             </Text>
           </View>
         }
@@ -163,7 +163,7 @@ class MatchesList extends Component {
       <View>
         {this.renderTab(
           'PENDING',
-          'NO PENDING GAMES',
+          'noPending',
           pendingGames.sort((a, b) => {
             const awaiting1 = a.awaitingPlayers.includes(a.leftUser);
             const awaiting2 = b.awaitingPlayers.includes(b.leftUser);
@@ -178,7 +178,7 @@ class MatchesList extends Component {
         )}
         {this.renderTab(
           'FINISHED',
-          'NO FINISHED GAMES',
+          'noFinished',
           finishedGames.sort((a, b) => b.createdAt - a.createdAt)
         )}
       </View>

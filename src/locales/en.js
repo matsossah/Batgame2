@@ -70,6 +70,8 @@ const en = {
   password8Characters: 'Your password must be minimum 8 characters',
   passwordsNotMatching: 'Your passwords do not match, please retry',
   passwordConfirmation: 'Password Confirmation',
+  noPending: 'NO PENDING GAMES',
+  noFinished: 'NO FINISHED GAMES',
 };
 
 export default en;
