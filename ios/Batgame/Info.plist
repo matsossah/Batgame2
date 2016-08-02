@@ -28,11 +28,13 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.0.1</string>
 	<key>FacebookAppID</key>
 	<string>215627618810261</string>
 	<key>FacebookDisplayName</key>
 	<string>Batgame</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

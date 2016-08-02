@@ -32,12 +32,15 @@
 		8334113D5CAB437C86FFB8EE /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23691C42D5994695973604B8 /* MaterialIcons.ttf */; };
 		88F7058DBD3D4B438084AE0D /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD7EDFF4CEA944E691ABB283 /* Octicons.ttf */; };
 		8E597ED800CE48FC9643A6B9 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD55C82A6134424693F02436 /* Entypo.ttf */; };
+		9B01B4201D4E56410031DDBE /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B01B41F1D4E56410031DDBE /* Images-2.xcassets */; };
 		AC39967E736F42C7912758FF /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83C125BEFA5E479F93392083 /* Ionicons.ttf */; };
 		ACA56D101CF1E841000AB266 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACA56D0D1CF1E841000AB266 /* FBSDKCoreKit.framework */; };
 		ACA56D111CF1E841000AB266 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACA56D0E1CF1E841000AB266 /* FBSDKLoginKit.framework */; };
 		ACA56D121CF1E841000AB266 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACA56D0F1CF1E841000AB266 /* FBSDKShareKit.framework */; };
 		ACA56D141CF1E8A5000AB266 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACA56D131CF1E8A5000AB266 /* Bolts.framework */; };
+		B1B93A05177F4321AF57622E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 87352A8D710844178D058200 /* libz.tbd */; };
 		D5A7AA5865E54235BA3C6378 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6791A07DCC6B4AADB59D241A /* Foundation.ttf */; };
+		FA0E58D8131744C8A7307CB8 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A835E5D4654D60A83429A9 /* libCodePush.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +142,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = BVLinearGradient;
 		};
+		9BA27DD01D4D06F200BE9F6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9182C926DEE426EBD0614E0 /* CodePush.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = CodePush;
+		};
 		ACA56CFE1CF1E822000AB266 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3770118373BB42A6832E9E18 /* RCTFBSDK.xcodeproj */;
@@ -162,12 +172,12 @@
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
 		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* BatgameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BatgameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* Speedy Brain.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Speedy Brain.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* BatgameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BatgameTests.m; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* Batgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Batgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Speedy Brain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Speedy Brain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Batgame/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Batgame/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -188,13 +198,17 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		83C125BEFA5E479F93392083 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		87352A8D710844178D058200 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		981A0252FBEE4455B00CA738 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		9B01B41F1D4E56410031DDBE /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "Batgame/Images-2.xcassets"; sourceTree = "<group>"; };
+		A9182C926DEE426EBD0614E0 /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		ACA56D0D1CF1E841000AB266 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		ACA56D0E1CF1E841000AB266 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		ACA56D0F1CF1E841000AB266 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		ACA56D131CF1E8A5000AB266 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
 		BD55C82A6134424693F02436 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		D1567B8CB9924519A199E4EB /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/RNI18n.xcodeproj"; sourceTree = "<group>"; };
+		E9A835E5D4654D60A83429A9 /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libCodePush.a; sourceTree = "<group>"; };
 		EF6A9CEA17BC4B8B8E15A400 /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
 		FD7EDFF4CEA944E691ABB283 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,6 +243,8 @@
 				ACA56D141CF1E8A5000AB266 /* Bolts.framework in Frameworks */,
 				2B79891E2C6B4481A6705AEC /* libBVLinearGradient.a in Frameworks */,
 				503D775EAE8C42C299C6CE9A /* libRNI18n.a in Frameworks */,
+				FA0E58D8131744C8A7307CB8 /* libCodePush.a in Frameworks */,
+				B1B93A05177F4321AF57622E /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +334,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				9B01B41F1D4E56410031DDBE /* Images-2.xcassets */,
 			);
 			name = Batgame;
 			sourceTree = "<group>";
@@ -355,6 +372,7 @@
 				3770118373BB42A6832E9E18 /* RCTFBSDK.xcodeproj */,
 				2120378D904A45AE850ADDA2 /* BVLinearGradient.xcodeproj */,
 				D1567B8CB9924519A199E4EB /* RNI18n.xcodeproj */,
+				A9182C926DEE426EBD0614E0 /* CodePush.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -384,8 +402,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* Batgame.app */,
-				00E356EE1AD99517003FC87E /* BatgameTests.xctest */,
+				13B07F961A680F5B00A75B9A /* Speedy Brain.app */,
+				00E356EE1AD99517003FC87E /* Speedy Brain.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -422,6 +440,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9BA27DCC1D4D06F200BE9F6B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9BA27DD11D4D06F200BE9F6B /* libCodePush.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		ACA56CF81CF1E821000AB266 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,6 +471,7 @@
 				ACA56D0D1CF1E841000AB266 /* FBSDKCoreKit.framework */,
 				ACA56D0E1CF1E841000AB266 /* FBSDKLoginKit.framework */,
 				ACA56D0F1CF1E841000AB266 /* FBSDKShareKit.framework */,
+				87352A8D710844178D058200 /* libz.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -452,9 +479,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* BatgameTests */ = {
+		00E356ED1AD99517003FC87E /* Speedy BrainTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BatgameTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "Speedy BrainTests" */;
 			buildPhases = (
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
@@ -465,14 +492,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = BatgameTests;
+			name = "Speedy BrainTests";
 			productName = BatgameTests;
-			productReference = 00E356EE1AD99517003FC87E /* BatgameTests.xctest */;
+			productReference = 00E356EE1AD99517003FC87E /* Speedy Brain.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* Batgame */ = {
+		13B07F861A680F5B00A75B9A /* Speedy Brain */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Batgame" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Speedy Brain" */;
 			buildPhases = (
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
@@ -483,9 +510,9 @@
 			);
 			dependencies = (
 			);
-			name = Batgame;
+			name = "Speedy Brain";
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* Batgame.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Speedy Brain.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -501,9 +528,12 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = MXZ5L444L5;
+					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Batgame" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Speedy Brain" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -518,6 +548,10 @@
 				{
 					ProductGroup = 9B4C16EC1D45059D00DDDBD7 /* Products */;
 					ProjectRef = 2120378D904A45AE850ADDA2 /* BVLinearGradient.xcodeproj */;
+				},
+				{
+					ProductGroup = 9BA27DCC1D4D06F200BE9F6B /* Products */;
+					ProjectRef = A9182C926DEE426EBD0614E0 /* CodePush.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -574,8 +608,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* Batgame */,
-				00E356ED1AD99517003FC87E /* BatgameTests */,
+				13B07F861A680F5B00A75B9A /* Speedy Brain */,
+				00E356ED1AD99517003FC87E /* Speedy BrainTests */,
 			);
 		};
 /* End PBXProject section */
@@ -672,6 +706,13 @@
 			remoteRef = 9B4C16EF1D45059D00DDDBD7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9BA27DD11D4D06F200BE9F6B /* libCodePush.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCodePush.a;
+			remoteRef = 9BA27DD01D4D06F200BE9F6B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		ACA56CFF1CF1E822000AB266 /* libRCTFBSDK.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -706,6 +747,7 @@
 				3C783B3BEB71479998138949 /* EvilIcons.ttf in Resources */,
 				2C76E66D208C419C8F0D6279 /* FontAwesome.ttf in Resources */,
 				D5A7AA5865E54235BA3C6378 /* Foundation.ttf in Resources */,
+				9B01B4201D4E56410031DDBE /* Images-2.xcassets in Resources */,
 				AC39967E736F42C7912758FF /* Ionicons.ttf in Resources */,
 				8334113D5CAB437C86FFB8EE /* MaterialIcons.ttf in Resources */,
 				88F7058DBD3D4B438084AE0D /* Octicons.ttf in Resources */,
@@ -755,7 +797,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* Batgame */;
+			target = 13B07F861A680F5B00A75B9A /* Speedy Brain */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -793,9 +835,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Batgame.app/Batgame";
+				PRODUCT_NAME = "Speedy Brain";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Speedy Brain.app/Speedy Brain";
 			};
 			name = Debug;
 		};
@@ -816,9 +859,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Batgame.app/Batgame";
+				PRODUCT_NAME = "Speedy Brain";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Speedy Brain.app/Speedy Brain";
 			};
 			name = Release;
 		};
@@ -826,6 +870,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -839,6 +886,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/iOS/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				INFOPLIST_FILE = Batgame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -847,7 +895,8 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coolappsinc.batgame;
-				PRODUCT_NAME = Batgame;
+				PRODUCT_NAME = "Speedy Brain";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -855,6 +904,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -868,6 +920,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/iOS/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				INFOPLIST_FILE = Batgame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -876,7 +929,8 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coolappsinc.batgame;
-				PRODUCT_NAME = Batgame;
+				PRODUCT_NAME = "Speedy Brain";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -897,7 +951,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: mateo sossah (MXZ5L444L5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -922,10 +977,12 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/iOS/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "1684ca24-b79d-4004-8558-a5c98d5d020e";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -947,7 +1004,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: mateo sossah (MXZ5L444L5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -966,9 +1024,11 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/iOS/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "1684ca24-b79d-4004-8558-a5c98d5d020e";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -977,7 +1037,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BatgameTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "Speedy BrainTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -986,7 +1046,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Batgame" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Speedy Brain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -995,7 +1055,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Batgame" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Speedy Brain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

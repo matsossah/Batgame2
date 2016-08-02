@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Batgame.app"
-               BlueprintName = "Batgame"
-               ReferencedContainer = "container:Batgame.xcodeproj">
+               BuildableName = "Speedy Brain.app"
+               BlueprintName = "Speedy Brain"
+               ReferencedContainer = "container:Speedy Brain.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "BatgameTests.xctest"
-               BlueprintName = "BatgameTests"
-               ReferencedContainer = "container:Batgame.xcodeproj">
+               BuildableName = "Speedy Brain.xctest"
+               BlueprintName = "Speedy BrainTests"
+               ReferencedContainer = "container:Speedy Brain.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "BatgameTests.xctest"
-               BlueprintName = "BatgameTests"
-               ReferencedContainer = "container:Batgame.xcodeproj">
+               BuildableName = "Speedy Brain.xctest"
+               BlueprintName = "Speedy BrainTests"
+               ReferencedContainer = "container:Speedy Brain.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,18 +57,18 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Batgame.app"
-            BlueprintName = "Batgame"
-            ReferencedContainer = "container:Batgame.xcodeproj">
+            BuildableName = "Speedy Brain.app"
+            BlueprintName = "Speedy Brain"
+            ReferencedContainer = "container:Speedy Brain.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Batgame.app"
-            BlueprintName = "Batgame"
-            ReferencedContainer = "container:Batgame.xcodeproj">
+            BuildableName = "Speedy Brain.app"
+            BlueprintName = "Speedy Brain"
+            ReferencedContainer = "container:Speedy Brain.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -99,9 +99,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Batgame.app"
-            BlueprintName = "Batgame"
-            ReferencedContainer = "container:Batgame.xcodeproj">
+            BuildableName = "Speedy Brain.app"
+            BlueprintName = "Speedy Brain"
+            ReferencedContainer = "container:Speedy Brain.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

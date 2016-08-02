@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -6,6 +6,7 @@ import createLogger from 'redux-logger';
 
 import reducer from './reducers';
 import Main from './Main';
+import codePush from 'react-native-code-push';
 
 const logger = createLogger();
 
@@ -14,12 +15,19 @@ const applicationStore = createStore(
   __DEV__ ? applyMiddleware(thunk, logger) : applyMiddleware(thunk)
 );
 
-function StoreProvider() {
-  return (
-    <Provider store={applicationStore}>
-      <Main />
-    </Provider>
-  );
+class StoreProvider extends Component {
+
+  componentDidMount() {
+    codePush.sync();
+  }
+
+  render() {
+    return (
+      <Provider store={applicationStore}>
+        <Main />
+      </Provider>
+    );
+  }
 }
 
 export default StoreProvider;

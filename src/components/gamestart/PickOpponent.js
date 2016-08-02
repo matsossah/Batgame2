@@ -138,14 +138,15 @@ class PickOpponent extends Component {
               onPress={this.onRandomPress}
               underlayColor="#E67E2C"
             />
-            <LargeButton
-              style={styles.facebook}
-              buttonTextStyle={styles.buttonTextStyle}
-              buttonText={I18n.t('inviteFBFriends')}
-              onPress={this.onFacebookPress}
-              underlayColor="#3498DB"
-              disabled
-            />
+            {// <LargeButton
+            //   style={styles.facebook}
+            //   buttonTextStyle={styles.buttonTextStyle}
+            //   buttonText={I18n.t('inviteFBFriends')}
+            //   onPress={this.onFacebookPress}
+            //   underlayColor="#3498DB"
+            //   disabled
+            // />
+          }
           </View>
         }
       />
