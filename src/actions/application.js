@@ -73,7 +73,7 @@ export function userAuthenticated(user) {
 }
 
 export function retrieveMatches() {
-  return (dispatch, getState) => {
+  return (dispatch, getState) =>
     new Parse.Query('Match')
       .equalTo('participants', new Parse.User({ id: getState().application.userId }))
       .include('participants')
@@ -91,7 +91,6 @@ export function retrieveMatches() {
         // @TODO: handle error
         console.error(e);
       });
-  };
 }
 
 export function joinRandomMatch() {

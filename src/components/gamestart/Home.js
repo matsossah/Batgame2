@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 
 import { userSelector, matchSelector } from '../../selectors';
@@ -9,7 +9,6 @@ import {
 } from '../../actions/application';
 import { gotoPickOpponent, gotoMatch } from '../../actions/navigation';
 import I18n from '../../config/i18n';
-
 import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
@@ -30,10 +29,14 @@ const styles = StyleSheet.create({
 
 class Home extends Component {
   constructor(props) {
-    super();
+    super(props);
+    this.state = {
+      refreshing: false,
+    };
 
     this.onNewGamePress = this.onNewGamePress.bind(this);
     this.onMatchPress = this.onMatchPress.bind(this);
+    this.onRefresh = this.onRefresh.bind(this);
 
     props.dispatch(retrieveMatches());
   }
@@ -51,6 +54,21 @@ class Home extends Component {
     this.props.dispatch(gotoMatch(matchId));
   }
 
+  onRefresh() {
+    this.setState({ refreshing: true });
+    const myMatches = this.props.dispatch(retrieveMatches());
+    console.log(myMatches);
+    myMatches.then(() => {
+      this.setState({
+        refreshing: false,
+      });
+    })
+    .catch(e => {
+      // @TODO: handle error
+      console.error(e);
+    });
+  }
+
   render() {
     return (
       <Template
@@ -63,6 +81,12 @@ class Home extends Component {
             initialListSize={1}
             pageSize={1}
             scrollRenderAheadDistance={1}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this.onRefresh}
+              />
+            }
           >
             <LargeButton
               buttonText={I18n.t('newGame')}
@@ -71,11 +95,11 @@ class Home extends Component {
               style={styles.newGame}
               fontSize={30}
             />
-            {this.props.matches !== null &&
-              <MatchesList
-                matches={this.props.matches}
-                onMatchPress={this.onMatchPress}
-              />
+              {this.props.matches !== null &&
+                <MatchesList
+                  matches={this.props.matches}
+                  onMatchPress={this.onMatchPress}
+                />
             }
           </ScrollView>
         }
