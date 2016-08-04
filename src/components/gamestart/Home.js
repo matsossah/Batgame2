@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import { ScrollView, StyleSheet, RefreshControl, AppState } from 'react-native';
+import { View, Alert, Text, TouchableHighlight, ScrollView, StyleSheet, RefreshControl, AppState } from 'react-native';
 import { connect } from 'react-redux';
+import { LoginManager } from 'react-native-fbsdk';
 
 import { userSelector, matchSelector } from '../../selectors';
 import {
   retrieveMatches,
-  joinRandomMatch,
 } from '../../actions/application';
 import { gotoPickOpponent, gotoMatch } from '../../actions/navigation';
 import I18n from '../../config/i18n';
@@ -13,6 +13,7 @@ import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
 import MatchesList from '../match/MatchesList';
+import Parse from 'parse/react-native';
 import Fabric from 'react-native-fabric';
 
 const { Answers } = Fabric;
@@ -24,6 +25,36 @@ const styles = StyleSheet.create({
   },
   newGame: {
     borderColor: '#4EB479',
+  },
+  header: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  logoutButton: {
+    width: 100,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingLeft: 10,
+    paddingTop: 20,
+  },
+  logoutBox: {
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flex: 1,
+  },
+  titleBox: {
+    flex: 3,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+  logout: {
+    fontSize: 20,
   },
 });
 
@@ -38,6 +69,8 @@ class Home extends Component {
     this.onMatchPress = this.onMatchPress.bind(this);
     this.onRefresh = this.onRefresh.bind(this);
     this.onAppStateChange = this.onAppStateChange.bind(this);
+    this.onLogoutPress = this.onLogoutPress.bind(this);
+    this.logUserOut = this.logUserOut.bind(this);
   }
 
   componentDidMount() {
@@ -75,6 +108,18 @@ class Home extends Component {
     this.retrieveMatches();
   }
 
+  onLogoutPress() {
+    Answers.logCustom('logout Pressed');
+    Alert.alert(
+      I18n.t('logout'),
+      I18n.t('sure'),
+      [
+        { text: I18n.t('staying'), onPress: () => Answers.logCustom('logout cancelled'), style: 'cancel' },
+        { text: I18n.t('smallYes'), onPress: this.logUserOut },
+      ]
+    );
+  }
+
   retrieveMatches() {
     this.setState({ refreshing: true });
     this.props.dispatch(retrieveMatches())
@@ -89,11 +134,36 @@ class Home extends Component {
       });
   }
 
+  logUserOut() {
+    Answers.logCustom('logout successful');
+    LoginManager.logOut();
+    Parse.User.logOut();
+  }
+
   render() {
     return (
       <Template
         // pass the title in uppercase
-        header={<Title style={styles.title}>{I18n.t('start')}</Title>}
+        header={
+          <TouchableHighlight
+            onPress={this.onLogoutPress}
+            underlayColor="transparent"
+            style={styles.header}
+          >
+            <View style={styles.header}>
+              <View style={styles.logoutBox}>
+                <View style={styles.logoutButton}>
+                  <Text style={styles.logout}>{'⚙'}</Text>
+                </View>
+              </View>
+              <View style={styles.titleBox}>
+                <Title>
+                  {I18n.t('start')}
+                </Title>
+              </View>
+            </View>
+          </TouchableHighlight>
+        }
         footer={
           <ScrollView
             style={styles.scrollView}
@@ -105,9 +175,9 @@ class Home extends Component {
               <RefreshControl
                 refreshing={this.state.refreshing}
                 onRefresh={this.onRefresh}
-                title={I18n.t('coming')}
-                tintColor="#dceafd"
-                titleColor="#dceafd"
+                title={I18n.t('loading')}
+                tintColor="#fc8f55"
+                titleColor="#fc8f55"
                 backgroundColor="transparent"
               />
             }
