@@ -5,7 +5,7 @@ import {
   CLIENT_KEY,
   SERVER_URL,
 } from '../config.js';
-import loginWithFacebook from '../loginWithFacebook';
+import loginWithFacebook from '../components/authentication/loginWithFacebook';
 import actionTypes from '../actionTypes';
 import { gotoMatch } from './navigation';
 

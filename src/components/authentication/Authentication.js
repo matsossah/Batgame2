@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Alert } from 'react-native';
+import { Alert, StyleSheet, Image, View } from 'react-native';
 
 import Tabs from '../common/Tabs';
 import Title from '../common/Title';
@@ -7,6 +7,21 @@ import Template from '../common/Template';
 import Signup from './Signup';
 import Signin from './Signin';
 import FacebookLogin from './FacebookLogin';
+import I18n from '../../config/i18n';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    width: null,
+    height: null,
+  },
+  backdropView: {
+    backgroundColor: 'rgba(0,0,0,0)',
+  },
+});
 
 class Authentication extends Component {
   constructor() {
@@ -51,23 +66,31 @@ class Authentication extends Component {
     return (
       <Template
         // pass the title in uppercase
-        header={<Title>SPEEDY BRAIN</Title>}
+        header={
+          <Image source={require('../../assets/header2.png')} style={styles.container} resizeMode={Image.resizeMode.stretch}>
+            <View style={styles.backdropView}>
+              <Title>SPEEDY BRAIN</Title>
+            </View>
+          </Image>
+        }
         separator={this.renderFacebookLogin()}
         footer={
-          <Tabs
-            tabs={[
-              {
-                title: 'Signup',
-                tabRender: this.renderSignupForm,
-                underlayColor: 'transparent',
-              },
-              {
-                title: 'Login',
-                tabRender: this.renderSigninForm,
-                underlayColor: 'transparent',
-              },
-            ]}
-          />
+          <Image source={require('../../assets/background2.png')} style={styles.container} resizeMode={Image.resizeMode.stretch}>
+            <Tabs
+              tabs={[
+                {
+                  title: I18n.t('signup'),
+                  tabRender: this.renderSignupForm,
+                  underlayColor: 'transparent',
+                },
+                {
+                  title: I18n.t('login'),
+                  tabRender: this.renderSigninForm,
+                  underlayColor: 'transparent',
+                },
+              ]}
+            />
+          </Image>
         }
       />
     );

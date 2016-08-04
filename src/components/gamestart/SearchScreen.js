@@ -8,7 +8,9 @@ import { popModals } from '../../actions/navigation';
 import Template from '../common/Template';
 import Title from '../common/Title';
 import I18n from '../../config/i18n';
+import Fabric from 'react-native-fabric';
 
+const { Answers } = Fabric;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -84,6 +86,7 @@ class SearchScreen extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
   onBackPress() {
+    Answers.logCustom('userSearch Back');
     this.props.dispatch(popModals());
   }
   onSubmit() {
@@ -93,8 +96,10 @@ class SearchScreen extends Component {
     }
     this.props.dispatch(joinMatchAgainst(this.state.searchText))
       .catch(() => {
+        Answers.logCustom('Username unknown');
         Alert.alert(I18n.t('unknownUser'));
       });
+    Answers.logCustom('Username found');
   }
   setSearchText(event) {
     const searchText = event.nativeEvent.text;

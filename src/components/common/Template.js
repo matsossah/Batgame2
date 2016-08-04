@@ -19,10 +19,12 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 1,
   },
   footer: {
     flex: 73,
     alignSelf: 'stretch',
+    zIndex: 0,
   },
   centered: {
     justifyContent: 'center',

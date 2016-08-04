@@ -9,6 +9,9 @@ import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
 import I18n from '../../config/i18n';
+import Fabric from 'react-native-fabric';
+
+const { Answers } = Fabric;
 
 const styles = StyleSheet.create({
   header: {
@@ -90,12 +93,15 @@ class PickOpponent extends Component {
   }
   onRandomPress() {
     // @TODO: show loader or move into another view while looking for a match
+    Answers.logCustom('random pressed');
     this.props.dispatch(joinRandomMatch());
   }
   onSearchPress() {
+    Answers.logCustom('Search by username');
     this.props.dispatch(gotoSearchScreen());
   }
   onBackPress() {
+    Answers.logCustom('PickOpponent Back');
     this.props.dispatch(popModals());
   }
   render() {

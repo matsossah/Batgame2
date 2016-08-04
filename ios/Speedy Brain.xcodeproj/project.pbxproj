@@ -19,8 +19,6 @@
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		2B79891E2C6B4481A6705AEC /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E61FC953AF0458C82CE435C /* libBVLinearGradient.a */; };
@@ -32,7 +30,8 @@
 		8334113D5CAB437C86FFB8EE /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23691C42D5994695973604B8 /* MaterialIcons.ttf */; };
 		88F7058DBD3D4B438084AE0D /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD7EDFF4CEA944E691ABB283 /* Octicons.ttf */; };
 		8E597ED800CE48FC9643A6B9 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD55C82A6134424693F02436 /* Entypo.ttf */; };
-		9B01B4201D4E56410031DDBE /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B01B41F1D4E56410031DDBE /* Images-2.xcassets */; };
+		9B360D591D52469A00F21446 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B360D581D52469A00F21446 /* Images.xcassets */; };
+		9B360D5C1D52566100F21446 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		9BA3402C1D50EA0700F5A893 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA3402A1D50EA0700F5A893 /* Fabric.framework */; };
 		9BA3402D1D50EA0700F5A893 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA3402B1D50EA0700F5A893 /* Crashlytics.framework */; };
 		AC39967E736F42C7912758FF /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83C125BEFA5E479F93392083 /* Ionicons.ttf */; };
@@ -190,7 +189,6 @@
 		13B07F961A680F5B00A75B9A /* Speedy Brain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Speedy Brain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Batgame/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Batgame/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Batgame/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Batgame/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Batgame/main.m; sourceTree = "<group>"; };
@@ -212,7 +210,7 @@
 		83C125BEFA5E479F93392083 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		87352A8D710844178D058200 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		981A0252FBEE4455B00CA738 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		9B01B41F1D4E56410031DDBE /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "Batgame/Images-2.xcassets"; sourceTree = "<group>"; };
+		9B360D581D52469A00F21446 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Speedy Brain/Images.xcassets"; sourceTree = "<group>"; };
 		9BA3402A1D50EA0700F5A893 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		9BA3402B1D50EA0700F5A893 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		A9182C926DEE426EBD0614E0 /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
@@ -349,9 +347,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				9B01B41F1D4E56410031DDBE /* Images-2.xcassets */,
 			);
 			name = Batgame;
 			sourceTree = "<group>";
@@ -429,6 +425,7 @@
 		930C9366F2894C458F2C20F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9B360D581D52469A00F21446 /* Images.xcassets */,
 				BD55C82A6134424693F02436 /* Entypo.ttf */,
 				981A0252FBEE4455B00CA738 /* EvilIcons.ttf */,
 				6ACFA3BB08E94DF1825A6897 /* FontAwesome.ttf */,
@@ -781,13 +778,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				9B360D591D52469A00F21446 /* Images.xcassets in Resources */,
+				9B360D5C1D52566100F21446 /* Images.xcassets in Resources */,
 				8E597ED800CE48FC9643A6B9 /* Entypo.ttf in Resources */,
 				3C783B3BEB71479998138949 /* EvilIcons.ttf in Resources */,
 				2C76E66D208C419C8F0D6279 /* FontAwesome.ttf in Resources */,
 				D5A7AA5865E54235BA3C6378 /* Foundation.ttf in Resources */,
-				9B01B4201D4E56410031DDBE /* Images-2.xcassets in Resources */,
 				AC39967E736F42C7912758FF /* Ionicons.ttf in Resources */,
 				8334113D5CAB437C86FFB8EE /* MaterialIcons.ttf in Resources */,
 				88F7058DBD3D4B438084AE0D /* Octicons.ttf in Resources */,
@@ -854,18 +850,6 @@
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = Batgame;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {

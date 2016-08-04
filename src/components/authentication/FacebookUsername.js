@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, TextInput, Alert } from 'react-native';
+import { View, TextInput, Alert, Image } from 'react-native';
 import Parse from 'parse/react-native';
 import { connect } from 'react-redux';
 
@@ -55,10 +55,16 @@ class FacebookUsername extends Component {
   render() {
     return (
       <Template
-        header={<Title>{I18n.t('pickUsername')}</Title>}
+        header={
+          <Image source={require('../../assets/header2.png')} style={styles.header} resizeMode={Image.resizeMode.stretch}>
+            <View style={styles.backdropView}>
+              <Title>{I18n.t('pickUsername')}</Title>
+            </View>
+            </Image>
+          }
         footer={
-          <View style={styles.container}>
-            <View style={styles.top}>
+          <Image source={require('../../assets/background2.png')} style={styles.header} resizeMode={Image.resizeMode.stretch}>
+            <View style={styles.topUsername}>
               <TextInput
                 autoCorrect={false}
                 style={styles.input}
@@ -77,7 +83,7 @@ class FacebookUsername extends Component {
               </View>
             </View>
             <View style={styles.bottom} />
-          </View>
+          </Image>
         }
       />
     );

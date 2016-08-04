@@ -44,17 +44,19 @@ class Home extends Component {
   onNewGamePress() {
     // Option 1 to go to pick opponent from FB, random or username
     this.props.dispatch(gotoPickOpponent());
-    Answers.logCustom('new game');
+    Answers.logCustom('new game pressed');
 
     // Option 2 to start a game with a random opponent right away.
     // this.props.dispatch(joinRandomMatch());
   }
 
   onMatchPress(matchId) {
+    Answers.logCustom('Match pressed');
     this.props.dispatch(gotoMatch(matchId));
   }
 
   onRefresh() {
+    Answers.logCustom('Refresh Pulled');
     this.setState({ refreshing: true });
     const myMatches = this.props.dispatch(retrieveMatches());
     console.log(myMatches);
@@ -85,6 +87,10 @@ class Home extends Component {
               <RefreshControl
                 refreshing={this.state.refreshing}
                 onRefresh={this.onRefresh}
+                title={I18n.t('coming')}
+                tintColor="#dceafd"
+                titleColor="#dceafd"
+                backgroundColor="transparent"
               />
             }
           >
