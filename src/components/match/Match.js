@@ -9,6 +9,9 @@ import Template from '../common/Template';
 import Round from './Round';
 import I18n from '../../config/i18n';
 // import Emoji from 'react-native-emoji';
+import Fabric from 'react-native-fabric';
+
+const { Answers } = Fabric;
 
 const styles = StyleSheet.create({
   footerContainer: {
@@ -175,10 +178,12 @@ class Match extends Component {
       dispatch,
     } = this.props;
 
+    Answers.logCustom('Play Pressed');
     dispatch(gotoNextGame(match.id));
   }
 
   onBackPress() {
+    Answers.logCustom('Match Back');
     this.props.dispatch(popMain());
   }
 

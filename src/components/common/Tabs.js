@@ -4,12 +4,9 @@ import { View, StyleSheet } from 'react-native';
 import TabButton from './TabButton';
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-  },
   sections: {
-    marginBottom: 20,
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-around',
     alignSelf: 'stretch',
   },

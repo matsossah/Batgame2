@@ -1,6 +1,7 @@
 package com.batgame;
 
 import com.facebook.react.ReactActivity;
+import com.smixx.fabric.FabricPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.i18n.reactnativei18n.ReactNativeI18n;

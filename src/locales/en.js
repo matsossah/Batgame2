@@ -72,6 +72,9 @@ const en = {
   passwordConfirmation: 'Password Confirmation',
   noPending: 'NO PENDING GAMES',
   noFinished: 'NO FINISHED GAMES',
+  coming: '🏃💨 Coming!',
+  signup: 'SIGNUP',
+  login: 'LOGIN',
 };
 
 export default en;

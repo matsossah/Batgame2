@@ -3,7 +3,10 @@ import { StyleSheet } from 'react-native';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
 import Parse from 'parse/react-native';
 
-import loginWithFacebook from '../../loginWithFacebook';
+import loginWithFacebook from './loginWithFacebook';
+import Fabric from 'react-native-fabric';
+
+const { Answers } = Fabric;
 
 const styles = StyleSheet.create({
   button: {
@@ -20,6 +23,7 @@ class FacebookLogin extends Component {
   }
   onFacebookLoginFinished(error, result) {
     if (error) {
+      Answers.logCustom('FB login failed');
       // There was an error logging the user in.
       this.props.onError('We couldn\'t log you in via Facebook. Please try again.');
     } else if (result.isCancelled) {
@@ -32,7 +36,7 @@ class FacebookLogin extends Component {
           let message;
           switch (err.code) {
             default:
-              console.error(err);
+              Answers.logCustom('FB login failed');
               message = 'An unknown error occurred. Please try again.';
               break;
           }

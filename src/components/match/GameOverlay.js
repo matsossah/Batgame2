@@ -6,6 +6,9 @@ import I18n from '../../config/i18n';
 
 import { userSelector } from '../../selectors';
 import { gotoMatch, gotoNextGame } from '../../actions/navigation';
+import Fabric from 'react-native-fabric';
+
+const { Answers } = Fabric;
 
 const styles = StyleSheet.create({
   overlay: {
@@ -136,11 +139,13 @@ class GameOverlay extends Component {
   }
 
   onMatchPress() {
+    Answers.logCustom('GameOverlay match pressed');
     const { match, dispatch } = this.props;
     dispatch(gotoMatch(match.id));
   }
 
   onNextPress() {
+    Answers.logCustom('GameOverlay next pressed');
     const { match, dispatch } = this.props;
     dispatch(gotoNextGame(match.id));
   }

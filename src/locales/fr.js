@@ -72,6 +72,9 @@ const fr = {
   passwordConfirmation: 'Confirmation du mot de passe',
   noPending: 'AUCUNE PARTIES',
   noFinished: 'AUCUNE PARTIES',
+  coming: '🏃💨 Ca vient!',
+  signup: 'S\'inscrire',
+  login: 'S\'identifier',
 };
 
 export default fr;

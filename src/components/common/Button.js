@@ -3,16 +3,14 @@ import { Text, StyleSheet, TouchableHighlight } from 'react-native';
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: 10,
-    padding: 5,
-    paddingLeft: 25,
-    paddingRight: 25,
+    marginTop: 30,
+    padding: 10,
+    paddingLeft: 45,
+    paddingRight: 45,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
     borderRadius: 5,
     backgroundColor: '#FFD664',
-    borderColor: '#FFD664',
   },
   buttonText: {
     flex: 1,
