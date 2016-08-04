@@ -59,7 +59,6 @@ class Home extends Component {
     Answers.logCustom('Refresh Pulled');
     this.setState({ refreshing: true });
     const myMatches = this.props.dispatch(retrieveMatches());
-    console.log(myMatches);
     myMatches.then(() => {
       this.setState({
         refreshing: false,
