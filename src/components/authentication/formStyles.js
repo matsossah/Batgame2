@@ -15,8 +15,11 @@ export default StyleSheet.create({
     width: null,
     height: null,
   },
-  backdropView: {
-    backgroundColor: 'rgba(0,0,0,0)',
+  footerContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'stretch',
   },
   top: {
     flex: 1,

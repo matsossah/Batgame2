@@ -56,14 +56,12 @@ class FacebookUsername extends Component {
     return (
       <Template
         header={
-          <Image source={require('../../assets/header2.png')} style={styles.header} resizeMode={Image.resizeMode.stretch}>
-            <View style={styles.backdropView}>
-              <Title>{I18n.t('pickUsername')}</Title>
-            </View>
-            </Image>
+          <View style={styles.backdropView}>
+            <Title>{I18n.t('pickUsername')}</Title>
+          </View>
           }
         footer={
-          <Image source={require('../../assets/background2.png')} style={styles.header} resizeMode={Image.resizeMode.stretch}>
+          <View style={styles.footerContainer}>
             <View style={styles.topUsername}>
               <TextInput
                 autoCorrect={false}
@@ -83,7 +81,7 @@ class FacebookUsername extends Component {
               </View>
             </View>
             <View style={styles.bottom} />
-          </Image>
+          </View>
         }
       />
     );

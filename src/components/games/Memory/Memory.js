@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 //                    ];
 
 const allEmojis = ['🌍', '🌍', '🍎', '🍎', '🙈',
-                  '🙈', '🔥', '🔥', '🤓', '🤓', '😈', '😈'];
+                  '🙈', '🔥', '🔥', '👸', '👸', '😈', '😈'];
 
 class Memory extends Component {
   constructor() {
