@@ -112,7 +112,7 @@ class Home extends Component {
     Answers.logCustom('logout Pressed');
     Alert.alert(
       I18n.t('logout'),
-      I18n.t('sure'),
+      '',
       [
         { text: I18n.t('staying'), onPress: () => Answers.logCustom('logout cancelled'), style: 'cancel' },
         { text: I18n.t('smallYes'), onPress: this.logUserOut },

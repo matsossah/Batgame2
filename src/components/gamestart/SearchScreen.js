@@ -94,7 +94,7 @@ class SearchScreen extends Component {
       Alert.alert(I18n.t('usernameTooShort'));
       return;
     }
-    this.props.dispatch(joinMatchAgainst(this.state.searchText))
+    this.props.dispatch(joinMatchAgainst(this.state.searchText.toLowerCase()))
       .catch(() => {
         Answers.logCustom('Username unknown');
         Alert.alert(I18n.t('unknownUser'));

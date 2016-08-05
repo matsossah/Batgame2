@@ -28,7 +28,7 @@ class FacebookUsername extends Component {
     }
     const user = new Parse.User({ id: this.props.userId });
     user.save({
-      username: this.state.username,
+      username: this.state.username.toLowerCase(),
       hasUsername: true,
     }, {
       success: () => {
