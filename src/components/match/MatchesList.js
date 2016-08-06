@@ -179,7 +179,9 @@ class MatchesList extends Component {
         {this.renderTab(
           'FINISHED',
           'noFinished',
-          finishedGames.sort((a, b) => b.createdAt - a.createdAt)
+          finishedGames
+            .sort((a, b) => b.createdAt - a.createdAt)
+            .slice(0, 10)
         )}
       </View>
     );
