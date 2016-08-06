@@ -58,6 +58,18 @@ export const gameSelector = (gameId, state) => {
     isFinished = scores.length === PARTICIPANTS_NB;
   }
 
+  // @TODO: This is the code that handles ties. We pick the winner
+  // at random based on the date of creation of the match.
+  // This ensures that the winner is consistent, without adding
+  // more fields on the server side. This is a temporary solution
+  // until we handle ties in the UI.
+  if (bestScore && bestScore.users.length > 1) {
+    bestScore = {
+      ...bestScore,
+      users: bestScore.users[game.createdAt.getTime() % bestScore.users.length],
+    };
+  }
+
   return {
     ...game,
     scores,
