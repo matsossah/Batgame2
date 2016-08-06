@@ -126,17 +126,6 @@ export const matchSelector = (matchId, state) => {
 
   // STATE
 
-  const allScores = rounds.reduce((res, round) =>
-    round.games.reduce((res2, game) =>
-      res2.concat(game.scores)
-    , res)
-  , []);
-  const lastScore = allScores.sort((a, b) => b.createdAt - a.createdAt)[0];
-  const lastDate = lastScore ? lastScore.createdAt : match.createdAt;
-  const forfeit = (
-    Date.now() - lastDate.getTime() >= FORFEIT_AFTER
-  );
-
   const isFinished = rounds.every(round => round.isFinished);
   let currentRound;
   let awaitingPlayers;
@@ -167,6 +156,21 @@ export const matchSelector = (matchId, state) => {
         [roundStarter]
     );
   }
+
+  let forfeit = false;
+  if (!isFinished) {
+    const allScores = rounds.reduce((res, round) =>
+      round.games.reduce((res2, game) =>
+        res2.concat(game.scores)
+      , res)
+    , []);
+    const lastScore = allScores.sort((a, b) => b.createdAt - a.createdAt)[0];
+    const lastDate = lastScore ? lastScore.createdAt : match.createdAt;
+    forfeit = (
+      Date.now() - lastDate.getTime() >= FORFEIT_AFTER
+    );
+  }
+
 
   // SCORE
 
