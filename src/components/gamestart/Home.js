@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Alert, Text, TouchableHighlight, ScrollView, StyleSheet, RefreshControl, AppState } from 'react-native';
 import { connect } from 'react-redux';
-import { LoginManager } from 'react-native-fbsdk';
 
 import { userSelector, matchSelector } from '../../selectors';
 import {
   retrieveMatches,
+  userLogOut,
 } from '../../actions/application';
 import { gotoPickOpponent, gotoMatch } from '../../actions/navigation';
 import I18n from '../../config/i18n';
@@ -13,7 +13,6 @@ import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
 import MatchesList from '../match/MatchesList';
-import Parse from 'parse/react-native';
 import Fabric from 'react-native-fabric';
 
 const { Answers } = Fabric;
@@ -136,8 +135,7 @@ class Home extends Component {
 
   logUserOut() {
     Answers.logCustom('logout successful');
-    LoginManager.logOut();
-    Parse.User.logOut();
+    this.props.dispatch(userLogOut());
   }
 
   render() {

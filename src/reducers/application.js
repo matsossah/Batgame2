@@ -48,6 +48,13 @@ export default function applicationReducer(state = initialState, action) {
         shouldAuthenticate: false,
       };
     }
+    case actionTypes.USER_LOG_OUT: {
+      return {
+        ...state,
+        userId: null,
+        shouldAuthenticate: true,
+      };
+    }
     case actionTypes.USER_SHOULD_AUTHENTICATE:
       return {
         ...state,

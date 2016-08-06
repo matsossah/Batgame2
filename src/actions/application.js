@@ -8,6 +8,7 @@ import {
 import loginWithFacebook from '../components/authentication/loginWithFacebook';
 import actionTypes from '../actionTypes';
 import { gotoMatch } from './navigation';
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
 
 // @FIX: For testing purposes.
 // This lets us access Parse from the debugger ui's console.
@@ -43,10 +44,7 @@ export function init() {
         // Check that the session hasn't expired
         Parse.Session.current()
           .then(() => {
-            dispatch({
-              type: actionTypes.USER_AUTHENTICATED,
-              user,
-            });
+            dispatch(userAuthenticated(user));
           })
           .catch(err => {
             if (err.code === Parse.Error.INVALID_SESSION_TOKEN) {
@@ -63,6 +61,27 @@ export function init() {
       console.error(err);
     });
   };
+}
+
+export function userLogOut() {
+  return dispatch =>
+    AccessToken.getCurrentAccessToken()
+      .then(res => {
+        if (res === null) {
+          return;
+        }
+        LoginManager.logOut();
+      })
+      .then(() => Parse.User.logOut())
+      .then(() => {
+        dispatch({
+          type: actionTypes.USER_LOG_OUT,
+        });
+      })
+      .catch(err => {
+        // @TODO: handle error
+        console.error(err);
+      });
 }
 
 export function userAuthenticated(user) {
