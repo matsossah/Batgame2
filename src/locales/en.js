@@ -30,6 +30,7 @@ const en = {
   score: 'SCORES',
   match: 'MATCH',
   next: 'NEXT',
+  back: 'BACK',
   join: 'Join',
   usernameTooShort: 'Username should be at least 5 characters long.',
   unknownUser: 'Can\'t find player. Make sure that you\'ve entered the correct username.',

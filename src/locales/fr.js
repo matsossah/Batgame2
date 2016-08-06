@@ -30,6 +30,7 @@ const fr = {
   score: 'SCORES',
   match: 'MATCH',
   next: 'SUIVANT',
+  back: 'RETOUR',
   join: 'Rejoindre',
   usernameTooShort: 'Le nom d\'utilisateur doit faire au moins 5 caractères.',
   unknownUser: 'Impossible de trouver ce joueur. Assurez-vous d\'avoir entré le bon pseudonyme.',

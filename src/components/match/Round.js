@@ -102,14 +102,19 @@ class Round extends Component {
                 )
               :
                 game.isFinished ?
-                  game.bestScore.users.includes(currentUser) ?
-                    <View style={styles.won} key={game.id}>
+                  <TouchableWithoutFeedback
+                    onPress={this.props.onGamePress.bind(null, game)}
+                  >
+                    <View
+                      style={
+                        game.bestScore.users.includes(currentUser) ?
+                          styles.won :
+                          styles.lost
+                      } key={game.id}
+                    >
                       <Text style={styles.gameName}>{I18n.t(game.info.name)}</Text>
                     </View>
-                  :
-                    <View style={styles.lost} key={game.id}>
-                      <Text style={styles.gameName}>{I18n.t(game.info.name)}</Text>
-                    </View>
+                  </TouchableWithoutFeedback>
                 :
                   game.myScore ?
                     <View style={styles.game} key={game.id}>
@@ -138,6 +143,7 @@ Round.propTypes = {
   currentUser: PropTypes.object.isRequired,
   isCurrent: PropTypes.bool.isRequired,
   isActive: PropTypes.bool.isRequired,
+  onGamePress: PropTypes.func.isRequired,
 };
 
 export default Round;

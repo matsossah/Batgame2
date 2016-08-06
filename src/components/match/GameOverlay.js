@@ -209,8 +209,58 @@ class GameOverlay extends Component {
       </View>;
   }
 
+  renderOptions() {
+    const { match, user, onDismiss } = this.props;
+
+    if (onDismiss) {
+      return (
+        <TouchableWithoutFeedback
+          onPress={onDismiss}
+        >
+          <View
+            style={styles.match}
+          >
+            <Text style={styles.optionLabel}>{I18n.t('back')}</Text>
+          </View>
+        </TouchableWithoutFeedback>
+      );
+    }
+
+    const options = [];
+
+    options.push(
+      <TouchableWithoutFeedback
+        key="match"
+        onPress={this.onMatchPress}
+      >
+        <View
+          style={styles.match}
+        >
+          <Text style={styles.optionLabel}>{I18n.t('match')}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+
+    if (match.awaitingPlayers.includes(user)) {
+      options.push(
+        <TouchableWithoutFeedback
+          key="next"
+          onPress={this.onNextPress}
+        >
+          <View
+            style={styles.next}
+          >
+            <Text style={styles.optionLabel}>{I18n.t('next')}</Text>
+          </View>
+        </TouchableWithoutFeedback>
+      );
+    }
+
+    return options;
+  }
+
   render() {
-    const { game, match, user, style, ...otherProps } = this.props;
+    const { game, match, style, ...otherProps } = this.props;
 
     if (game.myScore === undefined) {
       return (
@@ -267,28 +317,7 @@ class GameOverlay extends Component {
                 )
           }
           <View style={styles.options}>
-            <TouchableWithoutFeedback
-              onPress={this.onMatchPress}
-            >
-              <View
-                style={styles.match}
-              >
-                <Text style={styles.optionLabel}>{I18n.t('match')}</Text>
-              </View>
-            </TouchableWithoutFeedback>
-
-            {match.awaitingPlayers.includes(user) &&
-
-              <TouchableWithoutFeedback
-                onPress={this.onNextPress}
-              >
-                <View
-                  style={styles.next}
-                >
-                  <Text style={styles.optionLabel}>{I18n.t('next')}</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            }
+            {this.renderOptions()}
           </View>
         </View>
       </View>
@@ -302,6 +331,7 @@ GameOverlay.propTypes = {
   dispatch: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   style: PropTypes.any,
+  onDismiss: PropTypes.func,
 };
 
 export default connect(state => ({
