@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
 //                    'see_no_evil', 'hear_no_evil', 'speak_no_evil', 'raised_hands', 'fire', 'v'
 //                   ];
 
-const allEmojis = ['😘', '😜', '😎', '🤗', '🤓', '👻', '💪',
+const allEmojis = ['😘', '😜', '😎', '🤗', '👸', '👻', '💪',
                     '👼', '💃', '👊', '😍',
                      '🙈', '😏'];
 

@@ -17,13 +17,20 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   rules: {
     fontSize: 24,
     fontFamily: 'chalkduster',
-    color: 'white',
+    color: '#afafaf',
+    textAlign: 'center',
+  },
+  ruleTitle: {
+    fontSize: 26,
+    marginBottom: 30,
+    fontFamily: 'chalkduster',
+    color: '#afafaf',
     textAlign: 'center',
   },
 });
@@ -37,6 +44,9 @@ function GameRule(props) {
       footer={
         <View style={styles.container}>
           <View style={styles.rulesContainer}>
+            <Text style={styles.ruleTitle}>
+              {I18n.t('rule')}
+            </Text>
             <Text style={styles.rules}>
               {I18n.t(props.rule)}
             </Text>

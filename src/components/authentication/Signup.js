@@ -36,7 +36,7 @@ class Signup extends Component {
     }
 
     const newUser = new Parse.User();
-    newUser.set('username', this.state.username);
+    newUser.set('username', this.state.username.toLowerCase());
     newUser.set('password', this.state.password);
 
     this.setState({

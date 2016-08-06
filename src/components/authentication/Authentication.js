@@ -18,9 +18,6 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
   },
-  backdropView: {
-    backgroundColor: 'rgba(0,0,0,0)',
-  },
 });
 
 class Authentication extends Component {
@@ -67,30 +64,24 @@ class Authentication extends Component {
       <Template
         // pass the title in uppercase
         header={
-          <Image source={require('../../assets/header2.png')} style={styles.container} resizeMode={Image.resizeMode.stretch}>
-            <View style={styles.backdropView}>
-              <Title>SPEEDY BRAIN</Title>
-            </View>
-          </Image>
+          <Title>SPEEDY BRAIN</Title>
         }
         separator={this.renderFacebookLogin()}
         footer={
-          <Image source={require('../../assets/background2.png')} style={styles.container} resizeMode={Image.resizeMode.stretch}>
-            <Tabs
-              tabs={[
-                {
-                  title: I18n.t('signup'),
-                  tabRender: this.renderSignupForm,
-                  underlayColor: 'transparent',
-                },
-                {
-                  title: I18n.t('login'),
-                  tabRender: this.renderSigninForm,
-                  underlayColor: 'transparent',
-                },
-              ]}
-            />
-          </Image>
+          <Tabs
+            tabs={[
+              {
+                title: I18n.t('signup'),
+                tabRender: this.renderSignupForm,
+                underlayColor: 'transparent',
+              },
+              {
+                title: I18n.t('login'),
+                tabRender: this.renderSigninForm,
+                underlayColor: 'transparent',
+              },
+            ]}
+          />
         }
       />
     );
