@@ -15,6 +15,7 @@ import com.facebook.FacebookSdk;
 import com.smixx.fabric.FabricPackage;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +43,8 @@ public class MainApplication extends Application implements ReactApplication {
                 new MainReactPackage(),
                 new FBSDKPackage(mCallbackManager),
                 new VectorIconsPackage(),
-                new ReactNativeI18n()
+                new ReactNativeI18n(),
+                new ReactNativePushNotificationPackage()
             );
         }
     };

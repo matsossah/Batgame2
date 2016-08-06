@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -34,6 +33,7 @@
 		9B360D5C1D52566100F21446 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		9BA3402C1D50EA0700F5A893 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA3402A1D50EA0700F5A893 /* Fabric.framework */; };
 		9BA3402D1D50EA0700F5A893 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA3402B1D50EA0700F5A893 /* Crashlytics.framework */; };
+		AC1A767B1D55ED430060C9BE /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC1A767A1D55ED290060C9BE /* libRCTPushNotification.a */; };
 		AC39967E736F42C7912758FF /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83C125BEFA5E479F93392083 /* Ionicons.ttf */; };
 		ACA56D101CF1E841000AB266 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACA56D0D1CF1E841000AB266 /* FBSDKCoreKit.framework */; };
 		ACA56D111CF1E841000AB266 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACA56D0E1CF1E841000AB266 /* FBSDKLoginKit.framework */; };
@@ -158,6 +158,13 @@
 			remoteGlobalIDString = D8D9DB831C6D03DB009FBC0E;
 			remoteInfo = SMXCrashlytics;
 		};
+		AC1A76791D55ED290060C9BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC1A76751D55ED290060C9BE /* RCTPushNotification.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTPushNotification;
+		};
 		ACA56CFE1CF1E822000AB266 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3770118373BB42A6832E9E18 /* RCTFBSDK.xcodeproj */;
@@ -215,6 +222,7 @@
 		9BA3402B1D50EA0700F5A893 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		A025ACCD4A63E7FCFF4F7A71 /* libPods-Speedy BrainTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Speedy BrainTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9182C926DEE426EBD0614E0 /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
+		AC1A76751D55ED290060C9BE /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		ACA56D0D1CF1E841000AB266 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		ACA56D0E1CF1E841000AB266 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		ACA56D0F1CF1E841000AB266 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -238,6 +246,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC1A767B1D55ED430060C9BE /* libRCTPushNotification.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				ACA56D121CF1E841000AB266 /* FBSDKShareKit.framework in Frameworks */,
@@ -371,6 +380,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				AC1A76751D55ED290060C9BE /* RCTPushNotification.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -471,6 +481,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AC1A76761D55ED290060C9BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AC1A767A1D55ED290060C9BE /* libRCTPushNotification.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		ACA56CF81CF1E821000AB266 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,6 +584,9 @@
 							com.apple.SafariKeychain = {
 								enabled = 0;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -613,6 +634,10 @@
 				{
 					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
+				},
+				{
+					ProductGroup = AC1A76761D55ED290060C9BE /* Products */;
+					ProjectRef = AC1A76751D55ED290060C9BE /* RCTPushNotification.xcodeproj */;
 				},
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
@@ -759,6 +784,13 @@
 			fileType = archive.ar;
 			path = libSMXCrashlytics.a;
 			remoteRef = 9BA340601D50EB0A00F5A893 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AC1A767A1D55ED290060C9BE /* libRCTPushNotification.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTPushNotification.a;
+			remoteRef = AC1A76791D55ED290060C9BE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		ACA56CFF1CF1E822000AB266 /* libRCTFBSDK.a */ = {
@@ -990,6 +1022,7 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
 				);
 				INFOPLIST_FILE = Batgame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1030,6 +1063,7 @@
 					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
 				);
 				INFOPLIST_FILE = Batgame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

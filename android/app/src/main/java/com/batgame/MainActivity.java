@@ -1,6 +1,8 @@
 package com.batgame;
 
 import com.facebook.react.ReactActivity;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+import rni18n.mobile.laplanete.ca.rni18n.RNI18nPackage;
 import com.smixx.fabric.FabricPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.BV.LinearGradient.LinearGradientPackage;
