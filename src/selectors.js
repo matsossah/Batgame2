@@ -64,9 +64,10 @@ export const gameSelector = (gameId, state) => {
   // more fields on the server side. This is a temporary solution
   // until we handle ties in the UI.
   if (bestScore && bestScore.users.length > 1) {
+    const winner = bestScore.users[game.createdAt.getTime() % bestScore.users.length];
     bestScore = {
       ...bestScore,
-      users: bestScore.users[game.createdAt.getTime() % bestScore.users.length],
+      users: [winner],
     };
   }
 
