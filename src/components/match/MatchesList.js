@@ -115,7 +115,7 @@ class MatchesList extends Component {
               onPress={this.props.onMatchPress.bind(null, match.id)}
             >
               <View style={styles.match}>
-                {match.isFinished ?
+                {match.isFinished || match.forfeit ?
                   match.winners.users.includes(match.leftUser.id) ?
                     <Text style={styles.victory}>
                         {'🏆 VS ' + match.rightUser.username}
@@ -158,7 +158,10 @@ class MatchesList extends Component {
     );
   }
   render() {
-    const [finishedGames, pendingGames] = partition(this.props.matches, { isFinished: true });
+    const [finishedGames, pendingGames] = partition(
+      this.props.matches,
+      match => match.isFinished || match.forfeit
+    );
     return (
       <View>
         {this.renderTab(

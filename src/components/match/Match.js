@@ -230,9 +230,12 @@ class Match extends Component {
       match,
     } = this.props;
 
-    const { rounds } = match;
+    const { rounds, forfeit } = match;
 
-    const awaitingPlayer = match.awaitingPlayers.includes(match.leftUser);
+    const awaitingPlayer = (
+      !forfeit &&
+      match.awaitingPlayers.includes(match.leftUser)
+    );
     return (
       <View style={styles.container}>
         <Template
@@ -270,7 +273,7 @@ class Match extends Component {
             <View style={styles.footerContainer}>
               <View style={styles.topFooter}>
                 {rounds.map((round, idx) => {
-                  const isCurrent = round === match.currentRound;
+                  const isCurrent = !forfeit && round === match.currentRound;
                   const isActive = isCurrent && awaitingPlayer;
 
                   return (
@@ -301,7 +304,7 @@ class Match extends Component {
                     <Text style={styles.playEmoji}>👈</Text>
                   </View>
                 :
-                  match.isFinished ?
+                  match.isFinished || forfeit ?
                     <View style={styles.playBox}>
                       <Text style={styles.playEmoji}>👉</Text>
                       <TouchableOpacity

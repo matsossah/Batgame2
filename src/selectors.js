@@ -1,10 +1,9 @@
-import keyBy from 'lodash/keyBy';
-import fromPairs from 'lodash/fromPairs';
-import omit from 'lodash/omit';
+import { fromPairs, keyBy, last, omit, difference } from 'lodash';
 
 import GAMES from './games';
 const PARTICIPANTS_NB = 2;
 const GAMES_NB = 3;
+const FORFEIT_AFTER = 72 * 60 * 60 * 1000; // 72h
 // const ROUNDS_NB = 3;
 
 const gameInfoByName = keyBy(GAMES, 'name');
@@ -127,6 +126,17 @@ export const matchSelector = (matchId, state) => {
 
   // STATE
 
+  const allScores = rounds.reduce((res, round) =>
+    round.games.reduce((res2, game) =>
+      res2.concat(game.scores)
+    , res)
+  , []);
+  const lastScore = allScores.sort((a, b) => b.createdAt - a.createdAt)[0];
+  const lastDate = lastScore ? lastScore.createdAt : match.createdAt;
+  const forfeit = (
+    Date.now() - lastDate.getTime() >= FORFEIT_AFTER
+  );
+
   const isFinished = rounds.every(round => round.isFinished);
   let currentRound;
   let awaitingPlayers;
@@ -172,7 +182,12 @@ export const matchSelector = (matchId, state) => {
   }
 
   let winners = null;
-  if (isFinished) {
+  if (forfeit) {
+    winners = {
+      users: difference(participants, awaitingPlayers).map(user => user.id),
+      score: 0,
+    };
+  } else if (isFinished) {
     winners = Object.entries(scoreByUser)
       .reduce(({ users, score }, [userId, userScore]) => {
         if (userScore === score) {
@@ -204,6 +219,7 @@ export const matchSelector = (matchId, state) => {
     scoreByUser,
     leftUser,
     rightUser,
+    forfeit,
     isFinished,
     awaitingPlayers,
     currentRound,
