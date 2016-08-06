@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { ScrollView, StyleSheet, RefreshControl } from 'react-native';
+import { ScrollView, StyleSheet, RefreshControl, AppState } from 'react-native';
 import { connect } from 'react-redux';
 
 import { userSelector, matchSelector } from '../../selectors';
@@ -37,8 +37,23 @@ class Home extends Component {
     this.onNewGamePress = this.onNewGamePress.bind(this);
     this.onMatchPress = this.onMatchPress.bind(this);
     this.onRefresh = this.onRefresh.bind(this);
+    this.onAppStateChange = this.onAppStateChange.bind(this);
+  }
 
-    props.dispatch(retrieveMatches());
+  componentDidMount() {
+    AppState.addEventListener('change', this.onAppStateChange);
+
+    this.retrieveMatches();
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this.onAppStateChange);
+  }
+
+  onAppStateChange(appState) {
+    if (appState === 'active') {
+      this.retrieveMatches();
+    }
   }
 
   onNewGamePress() {
@@ -57,17 +72,21 @@ class Home extends Component {
 
   onRefresh() {
     Answers.logCustom('Refresh Pulled');
+    this.retrieveMatches();
+  }
+
+  retrieveMatches() {
     this.setState({ refreshing: true });
-    const myMatches = this.props.dispatch(retrieveMatches());
-    myMatches.then(() => {
-      this.setState({
-        refreshing: false,
+    this.props.dispatch(retrieveMatches())
+      .then(() => {
+        this.setState({
+          refreshing: false,
+        });
+      })
+      .catch(e => {
+        // @TODO: handle error
+        console.error(e);
       });
-    })
-    .catch(e => {
-      // @TODO: handle error
-      console.error(e);
-    });
   }
 
   render() {
