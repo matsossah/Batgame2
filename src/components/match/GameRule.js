@@ -52,7 +52,7 @@ function GameRule(props) {
             </Text>
           </View>
           <LargeButton
-            buttonText={I18n.t('gotIt')}
+            buttonText={I18n.t('ok')}
             onPress={props.onEnd}
             underlayColor="#FFD664"
             borderColor="#FFD664"

@@ -81,7 +81,6 @@ const fr = {
   smallYes: 'Oui',
   staying: '🔥 Non, je veux jouer! 🔥',
   rule: 'REGLE DU JEU:',
-  gotIt: 'COMPRIS!',
 };
 
 export default fr;
