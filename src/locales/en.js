@@ -9,6 +9,7 @@ const en = {
   wellDone: 'Well Done',
   yes: 'YES',
   play: 'PLAY',
+  rematch: 'REMATCH',
   pickVictim: 'PICK YOUR VICTIM!',
   searchByUsername: 'SEARCH BY USERNAME',
   randomOpponent: 'RANDOM OPPONENT',

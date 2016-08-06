@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import sample from 'lodash/sample';
 
 import { matchSelector } from '../../selectors';
+import { joinMatchAgainst } from '../../actions/application';
 import { gotoNextGame, popMain } from '../../actions/navigation';
 import Template from '../common/Template';
 import Round from './Round';
@@ -181,6 +182,7 @@ class Match extends Component {
     };
 
     this.onPlayPress = this.onPlayPress.bind(this);
+    this.onRematchPress = this.onRematchPress.bind(this);
     this.onBackPress = this.onBackPress.bind(this);
     this.onGamePress = this.onGamePress.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
@@ -194,6 +196,16 @@ class Match extends Component {
 
     Answers.logCustom('Play Pressed');
     dispatch(gotoNextGame(match.id));
+  }
+
+  onRematchPress() {
+    const {
+      match,
+      dispatch,
+    } = this.props;
+
+    Answers.logCustom('Rematch Pressed');
+    dispatch(joinMatchAgainst(match.rightUser.username));
   }
 
   onBackPress() {
@@ -289,7 +301,20 @@ class Match extends Component {
                     <Text style={styles.playEmoji}>👈</Text>
                   </View>
                 :
-                  !match.isFinished &&
+                  match.isFinished ?
+                    <View style={styles.playBox}>
+                      <Text style={styles.playEmoji}>👉</Text>
+                      <TouchableOpacity
+                        onPress={this.onRematchPress}
+                        activeOpacity={0.6}
+                      >
+                        <View style={styles.playButton}>
+                          <Text style={styles.action}>{I18n.t('rematch')}</Text>
+                        </View>
+                      </TouchableOpacity>
+                      <Text style={styles.playEmoji}>👈</Text>
+                    </View>
+                  :
                     <View style={styles.playBox}>
                       <View style={styles.firstEmoji}>
                         <Text style={styles.waitEmoji}></Text>

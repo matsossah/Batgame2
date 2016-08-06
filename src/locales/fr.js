@@ -8,6 +8,7 @@ const fr = {
   falseStart: 'Faux Départ',
   wellDone: 'Bien Joué!',
   play: 'JOUER',
+  rematch: 'REJOUER',
   pickVictim: 'CHOISIS TA VICTIME!',
   searchByUsername: 'RECHERCHE PAR PSEUDO',
   randomOpponent: 'JOUEUR AU HASARD',
