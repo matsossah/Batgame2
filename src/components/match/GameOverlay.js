@@ -272,55 +272,61 @@ class GameOverlay extends Component {
     }
 
     return (
-      <View
+      <TouchableWithoutFeedback
+        onPress={this.props.onDismiss}
+        underlayColor="transparent"
         style={[styles.overlay, style]}
-        {...otherProps}
       >
-        <View style={styles.scoreBox}>
-          {game.info.name === 'RIGHT_ON' ?
-            this.renderScoreInfo(
-              I18n.t('totalDifference'),
-              match.leftUser.username,
-              match.rightUser.username,
-              [(formatDuration(game.myScore.score)),
-              (formatDuration(game.scores[0].score))],
-              game.scores.length
-            )
-          :
-            game.info.scoreType === 'TRIES' ?
+        <View
+          style={[styles.overlay, style]}
+          {...otherProps}
+        >
+          <View style={styles.scoreBox}>
+            {game.info.name === 'RIGHT_ON' ?
               this.renderScoreInfo(
-                I18n.t('tries'),
+                I18n.t('totalDifference'),
                 match.leftUser.username,
                 match.rightUser.username,
-                [game.myScore.score,
-                game.scores[0].score],
+                [(formatDuration(game.myScore.score)),
+                (formatDuration(game.scores[0].score))],
                 game.scores.length
               )
             :
-              game.info.scoreType === 'DATE' ?
+              game.info.scoreType === 'TRIES' ?
                 this.renderScoreInfo(
-                  I18n.t('time'),
+                  I18n.t('tries'),
                   match.leftUser.username,
                   match.rightUser.username,
-                  [(formatDuration(game.myScore.score)),
-                  (formatDuration(game.scores[0].score))],
+                  [game.myScore.score,
+                  game.scores[0].score],
                   game.scores.length
                 )
               :
-                this.renderScoreInfo(
-                  I18n.t('score'),
-                  match.leftUser.username,
-                  match.rightUser.username,
-                  [(game.myScore.score),
-                  (game.scores[0].score)],
-                  game.scores.length
-                )
-          }
-          <View style={styles.options}>
-            {this.renderOptions()}
+                game.info.scoreType === 'DATE' ?
+                  this.renderScoreInfo(
+                    I18n.t('time'),
+                    match.leftUser.username,
+                    match.rightUser.username,
+                    [(formatDuration(game.myScore.score)),
+                    (formatDuration(game.scores[0].score))],
+                    game.scores.length
+                  )
+                :
+                  this.renderScoreInfo(
+                    I18n.t('score'),
+                    match.leftUser.username,
+                    match.rightUser.username,
+                    [(game.myScore.score),
+                    (game.scores[0].score)],
+                    game.scores.length
+                  )
+            }
+            <View style={styles.options}>
+              {this.renderOptions()}
+            </View>
           </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
