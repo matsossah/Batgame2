@@ -943,7 +943,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coolappsinc.batgame;
 				PRODUCT_NAME = "Speedy Brain";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1684ca24-b79d-4004-8558-a5c98d5d020e";
 			};
 			name = Debug;
 		};
@@ -983,7 +983,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coolappsinc.batgame;
 				PRODUCT_NAME = "Speedy Brain";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1684ca24-b79d-4004-8558-a5c98d5d020e";
 			};
 			name = Release;
 		};

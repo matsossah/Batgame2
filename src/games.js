@@ -98,4 +98,13 @@ export default [
     emoji: '👀',
     countdown: false,
   },
+  {
+    name: 'PUZZLE',
+    fullName: 'PUZZLE',
+    rule: 'PUZZLE_RULE',
+    winner: 'SMALLEST',
+    scoreType: 'DATE',
+    emoji: '🏁',
+    countdown: true,
+  },
 ];

@@ -130,6 +130,12 @@ function formatDuration(d) {
   return moment.utc(d).format('s.SS');
 }
 
+function formatBigDuration(d) {
+  // This approach has issues
+  // See https://github.com/moment/moment/issues/1048
+  return moment.utc(d).format('mm.ss');
+}
+
 class GameOverlay extends Component {
   constructor() {
     super();
@@ -303,14 +309,24 @@ class GameOverlay extends Component {
                 )
               :
                 game.info.scoreType === 'DATE' ?
-                  this.renderScoreInfo(
-                    I18n.t('time'),
-                    match.leftUser.username,
-                    match.rightUser.username,
-                    [(formatDuration(game.myScore.score)),
-                    (formatDuration(game.scores[0].score))],
-                    game.scores.length
-                  )
+                  game.info.name === 'PUZZLE' ?
+                    this.renderScoreInfo(
+                      I18n.t('time'),
+                      match.leftUser.username,
+                      match.rightUser.username,
+                      [(formatBigDuration(game.myScore.score)),
+                      (formatBigDuration(game.scores[0].score))],
+                      game.scores.length
+                    )
+                  :
+                    this.renderScoreInfo(
+                      I18n.t('time'),
+                      match.leftUser.username,
+                      match.rightUser.username,
+                      [(formatDuration(game.myScore.score)),
+                      (formatDuration(game.scores[0].score))],
+                      game.scores.length
+                    )
                 :
                   this.renderScoreInfo(
                     I18n.t('score'),
