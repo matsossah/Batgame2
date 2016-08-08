@@ -109,7 +109,7 @@ class PuzzleGame extends Component {
   }
 
   onGiveUp() {
-    const score = 600000;
+    const score = 1200000;
     this.setState({
       running: false,
       score,
