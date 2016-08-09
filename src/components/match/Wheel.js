@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const WHEEL_TIMEOUT = 500;
+const WHEEL_TIMEOUT = 800;
 const ROWS = 5;
 const AROUND = Math.floor(ROWS / 2);
 const OVERSHOOT = 1;
