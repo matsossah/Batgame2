@@ -289,7 +289,7 @@ class Basketball extends Component {
         nextState.x = this.randomIntFromInterval(4, Dimensions.get('window').width - (radius * 2) - 4);
         nextState.livesLost += 1;
         // Check if this life lost is the second one
-        if (this.state.livesLost === 1) {
+        if (this.state.livesLost === 2) {
           this.props.onEnd({ score: this.state.score });
         }
       }
@@ -345,7 +345,7 @@ class Basketball extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Lives lives={2} livesLost={this.state.livesLost} />
+          <Lives lives={3} livesLost={this.state.livesLost} />
         </View>
         <View style={styles.footer}>
           <Score y={FLOOR_HEIGHT * 3} score={this.state.score} scored={this.state.scored} />

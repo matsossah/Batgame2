@@ -1,5 +1,5 @@
 const fr = {
-  start: 'COMMENCE A JOUER!',
+  start: 'COMMENCE À JOUER!',
   newGame: 'NOUVEAU',
   PENDING: 'EN COURS',
   FINISHED: 'TERMINEES',
@@ -76,8 +76,8 @@ const fr = {
   password8Characters: 'Ton mot de passe doit faire 8 caractères minimum',
   passwordsNotMatching: 'Tes mots de passe sont différents, merci de réessayer',
   passwordConfirmation: '🔑 Confirmation',
-  noPending: 'AUCUNE PARTIES',
-  noFinished: 'AUCUNE PARTIES',
+  noPending: 'AUCUNE PARTIE',
+  noFinished: 'AUCUNE PARTIE',
   loading: '⌛️ Chargement...',
   signup: 'S\'inscrire',
   login: 'S\'identifier',
