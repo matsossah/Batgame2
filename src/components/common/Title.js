@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontFamily: 'chalkduster',
     color: '#FFD664',
+    textAlign: 'center',
   },
 });
 

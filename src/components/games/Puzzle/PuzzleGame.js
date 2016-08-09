@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const BOARD_SIZE = 4;
+const BOARD_SIZE = 3;
 
 class PuzzleGame extends Component {
   constructor() {
