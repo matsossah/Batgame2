@@ -74,7 +74,7 @@ class Heart extends Component {
           },
         ].concat(this.props.style)}
       >
-        <Icon name={this.state.full ? 'heart' : 'heart-o'} size={40} color="#df4c40" />
+        <Icon name={this.state.full ? 'heart' : 'heart-o'} size={30} color="#df4c40" />
       </Animated.View>
     );
   }

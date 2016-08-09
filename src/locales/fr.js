@@ -1,5 +1,5 @@
 const fr = {
-  start: 'COMMENCE A JOUER!',
+  start: 'COMMENCE À JOUER!',
   newGame: 'NOUVEAU',
   PENDING: 'EN COURS',
   FINISHED: 'TERMINEES',
@@ -45,7 +45,9 @@ const fr = {
   LUCKY: 'CHANCEUX',
   RIGHT_ON: 'TOUT PILE',
   REAL_COLOR: 'VRAIE COULEUR',
+  PUZZLE: 'PUZZLE',
   MEMORY: 'MEMORY',
+  BASKETBALL: 'BASKETBALL',
   STOPLIGHT_RULE: 'Appuie sur GO dès que le feu passe au vert!',
   MATH_BATTLE_RULE: 'Appuie sur les multiplications les plus grandes!',
   POP_THE_BALLOON_RULE: 'Appuie 50 fois sur le ballon pour le faire éclater!',
@@ -57,6 +59,8 @@ const fr = {
   RIGHT_ON_RULE: 'Appuie sur GO chaque fois que le chrono est à 3 secondes!',
   REAL_COLOR_RULE: 'Appuie sur OUI si le mot est bien associé à sa couleur!',
   MEMORY_RULE: 'Trouve tous les doubles en le moins de coups possibles',
+  PUZZLE_RULE: 'Range les cases de 1 à 15!',
+  BASKETBALL_RULE: 'Mets autant de paniers que possible!',
   tries: 'COUPS',
   you: 'TOI',
   username5To10Characters: 'Ton pseudo doit faire entre 5 et 10 caractères',
@@ -72,8 +76,8 @@ const fr = {
   password8Characters: 'Ton mot de passe doit faire 8 caractères minimum',
   passwordsNotMatching: 'Tes mots de passe sont différents, merci de réessayer',
   passwordConfirmation: '🔑 Confirmation',
-  noPending: 'AUCUNE PARTIES',
-  noFinished: 'AUCUNE PARTIES',
+  noPending: 'AUCUNE PARTIE',
+  noFinished: 'AUCUNE PARTIE',
   loading: '⌛️ Chargement...',
   signup: 'S\'inscrire',
   login: 'S\'identifier',
@@ -81,6 +85,8 @@ const fr = {
   smallYes: 'Oui',
   staying: '🔥 Non, je veux jouer! 🔥',
   rule: 'REGLE DU JEU:',
+  restart: 'RECOMMENCER',
+  giveUp: 'ABANDON',
 };
 
 export default fr;

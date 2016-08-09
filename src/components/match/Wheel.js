@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const WHEEL_TIMEOUT = 1500;
+const WHEEL_TIMEOUT = 500;
 const ROWS = 5;
 const AROUND = Math.floor(ROWS / 2);
 const OVERSHOOT = 1;
@@ -152,7 +152,7 @@ class Wheel extends Component {
     Animated.timing(spin, {
       toValue: ((finalOffset - AROUND) * wheelItemHeight),
       easing: Easing.inOut(Easing.quad),
-      duration: 5000,
+      duration: 3000,
     }).start(() => {
       const newGames = games.slice();
       const activeGameIdx = newGames.length - OVERSHOOT - AROUND - 1;

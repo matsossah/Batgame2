@@ -43,11 +43,11 @@ class NumberGame extends Component {
     this.state = {
       livesLost: 0,
       running: true,
+      startTime: Date.now(),
       currentNumber: 1,
       board: this.generateBoard(),
       score: null,
       cellSize: 0,
-      startTime: Date.now(),
     };
 
     this.onLayout = this.onLayout.bind(this);

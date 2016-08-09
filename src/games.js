@@ -98,4 +98,22 @@ export default [
     emoji: '👀',
     countdown: false,
   },
+  {
+    name: 'PUZZLE',
+    fullName: 'PUZZLE',
+    rule: 'PUZZLE_RULE',
+    winner: 'SMALLEST',
+    scoreType: 'DATE',
+    emoji: '🏁',
+    countdown: true,
+  },
+  {
+    name: 'BASKETBALL',
+    fullName: 'BASKETBALL',
+    rule: 'BASKETBALL_RULE',
+    winner: 'GREATEST',
+    scoreType: 'NUMBER',
+    emoji: '🏀',
+    countdown: false,
+  },
 ];

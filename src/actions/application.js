@@ -32,6 +32,13 @@ function tryToLogin(dispatch) {
   });
 }
 
+export function userAuthenticated(user) {
+  return {
+    type: actionTypes.USER_AUTHENTICATED,
+    user,
+  };
+}
+
 export function init() {
   return dispatch => {
     Parse.initialize(APP_ID, CLIENT_KEY);
@@ -82,13 +89,6 @@ export function userLogOut() {
         // @TODO: handle error
         console.error(err);
       });
-}
-
-export function userAuthenticated(user) {
-  return {
-    type: actionTypes.USER_AUTHENTICATED,
-    user,
-  };
 }
 
 export function retrieveMatches() {

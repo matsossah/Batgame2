@@ -46,6 +46,8 @@ const en = {
   RIGHT_ON: 'RIGHT ON',
   MEMORY: 'MEMORY',
   REAL_COLOR: 'REAL COLOR',
+  PUZZLE: 'PUZZLE',
+  BASKETBALL: 'BASKETBALL',
   STOPLIGHT_RULE: 'Press the GO button as soon as the light turns green!',
   MATH_BATTLE_RULE: 'Press on the multiplication with the bigger result!',
   POP_THE_BALLOON_RULE: 'Press 50 times on the balloon as quickly as possible to pop it!',
@@ -57,6 +59,8 @@ const en = {
   RIGHT_ON_RULE: 'Press on GO each time the timer hits 3 seconds!',
   REAL_COLOR_RULE: 'Press YES if the meaning of the word matches the color!',
   MEMORY_RULE: 'Find all the doubles using as few tries as possible',
+  PUZZLE_RULE: 'Reorder the tiles from 1 to 15!',
+  BASKETBALL_RULE: 'Make as many baskets as you can!',
   tries: 'TRIES',
   you: 'YOU',
   username5To10Characters: 'Username must be between 5 and 10 characters',
@@ -81,6 +85,8 @@ const en = {
   smallYes: 'yes',
   staying: '🔥 No, I want to play! 🔥',
   rule: 'GAME RULE:',
+  restart: 'RESTART',
+  giveUp: 'GIVE UP',
 };
 
 export default en;

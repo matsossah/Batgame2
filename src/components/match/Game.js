@@ -13,6 +13,8 @@ import WhackAMole from '../games/WhackAMole/WhackAMole';
 import NumberGame from '../games/numbers/NumberGame';
 import RealColor from '../games/RealColor';
 import Memory from '../games/Memory/Memory';
+import Puzzle from '../games/Puzzle/PuzzleGame';
+import Basketball from '../games/Basketball/BasketballGame';
 
 import GameOverlay from './GameOverlay';
 import GameCountdown from './GameCountdown';
@@ -33,6 +35,8 @@ const gameComponents = {
   NUMBER: NumberGame,
   REAL_COLOR: RealColor,
   MEMORY: Memory,
+  PUZZLE: Puzzle,
+  BASKETBALL: Basketball,
 };
 
 const styles = StyleSheet.create({
