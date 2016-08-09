@@ -83,6 +83,8 @@ const en = {
   smallYes: 'yes',
   staying: '🔥 No, I want to play! 🔥',
   rule: 'GAME RULE:',
+  restart: 'RESTART',
+  giveUp: 'GIVE UP',
 };
 
 export default en;

@@ -83,6 +83,8 @@ const fr = {
   smallYes: 'Oui',
   staying: '🔥 Non, je veux jouer! 🔥',
   rule: 'REGLE DU JEU:',
+  restart: 'RECOMMENCER',
+  giveUp: 'ABANDON',
 };
 
 export default fr;

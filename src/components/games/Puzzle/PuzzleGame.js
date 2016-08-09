@@ -6,6 +6,7 @@ import GameHelpers from './GameHelpers';
 import Template from '../../common/Template';
 import Timer from '../../common/Timer';
 import Duration from '../../common/Duration';
+import I18n from '../../../config/i18n';
 
 const styles = StyleSheet.create({
   headerArea: {
@@ -169,14 +170,16 @@ class PuzzleGame extends Component {
             </View>
             {this.state.tilesVisible &&
               <View style={styles.bottomFooter}>
-                <View style={styles.restart}>
-                  <TouchableOpacity onPress={this.onRestart}>
-                    <Text style={styles.label}>RESTART</Text>
-                  </TouchableOpacity>
-                </View>
+                {
+                // <View style={styles.restart}>
+                //   <TouchableOpacity onPress={this.onRestart}>
+                //     <Text style={styles.label}>{I18n.t('restart')}</Text>
+                //   </TouchableOpacity>
+                // </View>
+                }
                 <View style={styles.giveUp}>
                   <TouchableOpacity onPress={this.onGiveUp}>
-                    <Text style={styles.label}>GIVE UP</Text>
+                    <Text style={styles.label}>{I18n.t('giveUp')}</Text>
                   </TouchableOpacity>
                 </View>
               </View>
