@@ -107,4 +107,13 @@ export default [
     emoji: '🏁',
     countdown: true,
   },
+  {
+    name: 'BASKETBALL',
+    fullName: 'BASKETBALL',
+    rule: 'BASKETBALL_RULE',
+    winner: 'GREATEST',
+    scoreType: 'NUMBER',
+    emoji: '🏀',
+    countdown: true,
+  },
 ];
