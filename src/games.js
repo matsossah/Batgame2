@@ -114,6 +114,6 @@ export default [
     winner: 'GREATEST',
     scoreType: 'NUMBER',
     emoji: '🏀',
-    countdown: true,
+    countdown: false,
   },
 ];
