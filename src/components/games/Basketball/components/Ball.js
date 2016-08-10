@@ -30,7 +30,10 @@ class Ball extends Component {
           this.initialPageX = e.nativeEvent.pageX;
         }}
         onPressOut={(e) => {
-          if (this.xIn !== null) {
+          if (this.props.lifecycle !== 0) {
+            console.log('pressed ball');
+            this.props.onReset();
+          } else if (this.xIn !== null) {
             // e.nativeEvent.locationX and locationY aren't updated on Android
             // (remaing the same as onPressIn) in 0.24, so we need to calculate
             // it manually
@@ -92,6 +95,8 @@ Ball.propTypes = {
   radius: PropTypes.number,
   rotate: PropTypes.number,
   scale: PropTypes.number,
+  lifecycle: PropTypes.number,
+  onReset: PropTypes.func,
 };
 
 export default Ball;

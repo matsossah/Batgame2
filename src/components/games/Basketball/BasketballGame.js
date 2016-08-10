@@ -74,6 +74,7 @@ class Basketball extends Component {
     };
 
     this.onStart = this.onStart.bind(this);
+    this.onReset = this.onReset.bind(this);
   }
 
   componentDidMount() {
@@ -319,6 +320,29 @@ class Basketball extends Component {
     this.setState(nextState);
   }
 
+  onReset() {
+    const nextState = {};
+
+    // behind the Floor
+    // will be thrown to the front of the floor
+    nextState.y = FLOOR_Y;
+
+    // nextState.x = Dimensions.get('window').width / 2 - radius;
+    nextState.x = this.randomIntFromInterval(4, Dimensions.get('window').width - (radius * 2) - 4);
+//    nextState.x = Dimensions.get('window').width / 2 - radius;
+
+    // nextState.x = Dimensions.get('window').width / 2 - radius;
+    nextState.vy = 0;
+    nextState.vx = 0;
+    nextState.scale = 1;
+    nextState.rotate = 0;
+    nextState.lifecycle = LC_WAITING;
+
+    this.setState(nextState);
+
+   // this.handleRestart({ lifecycle: LC_RESTARTING_FALLING, y: FLOOR_Y });
+  }
+
   renderNet(render) {
     if (render === true) {
       return (
@@ -359,6 +383,8 @@ class Basketball extends Component {
             radius={radius}
             rotate={this.state.rotate}
             scale={this.state.scale}
+            lifecycle={this.state.lifecycle}
+            onReset={this.onReset}
           />
           {this.renderNet(this.state.lifecycle !== LC_STARTING)}
           {this.renderFloor(this.state.vy > 0)}
