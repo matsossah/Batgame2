@@ -26,8 +26,8 @@ class Signup extends Component {
       this.props.onError(I18n.t('username3To9Characters'));
       return;
     }
-    if (this.state.password.length < 8) {
-      this.props.onError(I18n.t('password8Characters'));
+    if (this.state.password.length < 5) {
+      this.props.onError(I18n.t('password5Characters'));
       return;
     }
     if (this.state.password !== this.state.passwordConfirmation) {

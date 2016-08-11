@@ -6,6 +6,7 @@ import createLogger from 'redux-logger';
 
 import reducer from './reducers';
 import Main from './Main';
+
 // import codePush from 'react-native-code-push';
 
 const logger = createLogger();

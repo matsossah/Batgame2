@@ -182,7 +182,7 @@ class PuzzleGame extends Component {
                 // </View>
                 }
                 <View style={styles.giveUp}>
-                  <TouchableOpacity onPress={this.onGiveUp}>
+                  <TouchableOpacity onPress={this.onGiveUp} style={styles.giveUp}>
                     <Text style={styles.label}>{I18n.t('giveUp')}</Text>
                   </TouchableOpacity>
                 </View>
