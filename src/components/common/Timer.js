@@ -11,7 +11,7 @@ class Timer extends Component {
     };
 
     this.updateTimer = this.updateTimer.bind(this);
-    this.timeout = setTimeout(this.updateTimer, 10);
+    this.timeout = setTimeout(this.updateTimer, 50);
   }
 
   componentWillUnmount() {
@@ -21,7 +21,7 @@ class Timer extends Component {
   updateTimer() {
     const timer = Date.now() - this.props.startTime;
     this.setState({ timer });
-    this.timeout = setTimeout(this.updateTimer, 10);
+    this.timeout = setTimeout(this.updateTimer, 50);
   }
 
   render() {

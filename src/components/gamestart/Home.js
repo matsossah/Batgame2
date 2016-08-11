@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Alert, Text, TouchableHighlight, ScrollView, StyleSheet, RefreshControl, AppState } from 'react-native';
+import { View, Alert, Text, TouchableHighlight, ScrollView, StyleSheet, RefreshControl, AppState, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
 import { userSelector, matchSelector } from '../../selectors';
@@ -151,7 +151,7 @@ class Home extends Component {
             <View style={styles.header}>
               <View style={styles.logoutBox}>
                 <View style={styles.logoutButton}>
-                  <Text style={styles.logout}>{'⚙'}</Text>
+                  <Text style={styles.logout}>{(Platform.OS === 'ios') ? '⚙' : '🚪'}</Text>
                 </View>
               </View>
               <View style={styles.titleBox}>

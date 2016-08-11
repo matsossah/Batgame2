@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
-import { LoginButton, AccessToken } from 'react-native-fbsdk';
-import Parse from 'parse/react-native';
+import { LoginButton } from 'react-native-fbsdk';
 
 import loginWithFacebook from './loginWithFacebook';
 import Fabric from 'react-native-fabric';

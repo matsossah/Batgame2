@@ -63,7 +63,7 @@ const en = {
   BASKETBALL_RULE: 'Make as many baskets as you can!',
   tries: 'TRIES',
   you: 'YOU',
-  username5To10Characters: 'Username must be between 5 and 10 characters',
+  username3To9Characters: 'Username must be between 5 and 10 characters',
   usernameTaken: 'This username is already taken',
   unknownError: 'Unknown error, please try again',
   pickUsername: 'PICK A USERNAME',

@@ -7,6 +7,9 @@ import Template from '../../common/Template';
 import Timer from '../../common/Timer';
 import Duration from '../../common/Duration';
 import I18n from '../../../config/i18n';
+import Fabric from 'react-native-fabric';
+
+const { Answers } = Fabric;
 
 const styles = StyleSheet.create({
   headerArea: {
@@ -110,6 +113,7 @@ class PuzzleGame extends Component {
   }
 
   onGiveUp() {
+    Answers.logCustom('Puzzle GiveUp');
     const score = 1800000;
     this.setState({
       running: false,

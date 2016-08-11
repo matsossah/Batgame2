@@ -63,7 +63,7 @@ const fr = {
   BASKETBALL_RULE: 'Mets autant de paniers que possible!',
   tries: 'COUPS',
   you: 'TOI',
-  username5To10Characters: 'Ton pseudo doit faire entre 5 et 10 caractères',
+  username3To9Characters: 'Ton pseudo doit faire entre 3 et 9 caractères',
   usernameTaken: 'Ce pseudo est déjà pris',
   unknownError: 'Erreur inconnue, merci de réessayer',
   pickUsername: 'CHOISIS UN PSEUDO',

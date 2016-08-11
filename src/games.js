@@ -14,7 +14,7 @@ export default [
     rule: 'MATH_BATTLE_RULE',
     winner: 'GREATEST',
     scoreType: 'NUMBER',
-    emoji: '🤓',
+    emoji: '💪',
     countdown: true,
   },
   {
@@ -77,7 +77,7 @@ export default [
     rule: 'RIGHT_ON_RULE',
     winner: 'SMALLEST',
     scoreType: 'DATE',
-    emoji: '⏱',
+    emoji: '⏰',
     countdown: false,
   },
   {
@@ -86,7 +86,7 @@ export default [
     rule: 'REAL_COLOR_RULE',
     winner: 'GREATEST',
     scoreType: 'NUMBER',
-    emoji: '🖌',
+    emoji: '🎉',
     countdown: true,
   },
   {

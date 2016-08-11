@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
   },
   topFooter: {
     flex: 1,
+    alignSelf: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'stretch',
   },
   bottomFooter: {
     flex: 5,
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     width: 100,
+    alignSelf: 'stretch',
     justifyContent: 'center',
     alignItems: 'flex-start',
     paddingLeft: 20,
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     paddingLeft: 30,
+    alignSelf: 'stretch',
     fontSize: 22,
     height: 10,
     flex: 1,

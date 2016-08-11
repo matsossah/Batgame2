@@ -22,8 +22,8 @@ class Signup extends Component {
     this.updatePasswordConfirmation = this.updatePasswordConfirmation.bind(this);
   }
   onSignupPress() {
-    if (this.state.username.length < 5) {
-      this.props.onError(I18n.t('username5To10Characters'));
+    if (this.state.username.length < 3 || this.state.username.length > 9) {
+      this.props.onError(I18n.t('username3To9Characters'));
       return;
     }
     if (this.state.password.length < 8) {

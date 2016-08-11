@@ -10,6 +10,7 @@ import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
 import I18n from '../../config/i18n';
 import Fabric from 'react-native-fabric';
+// import branch from 'react-native-branch'
 
 const { Answers } = Fabric;
 
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     width: 100,
+    alignSelf: 'stretch',
     justifyContent: 'center',
     alignItems: 'flex-start',
     paddingLeft: 20,
@@ -144,14 +146,15 @@ class PickOpponent extends Component {
               onPress={this.onRandomPress}
               underlayColor="#E67E2C"
             />
-            {// <LargeButton
-            //   style={styles.facebook}
-            //   buttonTextStyle={styles.buttonTextStyle}
-            //   buttonText={I18n.t('inviteFBFriends')}
-            //   onPress={this.onFacebookPress}
-            //   underlayColor="#3498DB"
-            //   disabled
-            // />
+            {
+              // <LargeButton
+              //   style={styles.facebook}
+              //   buttonTextStyle={styles.buttonTextStyle}
+              //   buttonText={I18n.t('inviteFBFriends')}
+              //   onPress={this.onFacebookPress}
+              //   underlayColor="#3498DB"
+              //   disabled
+              // />
           }
           </View>
         }

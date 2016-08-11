@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   left: {
     flex: 3,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     alignSelf: 'stretch',
   },
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   right: {
     flex: 3,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     alignSelf: 'stretch',
   },
@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
     width: 100,
     justifyContent: 'center',
     alignItems: 'flex-start',
+    alignSelf: 'stretch',
     paddingLeft: 20,
-    backgroundColor: '#34485E',
   },
   profileSeparator: {
     fontSize: 50,
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
 //                    'see_no_evil', 'hear_no_evil', 'speak_no_evil', 'raised_hands', 'fire', 'v'
 //                   ];
 
-const allEmojis = ['😘', '😜', '😎', '🤗', '👸', '👻', '💪',
+const allEmojis = ['😘', '😜', '😎', '👸', '👻', '💪',
                     '👼', '💃', '👊', '😍',
                      '🙈', '😏'];
 

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, StyleSheet, Animated, ListView, Easing } from 'react-native';
+import { View, StyleSheet, Animated, ListView, Easing, Platform } from 'react-native';
 import shuffle from 'lodash/shuffle';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
@@ -211,10 +211,12 @@ class Wheel extends Component {
                   renderRow={this.renderRow}
                 />
               }
-              <LinearGradient
-                colors={['#2C3D50', 'rgba(44, 61, 80, 0)', '#2C3D50']}
-                style={styles.linearGradient}
-              />
+              {(Platform.OS === 'ios') &&
+                <LinearGradient
+                  colors={['#2C3D50', 'rgba(44, 61, 80, 0)', '#2C3D50']}
+                  style={styles.linearGradient}
+                />
+              }
             </View>
             <View style={styles.buttonBox}>
               {!this.state.spinStarted &&

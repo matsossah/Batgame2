@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+//#import "RNBranch.h"
 
 #import "RCTRootView.h"
 
@@ -21,6 +22,7 @@
     [[Fabric sharedSDK] setDebug: YES];
     [Fabric with:@[CrashlyticsKit]];
     [Fabric with:@[[Crashlytics class]]];
+//    [RNBranch initSessionWithLaunchOptions:launchOptions isReferrable:YES];
 
   NSURL *jsCodeLocation;
 
@@ -68,13 +70,21 @@
 
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-  BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                                openURL:url
-                                                      sourceApplication:sourceApplication
-                                                             annotation:annotation
-                  ];
-  // Add any custom logic here.
-  return handled;
+//  if (![RNBranch handleDeepLink:url]) {
+//    // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
+    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                                  openURL:url
+                                                        sourceApplication:sourceApplication
+                                                               annotation:annotation
+                    ];
+    // Add any custom logic here.
+    return handled;
+//  }
+//  return YES;
 }
+
+//- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
+//  return [RNBranch continueUserActivity:userActivity];
+//}
 
 @end

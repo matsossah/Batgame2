@@ -22,8 +22,8 @@ class FacebookUsername extends Component {
     this.updateUsername = this.updateUsername.bind(this);
   }
   onPress() {
-    if (this.state.username.length < 5 || this.state.username.length > 10) {
-      Alert.alert(I18n.t('username5To10Characters'));
+    if (this.state.username.length < 3 || this.state.username.length > 9) {
+      Alert.alert(I18n.t('username3To9Characters'));
       return;
     }
     const user = new Parse.User({ id: this.props.userId });

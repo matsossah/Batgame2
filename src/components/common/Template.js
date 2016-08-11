@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,12 +19,10 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 1,
   },
   footer: {
     flex: 73,
     alignSelf: 'stretch',
-    zIndex: 0,
   },
   centered: {
     justifyContent: 'center',

@@ -14,8 +14,10 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   bigButton: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'stretch',
   },
   scoreBox: {
     flex: 1,
@@ -45,16 +47,16 @@ class PopTheBalloon extends Component {
       startTime: Date.now(),
       duration: null,
       running: true,
-      balloonSize: 150,
+      balloonSize: 50,
       counter: 0,
       taps: 0,
     };
     this.onButtonPress = this.onButtonPress.bind(this);
   }
   onButtonPress() {
-    if (this.state.balloonSize < 297) {
+    if (this.state.balloonSize < 148) {
       this.setState({
-        balloonSize: this.state.balloonSize + 3,
+        balloonSize: this.state.balloonSize + 2,
         counter: this.state.counter + 1,
       });
     } else {
@@ -91,6 +93,7 @@ class PopTheBalloon extends Component {
               <TouchableHighlight
                 onPress={this.onButtonPress}
                 underlayColor="transparent"
+                style={styles.container}
               >
                 <View style={styles.bigButton}>
                   <Text style={{ fontSize: this.state.balloonSize }}>🎈</Text>
@@ -99,7 +102,7 @@ class PopTheBalloon extends Component {
             </View>
             :
             <View style={styles.container}>
-              <Text style={{ fontSize: 250 }}>🎉</Text>
+              <Text style={{ fontSize: 149 }}>🎉</Text>
             </View>
         }
       />

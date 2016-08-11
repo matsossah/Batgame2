@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Alert, StyleSheet, Image, View } from 'react-native';
+import { Alert } from 'react-native';
 
 import Tabs from '../common/Tabs';
 import Title from '../common/Title';
@@ -8,17 +8,6 @@ import Signup from './Signup';
 import Signin from './Signin';
 import FacebookLogin from './FacebookLogin';
 import I18n from '../../config/i18n';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'stretch',
-    width: null,
-    height: null,
-  },
-});
 
 class Authentication extends Component {
   constructor() {
