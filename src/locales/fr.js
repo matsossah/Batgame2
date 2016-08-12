@@ -1,6 +1,6 @@
 const fr = {
   start: 'COMMENCE À JOUER!',
-  newGame: 'NOUVEAU',
+  newGame: 'NEW MATCH',
   PENDING: 'EN COURS',
   FINISHED: 'TERMINEES',
   yourTurn: 'A TON TOUR!',

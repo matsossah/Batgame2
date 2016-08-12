@@ -94,7 +94,7 @@ export default [
     fullName: 'MEMORY',
     rule: 'MEMORY_RULE',
     winner: 'SMALLEST',
-    scoreType: 'TRIES',
+    scoreType: 'NUMBER',
     emoji: '👀',
     countdown: false,
   },

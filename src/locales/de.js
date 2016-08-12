@@ -1,6 +1,6 @@
 const en = {
   start: 'SPIEL STARTEN!',
-  newGame: 'NEUES SPIEL',
+  newGame: 'NEUES MATCH',
   PENDING: 'ANSTEHEND',
   FINISHED: 'BEENDET',
   yourTurn: 'DU BIST DRAN!',
@@ -21,7 +21,7 @@ const en = {
   BLUE: 'BLAU',
   GREEN: 'GRÜN',
   YELLOW: 'GELB',
-  waiting: 'DEIN GEGNER IST DRAN',
+  waiting: 'GEGNER DRAN',
   ok: 'OK',
   time: 'ZEIT',
   toBoard: 'Spielstart!',
@@ -31,7 +31,7 @@ const en = {
   score: 'SPIELSTAND',
   match: 'MATCH',
   next: 'NÄCHSTES',
-  back: 'BACK',
+  back: 'ZURÜCK',
   unknownUser: 'Kann keinen Spieler finden. Bitte gib den korrekten Benutzernamen ein!',
   STOPLIGHT: 'AMPEL',
   MATH_BATTLE: 'MATHEKÖNIG',
@@ -83,7 +83,7 @@ const en = {
   smallYes: 'ja',
   staying: '🔥 Nein, ich will spielen! 🔥',
   rule: 'SPIELREGELN:',
-  restart: 'RESTART',
+  restart: 'REVANCHE',
   giveUp: 'AUFGEBEN',
 };
 

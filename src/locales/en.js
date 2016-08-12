@@ -1,6 +1,6 @@
 const en = {
   start: 'START A GAME!',
-  newGame: 'NEW GAME',
+  newGame: 'NEW MATCH',
   PENDING: 'PENDING',
   FINISHED: 'FINISHED',
   yourTurn: 'YOUR TURN!',

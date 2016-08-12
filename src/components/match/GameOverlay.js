@@ -288,54 +288,35 @@ class GameOverlay extends Component {
           {...otherProps}
         >
           <View style={styles.scoreBox}>
-            {game.info.name === 'RIGHT_ON' ?
+          {console.log(game)}
+            {game.info.scoreType === 'NUMBER' ?
               this.renderScoreInfo(
-                I18n.t('totalDifference'),
+                I18n.t('score'),
                 match.leftUser.username,
                 match.rightUser.username,
-                [(formatDuration(game.myScore.score)),
-                (formatDuration(game.scores[0].score))],
+                [game.myScore.score,
+                game.scores[0].score],
                 game.scores.length
               )
             :
-              game.info.scoreType === 'TRIES' ?
+              game.info.name !== 'RIGHT_ON' ?
                 this.renderScoreInfo(
-                  I18n.t('tries'),
+                  I18n.t('time'),
                   match.leftUser.username,
                   match.rightUser.username,
-                  [game.myScore.score,
-                  game.scores[0].score],
+                  [(formatDuration(game.myScore.score)),
+                  (formatDuration(game.scores[0].score))],
                   game.scores.length
                 )
               :
-                game.info.scoreType === 'DATE' ?
-                  game.info.name === 'PUZZLE' ?
-                    this.renderScoreInfo(
-                      I18n.t('time'),
-                      match.leftUser.username,
-                      match.rightUser.username,
-                      [(formatBigDuration(game.myScore.score)),
-                      (formatBigDuration(game.scores[0].score))],
-                      game.scores.length
-                    )
-                  :
-                    this.renderScoreInfo(
-                      I18n.t('time'),
-                      match.leftUser.username,
-                      match.rightUser.username,
-                      [(formatDuration(game.myScore.score)),
-                      (formatDuration(game.scores[0].score))],
-                      game.scores.length
-                    )
-                :
-                  this.renderScoreInfo(
-                    I18n.t('score'),
-                    match.leftUser.username,
-                    match.rightUser.username,
-                    [(game.myScore.score),
-                    (game.scores[0].score)],
-                    game.scores.length
-                  )
+                this.renderScoreInfo(
+                  I18n.t('totalDifference'),
+                  match.leftUser.username,
+                  match.rightUser.username,
+                  [(formatDuration(game.myScore.score)),
+                  (formatDuration(game.scores[0].score))],
+                  game.scores.length
+                )
             }
             <View style={styles.options}>
               {this.renderOptions()}

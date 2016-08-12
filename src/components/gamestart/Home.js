@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
   newGame: {
     borderColor: '#4EB479',
   },
+  newGameText: {
+    fontSize: 24,
+  },
   header: {
     flex: 1,
     justifyContent: 'center',
@@ -185,7 +188,7 @@ class Home extends Component {
               onPress={this.onNewGamePress}
               underlayColor="#4EB479"
               style={styles.newGame}
-              fontSize={30}
+              buttonTextStyle={styles.newGameText}
             />
               {this.props.matches !== null &&
                 <MatchesList
