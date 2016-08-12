@@ -267,7 +267,10 @@ class GameOverlay extends Component {
 
   render() {
     const { game, match, style, ...otherProps } = this.props;
-
+    let opponentScore = game.scores[0].score;
+    if (game.myScore.score === opponentScore) {
+      opponentScore = game.scores[1].score;
+    }
     if (game.myScore === undefined) {
       return (
         <View
@@ -288,14 +291,13 @@ class GameOverlay extends Component {
           {...otherProps}
         >
           <View style={styles.scoreBox}>
-          {console.log(game)}
             {game.info.scoreType === 'NUMBER' ?
               this.renderScoreInfo(
                 I18n.t('score'),
                 match.leftUser.username,
                 match.rightUser.username,
-                [game.myScore.score,
-                game.scores[0].score],
+                [(game.myScore.score),
+                opponentScore],
                 game.scores.length
               )
             :
@@ -304,8 +306,8 @@ class GameOverlay extends Component {
                   I18n.t('time'),
                   match.leftUser.username,
                   match.rightUser.username,
-                  [(formatDuration(game.myScore.score)),
-                  (formatDuration(game.scores[0].score))],
+                  [formatDuration(game.myScore.score),
+                  formatDuration(opponentScore)],
                   game.scores.length
                 )
               :
@@ -313,8 +315,8 @@ class GameOverlay extends Component {
                   I18n.t('totalDifference'),
                   match.leftUser.username,
                   match.rightUser.username,
-                  [(formatDuration(game.myScore.score)),
-                  (formatDuration(game.scores[0].score))],
+                  [formatDuration(game.myScore.score),
+                   formatDuration(opponentScore)],
                   game.scores.length
                 )
             }
