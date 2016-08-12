@@ -275,10 +275,12 @@ class GameOverlay extends Component {
           {...otherProps}
         />
       );
-    } else if (game.myScore.score === game.scores[0].score) {
-      opponentScore = game.scores[1].score;
-    } else {
-      opponentScore = game.scores[0].score;
+    } else if (game.scores.length === 2) {
+      if (game.myScore.score === game.scores[0].score) {
+        opponentScore = game.scores[1].score;
+      } else {
+        opponentScore = game.scores[0].score;
+      }
     }
 
     return (
