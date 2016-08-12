@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   playButton: {
     height: 50,
-    width: 120,
+    width: 140,
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',

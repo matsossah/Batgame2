@@ -9,7 +9,7 @@ const en = {
   wellDone: 'Sehr Gut',
   yes: 'JA',
   play: 'LOS!',
-  rematch: 'REMATCH',
+  rematch: 'REVANCHE',
   pickVictim: 'WÄHLE DEIN OPFER!',
   searchByUsername: 'SUCHE EINEN GEGNER',
   randomOpponent: 'ZUFFÄLIGER GEGNER',
@@ -83,7 +83,6 @@ const en = {
   smallYes: 'ja',
   staying: '🔥 Nein, ich will spielen! 🔥',
   rule: 'SPIELREGELN:',
-  restart: 'REVANCHE',
   giveUp: 'AUFGEBEN',
 };
 

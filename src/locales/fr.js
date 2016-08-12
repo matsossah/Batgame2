@@ -1,6 +1,6 @@
 const fr = {
   start: 'COMMENCE À JOUER!',
-  newGame: 'NEW MATCH',
+  newGame: 'NOUVEAU MATCH',
   PENDING: 'EN COURS',
   FINISHED: 'TERMINEES',
   yourTurn: 'A TON TOUR!',
@@ -8,7 +8,7 @@ const fr = {
   falseStart: 'Faux Départ',
   wellDone: 'Bien Joué!',
   play: 'JOUER',
-  rematch: 'REJOUER',
+  rematch: 'REVANCHE',
   pickVictim: 'CHOISIS TA VICTIME!',
   searchByUsername: 'RECHERCHE PAR PSEUDO',
   randomOpponent: 'JOUEUR AU HASARD',
@@ -84,7 +84,6 @@ const fr = {
   smallYes: 'Oui',
   staying: '🔥 Non, je veux jouer! 🔥',
   rule: 'REGLE DU JEU:',
-  restart: 'REVANCHE',
   giveUp: 'ABANDON',
 };
 

@@ -267,10 +267,7 @@ class GameOverlay extends Component {
 
   render() {
     const { game, match, style, ...otherProps } = this.props;
-    let opponentScore = game.scores[0].score;
-    if (game.myScore.score === opponentScore) {
-      opponentScore = game.scores[1].score;
-    }
+    let opponentScore;
     if (game.myScore === undefined) {
       return (
         <View
@@ -278,6 +275,10 @@ class GameOverlay extends Component {
           {...otherProps}
         />
       );
+    } else if (game.myScore.score === game.scores[0].score) {
+      opponentScore = game.scores[1].score;
+    } else {
+      opponentScore = game.scores[0].score;
     }
 
     return (

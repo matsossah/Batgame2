@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
   },
   newGame: {
     borderColor: '#4EB479',
+    width: 270,
   },
   newGameText: {
     fontSize: 24,

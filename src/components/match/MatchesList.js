@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   emptyTab: {
     height: 70,
-    width: 250,
+    width: 270,
     borderWidth: 1,
     marginTop: 7,
     borderColor: '#FFD664',
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   match: {
     height: 70,
-    width: 250,
+    width: 270,
     borderWidth: 1,
     marginTop: 7,
     borderColor: '#FFD664',

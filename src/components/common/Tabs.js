@@ -6,6 +6,7 @@ import TabButton from './TabButton';
 const styles = StyleSheet.create({
   sections: {
     flexDirection: 'row',
+    marginTop: 50,
     alignItems: 'center',
     justifyContent: 'space-around',
     alignSelf: 'stretch',

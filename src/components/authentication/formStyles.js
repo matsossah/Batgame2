@@ -23,7 +23,7 @@ export default StyleSheet.create({
   },
   top: {
     flex: 1,
-    paddingTop: 20,
+    paddingTop: 10,
   },
   topUsername: {
     flex: 1,
