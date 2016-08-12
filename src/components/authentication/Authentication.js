@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Alert } from 'react-native';
+import { Alert, StyleSheet, Platform } from 'react-native';
 
 import Tabs from '../common/Tabs';
 import Title from '../common/Title';
@@ -8,6 +8,19 @@ import Signup from './Signup';
 import Signin from './Signin';
 import FacebookLogin from './FacebookLogin';
 import I18n from '../../config/i18n';
+
+const styles = StyleSheet.create({
+  separator: {
+    flex: 7,
+    backgroundColor: '#2C3D50',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  back: {
+    backgroundColor: '#2C3D50',
+  },
+});
 
 class Authentication extends Component {
   constructor() {
@@ -49,6 +62,12 @@ class Authentication extends Component {
     );
   }
   render() {
+    let separatorStyle;
+    let style;
+    if (Platform.OS === 'android') {
+      separatorStyle = styles.separator;
+      style = styles.back;
+    }
     return (
       <Template
         // pass the title in uppercase
@@ -72,6 +91,8 @@ class Authentication extends Component {
             ]}
           />
         }
+        separatorStyle={separatorStyle}
+        style={style}
       />
     );
   }

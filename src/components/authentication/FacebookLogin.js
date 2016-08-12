@@ -10,7 +10,7 @@ const { Answers } = Fabric;
 const styles = StyleSheet.create({
   button: {
     height: 40,
-    width: 240,
+    width: 270,
   },
 });
 

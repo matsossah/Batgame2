@@ -34,7 +34,7 @@ function Template(props) {
   const { header, footer, separator, style, separatorStyle, ...otherProps } = props;
   return (
     <View {...otherProps} style={[styles.container, styles.centered, style]}>
-      <View style={[styles.header, styles.centered]}>
+      <View style={[styles.header, styles.centered, style]}>
         {header}
       </View>
       <View style={[styles.separator, separatorStyle]}>

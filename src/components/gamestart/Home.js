@@ -19,7 +19,7 @@ const { Answers } = Fabric;
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    paddingTop: 60,
+    marginTop: 60,
     marginBottom: 20,
   },
   newGame: {
@@ -170,9 +170,6 @@ class Home extends Component {
           <ScrollView
             style={styles.scrollView}
             showsVerticalScrollIndicator={false}
-            initialListSize={1}
-            pageSize={1}
-            scrollRenderAheadDistance={1}
             refreshControl={
               <RefreshControl
                 refreshing={this.state.refreshing}
