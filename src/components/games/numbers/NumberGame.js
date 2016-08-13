@@ -7,7 +7,6 @@ import Template from '../../common/Template';
 import NumberCell from './NumberCell';
 import Timer from '../../common/Timer';
 import Duration from '../../common/Duration';
-import Lives from '../../common/Lives';
 
 // Spacing in pixels between cells
 const CELL_SPACING = 20;
@@ -81,11 +80,12 @@ class NumberGame extends Component {
   }
 
   onCellFailure() {
-    const livesLost = this.state.livesLost + 1;
-    this.setState({ livesLost });
-    if (livesLost === this.props.lives) {
-      this.props.onEnd({ score: MAX_SCORE });
-    }
+    const score = Date.now() - this.state.startTime;
+    this.setState({
+      running: false,
+      score,
+    });
+    this.props.onEnd({ score: MAX_SCORE });
   }
 
   generateBoard() {
@@ -132,7 +132,6 @@ class NumberGame extends Component {
         onLayout={this.onLayout}
         header={
           <View>
-            <Lives lives={3} livesLost={this.state.livesLost} />
             {this.state.running ?
               <Timer startTime={this.state.startTime} />
             :
@@ -168,12 +167,7 @@ class NumberGame extends Component {
 }
 
 NumberGame.propTypes = {
-  lives: PropTypes.number,
   onEnd: PropTypes.func.isRequired,
-};
-
-NumberGame.defaultProps = {
-  lives: 3,
 };
 
 export default NumberGame;
