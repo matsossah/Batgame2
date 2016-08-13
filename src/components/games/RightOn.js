@@ -3,6 +3,9 @@ import { Text, TouchableHighlight, View, StyleSheet } from 'react-native';
 import Template from '../common/Template';
 import Timer from '../common/Timer';
 import moment from 'moment';
+import Dimensions from 'Dimensions';
+
+const deviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
@@ -24,10 +27,11 @@ const styles = StyleSheet.create({
   laps: {
     flex: 4,
     alignItems: 'center',
+    justifyContent: 'space-around',
     alignSelf: 'stretch',
   },
   buttonWrapper: {
-    flex: 2,
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -52,11 +56,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFD664',
   },
   lap: {
-    height: 70,
-    width: 200,
-    marginTop: 30,
+    height: deviceWidth * 0.2,
+    width: deviceWidth * 0.7,
+    paddingLeft: 30,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     borderRadius: 5,
     borderWidth: 2,
     borderColor: 'red',
@@ -212,17 +216,17 @@ class RightOn extends Component {
             <View style={styles.laps}>
               <View style={[styles.lap, borderStyles[0]]}>
                 <Text style={[styles.lapText, colorStyles[0]]}>
-                  1 | {formatDuration(this.state.lapOne)}
+                  1 |   {formatDuration(this.state.lapOne)}
                 </Text>
               </View>
               <View style={[styles.lap, borderStyles[1]]}>
                 <Text style={[styles.lapText, colorStyles[1]]}>
-                  2 | {formatDuration(this.state.lapTwo)}
+                  2 |   {formatDuration(this.state.lapTwo)}
                 </Text>
               </View>
               <View style={[styles.lap, borderStyles[2]]}>
                 <Text style={[styles.lapText, colorStyles[2]]}>
-                  3 | {formatDuration(this.state.lapThree)}
+                  3 |   {formatDuration(this.state.lapThree)}
                 </Text>
               </View>
             </View>

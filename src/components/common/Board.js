@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: 50,
+    paddingTop: 25,
   },
   outer: {
     height: 200,
@@ -40,7 +40,6 @@ function Board(props) {
     <View style={styles.container}>
       <View style={[styles.outer, styles.centered]}>
         <View style={styles.inner}>
-          <Text style={styles.label}>{I18n.t('toBoard')}</Text>
           {props.children}
         </View>
       </View>

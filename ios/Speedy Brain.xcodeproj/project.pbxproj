@@ -974,8 +974,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: mateo sossah (MXZ5L444L5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: mateo sossah (MXZ5L444L5)";
 				DEAD_CODE_STRIPPING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1005,7 +1005,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coolappsinc.batgame;
 				PRODUCT_NAME = "Speedy Brain";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "cf90d4eb-cc29-4c3e-b7f2-cab719ee3415";
 			};
 			name = Debug;
 		};
@@ -1014,8 +1014,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: mateo sossah (MXZ5L444L5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: mateo sossah (MXZ5L444L5)";
 				DEAD_CODE_STRIPPING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1045,7 +1045,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coolappsinc.batgame;
 				PRODUCT_NAME = "Speedy Brain";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "cf90d4eb-cc29-4c3e-b7f2-cab719ee3415";
 			};
 			name = Release;
 		};

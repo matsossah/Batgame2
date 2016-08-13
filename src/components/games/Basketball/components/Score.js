@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
 
 class Score extends Component {
   render() {
+    const { fontSize } = this.props;
     return (
       <View
         style={[styles.scoreContainer,
@@ -22,7 +23,7 @@ class Score extends Component {
         <Text
           style={[{
             flex: 1,
-            fontSize: 130,
+            fontSize,
             fontWeight: '100',
             color: '#707070',
           }]}
@@ -44,6 +45,7 @@ Score.propTypes = {
   y: PropTypes.number,
   scored: PropTypes.bool,
   score: PropTypes.number,
+  fontSize: PropTypes.number,
 };
 
 export default Score;

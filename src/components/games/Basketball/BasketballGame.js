@@ -17,12 +17,12 @@ const radius = 48; // ball radius
 const rotationFactor = 10; // ball rotation factor
 
 // components sizes and positions
-const FLOOR_HEIGHT = 48;
+const FLOOR_HEIGHT = Dimensions.get('window').width / 8;
 const FLOOR_Y = 11;
-const HOOP_Y = Dimensions.get('window').height - 227;
+const HOOP_Y = Dimensions.get('window').height * 0.62;
 const NET_HEIGHT = 6;
 const NET_WIDTH = 83;
-const NET_Y = Dimensions.get('window').height - 216;
+const NET_Y = Dimensions.get('window').height * 0.64;
 const NET_X = (Dimensions.get('window').width / 2) - (NET_WIDTH / 2);
 const NET_LEFT_BORDER_X = NET_X + NET_HEIGHT / 2;
 const NET_LEFT_BORDER_Y = NET_Y;
@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   footer: {
-    flex: 6,
+    flex: 8,
   },
 });
 
@@ -372,7 +372,7 @@ class Basketball extends Component {
           <Lives lives={3} livesLost={this.state.livesLost} />
         </View>
         <View style={styles.footer}>
-          <Score y={FLOOR_HEIGHT * 3} score={this.state.score} scored={this.state.scored} />
+          <Score y={FLOOR_HEIGHT * 4} score={this.state.score} scored={this.state.scored} fontSize={FLOOR_HEIGHT * 2} />
           <Hoop y={HOOP_Y} />
           {this.renderNet(this.state.lifecycle === LC_STARTING)}
           {this.renderFloor(this.state.vy <= 0)}

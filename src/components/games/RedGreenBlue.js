@@ -33,10 +33,9 @@ const styles = StyleSheet.create({
     borderRadius: 35,
   },
   boardButton: {
-    height: 30,
-    width: 30,
-    borderRadius: 15,
-    margin: 0,
+    height: 40,
+    width: 40,
+    borderRadius: 20,
   },
   scoreBox: {
     flex: 1,

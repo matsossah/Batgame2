@@ -48,7 +48,7 @@ const en = {
   PUZZLE: 'PUZZLE',
   BASKETBALL: 'BASKETBALL',
   STOPLIGHT_RULE: 'Press the GO button as soon as the light turns green!',
-  MATH_BATTLE_RULE: 'Press on the multiplication with the bigger result!',
+  MATH_BATTLE_RULE: 'Press on the multiplication with the bigger result or the equal sign!',
   POP_THE_BALLOON_RULE: 'Press 50 times on the balloon as quickly as possible to pop it!',
   RED_GREEN_BLUE_RULE: 'Press on the color that\'s on the board as fast as possible!',
   WHACK_A_MOLE_RULE: 'Press on the moles as soon as they show up!',

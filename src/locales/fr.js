@@ -48,7 +48,7 @@ const fr = {
   MEMORY: 'MEMOIRE',
   BASKETBALL: 'BASKETBALL',
   STOPLIGHT_RULE: 'Appuie sur GO dès que le feu passe au vert!',
-  MATH_BATTLE_RULE: 'Appuie sur les multiplications les plus grandes!',
+  MATH_BATTLE_RULE: 'Appuie sur les multiplications les plus grandes ou sur le égal!',
   POP_THE_BALLOON_RULE: 'Appuie 50 fois sur le ballon pour le faire éclater!',
   RED_GREEN_BLUE_RULE: 'Appuie sur la couleur au tableau le plus vite possible!',
   WHACK_A_MOLE_RULE: 'Appuie sur les souris dès qu\'elles passent leur tête!',

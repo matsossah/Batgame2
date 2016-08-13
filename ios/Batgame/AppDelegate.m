@@ -57,6 +57,11 @@
                                                       moduleName:@"Batgame"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
+  float rd = 44.00/255.00;
+  float gr = 61.00/255.00;
+  float bl = 80.00/255.00;
+  
+  rootView.backgroundColor = [[UIColor alloc] initWithRed:rd green:gr blue:bl alpha:1];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];

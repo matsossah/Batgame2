@@ -1,10 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
+import Dimensions from 'Dimensions';
 import LuckyCell from './LuckyCell';
 
 import shuffle from 'lodash/shuffle';
 
 import Template from '../../common/Template';
+
+const deviceHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
@@ -26,13 +29,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   cell: {
-    width: 90,
-    height: 90,
+    width: (deviceHeight - 20) / 6,
+    height: (deviceHeight - 20) / 6,
     marginTop: 5,
     marginBottom: 5,
     marginLeft: 10,
     marginRight: 10,
-    borderRadius: 45,
+    borderRadius: (deviceHeight - 20) / 12,
     backgroundColor: '#34485E',
     alignItems: 'center',
     justifyContent: 'center',

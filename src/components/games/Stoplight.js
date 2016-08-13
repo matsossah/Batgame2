@@ -6,21 +6,32 @@ import Timer from '../common/Timer';
 import Duration from '../common/Duration';
 import LargeButton from '../common/LargeButton';
 import I18n from '../../config/i18n';
+import Dimensions from 'Dimensions';
 
+const deviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   stoplight: {
-    height: 250,
-    width: 100,
+    height: deviceWidth * 0.7,
+    width: deviceWidth * 0.3,
     borderRadius: 8,
     flexDirection: 'column',
     borderColor: '#583B67',
     borderWidth: 10,
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginBottom: 50,
   },
   container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  topFooter: {
+    flex: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomFooter: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -159,35 +170,39 @@ class Stoplight extends Component {
         }
         footer={
           <View style={styles.container}>
-            <View style={styles.stoplight}>
-              <View
-                style={[
-                  styles.light,
-                  styles.redlight,
-                  this.state.color === 'red' && styles.activeRedlight,
-                ]}
-              />
-              <View
-                style={[
-                  styles.light,
-                  styles.orangelight,
-                  this.state.color === 'orange' && styles.activeOrangelight,
-                ]}
-              />
-              <View
-                style={[
-                  styles.light,
-                  styles.greenlight,
-                  this.state.color === 'green' && styles.activeGreenlight,
-                ]}
+            <View style={styles.topFooter}>
+              <View style={styles.stoplight}>
+                <View
+                  style={[
+                    styles.light,
+                    styles.redlight,
+                    this.state.color === 'red' && styles.activeRedlight,
+                  ]}
+                />
+                <View
+                  style={[
+                    styles.light,
+                    styles.orangelight,
+                    this.state.color === 'orange' && styles.activeOrangelight,
+                  ]}
+                />
+                <View
+                  style={[
+                    styles.light,
+                    styles.greenlight,
+                    this.state.color === 'green' && styles.activeGreenlight,
+                  ]}
+                />
+              </View>
+            </View>
+            <View style={styles.bottomFooter}>
+              <LargeButton
+                style={styles.newGame}
+                buttonText="GO!"
+                onPress={this.onGoPress}
+                underlayColor={this.state.color === 'green' ? '#4EB479' : 'red'}
               />
             </View>
-            <LargeButton
-              style={styles.newGame}
-              buttonText="GO!"
-              onPress={this.onGoPress}
-              underlayColor={this.state.color === 'green' ? '#4EB479' : 'red'}
-            />
           </View>
         }
       />

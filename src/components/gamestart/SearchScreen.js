@@ -92,10 +92,6 @@ class SearchScreen extends Component {
     this.props.dispatch(popModals());
   }
   onSubmit() {
-    if (this.state.searchText.length < 5) {
-      Alert.alert(I18n.t('usernameTooShort'));
-      return;
-    }
     this.props.dispatch(joinMatchAgainst(this.state.searchText.toLowerCase()))
       .catch(() => {
         Answers.logCustom('Username unknown');

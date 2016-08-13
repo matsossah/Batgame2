@@ -47,7 +47,7 @@ const en = {
   PUZZLE: 'PUZZLE',
   BASKETBALL: 'BASKETBALL',
   STOPLIGHT_RULE: 'Drück den GO-Knopf, wenn das grüne Licht leuchtet!',
-  MATH_BATTLE_RULE: 'Drück die Multiplikationen mit den größeren Ergebnissen!',
+  MATH_BATTLE_RULE: 'Drück die Multiplikationen mit den größeren Ergebnissen oder das Gleichheitszeichen!',
   POP_THE_BALLOON_RULE: 'Drück auf den Ballon 50 Mal, um ihn zu zerplatzen!',
   RED_GREEN_BLUE_RULE: 'Drück auf die Farbe auf dem Brett so schnell wie möglich!',
   WHACK_A_MOLE_RULE: 'Drück auf die Mäuse sobald sie auftauchen!',
