@@ -66,9 +66,9 @@ const styles = StyleSheet.create({
   },
 });
 // const allEmojis to use with react-native-emoji
-//const allEmojis = ['strawberry', 'hamburger', 'pizza'];
+// const allEmojis = ['strawberry', 'hamburger', 'pizza'];
 
-const allEmojis = ['🍓', '🍔', '🍭'];
+const allEmojis = ['🌍', '🍎', '🔥'];
 
 class Identical extends Component {
   constructor() {
