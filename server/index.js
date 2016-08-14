@@ -14,7 +14,7 @@ const {
 } = process.env;
 
 const api = new ParseServer({
-  cloud: r('./cloud/main.js'),
+  cloud: r(__dirname, './cloud/main.js'),
   databaseURI: DATABASE_URI || MONGODB_URI,
   appId: APP_ID,
   clientKey: CLIENT_KEY,
@@ -24,12 +24,12 @@ const api = new ParseServer({
   push: {
     ios: [
       {
-        pfx: r('./MateoSossahDev.p12'),
+        pfx: r(__dirname, './MateoSossahDev.p12'),
         bundleId: 'com.coolappsinc.batgame',
         production: false,
       },
       {
-        pfx: r('./MateoSossahProd.p12'),
+        pfx: r(__dirname, './MateoSossahProd.p12'),
         bundleId: 'com.coolappsinc.batgame',
         production: true,
       },
