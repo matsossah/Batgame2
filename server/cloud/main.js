@@ -1,4 +1,19 @@
+import { differenceWith } from 'lodash';
+
 import i18n from './i18n';
+import createNormalize from '../../shared/normalize';
+import { matchSelector } from '../../shared/selectors';
+
+const ROUND_NB = 3;
+const GAMES_NB = 3;
+
+function createMatchQuery() {
+  return new Parse.Query('Match')
+    .include('participants')
+    .include('rounds')
+    .include('rounds.games')
+    .include('rounds.games.scores');
+}
 
 // @TODO: Create `hasUsername` column automatically
 
@@ -14,74 +29,114 @@ Parse.Cloud.beforeSave(Parse.User, (request, response) => {
 const Match = Parse.Object.extend('Match');
 const Round = Parse.Object.extend('Round');
 const Game = Parse.Object.extend('Game');
+const GameScore = Parse.Object.extend('GameScore');
+const normalize = createNormalize(Parse);
 
-async function afterGameSave(gameObj) {
-  const game = await new Parse.Query(Game)
-    .include('scores')
-    .include('scores.user')
-    .get(gameObj.id);
-
-  if (game.get('scores').length === 1) {
-    const round = await new Parse.Query(Round)
-      .equalTo('games', game)
-      .include('games')
-      .include('games.scores')
-      .first();
-
-    const playerFinished = round.get('games')
-      .every(otherGame => otherGame.get('scores').length === 1);
-    if (playerFinished) {
-      const player = game.get('scores')[0].get('user');
-      const matchQuery = new Parse.Query(Match)
-        .equalTo('rounds', round)
-        .include('participants');
-      const match = await matchQuery.first();
-      const otherPlayers = match.get('participants')
-        .filter(participant =>
-          participant.id !== player.id
-        );
-      Parse.Cloud.useMasterKey();
-      const installations = await new Parse.Query(Parse.Installation)
-        .containedIn('user', otherPlayers)
-        .find();
-      await Promise.all(installations.map(installation => {
-        const locale = installation.get('localeIdentifier');
-        return Parse.Push.send({
-          where: new Parse.Query(Parse.Installation).equalTo('objectId', installation.id),
-          data: {
-            alert: i18n(locale, 'YOUR_TURN', player.get('username')),
-          },
-        }, {
-          useMasterKey: true,
-        });
-      }));
-    }
-  }
+function createState(user, store) {
+  return {
+    application: {
+      userId: user.id,
+      users: {
+        ...store[Parse.User.className],
+      },
+      matches: {
+        ...store.Match,
+      },
+      rounds: {
+        ...store.Round,
+      },
+      games: {
+        ...store.Game,
+      },
+      scores: {
+        ...store.GameScore,
+      },
+    },
+  };
 }
 
-Parse.Cloud.afterSave('Game', (request, response) => {
-  afterGameSave(request.object)
+async function sendNotification(usersIds, getArgsForUser) {
+  Parse.Cloud.useMasterKey();
+  const installations = await new Parse.Query(Parse.Installation)
+    .containedIn('user', usersIds.map(uid => new Parse.User({ id: uid })))
+    .find();
+  await Promise.all(installations.map(installation => {
+    const locale = installation.get('localeIdentifier');
+    return Parse.Push.send({
+      where: new Parse.Query(Parse.Installation).equalTo('objectId', installation.id),
+      data: {
+        alert: i18n(locale, ...getArgsForUser(installation.user)),
+      },
+    }, {
+      useMasterKey: true,
+    });
+  }));
+}
+
+async function beforeGameSave(user, gameObj) {
+  const game = await new Parse.Query(Game).get(gameObj.id);
+  const round = await new Parse.Query(Round)
+    .equalTo('games', game)
+    .first();
+  const match = await createMatchQuery()
+    .equalTo('rounds', round)
+    .first();
+
+  const storeBefore = normalize([match]);
+  const scores = await new Parse.Query(GameScore)
+    .include('user')
+    .containedIn('objectId', gameObj.get('scores').map(s => s.id))
+    .find();
+  // Normalize doesn't override duplicates, so we need to normalize
+  // gameObj *before* match.
+  const storeAfter = normalize([...scores, gameObj, match]);
+  const stateBefore = createState(user, storeBefore.store);
+  const stateAfter = createState(user, storeAfter.store);
+  const matchBefore = matchSelector(match.id, stateBefore);
+  const matchAfter = matchSelector(match.id, stateAfter);
+
+  if (!matchBefore.isFinished && matchAfter.isFinished) {
+    const otherUsers = matchAfter.participants.filter(u =>
+      u.id !== user.id
+    );
+    await sendNotification(otherUsers.map(u => u.id), otherUser =>
+      [
+        matchAfter.winners.users.indexOf(otherUser.id) !== -1 ?
+          'YOU_WON' : 'YOU_LOST',
+        user.get('username'),
+      ]
+    );
+    return;
+  }
+
+  const newAwaitingPlayers = differenceWith(
+    matchAfter.awaitingPlayers,
+    matchBefore.awaitingPlayers,
+    (u1, u2) => u1.id === u2.id
+  );
+
+  await sendNotification(newAwaitingPlayers.map(u => u.id), () =>
+    ['YOUR_TURN', user.get('username')]
+  );
+}
+
+Parse.Cloud.beforeSave('Game', (request, response) => {
+  if (request.object.isNew()) {
+    response.success();
+    return;
+  }
+
+  beforeGameSave(request.user, request.object)
     .then(
       () => {
         response.success();
       },
       err => {
-        console.error(err);
+        console.error(err.stack);
         response.error();
       }
     );
 });
-
-const ROUND_NB = 3;
-const GAMES_NB = 3;
-
-function createMatchQuery() {
-  return new Parse.Query('Match')
-    .include('participants')
-    .include('rounds')
-    .include('rounds.games')
-    .include('rounds.games.scores');
-}
 
 async function createRounds() {
   const rounds = [];
@@ -156,7 +211,7 @@ Parse.Cloud.define('joinRandomMatch', (request, response) => {
       response.success(match);
     })
     .catch(err => {
-      console.error(err);
+      console.error(err.stack);
       response.error();
     });
 });
@@ -202,7 +257,7 @@ Parse.Cloud.define('joinMatchAgainst', (request, response) => {
       }
     })
     .catch(err => {
-      console.error(err);
+      console.error(err.stack);
       response.error();
     });
 });
@@ -238,7 +293,7 @@ Parse.Cloud.define('addUserToInstallation', (request, response) => {
         response.success({});
       },
       err => {
-        console.error(err);
+        console.error(err.stack);
         response.error('Error while adding user to installation');
       }
     );
@@ -275,7 +330,7 @@ Parse.Cloud.define('registerInstallation', (request, response) => {
   installation.save().then(
     () => response.success({}),
     err => {
-      console.error(err);
+      console.error(err.stack);
       response.error('Error while saving installation');
     }
   );
