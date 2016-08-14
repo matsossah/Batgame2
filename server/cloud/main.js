@@ -117,7 +117,7 @@ async function beforeGameSave(user, gameObj) {
 
   await sendNotification(newAwaitingPlayers.map(u => u.id), () =>
     [
-      matchAfter.challenge && match.currentRound === match.rounds[0] ?
+      matchAfter.challenge && matchAfter.currentRound === matchAfter.rounds[0] ?
         'CHALLENGED' : 'YOUR_TURN',
       user.get('username'),
     ]
