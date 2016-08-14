@@ -5,6 +5,7 @@ import Parse from 'parse/react-native';
 const initialState = {
   userId: null,
   shouldAuthenticate: false,
+  installation: null,
   users: {},
   matches: {},
   rounds: {},
@@ -40,6 +41,15 @@ function mergeStoreIntoState(state, store) {
 
 export default function applicationReducer(state = initialState, action) {
   switch (action.type) {
+    case actionTypes.INSTALLATION_REGISTERED_SUCCESS: {
+      return {
+        ...state,
+        installation: {
+          deviceType: action.deviceType,
+          deviceToken: action.deviceToken,
+        },
+      };
+    }
     case actionTypes.USER_AUTHENTICATED: {
       const { ids, store } = normalize([action.user]);
       return {

@@ -17,6 +17,31 @@ global.Parse = Parse;
 const Game = Parse.Object.extend('Game');
 const GameScore = Parse.Object.extend('GameScore');
 
+export function userAuthenticated(user) {
+  return (dispatch, getState) => {
+    const installation = getState().application.installation;
+    if (installation) {
+      Parse.Cloud.run('addUserToInstallation', {
+        deviceToken: getState().application.installation.deviceToken,
+      }).then(
+        () => dispatch({
+          type: actionTypes.USER_AUTHENTICATED,
+          user,
+        }),
+        err => {
+          // @TODO: Correctly handle error;
+          console.error(err);
+        }
+      );
+    } else {
+      dispatch({
+        type: actionTypes.USER_AUTHENTICATED,
+        user,
+      });
+    }
+  };
+}
+
 function tryToLogin(dispatch) {
   loginWithFacebook((err, fbUser) => {
     if (err || fbUser === null) {
@@ -24,19 +49,9 @@ function tryToLogin(dispatch) {
         type: actionTypes.USER_SHOULD_AUTHENTICATE,
       });
     } else {
-      dispatch({
-        type: actionTypes.USER_AUTHENTICATED,
-        user: fbUser,
-      });
+      dispatch(userAuthenticated(fbUser));
     }
   });
-}
-
-export function userAuthenticated(user) {
-  return {
-    type: actionTypes.USER_AUTHENTICATED,
-    user,
-  };
 }
 
 export function init() {
@@ -187,6 +202,23 @@ export function createGameScore(gameId, score) {
         });
       })
       .catch(err => {
+        // @TODO: correctly handle error
+        console.error(err);
+      });
+  };
+}
+
+export function registerInstallation(deviceType, deviceToken, localeIdentifier) {
+  return dispatch => {
+    Parse.Cloud.run('registerInstallation', { deviceType, deviceToken, localeIdentifier })
+      .then(() => {
+        dispatch({
+          type: actionTypes.INSTALLATION_REGISTERED_SUCCESS,
+          deviceType,
+          deviceToken,
+          localeIdentifier,
+        });
+      }, err => {
         // @TODO: correctly handle error
         console.error(err);
       });
