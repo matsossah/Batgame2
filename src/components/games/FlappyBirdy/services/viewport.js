@@ -1,5 +1,4 @@
-const React = require('react-native');
-const Dimensions = React.Dimensions || require('Dimensions');
+import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 const units = {

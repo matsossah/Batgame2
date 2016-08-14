@@ -1,36 +1,39 @@
-import React, {
-  Component,
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Image
-} from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { View, Image } from 'react-native';
 
-import {vw, vh, vmin, vmax} from './../services/viewport';
+import { vmin, vmax } from './../services/viewport';
 
+class PipeDown extends Component {
 
-export default class PipeDown extends Component{
-
-  constructor(){
+  constructor() {
     super();
   }
 
-  componentDidMount(){
+  componentDidMount() {
 
   }
 
-  componentWillUnMount(){
+  componentWillUnMount() {
   }
 
 
-  render(){
-    return(
-      <View  style={{ position : 'absolute', left : this.props.x , top : this.props.y   }}  >
-        <Image  resizeMode="stretch" source ={ require('./../images/pipe-up.png')  }
-         style ={{ width : this.props.width * vmin, height : this.props.height  *vmax }}   />
+  render() {
+    return (
+      <View style={{ position: 'absolute', left: this.props.x, top: this.props.y }}>
+        <Image
+          resizeMode="stretch" source={require('./../images/pipe-up.png')}
+          style={{ width: this.props.width * vmin, height: this.props.height * vmax }}
+        />
       </View>
     );
   }
-
 }
+
+PipeDown.propTypes = {
+  x: PropTypes.number,
+  y: PropTypes.number,
+  width: PropTypes.number,
+  height: PropTypes.number,
+};
+
+export default PipeDown;

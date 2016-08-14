@@ -116,4 +116,13 @@ export default [
     emoji: '🏀',
     countdown: false,
   },
+  {
+    name: 'FLAPPY_BIRDY',
+    fullName: 'FLAPPY BIRDY',
+    rule: 'FLAPPY_BIRDY_RULE',
+    winner: 'GREATEST',
+    scoreType: 'NUMBER',
+    emoji: '🐤',
+    countdown: false,
+  },
 ];

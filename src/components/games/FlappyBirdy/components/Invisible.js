@@ -1,35 +1,35 @@
-import React, {
-  Component,
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Image
-} from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { Text, View } from 'react-native';
 
-import {vw, vh, vmin, vmax} from './../services/viewport';
+import { vmin, vmax } from './../services/viewport';
 
 
-export default class Invisible extends Component{
-
-  constructor(){
+class Invisible extends Component {
+  constructor() {
     super();
   }
 
-  componentDidMount(){
-
+  componentDidMount() {
   }
 
-  componentWillUnMount(){
+  componentWillUnMount() {
   }
 
 
-  render(){
-    return(
-      <View  style={{  position : 'absolute', left : this.props.x , top : this.props.y*vmax  }}  >
-        <Text style ={{ width : this.props.width * vmin, height : this.props.height  *vmax }}>  </Text>
+  render() {
+    return (
+      <View style={{ position: 'absolute', left: this.props.x, top: this.props.y * vmax }}>
+        <Text style={{ width: this.props.width * vmin, height: this.props.height * vmax }} />
       </View>
     );
   }
-
 }
+
+Invisible.propTypes = {
+  x: PropTypes.number,
+  y: PropTypes.number,
+  width: PropTypes.number,
+  height: PropTypes.number,
+};
+
+export default Invisible;

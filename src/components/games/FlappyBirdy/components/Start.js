@@ -1,37 +1,38 @@
-import React, {
-  Component,
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Image
-} from 'react-native';
-
-import {vw, vh, vmin, vmax} from './../services/viewport';
+import React, { Component, PropTypes } from 'react';
+import { View, Image, TouchableOpacity } from 'react-native';
 
 
-export default class Start extends Component {
+import { vmin, vmax } from './../services/viewport';
 
+
+class Start extends Component {
   constructor() {
     super();
+
+    this.pressMe = this.pressMe.bind(this);
   }
 
-  pressMe(){
-
+  pressMe() {
     this.props.onStart();
   }
 
   render() {
     return (
-      <View style={{ position: 'absolute', left: 27 * vmin, top: 30 * vmax }}  >
-        <Image resizeMode="stretch"  source ={ require('./../images/flappybird-logo.png') }
+      <View style={{ position: 'absolute', left: 27 * vmin, top: 30 * vmax }}>
+        <TouchableOpacity activeOpacity={1} onPress={this.pressMe} >
+          <Image
+            resizeMode="stretch"
+            style={{ marginLeft: 26 }}
+            source={require('./../images/flappybird-tab.png')}
           />
-        <TouchableOpacity activeOpacity={1} onPress={ this.pressMe.bind(this) } >
-          <Image resizeMode="stretch"  style= {{ marginLeft : 26 }}    source ={ require('./../images/flappybird-tab.png') }
-            />
         </TouchableOpacity>
       </View>
     );
   }
-
 }
+
+Start.propTypes = {
+  onStart: PropTypes.func,
+};
+
+export default Start;

@@ -211,7 +211,6 @@
 		9802E3D173C13313D99F3F83 /* libPods-Speedy Brain.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Speedy Brain.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		981A0252FBEE4455B00CA738 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		9B360D581D52469A00F21446 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Speedy Brain/Images.xcassets"; sourceTree = "<group>"; };
-		9B8A0DE71D5B679F00F9299D /* Speedy Brain.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "Speedy Brain.entitlements"; path = "Speedy Brain/Speedy Brain.entitlements"; sourceTree = "<group>"; };
 		9BA3402A1D50EA0700F5A893 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		9BA3402B1D50EA0700F5A893 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		A025ACCD4A63E7FCFF4F7A71 /* libPods-Speedy BrainTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Speedy BrainTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -403,7 +402,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				9B8A0DE71D5B679F00F9299D /* Speedy Brain.entitlements */,
 				ACA56D0C1CF1E836000AB266 /* Frameworks */,
 				13B07FAE1A68108700A75B9A /* Batgame */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -974,8 +972,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: mateo sossah (MXZ5L444L5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: mateo sossah (MXZ5L444L5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1005,7 +1003,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coolappsinc.batgame;
 				PRODUCT_NAME = "Speedy Brain";
-				PROVISIONING_PROFILE = "cf90d4eb-cc29-4c3e-b7f2-cab719ee3415";
+				PROVISIONING_PROFILE = "1b9d273c-ec18-406f-8596-bfa5b2731f5e";
 			};
 			name = Debug;
 		};
@@ -1014,8 +1012,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: mateo sossah (MXZ5L444L5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: mateo sossah (MXZ5L444L5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1045,7 +1043,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coolappsinc.batgame;
 				PRODUCT_NAME = "Speedy Brain";
-				PROVISIONING_PROFILE = "cf90d4eb-cc29-4c3e-b7f2-cab719ee3415";
+				PROVISIONING_PROFILE = "1b9d273c-ec18-406f-8596-bfa5b2731f5e";
 			};
 			name = Release;
 		};
@@ -1066,7 +1064,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: mateo sossah (DY4MPW3ZWF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: mateo sossah (DY4MPW3ZWF)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1121,7 +1119,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: mateo sossah (DY4MPW3ZWF)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: mateo sossah (DY4MPW3ZWF)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;

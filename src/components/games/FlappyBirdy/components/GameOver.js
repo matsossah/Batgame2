@@ -1,36 +1,30 @@
-import React, {
-  Component,
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Image
-} from 'react-native';
+import React, { Component } from 'react';
+import { View, Image } from 'react-native';
 
-import {vw, vh, vmin, vmax} from './../services/viewport';
+import { vmin, vmax } from './../services/viewport';
 
-
-export default class GameOver extends Component{
-
-  constructor(){
+class GameOver extends Component {
+  constructor() {
     super();
   }
 
-  componentDidMount(){
-
+  componentDidMount() {
   }
 
-  componentWillUnMount(){
+  componentWillUnMount() {
   }
 
 
-  render(){
-    return(
-      <View style={{ position : 'absolute', left : 25 * vmin, top : 30 * vmax  }}  >
-        <Image resizeMode="stretch"  source ={ require('./../images/flappybird_gameover.png')}
-            />
+  render() {
+    return (
+      <View style={{ position: 'absolute', left: 25 * vmin, top: 30 * vmax }}>
+        <Image
+          resizeMode="stretch"
+          source={require('./../images/flappybird_gameover.png')}
+        />
       </View>
     );
   }
-
 }
+
+export default GameOver;
