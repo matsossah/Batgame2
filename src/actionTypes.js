@@ -8,6 +8,7 @@ function createActionTypes(types) {
 
 export default createActionTypes([
   'INIT',
+  'INSTALLATION_REGISTERED_SUCCESS',
 
   'USER_SHOULD_AUTHENTICATE',
   'USER_AUTHENTICATED',
