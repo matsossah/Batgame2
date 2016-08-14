@@ -234,6 +234,10 @@ async function joinMatchAgainst(user, username) {
 
   await match.save();
 
+  await sendNotification([opponent.id], () =>
+    ['CHALLENGED', user.get('username')]
+  );
+
   return match;
 }
 
