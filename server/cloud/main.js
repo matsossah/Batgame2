@@ -116,7 +116,11 @@ async function beforeGameSave(user, gameObj) {
   );
 
   await sendNotification(newAwaitingPlayers.map(u => u.id), () =>
-    ['YOUR_TURN', user.get('username')]
+    [
+      matchAfter.challenge && match.currentRound === match.rounds[0] ?
+        'CHALLENGED' : 'YOUR_TURN',
+      user.get('username'),
+    ]
   );
 }
 
@@ -230,13 +234,10 @@ async function joinMatchAgainst(user, username) {
     participants: [user, opponent],
     rounds: await createRounds(),
     open: false,
+    challenge: true,
   });
 
   await match.save();
-
-  await sendNotification([opponent.id], () =>
-    ['CHALLENGED', user.get('username')]
-  );
 
   return match;
 }
