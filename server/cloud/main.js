@@ -65,7 +65,7 @@ async function sendNotification(usersIds, getArgsForUser) {
     return Parse.Push.send({
       where: new Parse.Query(Parse.Installation).equalTo('objectId', installation.id),
       data: {
-        alert: i18n(locale, ...getArgsForUser(installation.user)),
+        alert: i18n(locale, ...getArgsForUser(installation.get('user'))),
       },
     }, {
       useMasterKey: true,
