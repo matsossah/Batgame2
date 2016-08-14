@@ -28,6 +28,8 @@ PushNotification.configure({
     console.log('NOTIFICATION:', notification);
   },
 
+  senderId: '420615048738',
+
   permissions: {
     alert: true,
     badge: true,

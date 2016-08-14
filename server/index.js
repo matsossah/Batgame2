@@ -34,6 +34,10 @@ const api = new ParseServer({
         production: true,
       },
     ],
+    android: {
+      senderId: '420615048738',
+      apiKey: 'AIzaSyCUNWx3FgyKX6HgCvhVvVIvYeDv9m89Dew',
+    },
   },
 });
 
