@@ -10,10 +10,10 @@ import LargeButton from '../common/LargeButton';
 import WheelItem from './WheelItem';
 import I18n from '../../config/i18n';
 
-import GAMES from '../../games';
+import GAMES from 'shared/games';
 import { gamePicked } from '../../actions/application';
 import { gotoGame } from '../../actions/navigation';
-import { matchSelector } from '../../selectors';
+import { matchSelector } from 'shared/selectors';
 
 const styles = StyleSheet.create({
   container: {

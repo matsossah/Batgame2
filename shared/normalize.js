@@ -1,7 +1,6 @@
-import Parse from 'parse/react-native';
 import isArray from 'lodash/isArray';
 
-const normalizeObject = (obj, store) => {
+const normalizeObject = (Parse, obj, store) => {
   if (obj.className in store && obj.id in store[obj.className]) {
     return obj.id;
   }
@@ -10,11 +9,11 @@ const normalizeObject = (obj, store) => {
   for (const propName of Object.getOwnPropertyNames(obj.attributes)) {
     let propValue = obj.attributes[propName];
     if (propValue instanceof Parse.Object) {
-      propValue = normalizeObject(propValue, store);
+      propValue = normalizeObject(Parse, propValue, store);
     } else if (isArray(propValue)) {
       propValue = propValue.map(propItem => {
         if (propItem instanceof Parse.Object) {
-          return normalizeObject(propItem, store);
+          return normalizeObject(Parse, propItem, store);
         }
         return propItem;
       });
@@ -29,10 +28,10 @@ const normalizeObject = (obj, store) => {
   return obj.id;
 };
 
-export default objects => {
+export default Parse => objects => {
   const store = {};
 
-  const ids = objects.map(obj => normalizeObject(obj, store));
+  const ids = objects.map(obj => normalizeObject(Parse, obj, store));
 
   return { store, ids };
 };

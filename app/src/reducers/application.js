@@ -1,5 +1,5 @@
 import actionTypes from '../actionTypes';
-import normalize from '../normalize';
+import createNormalize from 'shared/normalize';
 import Parse from 'parse/react-native';
 
 const initialState = {
@@ -12,6 +12,8 @@ const initialState = {
   games: {},
   scores: {},
 };
+
+const normalize = createNormalize(Parse);
 
 function mergeStoreIntoState(state, store) {
   return {

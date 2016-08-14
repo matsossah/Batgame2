@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 
 import { init, userAuthenticated } from './actions/application';
-import { userSelector } from './selectors';
+import { userSelector } from 'shared/selectors';
 
 import Authentication from './components/authentication/Authentication';
 import FacebookUsername from './components/authentication/FacebookUsername';

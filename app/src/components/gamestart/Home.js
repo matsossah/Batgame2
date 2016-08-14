@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { View, Alert, Text, TouchableHighlight, ScrollView, StyleSheet, RefreshControl, AppState, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
-import { userSelector, matchSelector } from '../../selectors';
+import { userSelector, matchSelector } from 'shared/selectors';
 import {
   retrieveMatches,
   userLogOut,

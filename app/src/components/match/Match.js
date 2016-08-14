@@ -3,7 +3,7 @@ import { Text, View, TouchableHighlight, TouchableOpacity, StyleSheet } from 're
 import { connect } from 'react-redux';
 import sample from 'lodash/sample';
 
-import { matchSelector } from '../../selectors';
+import { matchSelector } from 'shared/selectors';
 import { joinMatchAgainst } from '../../actions/application';
 import { gotoNextGame, popMain } from '../../actions/navigation';
 import Template from '../common/Template';

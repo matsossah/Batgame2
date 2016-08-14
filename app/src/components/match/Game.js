@@ -21,7 +21,7 @@ import GameOverlay from './GameOverlay';
 import GameCountdown from './GameCountdown';
 import GameRule from './GameRule';
 
-import { gameSelector, matchSelector } from '../../selectors';
+import { gameSelector, matchSelector } from 'shared/selectors';
 import { createGameScore } from '../../actions/application';
 
 const gameComponents = {

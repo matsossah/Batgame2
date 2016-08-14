@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import I18n from '../../config/i18n';
 
-import { userSelector } from '../../selectors';
+import { userSelector } from 'shared/selectors';
 import { gotoMatch, gotoNextGame } from '../../actions/navigation';
 import Fabric from 'react-native-fabric';
 

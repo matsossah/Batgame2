@@ -1,5 +1,5 @@
 import actionTypes from '../actionTypes';
-import { matchSelector } from '../selectors';
+import { matchSelector } from 'shared/selectors';
 
 export function popMain() {
   return {
