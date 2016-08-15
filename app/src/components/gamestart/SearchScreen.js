@@ -86,6 +86,7 @@ class SearchScreen extends Component {
     this.setSearchText = this.setSearchText.bind(this);
     this.onBackPress = this.onBackPress.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onPressSearch = this.onPressSearch.bind(this);
   }
   onBackPress() {
     Answers.logCustom('userSearch Back');
@@ -98,6 +99,9 @@ class SearchScreen extends Component {
         Alert.alert(I18n.t('unknownUser'));
       });
     Answers.logCustom('Username found');
+  }
+  onPressSearch(event) {
+    console.log(event.nativeEvent.text);
   }
   setSearchText(event) {
     const searchText = event.nativeEvent.text;
@@ -138,6 +142,7 @@ class SearchScreen extends Component {
                 autoCapitalize="none"
                 placeholderTextColor="#34485E"
                 onSubmitEditing={this.onSubmit}
+                onEndEditing={this.onPressSearch}
                 returnKeyType="search"
               />
             </View>
