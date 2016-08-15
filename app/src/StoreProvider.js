@@ -28,7 +28,7 @@ PushNotification.configure({
     console.log('NOTIFICATION:', notification);
   },
 
-  senderId: '420615048738',
+  senderID: '420615048738',
 
   permissions: {
     alert: true,

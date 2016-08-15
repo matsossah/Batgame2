@@ -56,4 +56,9 @@ export default StyleSheet.create({
     color: 'white',
     fontFamily: 'chalkduster',
   },
+  image: {
+    marginTop: 40,
+    width: 80,
+    height: 45,
+  },
 });

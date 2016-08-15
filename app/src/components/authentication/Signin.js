@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, Image } from 'react-native';
 import Parse from 'parse/react-native';
 import I18n from '../../config/i18n';
 
@@ -72,22 +72,28 @@ class Signin extends Component {
             placeholderTextColor="rgba(255, 255, 255, 0.5)"
             onChangeText={this.updateUsername}
             value={this.state.username}
+            returnKeyType={"next"}
+            onSubmitEditing={() => {
+              this.refs.SecondInput.focus();
+            }}
           />
           <TextInput
+            ref="SecondInput"
             secureTextEntry
             style={styles.input}
             placeholder={I18n.t('password')}
             placeholderTextColor="rgba(255, 255, 255, 0.5)"
             onChangeText={this.updatePassword}
             value={this.state.password}
+            onSubmitEditing={this.onSigninPress}
+            returnKeyType="done"
           />
         </View>
         <View style={styles.bottom}>
           <View style={styles.formSubmit}>
-            <Button
-              text={I18n.t('go')}
-              onPress={this.onSigninPress}
-              disabled={this.state.loading}
+            <Image
+              style={styles.image}
+              source={require('../../assets/logo.png')}
             />
           </View>
         </View>

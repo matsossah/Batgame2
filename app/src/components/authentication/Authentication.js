@@ -20,6 +20,11 @@ const styles = StyleSheet.create({
   back: {
     backgroundColor: '#2C3D50',
   },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
 });
 
 class Authentication extends Component {
@@ -93,6 +98,7 @@ class Authentication extends Component {
         }
         separatorStyle={separatorStyle}
         style={style}
+        footerStyle={styles.footer}
       />
     );
   }
