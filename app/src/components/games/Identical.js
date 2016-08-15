@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   options: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
 // const allEmojis to use with react-native-emoji
 // const allEmojis = ['strawberry', 'hamburger', 'pizza'];
 
-const allEmojis = ['🌍', '🍎', '🔥'];
+const allEmojis = ['😛', '😀', '😉'];
 
 class Identical extends Component {
   constructor() {
@@ -76,33 +76,16 @@ class Identical extends Component {
     this.state = {
       duration: null,
       running: true,
-      started: false,
-      countdownStarted: null,
+      countdownStarted: Date.now(),
       score: 0,
-      currentEmoji: sample(allEmojis),
-      previousEmoji: '',
+      topEmoji: sample(allEmojis),
+      bottomEmoji: sample(allEmojis),
     };
     this.onYesPress = this.onYesPress.bind(this);
     this.onNoPress = this.onNoPress.bind(this);
     this.onEnd = this.onEnd.bind(this);
-    this.newEmoji = this.newEmoji.bind(this);
+    this.newEmojis = this.newEmojis.bind(this);
     this.renderTimer = this.renderTimer.bind(this);
-    this.onStarted = this.onStarted.bind(this);
-    setTimeout(this.onFlicker.bind(this), 800);
-  }
-  onFlicker() {
-    this.setState({
-      previousEmoji: this.state.currentEmoji,
-      currentEmoji: '',
-    });
-    this.timeout = setTimeout(this.onStarted, 100);
-  }
-  onStarted() {
-    this.setState({
-      started: true,
-      countdownStarted: Date.now(),
-      currentEmoji: sample(allEmojis),
-    });
   }
   onEnd() {
     this.setState({
@@ -112,13 +95,13 @@ class Identical extends Component {
     this.props.onEnd({ score: this.state.score });
   }
   onYesPress() {
-    if (this.state.currentEmoji === this.state.previousEmoji) {
+    if (this.state.topEmoji === this.state.bottomEmoji) {
       this.setState({
         score: this.state.score + 1,
-        previousEmoji: this.state.currentEmoji,
-        currentEmoji: '',
+        topEmoji: '',
+        bottomEmoji: '',
       });
-      this.timeout = setTimeout(this.newEmoji, 100);
+      this.timeout = setTimeout(this.newEmojis, 100);
     } else {
       this.setState({
         running: false,
@@ -128,13 +111,13 @@ class Identical extends Component {
     }
   }
   onNoPress() {
-    if (this.state.currentEmoji !== this.state.previousEmoji) {
+    if (this.state.topEmoji !== this.state.bottomEmoji) {
       this.setState({
         score: this.state.score + 1,
-        previousEmoji: this.state.currentEmoji,
-        currentEmoji: '',
+        topEmoji: '',
+        bottomEmoji: '',
       });
-      this.timeout = setTimeout(this.newEmoji, 100);
+      this.timeout = setTimeout(this.newEmojis, 100);
     } else {
       this.setState({
         running: false,
@@ -143,22 +126,21 @@ class Identical extends Component {
       this.props.onEnd({ score: this.state.score });
     }
   }
-  newEmoji() {
-    const emoji = sample(allEmojis);
+  newEmojis() {
+    const topEmoji = sample(allEmojis);
+    const bottomEmoji = sample(allEmojis);
     this.setState({
-      currentEmoji: emoji,
+      topEmoji,
+      bottomEmoji,
     });
   }
   renderTimer() {
     if (this.state.running) {
-      if (this.state.started) {
-        return (<Countdown
-          duration={20}
-          startTime={this.state.countdownStarted}
-          onComplete={this.onEnd}
-        />);
-      }
-      return <Duration duration={20000} />;
+      return (<Countdown
+        duration={20}
+        startTime={this.state.countdownStarted}
+        onComplete={this.onEnd}
+      />);
     }
     return <Duration duration={this.state.duration} />;
   }
@@ -180,36 +162,31 @@ class Identical extends Component {
         footer={
           <View style={styles.container}>
             <View style={styles.emojiBox}>
-              {this.state.currentEmoji === '' ?
-                <Text />
-              :
-                <Text style={{ fontSize: 150 }}>{this.state.currentEmoji}</Text>
-              }
+              <Text style={{ fontSize: 112 }}>{this.state.topEmoji}</Text>
             </View>
-            {this.state.started ?
-              <View style={styles.options}>
-                <TouchableHighlight
-                  onPress={this.onYesPress}
-                  underlayColor="transparent"
-                  style={[styles.yes, styles.choice]}
-                >
-                  <View>
-                    <Text style={styles.label}>{I18n.t('yes')}</Text>
-                  </View>
-                </TouchableHighlight>
-                <TouchableHighlight
-                  onPress={this.onNoPress}
-                  underlayColor="transparent"
-                  style={[styles.no, styles.choice]}
-                >
-                  <View>
-                    <Text style={styles.label}>{I18n.t('no')}</Text>
-                  </View>
-                </TouchableHighlight>
-              </View>
-              :
-              <View style={styles.options} />
-            }
+            <View style={styles.emojiBox}>
+              <Text style={{ fontSize: 112 }}>{this.state.bottomEmoji}</Text>
+            </View>
+            <View style={styles.options}>
+              <TouchableHighlight
+                onPress={this.onYesPress}
+                underlayColor="transparent"
+                style={[styles.yes, styles.choice]}
+              >
+                <View>
+                  <Text style={styles.label}>{I18n.t('yes')}</Text>
+                </View>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={this.onNoPress}
+                underlayColor="transparent"
+                style={[styles.no, styles.choice]}
+              >
+                <View>
+                  <Text style={styles.label}>{I18n.t('no')}</Text>
+                </View>
+              </TouchableHighlight>
+            </View>
           </View>
         }
       />

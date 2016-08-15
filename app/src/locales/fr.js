@@ -54,7 +54,7 @@ const fr = {
   RED_GREEN_BLUE_RULE: 'Appuie sur la couleur au tableau le plus vite possible!',
   WHACK_A_MOLE_RULE: 'Appuie sur les souris dès qu\'elles passent leur tête!',
   NUMBER_RULE: 'Appuie sur les chiffres de 1 à 9 le plus vite possible!',
-  IDENTICAL_RULE: 'Appuie sur OUI si tu vois le même emoji 2 fois d\'affilée!',
+  IDENTICAL_RULE: 'Appuie sur OUI si les 2 emojis à l\'écran sont les mêmes!',
   LUCKY_RULE: 'Trouve tous les $$$ sans toucher la bombe',
   RIGHT_ON_RULE: 'Appuie sur GO chaque fois que le chrono est à 3 secondes!',
   REAL_COLOR_RULE: 'Appuie sur OUI si le mot est bien associé à sa couleur!',

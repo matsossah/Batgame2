@@ -53,7 +53,7 @@ const en = {
   RED_GREEN_BLUE_RULE: 'Drück auf die Farbe auf dem Brett so schnell wie möglich!',
   WHACK_A_MOLE_RULE: 'Drück auf die Mäuse sobald sie auftauchen!',
   NUMBER_RULE: 'Drück auf die Zahlen von 1 bis 9 so schnell wie möglich!',
-  IDENTICAL_RULE: 'Drück JA wenn du dieselbe Emojis in Folge siehst!',
+  IDENTICAL_RULE: 'Drück JA wenn die 2 Emojis auf dem Bildschirm identisch sind!',
   LUCKY_RULE: 'Hol\' das Geld, ohne die Bombe zu berühren!',
   RIGHT_ON_RULE: 'Drück auf GO jedes mal, wenn der Timer auf 3 Sekunden ist!',
   REAL_COLOR_RULE: 'Stimmt die Bedeutung des Wortes mit der Farbe überein?',

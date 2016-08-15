@@ -54,7 +54,7 @@ const en = {
   RED_GREEN_BLUE_RULE: 'Press on the color that\'s on the board as fast as possible!',
   WHACK_A_MOLE_RULE: 'Press on the moles as soon as they show up!',
   NUMBER_RULE: 'Press on the numbers from 1 to 9 as quickly as you can!',
-  IDENTICAL_RULE: 'Press YES if you see two identical emojis in a row!',
+  IDENTICAL_RULE: 'Press yes if the 2 emojis on the screen are the same!',
   LUCKY_RULE: 'Get all the $$$ without hitting the bomb!',
   RIGHT_ON_RULE: 'Press on GO each time the timer hits 3 seconds!',
   REAL_COLOR_RULE: 'Press YES if the meaning of the word matches the color!',
