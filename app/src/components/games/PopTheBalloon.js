@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight, Platform } from 'react-native';
 
 import Template from '../common/Template';
 import Timer from '../common/Timer';
@@ -47,16 +47,16 @@ class PopTheBalloon extends Component {
       startTime: Date.now(),
       duration: null,
       running: true,
-      balloonSize: 50,
+      // balloonSize: 112,
       counter: 0,
-      taps: 0,
+      // taps: 0,
     };
     this.onButtonPress = this.onButtonPress.bind(this);
   }
   onButtonPress() {
-    if (this.state.balloonSize < 148) {
+    if (this.state.counter < 49) {
       this.setState({
-        balloonSize: this.state.balloonSize + 2,
+        // balloonSize: this.state.balloonSize + 2,
         counter: this.state.counter + 1,
       });
     } else {
@@ -96,13 +96,21 @@ class PopTheBalloon extends Component {
                 style={styles.container}
               >
                 <View style={styles.bigButton}>
-                  <Text style={{ fontSize: this.state.balloonSize }}>🎈</Text>
+                {(Platform.OS === 'ios') ?
+                  <Text style={{ fontSize: 149 }}>🎈</Text>
+                :
+                  <Text style={{ fontSize: 112 }}>🎈</Text>
+                }
                 </View>
               </TouchableHighlight>
             </View>
             :
             <View style={styles.container}>
+            {(Platform.OS === 'ios') ?
               <Text style={{ fontSize: 149 }}>🎉</Text>
+            :
+              <Text style={{ fontSize: 112 }}>🎉</Text>
+            }
             </View>
         }
       />
