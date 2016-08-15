@@ -31,8 +31,6 @@ const styles = StyleSheet.create({
   cell: {
     width: (deviceHeight - 20) / 6,
     height: (deviceHeight - 20) / 6,
-    marginTop: 5,
-    marginBottom: 5,
     marginLeft: 10,
     marginRight: 10,
     borderRadius: (deviceHeight - 20) / 12,
