@@ -1,5 +1,6 @@
 package com.batgame;
 
+import android.content.Intent;
 import android.app.Application;
 import android.util.Log;
 import com.i18n.reactnativei18n.ReactNativeI18n;

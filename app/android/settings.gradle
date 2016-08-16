@@ -2,7 +2,7 @@ rootProject.name = 'Batgame'
 
 include ':app'
 include ':react-native-push-notification'
-project(':react-native-push-notification').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-push-notification/android')
+project(':react-native-push-notification').projectDir = file('../node_modules/react-native-push-notification/android')
 include ':react-native-i18n-complete'
 project(':react-native-i18n-complete').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-i18n-complete/android')
 include ':react-native-fabric'
