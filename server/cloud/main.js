@@ -115,6 +115,11 @@ async function beforeGameSave(user, gameObj) {
     (u1, u2) => u1.id === u2.id
   );
 
+  if (newAwaitingPlayers.some(p => p.placeholder)) {
+    await match.save({ open: true, openAt: new Date() });
+    return;
+  }
+
   await sendNotification(newAwaitingPlayers.map(u => u.id), () =>
     [
       matchAfter.challenge && matchAfter.currentRound === matchAfter.rounds[0] ?
@@ -179,7 +184,7 @@ async function tryToJoinMatch(user) {
       startedBy: user,
       participants: [user],
       rounds: await createRounds(),
-      open: true,
+      open: false,
     });
 
     await match.save();

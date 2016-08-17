@@ -165,7 +165,10 @@ export const matchSelector = (matchId, state) => {
       , res)
     , []);
     const lastScore = allScores.sort((a, b) => b.createdAt - a.createdAt)[0];
-    const lastDate = lastScore ? lastScore.createdAt : match.createdAt;
+    let lastDate = lastScore ? lastScore.createdAt : match.createdAt;
+    if (match.open && match.openAt.getTime() > lastDate.getTime()) {
+      lastDate = match.openAt;
+    }
     forfeit = (
       Date.now() - lastDate.getTime() >= FORFEIT_AFTER
     );
