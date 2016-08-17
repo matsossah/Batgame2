@@ -35,7 +35,7 @@ const api = new ParseServer({
       },
     ],
     android: {
-      senderID: '420615048738',
+      senderId: '420615048738',
       apiKey: 'AIzaSyCUNWx3FgyKX6HgCvhVvVIvYeDv9m89Dew',
     },
   },
