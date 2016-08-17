@@ -162,10 +162,10 @@ class Identical extends Component {
         footer={
           <View style={styles.container}>
             <View style={styles.emojiBox}>
-              <Text style={{ fontSize: 112 }}>{this.state.topEmoji}</Text>
+              <Text style={{ fontSize: 100 }}>{this.state.topEmoji}</Text>
             </View>
             <View style={styles.emojiBox}>
-              <Text style={{ fontSize: 112 }}>{this.state.bottomEmoji}</Text>
+              <Text style={{ fontSize: 100 }}>{this.state.bottomEmoji}</Text>
             </View>
             <View style={styles.options}>
               <TouchableHighlight

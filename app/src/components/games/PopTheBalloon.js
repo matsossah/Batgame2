@@ -99,7 +99,7 @@ class PopTheBalloon extends Component {
                 {(Platform.OS === 'ios') ?
                   <Text style={{ fontSize: 149 }}>🎈</Text>
                 :
-                  <Text style={{ fontSize: 112 }}>🎈</Text>
+                  <Text style={{ fontSize: 100 }}>🎈</Text>
                 }
                 </View>
               </TouchableHighlight>
@@ -109,7 +109,7 @@ class PopTheBalloon extends Component {
             {(Platform.OS === 'ios') ?
               <Text style={{ fontSize: 149 }}>🎉</Text>
             :
-              <Text style={{ fontSize: 112 }}>🎉</Text>
+              <Text style={{ fontSize: 100 }}>🎉</Text>
             }
             </View>
         }
