@@ -116,7 +116,7 @@ async function beforeGameSave(user, gameObj) {
   );
 
   if (newAwaitingPlayers.some(p => p.placeholder)) {
-    await match.save({ open: true, closedAt: new Date() });
+    await match.save({ open: true, openAt: new Date() });
     return;
   }
 
