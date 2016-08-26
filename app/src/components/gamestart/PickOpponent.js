@@ -1,16 +1,17 @@
 import React, { Component, PropTypes } from 'react';
-import { Text, View, TouchableHighlight, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, Clipboard, ToastAndroid, AlertIOS, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
 import { joinRandomMatch } from '../../actions/application';
 import { popModals, gotoSearchScreen } from '../../actions/navigation';
-
+import { userSelector } from 'shared/selectors';
 import Template from '../common/Template';
 import Title from '../common/Title';
 import LargeButton from '../common/LargeButton';
 import I18n from '../../config/i18n';
 import Fabric from 'react-native-fabric';
 // import branch from 'react-native-branch'
+import Share, { ShareSheet, Button } from 'react-native-share';
 
 const { Answers } = Fabric;
 
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
+    alignSelf: 'stretch',
   },
   empty: {
     flex: 1,
@@ -83,15 +85,38 @@ const styles = StyleSheet.create({
   },
 });
 
+const fbShare = {
+  title: 'Speedy Brain!',
+  message: '',
+  url: 'https://www.youtube.com/watch?v=hOHN2qNTYr8',
+  subject: I18n.t('whosBest'), //  for email
+};
+
+const shareOptions = {
+  title: 'Speedy Brain!',
+  message: '',
+  url: 'http://bit.ly/2bOKNxt',
+  subject: I18n.t('whosBest'), //  for email
+};
+
 class PickOpponent extends Component {
   constructor(props) {
     super(props);
-    this.onFacebookPress = this.onFacebookPress.bind(this);
+    this.state = {
+      visible: false,
+    };
+    this.onInvitePress = this.onInvitePress.bind(this);
+    this.onCancel = this.onCancel.bind(this);
     this.onRandomPress = this.onRandomPress.bind(this);
     this.onSearchPress = this.onSearchPress.bind(this);
     this.onBackPress = this.onBackPress.bind(this);
   }
-  onFacebookPress() {
+  onInvitePress() {
+    Answers.logCustom('Invite pressed');
+    this.setState({ visible: true });
+  }
+  onCancel() {
+    this.setState({ visible: false });
   }
   onRandomPress() {
     // @TODO: show loader or move into another view while looking for a match
@@ -111,9 +136,8 @@ class PickOpponent extends Component {
       <Template
         // pass the title in uppercase
         header={
-          <TouchableHighlight
+          <TouchableOpacity
             onPress={this.onBackPress}
-            underlayColor="transparent"
             style={styles.header}
           >
             <View style={styles.header}>
@@ -128,7 +152,7 @@ class PickOpponent extends Component {
                 </Title>
               </View>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         }
         footer={
           <View style={styles.footer}>
@@ -146,16 +170,111 @@ class PickOpponent extends Component {
               onPress={this.onRandomPress}
               underlayColor="#E67E2C"
             />
-            {
-              // <LargeButton
-              //   style={styles.facebook}
-              //   buttonTextStyle={styles.buttonTextStyle}
-              //   buttonText={I18n.t('inviteFBFriends')}
-              //   onPress={this.onFacebookPress}
-              //   underlayColor="#3498DB"
-              //   disabled
-              // />
-          }
+            <LargeButton
+              style={styles.facebook}
+              buttonTextStyle={styles.buttonTextStyle}
+              buttonText={I18n.t('inviteFriends')}
+              onPress={this.onInvitePress}
+              underlayColor="#3498DB"
+            />
+            <ShareSheet
+              visible={this.state.visible}
+              onCancel={this.onCancel}
+            >
+              <Button
+                iconSrc={require('../../assets/twitter.png')}
+                onPress={() => {
+                  shareOptions.message =
+                  I18n.t('launchChallenge')
+                  + '"'
+                  + this.props.user.username
+                  + '"'
+                  + '!\n\n👇 👇 👇 👇 👇 👇 👇\n';
+                  Answers.logCustom('Twitter Invite');
+                  this.onCancel();
+                  setTimeout(() => {
+                    Share.shareSingle(Object.assign(shareOptions, {
+                      social: 'twitter',
+                    }));
+                  }, 300);
+                }}
+              >
+               Twitter
+              </Button>
+              <Button
+                iconSrc={require('../../assets/facebook.png')}
+                onPress={() => {
+                  Answers.logCustom('FB Invite');
+                  this.onCancel();
+                  setTimeout(() => {
+                    Share.shareSingle(Object.assign(fbShare, {
+                      social: 'facebook',
+                    }));
+                  }, 300);
+                }}
+              >
+               Facebook
+              </Button>
+              <Button
+                iconSrc={require('../../assets/whatsapp.png')}
+                onPress={() => {
+                  Answers.logCustom('Whatsapp Invite');
+                  shareOptions.message =
+                  I18n.t('launchChallenge2')
+                  + '"'
+                  + this.props.user.username
+                  + '"'
+                  + '!\n\n👇 👇 👇 👇 👇 👇 👇\n';
+                  this.onCancel();
+                  setTimeout(() => {
+                    Share.shareSingle(Object.assign(shareOptions, {
+                      social: 'whatsapp',
+                    }));
+                  }, 300);
+                }}
+              >
+               Whatsapp
+              </Button>
+              <Button
+                iconSrc={require('../../assets/email.png')}
+                onPress={() => {
+                  shareOptions.message =
+                  I18n.t('launchChallenge2')
+                  + '"'
+                  + this.props.user.username
+                  + '"'
+                  + '!\n\n👇 👇 👇 👇 👇 👇 👇\n';
+                  Answers.logCustom('Email Invite');
+                  this.onCancel();
+                  setTimeout(() => {
+                    Share.shareSingle(Object.assign(shareOptions, {
+                      social: 'email',
+                    }));
+                  }, 300);
+                }}
+              >
+               Email
+              </Button>
+              <Button
+                iconSrc={require('../../assets/clipboard.png')}
+                onPress={() => {
+                  Answers.logCustom('Link Copied');
+                  this.onCancel();
+                  setTimeout(() => {
+                    if (typeof shareOptions.url !== undefined) {
+                      Clipboard.setString(shareOptions.url);
+                      if (Platform.OS === 'android') {
+                        ToastAndroid.show(I18n.t('linksCopied'), ToastAndroid.SHORT);
+                      } else if (Platform.OS === 'ios') {
+                        AlertIOS.alert(I18n.t('linksCopied'));
+                      }
+                    }
+                  }, 300);
+                }}
+              >
+                {I18n.t('copyLink')}
+              </Button>
+            </ShareSheet>
           </View>
         }
       />
@@ -164,7 +283,10 @@ class PickOpponent extends Component {
 }
 
 PickOpponent.propTypes = {
+  user: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect()(PickOpponent);
+export default connect(state => ({
+  user: userSelector(state.application.userId, state),
+}))(PickOpponent);

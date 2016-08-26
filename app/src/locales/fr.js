@@ -12,7 +12,7 @@ const fr = {
   pickVictim: 'CHOISIS TA VICTIME!',
   searchByUsername: 'RECHERCHE PAR PSEUDO',
   randomOpponent: 'JOUEUR AU HASARD',
-  inviteFBFriends: 'INVITER DES AMIS FB',
+  inviteFriends: 'INVITE TES AMIS!',
   search: 'TAPE UN PSEUDO',
   startSearch: 'Rechercher...',
   yes: 'OUI',
@@ -87,6 +87,12 @@ const fr = {
   staying: '🔥 Non, je veux jouer! 🔥',
   rule: 'REGLE DU JEU:',
   giveUp: 'ABANDON',
+  linksCopied: 'Liens Copiés',
+  copyLink: 'Copier le lien vers l\'app',
+  whosBest: 'Voyons qui est le meilleur! 😜',
+  launchChallenge: 'Téléchargez le jeu Speedy Brain et venez me défier! Mon pseudo est ',
+  launchChallenge2: 'Télécharge le jeu Speedy Brain et viens me défier! Mon pseudo est ',
+
 };
 
 export default fr;

@@ -35,29 +35,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'stretch',
   },
-  logoutButton: {
-    width: 100,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    paddingLeft: 10,
-    paddingTop: 20,
-  },
   logoutBox: {
     flexDirection: 'row',
     alignSelf: 'stretch',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     justifyContent: 'flex-start',
-    flex: 1,
+    flex: 3,
   },
   titleBox: {
-    flex: 3,
-    flexDirection: 'row',
+    flex: 8,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',
   },
   logout: {
+    paddingLeft: 10,
     fontSize: 20,
+  },
+  userInfo: {
+    fontSize: 16,
+    fontFamily: 'chalkduster',
+    color: '#dfdfdf',
+    paddingRight: 10,
+    paddingLeft: 5,
+    paddingBottom: 2,
   },
 });
 
@@ -147,24 +148,23 @@ class Home extends Component {
       <Template
         // pass the title in uppercase
         header={
-          <TouchableHighlight
-            onPress={this.onLogoutPress}
-            underlayColor="transparent"
-            style={styles.header}
-          >
-            <View style={styles.header}>
+          <View style={styles.header}>
+            <TouchableHighlight
+              onPress={this.onLogoutPress}
+              underlayColor="transparent"
+              style={styles.logoutBox}
+            >
               <View style={styles.logoutBox}>
-                <View style={styles.logoutButton}>
-                  <Text style={styles.logout}>{(Platform.OS === 'ios') ? '⚙' : '🚪'}</Text>
-                </View>
+                <Text style={styles.logout}>{(Platform.OS === 'ios') ? '⚙' : '🚪'}</Text>
+                <Text style={styles.userInfo}>{this.props.user.username}</Text>
               </View>
-              <View style={styles.titleBox}>
-                <Title>
-                  {I18n.t('start')}
-                </Title>
-              </View>
+            </TouchableHighlight>
+            <View style={styles.titleBox}>
+              <Title>
+                {I18n.t('start')}
+              </Title>
             </View>
-          </TouchableHighlight>
+          </View>
         }
         footer={
           <ScrollView

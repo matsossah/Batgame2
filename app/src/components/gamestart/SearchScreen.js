@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
   },
   titleBox: {
     flex: 3,
-    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',

@@ -11,9 +11,9 @@ const en = {
   play: 'LOS!',
   rematch: 'REVANCHE',
   pickVictim: 'WÄHLE DEIN OPFER!',
-  searchByUsername: 'SUCHE EINEN GEGNER',
+  searchByUsername: 'BENUTZERNAME SUCHEN',
   randomOpponent: 'ZUFFÄLIGER GEGNER',
-  inviteFBFriends: 'FB FREUNDE!',
+  inviteFriends: 'LADE FREUNDE EIN!',
   search: 'GIB EINEN SPIELERNAMEN EIN',
   startSearch: 'Suche...',
   no: 'NEIN',
@@ -86,6 +86,10 @@ const en = {
   staying: '🔥 Nein, ich will spielen! 🔥',
   rule: 'SPIELREGELN:',
   giveUp: 'AUFGEBEN',
+  linksCopied: 'Links kopiert',
+  copyLink: 'App Link Kopieren',
+  launchChallenge: 'Ladet das Spiel Speedy Brain runter und fordert mich heraus! Mein Benutzername ist ',
+  launchChallenge2: 'Lade das Spiel Speedy Brain runter und fordere mich heraus! Mein Benutzername ist ',
 };
 
 export default en;

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Alert, StyleSheet, Platform } from 'react-native';
+import { Alert, TouchableWithoutFeedback, StyleSheet, View, Platform } from 'react-native';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import Tabs from '../common/Tabs';
 import Title from '../common/Title';
@@ -9,6 +10,8 @@ import Signin from './Signin';
 import FacebookLogin from './FacebookLogin';
 import I18n from '../../config/i18n';
 
+const dismissKeyboard = require('dismissKeyboard')
+
 const styles = StyleSheet.create({
   separator: {
     flex: 7,
@@ -17,10 +20,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  back: {
+  headerStyle: {
     backgroundColor: '#2C3D50',
   },
-  footer: {
+  container: {
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  footerStyle: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-start',
@@ -68,38 +77,43 @@ class Authentication extends Component {
   }
   render() {
     let separatorStyle;
-    let style;
+    let headerStyle;
     if (Platform.OS === 'android') {
       separatorStyle = styles.separator;
-      style = styles.back;
+      headerStyle = styles.headerStyle;
     }
     return (
-      <Template
-        // pass the title in uppercase
-        header={
-          <Title>SPEEDY BRAIN</Title>
-        }
-        separator={this.renderFacebookLogin()}
-        footer={
-          <Tabs
-            tabs={[
-              {
-                title: I18n.t('signup'),
-                tabRender: this.renderSignupForm,
-                underlayColor: 'transparent',
-              },
-              {
-                title: I18n.t('login'),
-                tabRender: this.renderSigninForm,
-                underlayColor: 'transparent',
-              },
-            ]}
+      <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+        <View style={styles.container}>
+          <Template
+            // pass the title in uppercase
+            header={
+              <Title>SPEEDY BRAIN</Title>
+            }
+            separator={this.renderFacebookLogin()}
+            footer={
+              <Tabs
+                tabs={[
+                  {
+                    title: I18n.t('signup'),
+                    tabRender: this.renderSignupForm,
+                    underlayColor: 'transparent',
+                  },
+                  {
+                    title: I18n.t('login'),
+                    tabRender: this.renderSigninForm,
+                    underlayColor: 'transparent',
+                  },
+                ]}
+              />
+            }
+            separatorStyle={separatorStyle}
+            headerStyle={headerStyle}
+            footerStyle={styles.footerStyle}
           />
-        }
-        separatorStyle={separatorStyle}
-        style={style}
-        footerStyle={styles.footer}
-      />
+          {Platform.OS === 'ios' && <KeyboardSpacer />}
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

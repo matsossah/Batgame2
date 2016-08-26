@@ -4,9 +4,8 @@ import { View, StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#2C3D50',
+    alignSelf: 'stretch',
   },
   header: {
     backgroundColor: '#34485E',
@@ -31,10 +30,10 @@ const styles = StyleSheet.create({
 });
 
 function Template(props) {
-  const { header, footer, separator, style, separatorStyle, footerStyle, ...otherProps } = props;
+  const { header, footer, separator, headerStyle, separatorStyle, footerStyle, ...otherProps } = props;
   return (
-    <View {...otherProps} style={[styles.container, styles.centered, style]}>
-      <View style={[styles.header, styles.centered, style]}>
+    <View {...otherProps} style={[styles.container, styles.centered]}>
+      <View style={[styles.header, styles.centered, headerStyle]}>
         {header}
       </View>
       <View style={[styles.separator, separatorStyle]}>
@@ -48,7 +47,7 @@ function Template(props) {
 }
 
 Template.propTypes = {
-  style: PropTypes.any,
+  headerStyle: PropTypes.any,
   footerStyle: PropTypes.any,
   separatorStyle: PropTypes.any,
   header: PropTypes.node.isRequired,
