@@ -1,5 +1,6 @@
 package com.batgame;
 
+import cl.json.RNSharePackage;
 import android.content.Intent;
 import android.app.Application;
 import android.util.Log;
@@ -45,7 +46,8 @@ public class MainApplication extends Application implements ReactApplication {
                 new FBSDKPackage(mCallbackManager),
                 new VectorIconsPackage(),
                 new ReactNativeI18n(),
-                new ReactNativePushNotificationPackage()
+                new ReactNativePushNotificationPackage(),
+                new RNSharePackage()
             );
         }
     };

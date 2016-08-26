@@ -2,9 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { View, TextInput, Image } from 'react-native';
 import Parse from 'parse/react-native';
 import I18n from '../../config/i18n';
-
-import Button from '../common/Button';
-
 import styles from './formStyles';
 
 class Signup extends Component {

@@ -13,7 +13,7 @@ const en = {
   pickVictim: 'PICK YOUR VICTIM!',
   searchByUsername: 'SEARCH BY USERNAME',
   randomOpponent: 'RANDOM OPPONENT',
-  inviteFBFriends: 'INVITE FB FRIENDS',
+  inviteFriends: 'INVITE YOUR FRIENDS!',
   search: 'TYPE A USERNAME',
   startSearch: 'Search...',
   no: 'NO',
@@ -87,6 +87,11 @@ const en = {
   staying: '🔥 No, I want to play! 🔥',
   rule: 'GAME RULE:',
   giveUp: 'GIVE UP',
+  linksCopied: 'Links Copied',
+  copyLink: 'Copy App Link',
+  whosBest: 'Time to see who\'s the Best! 😜',
+  launchChallenge: 'Download the game Speedy Brain and challenge me! My username is ',
+  launchChallenge2: 'Download the game Speedy Brain and challenge me! My username is ',
 };
 
 export default en;
