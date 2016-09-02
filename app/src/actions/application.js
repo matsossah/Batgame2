@@ -114,6 +114,7 @@ export function retrieveMatches() {
       .include('rounds')
       .include('rounds.games')
       .include('rounds.games.scores')
+      .addDescending('createdAt')
       .find()
       .then(matches => {
         dispatch({
