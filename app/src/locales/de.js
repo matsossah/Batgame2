@@ -88,6 +88,7 @@ const en = {
   giveUp: 'AUFGEBEN',
   linksCopied: 'Links kopiert',
   copyLink: 'App Link Kopieren',
+  whosBest: 'Mal sehen wer der Beste ist! 😜',
   launchChallenge: 'Ladet das Spiel Speedy Brain runter und fordert mich heraus! Mein Benutzername ist ',
   launchChallenge2: 'Lade das Spiel Speedy Brain runter und fordere mich heraus! Mein Benutzername ist ',
 };

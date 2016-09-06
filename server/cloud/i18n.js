@@ -11,6 +11,18 @@ const locales = {
     YOU_LOST: username => `Oops, looks like ${username} beat you... 💩`,
     CHALLENGED: username => `${username} challenged you! Time to show who's the boss! 😉`,
   },
+  es: {
+    YOUR_TURN: username => `Your turn to play against ${username}! 💪`,
+    YOU_WON: username => `Congratulations, you beat ${username}! 🎉`,
+    YOU_LOST: username => `Oops, looks like ${username} beat you... 💩`,
+    CHALLENGED: username => `${username} challenged you! Time to show who's the boss! 😉`,
+  },
+  pt: {
+    YOUR_TURN: username => `Your turn to play against ${username}! 💪`,
+    YOU_WON: username => `Congratulations, you beat ${username}! 🎉`,
+    YOU_LOST: username => `Oops, looks like ${username} beat you... 💩`,
+    CHALLENGED: username => `${username} challenged you! Time to show who's the boss! 😉`,
+  },
 };
 
 export default function i18n(locale, id, ...args) {

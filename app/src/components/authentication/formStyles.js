@@ -57,7 +57,8 @@ export default StyleSheet.create({
     fontFamily: 'chalkduster',
   },
   image: {
-    marginTop: 40,
+    marginTop: 20,
+    marginBottom: 15,
     width: 80,
     height: 45,
   },
